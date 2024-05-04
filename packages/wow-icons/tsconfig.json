@@ -3,7 +3,14 @@
   "compilerOptions": {
     "outDir": "dist",
     "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [  
+        "src/*"
+      ],
+      "@styled-system/*": ["./styled-system/*"],
+    }
   },
   "include": ["src", "svg.d.ts"],
   "exclude": ["node_modules", "dist"]
