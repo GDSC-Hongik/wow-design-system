@@ -10,6 +10,7 @@
     "release": "pnpm publish -r --no-git-checks"
   },
   "devDependencies": {
+    "@changesets/changelog-git": "^0.2.0",
     "@changesets/cli": "^2.27.1",
     "@pandacss/dev": "^0.39.0",
     "@repo/eslint-config": "workspace:*",
