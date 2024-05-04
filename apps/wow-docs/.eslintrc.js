@@ -3,30 +3,29 @@ module.exports = {
   root: true,
   extends: [
     "@repo/eslint-config/next.js",
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:import/typescript',
-    'plugin:import/recommended'
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
   },
   settings: {
-    'import/resolver': {
+    "import/resolver": {
       node: {},
       typescript: {
-        directory: './src',
+        directory: "./src",
       },
     },
-    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+    "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
   },
   rules: {
-    "import/no-unresolved": "off",
     "import/order": [
       "error",
       {
-        groups: ["builtin", "external", "internal", "type"],
+        groups: ["builtin", "external", "parent", "sibling", "index"],
         pathGroups: [
           {
             pattern: "react+(|-native)",
@@ -46,5 +45,7 @@ module.exports = {
         pathGroupsExcludedImportTypes: ["builtin"],
       },
     ],
-  }
+    "import/no-unresolved": "off",
+    "import/export": "off",
+  },
 };

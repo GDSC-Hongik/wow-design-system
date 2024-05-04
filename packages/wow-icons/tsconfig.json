@@ -4,12 +4,6 @@
     "outDir": "dist",
     "emitDeclarationOnly": true,
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [  
-        "src/*"
-      ],
-    }
   },
   "include": ["src", "svg.d.ts"],
   "exclude": ["node_modules", "dist"]
