@@ -3,7 +3,13 @@
   "compilerOptions": {
     "outDir": "dist",
     "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [  
+        "src/*"
+      ],
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

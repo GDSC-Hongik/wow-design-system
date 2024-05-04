@@ -9,7 +9,6 @@
       "@/*": [  
         "src/*"
       ],
-      "@styled-system/*": ["./styled-system/*"],
     }
   },
   "include": ["src", "svg.d.ts"],
