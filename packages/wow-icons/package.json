@@ -1,10 +1,32 @@
 {
   "name": "wow-icons",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GDSC-Hongik/wow-design-system.git",
+    "directory": "packages/wow-icons"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly"
   },
   "keywords": [],
   "author": "",

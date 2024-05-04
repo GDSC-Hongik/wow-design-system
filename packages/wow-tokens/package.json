@@ -30,14 +30,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@types/rollup-plugin-peer-deps-external": "^2.2.5",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4"
-  }
+  "license": "ISC"
 }
