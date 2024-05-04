@@ -90,6 +90,10 @@ importers:
 
   packages/typescript-config: {}
 
+  packages/wow-icons: {}
+
+  packages/wow-tokens: {}
+
   packages/wow-ui:
     devDependencies:
       '@repo/eslint-config':
