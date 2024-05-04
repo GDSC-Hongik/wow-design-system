@@ -1,4 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
+import { textStyles } from "./theme/textStyles";
+import { tokens } from "./theme/tokens";
 
 export default defineConfig({
   // Whether to use css reset
@@ -6,4 +8,8 @@ export default defineConfig({
   include: ["./app/**/*.{ts,tsx,js,jsx}"],
   exclude: [],
   outdir: "styled-system",
+  theme: {
+    tokens,
+    textStyles,
+  },
 });
