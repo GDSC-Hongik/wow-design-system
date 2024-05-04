@@ -1,5 +1,5 @@
 import { defineTextStyles } from "@pandacss/dev";
-import { typography } from "wow-tokens";
+import { typography } from "@gdsc-hongik/wow-tokens";
 
 export const textStyles = defineTextStyles({
   h1: {

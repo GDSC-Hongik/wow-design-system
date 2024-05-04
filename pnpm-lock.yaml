@@ -99,6 +99,15 @@ importers:
 
   apps/wow-docs:
     dependencies:
+      '@gdsc-hongik/wow-icons':
+        specifier: workspace:^
+        version: link:../../packages/wow-icons
+      '@gdsc-hongik/wow-tokens':
+        specifier: workspace:^
+        version: link:../../packages/wow-tokens
+      '@gdsc-hongik/wow-ui':
+        specifier: workspace:^
+        version: link:../../packages/wow-ui
       next:
         specifier: ^14.1.1
         version: 14.1.1(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
@@ -108,15 +117,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      wow-icons:
-        specifier: workspace:^
-        version: link:../../packages/wow-icons
-      wow-tokens:
-        specifier: workspace:^
-        version: link:../../packages/wow-tokens
-      wow-ui:
-        specifier: workspace:*
-        version: link:../../packages/wow-ui
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: ^14.1.1

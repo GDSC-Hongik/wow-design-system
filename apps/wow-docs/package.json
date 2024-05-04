@@ -1,6 +1,6 @@
 {
   "name": "wow-docs",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "rm -rf .next && next dev",
@@ -10,12 +10,12 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
+    "@gdsc-hongik/wow-icons": "workspace:^",
+    "@gdsc-hongik/wow-tokens": "workspace:^",
+    "@gdsc-hongik/wow-ui": "workspace:^",
     "next": "^14.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "wow-icons": "workspace:^",
-    "wow-tokens": "workspace:^",
-    "wow-ui": "workspace:*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",

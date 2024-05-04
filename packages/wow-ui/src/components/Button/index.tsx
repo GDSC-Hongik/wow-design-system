@@ -1,7 +1,9 @@
+"use client";
+
 import { ReactNode } from "react";
 import { css } from "../../../styled-system/css/css";
 
-export interface ButtonProps {
+interface ButtonProps {
   children: ReactNode;
 }
 

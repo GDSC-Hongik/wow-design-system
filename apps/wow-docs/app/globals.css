@@ -1,1 +1,2 @@
 @layer reset, base, tokens, recipes, utilities;
+@import url("@gdsc-hongik/wow-ui/styles.css");
