@@ -12,7 +12,8 @@
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "styled-system"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,5 +1,15 @@
-import styles from "./page.module.css";
+import { css } from "../styled-system/css/css";
 
-export default function Page(): JSX.Element {
-  return <main className={styles.main}>docs</main>;
+export default function Home() {
+  return (
+    <main
+      className={css({
+        fontSize: "2xl",
+        fontWeight: "bold",
+        color: "blue.400",
+      })}
+    >
+      docs
+    </main>
+  );
 }
