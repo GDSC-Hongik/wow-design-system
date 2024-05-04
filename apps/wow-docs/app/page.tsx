@@ -1,6 +1,6 @@
-import { css } from "../styled-system/css/css";
 import { UpArrow } from "@gdsc-hongik/wow-icons";
 import { Button } from "@gdsc-hongik/wow-ui";
+import { css } from "@styled-system/css/css";
 
 export default function Home() {
   return (
