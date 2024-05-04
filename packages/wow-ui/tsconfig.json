@@ -5,7 +5,14 @@
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
     "module": "ES2015",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [  
+        "src/*"
+      ],
+      "@styled-system/*": ["./styled-system/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
