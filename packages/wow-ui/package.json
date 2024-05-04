@@ -55,6 +55,7 @@
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "chromatic": "^11.3.0",
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.6.15",
     "react": "^18.2.0",
@@ -63,5 +64,9 @@
   },
   "dependencies": {
     "next": "^14.1.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"
+  },
+  "homepage": "https://github.com/GDSC-Hongik/wow-design-system#readme"
 }
