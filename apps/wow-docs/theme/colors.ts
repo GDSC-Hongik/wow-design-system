@@ -1,5 +1,5 @@
-import { defineTokens } from "@pandacss/dev";
 import { color } from "@gdsc-hongik/wow-tokens";
+import { defineTokens } from "@pandacss/dev";
 
 export const colors = defineTokens.colors({
   red: {
