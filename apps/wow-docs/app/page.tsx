@@ -1,4 +1,5 @@
 import { css } from "../styled-system/css/css";
+import { UpArrow } from "wow-icons";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         textStyle: "h1",
       })}
     >
-      docs
+      <UpArrow />
     </main>
   );
 }

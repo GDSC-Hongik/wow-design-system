@@ -34,7 +34,10 @@ export default {
       extensions,
       include: ["src/**/*"],
       runtimeHelpers: true,
-      presets: ["@babel/preset-react"],
+      presets: [
+        ["react-app", { flow: false, typescript: true }],
+        ["@babel/preset-react", { runtime: "automatic" }],
+      ],
     }),
     url(),
     svgr(),
