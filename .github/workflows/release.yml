@@ -32,7 +32,7 @@ jobs:
       - name: Create .npmrc file
         run: |
           cat << EOF > "$HOME/.npmrc"
-            email=username@registry-email.com
+            email=gdsc.hongik@gmail.com
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
         env:
