@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependency
-        run: pnpm install -no-frozen-lockfile
+        run: pnpm install
         working-directory: packages/ui
 
       - name: Publish Chromatic
