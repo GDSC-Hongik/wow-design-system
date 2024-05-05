@@ -1,0 +1,15 @@
+{
+  "name": "@repo/theme-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "theme.js"
+  ],
+  "devDependencies": {
+    "@pandacss/dev": "^0.39.0"
+  },
+  "dependencies": {
+    "@gdsc-hongik/wow-tokens": "workspace:^"
+  }
+}
