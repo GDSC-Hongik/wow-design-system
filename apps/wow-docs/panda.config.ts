@@ -14,4 +14,5 @@ export default defineConfig({
     tokens,
     textStyles,
   },
+  dependencies: ["@gdsc-hongik/wow-tokens"],
 });

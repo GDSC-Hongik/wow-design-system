@@ -3,11 +3,13 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:tokens": "turbo wow-tokens build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "release": "pnpm publish -r --no-git-checks"
+    "release": "pnpm publish -r --no-git-checks",
+    "prepare": "pnpm build:tokens"
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
