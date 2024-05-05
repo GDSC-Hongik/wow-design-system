@@ -1,5 +1,5 @@
 {
-  "name": "@repo/theme-config",
+  "name": "theme",
   "version": "0.0.0",
   "private": true,
   "type": "module",

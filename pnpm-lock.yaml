@@ -102,9 +102,6 @@ importers:
       '@gdsc-hongik/wow-ui':
         specifier: workspace:^
         version: link:../../packages/wow-ui
-      '@repo/theme-config':
-        specifier: workspace:^
-        version: link:../../packages/theme-config
       next:
         specifier: ^14.1.1
         version: 14.1.1(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
@@ -114,6 +111,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      theme:
+        specifier: workspace:^
+        version: link:../../packages/theme
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: ^14.1.1
@@ -170,7 +170,7 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/theme-config:
+  packages/theme:
     dependencies:
       '@gdsc-hongik/wow-tokens':
         specifier: workspace:^

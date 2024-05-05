@@ -1,5 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
-import { tokens, textStyles } from "@repo/theme-config/theme";
+import { tokens, textStyles } from "theme";
 
 export default defineConfig({
   preflight: true,
