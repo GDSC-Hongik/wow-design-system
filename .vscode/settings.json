@@ -4,7 +4,6 @@
     "source.fixAll.stylelint": "explicit"
   },
   "editor.formatOnSave": true,
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
