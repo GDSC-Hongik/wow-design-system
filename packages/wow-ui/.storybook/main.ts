@@ -1,6 +1,6 @@
 import type { StorybookConfig } from "@storybook/nextjs";
 
-import { join, dirname } from "path";
+import path, { join, dirname } from "path";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -17,6 +17,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("@storybook/addon-a11y"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/nextjs"),
@@ -24,6 +25,16 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  async webpackFinal(config) {
+    if (config?.resolve?.alias) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@": path.resolve(__dirname, "../src"),
+        "@styled-system": path.resolve(__dirname, "../styled-system"),
+      };
+    }
+    return config;
   },
 };
 export default config;
