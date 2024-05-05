@@ -102,6 +102,9 @@ importers:
       '@gdsc-hongik/wow-ui':
         specifier: workspace:^
         version: link:../../packages/wow-ui
+      '@repo/theme-config':
+        specifier: workspace:^
+        version: link:../../packages/theme-config
       next:
         specifier: ^14.1.1
         version: 14.1.1(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
@@ -166,6 +169,16 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
+
+  packages/theme-config:
+    dependencies:
+      '@gdsc-hongik/wow-tokens':
+        specifier: workspace:^
+        version: link:../wow-tokens
+    devDependencies:
+      '@pandacss/dev':
+        specifier: ^0.39.0
+        version: 0.39.0(typescript@5.3.3)
 
   packages/typescript-config: {}
 
