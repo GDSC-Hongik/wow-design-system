@@ -6,6 +6,7 @@ import url from "rollup-plugin-url";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
+import alias from "@rollup/plugin-alias";
 
 const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
@@ -25,6 +26,15 @@ export default {
   ],
   external: ["react/jsx-runtime"],
   plugins: [
+    alias({
+      entries: [{ find: "@", replacement: "./src" }],
+      entries: [
+        {
+          find: "@styled-system",
+          replacement: "./styled-system",
+        },
+      ],
+    }),
     peerDepsExternal(),
     resolve({ extensions }),
     commonjs({
