@@ -26,9 +26,6 @@ jobs:
           version: 8
           run_install: false
 
-      - name: Build packages
-        run: pnpm build
-
       - name: Install Dependency
         run: pnpm install -no-frozen-lockfile
         working-directory: packages/wow-ui
