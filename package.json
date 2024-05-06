@@ -3,11 +3,15 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "tokens:build": "turbo run build --filter=@gdsc-hongik/wow-tokens",
+    "ui:build": "turbo run build --filter=@gdsc-hongik/wow-ui",
+    "icons:build": "turbo run build --filter=@gdsc-hongik/wow-icons",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "release": "pnpm publish -r --no-git-checks"
+    "release": "pnpm publish -r --no-git-checks",
+    "preinstall": "turbo run build"
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
