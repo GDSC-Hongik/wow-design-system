@@ -33,7 +33,6 @@
     "prepare": "panda codegen",
     "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
