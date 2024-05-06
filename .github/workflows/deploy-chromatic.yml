@@ -26,14 +26,6 @@ jobs:
           version: 8
           run_install: false
 
-      - name: Install panda css
-        run: pnpm install -D @pandacss/dev
-        working-directory: apps/wow-docs
-
-      - name: Panda init
-        run: pnpm panda init
-        working-directory: apps/wow-docs
-
       - name: Install Dependency
         run: pnpm install -no-frozen-lockfile
         working-directory: packages/wow-ui
