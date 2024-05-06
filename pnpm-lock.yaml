@@ -93,15 +93,6 @@ importers:
 
   apps/wow-docs:
     dependencies:
-      '@gdsc-hongik/wow-icons':
-        specifier: workspace:^
-        version: link:../../packages/wow-icons
-      '@gdsc-hongik/wow-tokens':
-        specifier: workspace:^
-        version: link:../../packages/wow-tokens
-      '@gdsc-hongik/wow-ui':
-        specifier: workspace:^
-        version: link:../../packages/wow-ui
       next:
         specifier: ^14.1.1
         version: 14.1.1(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
@@ -207,6 +198,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^1.3.3
         version: 1.3.3(react@18.2.0)
+      '@loadable/component':
+        specifier: ^5.16.4
+        version: 5.16.4(react@18.2.0)
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -249,6 +243,9 @@ importers:
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5
+      '@types/loadable__component':
+        specifier: ^5.13.9
+        version: 5.13.9
       '@types/node':
         specifier: ^20.11.24
         version: 20.11.24
@@ -267,9 +264,6 @@ importers:
       eslint-plugin-storybook:
         specifier: ^0.6.15
         version: 0.6.15(eslint@8.57.0)(typescript@5.3.3)
-      next:
-        specifier: ^14.1.1
-        version: 14.1.1(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2696,6 +2690,18 @@ packages:
 
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: true
+
+  /@loadable/component@5.16.4(react@18.2.0):
+    resolution: {integrity: sha512-fJWxx9b5WHX90QKmizo9B+es2so8DnBthI1mbflwCoOyvzEwxiZ/SVDCTtXEnHG72/kGBdzr297SSIekYtzSOQ==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.2
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-is: 16.13.1
     dev: true
 
   /@manypkg/find-root@1.1.0:
@@ -5369,6 +5375,12 @@ packages:
 
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  /@types/loadable__component@5.13.9:
+    resolution: {integrity: sha512-QWOtIkwZqHNdQj3nixQ8oyihQiTMKZLk/DNuvNxMSbTfxf47w+kqcbnxlUeBgAxdOtW0Dh48dTAIp83iJKtnrQ==}
+    dependencies:
+      '@types/react': 18.2.61
+    dev: true
 
   /@types/lodash@4.17.1:
     resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
@@ -9676,6 +9688,12 @@ packages:
       hash.js: 1.1.7
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
+    dev: true
+
+  /hoist-non-react-statics@3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
     dev: true
 
   /hookable@5.5.3:
