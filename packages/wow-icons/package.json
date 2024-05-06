@@ -1,5 +1,5 @@
 {
-  "name": "@gdsc-hongik/wow-icons",
+  "name": "wowds-icons",
   "version": "0.0.1",
   "description": "",
   "repository": {
@@ -29,6 +29,6 @@
     "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly"
   },
   "keywords": [],
-  "author": "",
+  "author": "gdsc-hongik",
   "license": "ISC"
 }

@@ -1,7 +1,8 @@
 {
-  "name": "@gdsc-hongik/wow-ui",
-  "version": "0.0.6",
+  "name": "wowds-ui",
+  "version": "0.0.0",
   "description": "",
+  "author": "gdsc-hongik",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GDSC-Hongik/wow-design-system.git",
@@ -27,7 +28,6 @@
     "./styles.css": "./dist/styles.css"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "scripts": {
     "prepare": "panda codegen",

@@ -1,6 +1,6 @@
 {
-  "name": "@gdsc-hongik/wow-tokens",
-  "version": "0.0.1",
+  "name": "wowds-tokens",
+  "version": "0.0.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -29,6 +29,6 @@
     "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly"
   },
   "keywords": [],
-  "author": "",
+  "author": "gdsc-hongik",
   "license": "ISC"
 }
