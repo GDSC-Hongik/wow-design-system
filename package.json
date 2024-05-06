@@ -10,8 +10,7 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "release": "pnpm publish -r --no-git-checks",
-    "preinstall": "turbo run build"
+    "release": "pnpm publish -r --no-git-checks"
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
