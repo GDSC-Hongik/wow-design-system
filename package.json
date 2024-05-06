@@ -10,7 +10,6 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "prepack": "turbo run build",
     "release": "pnpm publish -r --no-git-checks"
   },
   "devDependencies": {

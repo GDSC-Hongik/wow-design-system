@@ -6,8 +6,7 @@
     "dev": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0",
-    "prepare": "panda codegen"
+    "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "wowds-icons": "workspace:^",

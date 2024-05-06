@@ -30,8 +30,7 @@
   "keywords": [],
   "license": "ISC",
   "scripts": {
-    "prepare": "panda codegen",
-    "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
+    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -60,7 +59,10 @@
     "eslint-plugin-storybook": "^0.6.15",
     "react": "^18.2.0",
     "storybook": "^7.5.3",
-    "typescript": "^5.3.3",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
     "next": "^14.1.1"
   },
   "bugs": {
