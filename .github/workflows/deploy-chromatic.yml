@@ -27,7 +27,7 @@ jobs:
           run_install: false
 
       - name: Install Dependency
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
       - name: Publish Chromatic
