@@ -9,9 +9,9 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@gdsc-hongik/wow-icons": "workspace:^",
-    "@gdsc-hongik/wow-tokens": "workspace:^",
-    "@gdsc-hongik/wow-ui": "workspace:^",
+    "wowds-icons": "workspace:^",
+    "wowds-tokens": "workspace:^",
+    "wowds-ui": "workspace:^",
     "theme": "workspace:^",
     "next": "^14.1.1",
     "react": "^18.2.0",

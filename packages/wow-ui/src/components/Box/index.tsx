@@ -4,17 +4,16 @@ import { css } from "@styled-system/css/css";
 export interface ButtonProps {
   children: ReactNode;
 }
-
-const Button = ({ children }: ButtonProps) => {
+const Box = ({ children }: ButtonProps) => {
   return (
     <button
       className={css({
-        bg: "red.400",
+        bg: "blue.100",
         fontFamily: "Inter",
         px: "4",
         py: "3",
         borderRadius: "md",
-        _hover: { bg: "red.500" },
+        _hover: { bg: "blue.400" },
       })}
     >
       {children}
@@ -22,4 +21,4 @@ const Button = ({ children }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default Box;
