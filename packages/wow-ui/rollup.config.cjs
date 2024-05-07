@@ -24,8 +24,11 @@ export default {
       sourcemap: true,
     },
     {
-      file: "./dist/index.cjs",
+      dir: "dist",
       format: "cjs",
+      preserveModules: true,
+      preserveModulesRoot: "src/components",
+      sourcemap: true,
     },
   ],
   external: ["react/jsx-runtime"],
