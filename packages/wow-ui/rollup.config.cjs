@@ -17,8 +17,11 @@ export default {
   input: "./src/components/index.ts",
   output: [
     {
-      file: "./dist/index.js",
-      format: "es",
+      format: "esm",
+      dir: "dist",
+      preserveModules: true,
+      preserveModulesRoot: "src/components",
+      sourcemap: true,
     },
     {
       file: "./dist/index.cjs",

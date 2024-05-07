@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { css } from "@styled-system/css/css";
-import loadable from "@loadable/component";
 
 export interface ButtonProps {
   children: ReactNode;
