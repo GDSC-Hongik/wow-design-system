@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  transpilePackages: ["@repo/ui"],
+  transpilePackages: ["wowds-ui"],
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
