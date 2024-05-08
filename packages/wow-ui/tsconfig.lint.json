@@ -1,8 +1,0 @@
-{
-  "extends": "@repo/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src", "turbo", "rollup.config.js", "panda.config.ts"],
-  "exclude": ["node_modules", "dist", "styled-system"]
-}

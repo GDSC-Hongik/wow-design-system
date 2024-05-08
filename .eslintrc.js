@@ -21,12 +21,12 @@ module.exports = {
     },
   },
   ignorePatterns: [
-    // Ignore dotfiles
     ".*.js",
     "node_modules/",
     "dist/",
     "styled-system/",
     "panda.config.ts",
+    "rollup.config.cjs",
   ],
   overrides: [
     {
