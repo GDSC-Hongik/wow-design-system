@@ -1,5 +1,4 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
@@ -11,7 +10,24 @@
       "@/*": ["src/*"],
       "@styled-system/*": ["./styled-system/*"],
       "@theme/*": ["./theme/*"]
-    }
+    },
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
   },
   "include": [
     "next-env.d.ts",
