@@ -6,7 +6,15 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
-    "plugin:import/recommended"
+    "plugin:import/recommended",
+  ],
+  ignorePatterns: [
+    ".*.js",
+    "node_modules/",
+    "dist/",
+    "styled-system/",
+    "panda.config.ts",
+    "rollup.config.cjs",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -16,7 +24,7 @@ module.exports = {
     "import/resolver": {
       node: {},
       typescript: {
-        directory: "./src",
+        directory: "./app",
       },
     },
     "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },

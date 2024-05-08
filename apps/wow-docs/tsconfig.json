@@ -8,9 +8,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [  
-        "app/*"
-      ],
+      "@/*": ["src/*"],
       "@styled-system/*": ["./styled-system/*"],
       "@theme/*": ["./theme/*"]
     }
