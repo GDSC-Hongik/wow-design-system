@@ -58,10 +58,10 @@
     "eslint-plugin-storybook": "^0.6.15",
     "react": "^18.2.0",
     "storybook": "^7.5.3",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@rollup/plugin-alias": "^5.1.0"
   },
   "dependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
     "next": "^14.1.1"
   },
   "bugs": {
