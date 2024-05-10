@@ -18,15 +18,18 @@
   ],
   "module": "./dist/components/index.js",
   "type": "module",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+    "./styles.css": "./dist/styles.css",
+    "./Box": {
+      "types": "./dist/Box/index.d.ts",
+      "require": "./dist/Box.cjs",
+      "import": "./dist/Box.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./Button": {
+      "types": "./dist/Button/index.d.ts",
+      "require": "./dist/Button.cjs",
+      "import": "./dist/Button.js"
+    }
   },
   "keywords": [],
   "license": "ISC",

@@ -1,6 +1,6 @@
 import { css } from "@styled-system/css/css";
 import { UpArrow } from "wowds-icons";
-import { Button } from "wowds-ui";
+import Button from "wowds-ui/Button";
 
 export default function Home() {
   return (

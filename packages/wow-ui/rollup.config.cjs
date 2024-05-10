@@ -14,18 +14,20 @@ const extensions = [".js", ".jsx", ".ts", ".tsx"];
 process.env.BABEL_ENV = "production";
 
 export default {
-  input: "./src/components/index.ts",
+  input: {
+    Box: "./src/components/Box",
+    Button: "./src/components/Button",
+  },
   output: [
     {
       format: "esm",
       dir: "dist",
-      preserveModules: true,
-      preserveModulesRoot: "src/components",
-      sourcemap: true,
+      entryFileNames: "[name].js",
     },
     {
-      file: "./dist/index.cjs",
       format: "cjs",
+      dir: "dist",
+      entryFileNames: "[name].cjs",
     },
   ],
   external: ["react/jsx-runtime"],
