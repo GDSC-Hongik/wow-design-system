@@ -4,6 +4,7 @@ const { resolve } = require("node:path");
 const project = resolve(process.cwd(), "tsconfig.json");
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
+  root: true,
   extends: ["eslint:recommended", "prettier", "eslint-config-turbo"],
   plugins: ["only-warn"],
   globals: {
@@ -11,7 +12,10 @@ module.exports = {
     JSX: true,
   },
   env: {
+    browser: true,
     node: true,
+    es6: true,
+    commonjs: true,
   },
   settings: {
     "import/resolver": {
@@ -27,11 +31,6 @@ module.exports = {
     "styled-system/",
     "panda.config.ts",
     "rollup.config.cjs",
-  ],
-  overrides: [
-    {
-      files: ["*.js?(x)", "*.ts?(x)"],
-    },
   ],
 
   parser: "@typescript-eslint/parser",
