@@ -4,6 +4,12 @@ import { css } from "@styled-system/css/css";
 export interface ButtonProps {
   children: ReactNode;
 }
+
+console.log(1 == 1);
+
+function BoxHi() {
+  return null;
+}
 const Box = ({ children }: ButtonProps) => {
   return (
     <button
