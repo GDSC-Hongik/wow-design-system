@@ -7,6 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
+import typescript from "rollup-plugin-typescript2";
 import path from "path";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
@@ -42,6 +43,7 @@ export default {
       ],
     }),
     peerDepsExternal(),
+    typescript({}),
     resolve({ extensions }),
     commonjs({
       include: "node_modules/**",

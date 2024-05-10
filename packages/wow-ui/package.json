@@ -21,12 +21,12 @@
   "exports": {
     "./styles.css": "./dist/styles.css",
     "./Box": {
-      "types": "./dist/Box/index.d.ts",
+      "types": "./dist/types/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
     },
     "./Button": {
-      "types": "./dist/Button/index.d.ts",
+      "types": "./dist/types/Button/index.d.ts",
       "require": "./dist/Button.cjs",
       "import": "./dist/Button.js"
     }
@@ -34,7 +34,7 @@
   "keywords": [],
   "license": "ISC",
   "scripts": {
-    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
+    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && mkdir -p dist/types && mv dist/src/components/* dist/types/ && rm -rf dist/src && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -62,6 +62,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.6.15",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.36.0",
     "storybook": "^7.5.3",
     "tsx": "^4.9.3",
     "typescript": "^5.3.3"
