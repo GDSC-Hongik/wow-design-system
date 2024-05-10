@@ -19,7 +19,7 @@ const generateExports = async (directoryPath: string) => {
 
   for (const file of files) {
     exportsObj[`./${file}`] = {
-      types: `./dist/types/${file}/index.d.ts`,
+      types: `./dist/${file}/index.d.ts`,
       require: `./dist/${file}.cjs`,
       import: `./dist/${file}.js`,
     };

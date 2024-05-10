@@ -43,7 +43,12 @@ export default {
       ],
     }),
     peerDepsExternal(),
-    typescript({}),
+    typescript({
+      tsconfigOverride: {
+        include: ["src/components/**/*"],
+        exclude: ["**/*.stories.ts", "**/*.stories.tsx"],
+      },
+    }),
     resolve({ extensions }),
     commonjs({
       include: "node_modules/**",
