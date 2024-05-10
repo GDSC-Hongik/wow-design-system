@@ -37,7 +37,8 @@
     "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate:exports": "tsx ./src/scripts/generateExports.ts && prettier --write ./package.json"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
@@ -62,6 +63,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.5.3",
+    "tsx": "^4.9.3",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
