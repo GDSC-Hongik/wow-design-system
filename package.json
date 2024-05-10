@@ -10,7 +10,14 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "release": "pnpm publish -r --no-git-checks"
+    "release": "pnpm publish -r --no-git-checks",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --cache --write"
+    ]
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
@@ -38,6 +45,8 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "rollup": "^4.17.2",
     "rollup-plugin-babel": "^4.4.0",

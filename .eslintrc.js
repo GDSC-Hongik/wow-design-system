@@ -106,15 +106,7 @@ module.exports = {
       typescript: { project },
     },
   },
-  overrides: [
-    {
-      files: ["*.ts"],
-      rules: {
-        "react-hooks/rules-of-hooks": "off",
-        "react-hooks/exhaustive-deps": "off",
-      },
-    },
-  ],
+
   ignorePatterns: [
     ".*.js",
     "node_modules/",
