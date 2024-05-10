@@ -17,7 +17,6 @@
     "package.json"
   ],
   "module": "./dist/components/index.js",
-  "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -28,6 +27,7 @@
     },
     "./styles.css": "./dist/styles.css"
   },
+  "type": "module",
   "keywords": [],
   "license": "ISC",
   "scripts": {
@@ -50,17 +50,13 @@
     "@storybook/test": "^7.6.3",
     "@storybook/testing-library": "^0.2.2",
     "@turbo/gen": "^1.12.4",
-    "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "chromatic": "^11.3.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-storybook": "^0.6.15",
     "react": "^18.2.0",
     "storybook": "^7.5.3",
-    "typescript": "^5.3.3",
-    "eslint-plugin-import": "^2.29.1"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "next": "^14.1.1"

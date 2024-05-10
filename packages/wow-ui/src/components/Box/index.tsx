@@ -1,15 +1,10 @@
-import { ReactNode } from "react";
 import { css } from "@styled-system/css/css";
+import type { ReactNode } from "react";
 
 export interface ButtonProps {
   children: ReactNode;
 }
 
-console.log(1 == 1);
-
-function BoxHi() {
-  return null;
-}
 const Box = ({ children }: ButtonProps) => {
   return (
     <button

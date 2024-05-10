@@ -13,6 +13,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:storybook/recommended",
     "plugin:import/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
@@ -35,7 +36,6 @@ module.exports = {
     commonjs: true,
   },
   rules: {
-    "no-console": "error",
     "no-unused-vars": "error",
     eqeqeq: [
       "error",
@@ -106,7 +106,15 @@ module.exports = {
       typescript: { project },
     },
   },
-  rules: {},
+  overrides: [
+    {
+      files: ["*.ts"],
+      rules: {
+        "react-hooks/rules-of-hooks": "off",
+        "react-hooks/exhaustive-deps": "off",
+      },
+    },
+  ],
   ignorePatterns: [
     ".*.js",
     "node_modules/",
