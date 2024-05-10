@@ -8,17 +8,16 @@ import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
 import typescript from "rollup-plugin-typescript2";
+import { fileURLToPath } from "url";
 import path from "path";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 process.env.BABEL_ENV = "production";
 
 export default {
-  input: {
-    Box: "./src/components/Box",
-    Button: "./src/components/Button",
-  },
+  input: { Box: "./src/components/Box", Button: "./src/components/Button" },
   output: [
     {
       format: "esm",
@@ -34,8 +33,8 @@ export default {
   external: ["react/jsx-runtime"],
   plugins: [
     alias({
-      entries: [{ find: "@", replacement: path.join(__dirname, "./src") }],
       entries: [
+        { find: "@", replacement: path.join(__dirname, "./src") },
         {
           find: "@styled-system",
           replacement: path.join(__dirname, "./styled-system"),
