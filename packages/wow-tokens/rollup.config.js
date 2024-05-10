@@ -5,7 +5,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
+const extensions = [".ts", ".tsx", ".js", ".jsx"];
 
 process.env.BABEL_ENV = "production";
 

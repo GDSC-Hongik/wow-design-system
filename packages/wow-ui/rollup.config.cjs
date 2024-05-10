@@ -9,7 +9,7 @@ import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
 import path from "path";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
+const extensions = [".tsx", ".ts", ".js", ".jsx"];
 
 process.env.BABEL_ENV = "production";
 
