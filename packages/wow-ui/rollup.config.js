@@ -7,32 +7,34 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
+import typescript from "rollup-plugin-typescript2";
+import { fileURLToPath } from "url";
 import path from "path";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
+const extensions = [".tsx", ".ts", ".js", ".jsx"];
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 process.env.BABEL_ENV = "production";
 
 export default {
-  input: "./src/components/index.ts",
+  input: { Box: "./src/components/Box", Button: "./src/components/Button" },
   output: [
     {
       format: "esm",
       dir: "dist",
-      preserveModules: true,
-      preserveModulesRoot: "src/components",
-      sourcemap: true,
+      entryFileNames: "[name].js",
     },
     {
-      file: "./dist/index.cjs",
       format: "cjs",
+      dir: "dist",
+      entryFileNames: "[name].cjs",
     },
   ],
   external: ["react/jsx-runtime"],
   plugins: [
     alias({
-      entries: [{ find: "@", replacement: path.join(__dirname, "./src") }],
       entries: [
+        { find: "@", replacement: path.join(__dirname, "./src") },
         {
           find: "@styled-system",
           replacement: path.join(__dirname, "./styled-system"),
@@ -40,6 +42,12 @@ export default {
       ],
     }),
     peerDepsExternal(),
+    typescript({
+      tsconfigOverride: {
+        include: ["src/components/**/*"],
+        exclude: ["**/*.stories.ts", "**/*.stories.tsx"],
+      },
+    }),
     resolve({ extensions }),
     commonjs({
       include: "node_modules/**",

@@ -1,19 +1,29 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
     "outDir": "dist",
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
     "module": "ES2015",
     "moduleResolution": "Bundler",
     "baseUrl": ".",
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022",
     "paths": {
-      "@/*": [  
-        "src/*"
-      ],
+      "@/*": ["src/*"],
       "@styled-system/*": ["./styled-system/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "styled-system"]
 }

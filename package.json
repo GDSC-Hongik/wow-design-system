@@ -16,8 +16,6 @@
     "@changesets/changelog-git": "^0.2.0",
     "@changesets/cli": "^2.27.1",
     "@pandacss/dev": "^0.39.0",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@svgr/rollup": "^8.1.0",
@@ -26,6 +24,7 @@
     "@types/rollup-plugin-peer-deps-external": "^2.2.5",
     "@types/rollup-plugin-url": "^3.0.5",
     "babel-preset-react-app": "^10.0.1",
+    "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.5",
     "rollup": "^4.17.2",
     "rollup-plugin-babel": "^4.4.0",
@@ -34,16 +33,16 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-url": "^3.0.1",
     "turbo": "latest",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^7.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
