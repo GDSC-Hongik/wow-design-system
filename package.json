@@ -10,7 +10,14 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
-    "release": "pnpm publish -r --no-git-checks"
+    "release": "pnpm publish -r --no-git-checks",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --cache --write"
+    ]
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
@@ -23,8 +30,23 @@
     "@types/react-dom": "^18.2.19",
     "@types/rollup-plugin-peer-deps-external": "^2.2.5",
     "@types/rollup-plugin-url": "^3.0.5",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "babel-preset-react-app": "^10.0.1",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-turbo": "^1.13.3",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "rollup": "^4.17.2",
     "rollup-plugin-babel": "^4.4.0",
@@ -33,10 +55,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-url": "^3.0.1",
     "turbo": "latest",
-    "typescript": "^5.3.3",
-    "@typescript-eslint/parser": "^7.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1"
+    "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {

@@ -3,6 +3,7 @@
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "editor.formatOnSave": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib"
