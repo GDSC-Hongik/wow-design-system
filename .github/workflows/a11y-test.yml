@@ -31,7 +31,7 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Install Playwright
-        run: pnpm install playwright --save-dev
+        run: pnpm install playwright --save-dev -w packages/wow-ui
 
       - name: Build Storybook
         run: pnpm build-storybook --quiet
@@ -41,4 +41,3 @@ jobs:
           pnpm concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "pnpm http-server storybook-static --port 6006 --silent" \
             "pnpm wait-on tcp:6006 && pnpm test-storybook"
-
