@@ -30,6 +30,10 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
+      - name: Install concurrently
+        run: pnpm install concurrently --save-dev
+        working-directory: packages/wow-ui
+
       - name: Build Storybook
         run: pnpm run build-storybook --quiet
         working-directory: packages/wow-ui
