@@ -39,7 +39,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "generate:build-config": "tsx ./src/scripts/generateBuildConfig.ts && prettier --write ./rollup.config.js ./package.json",
-    "test-storybook": "test-storybook --watch --browsers firefox chromium webkit"
+    "test-storybook": "test-storybook --browsers firefox chromium webkit"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
