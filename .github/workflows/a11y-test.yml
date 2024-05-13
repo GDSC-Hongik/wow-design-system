@@ -30,9 +30,6 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
-      - name: Install Playwright
-        run: pnpm install playwright --save-dev -w packages/wow-ui
-
       - name: Build Storybook
         run: pnpm build-storybook --quiet
 
