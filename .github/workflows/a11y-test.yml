@@ -43,5 +43,9 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Kill pnpm storybook process
-        run: pkill -f "pnpm storybook"
+        run: |
+          PID=$(ps -ef | grep "pnpm storybook" | grep -v grep | awk '{print $2}')
+          if [ -n "$PID" ]; then
+            kill -9 $PID
+          fi
         working-directory: packages/wow-ui
