@@ -29,6 +29,10 @@ jobs:
       - name: Install Dependency
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
+      
+      - name: Install Playwright
+        run: pnpm install playwright
+        working-directory: packages/wow-ui
 
       - name: Serve Storybook
         run: nohup pnpm storybook &
