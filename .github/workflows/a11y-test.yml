@@ -41,3 +41,7 @@ jobs:
       - name: Run tests
         run: pnpm test-storybook
         working-directory: packages/wow-ui
+
+      - name: Kill pnpm storybook process
+        run: pkill -f "pnpm storybook"
+        working-directory: packages/wow-ui
