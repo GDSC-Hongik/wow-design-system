@@ -31,7 +31,7 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Install Playwright
-        run: pnpm exec playwright install
+        run: pnpm dlx playwright install --with-deps
         working-directory: packages/wow-ui
 
       - name: Serve Storybook
