@@ -31,5 +31,5 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Serve Storybook and run tests
-        run: pnpm storybook && pnpm test-storybook
+        run: nohup pnpm storybook && pnpm test-storybook
         working-directory: packages/wow-ui
