@@ -8,7 +8,7 @@ on:
       - packages/wow-ui/src/**
 
 jobs:
-  interaction-and-accessibility:
+  accessibility:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,8 +30,13 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
+      - name: Build Storybook
+        run: pnpm run build-storybook --quiet
+        working-directory: packages/wow-ui
+
       - name: Serve Storybook and run tests
         run: |
           pnpm concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "pnpm http-server storybook-static --port 6006 --silent" \
             "pnpm wait-on tcp:6006 && pnpm test-storybook"
+        working-directory: packages/wow-ui
