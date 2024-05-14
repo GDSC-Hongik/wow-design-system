@@ -11,7 +11,7 @@ export const removeUnusedKeyframes = (css: string) => {
     } else if (node.type === "decl") {
       const decl = node;
       const animationName =
-        decl.prop === "animation" ? decl.value.split(" ")[0] : decl.value;
+        decl.prop === "animation" ? decl.value.split(" ")[0] || "" : decl.value;
 
       if (
         (decl.prop === "animation" || decl.prop === "animation-name") &&

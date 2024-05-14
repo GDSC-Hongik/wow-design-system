@@ -54,7 +54,7 @@ export const removeUnusedCssVars = (css: string) => {
     if (!decl.value.includes("var(")) return;
 
     for (const match of decl.value.matchAll(varRegex)) {
-      const variable = match.groups?.name.trim();
+      const variable = match.groups?.name?.trim();
       if (!variable) continue;
 
       if (isVar) {
