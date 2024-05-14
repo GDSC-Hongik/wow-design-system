@@ -8,6 +8,7 @@
     "icons:build": "turbo run build --filter=wowds-icons",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
     "release": "pnpm publish -r --no-git-checks",
@@ -68,6 +69,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-jest": "^3.1.0",
     "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "turbo": "latest",
     "typescript": "^5.3.3"
   },
