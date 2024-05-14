@@ -1,15 +1,15 @@
+import alias from "@rollup/plugin-alias";
+import json from "@rollup/plugin-json";
+import terser from "@rollup/plugin-terser";
+import svgr from "@svgr/rollup";
+import path from "path";
+import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
-import babel from "rollup-plugin-babel";
-import svgr from "@svgr/rollup";
-import url from "rollup-plugin-url";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import terser from "@rollup/plugin-terser";
-import json from "@rollup/plugin-json";
-import alias from "@rollup/plugin-alias";
 import typescript from "rollup-plugin-typescript2";
+import url from "rollup-plugin-url";
 import { fileURLToPath } from "url";
-import path from "path";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
