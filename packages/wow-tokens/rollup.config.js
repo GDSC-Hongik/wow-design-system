@@ -28,7 +28,12 @@ export default {
     commonjs({
       include: "node_modules/**",
     }),
-    babel({ extensions, include: ["src/**/*"] }),
+    babel({
+      extensions,
+      include: ["src/**/*"],
+      babelHelpers: "runtime",
+      presets: [["react-app", { flow: false, typescript: true }]],
+    }),
     terser(),
     json(),
   ],
