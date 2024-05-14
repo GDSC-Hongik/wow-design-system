@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -17,24 +17,30 @@
     "package.json"
   ],
   "module": "./dist/components/index.js",
-  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+    "./styles.css": "./dist/styles.css",
+    "./Box": {
+      "types": "./dist/Box/index.d.ts",
+      "require": "./dist/Box.cjs",
+      "import": "./dist/Box.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./Button": {
+      "types": "./dist/Button/index.d.ts",
+      "require": "./dist/Button.cjs",
+      "import": "./dist/Button.js"
+    }
   },
   "type": "module",
   "keywords": [],
   "license": "ISC",
   "scripts": {
-    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly && panda cssgen --outfile dist/styles.css",
+    "build": "pnpm generate:build-config && rm -rf dist && rollup -c --bundleConfigAsCjs && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate:build-config": "tsx ./src/scripts/generateBuildConfig.ts && prettier --write ./rollup.config.js ./package.json",
+    "test-storybook": "test-storybook --browsers firefox chromium webkit"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
@@ -48,18 +54,25 @@
     "@storybook/nextjs": "^7.5.3",
     "@storybook/react": "^7.5.3",
     "@storybook/test": "^7.6.3",
+    "@storybook/test-runner": "^0.18.0",
     "@storybook/testing-library": "^0.2.2",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "axe-playwright": "^2.0.1",
     "chromatic": "^11.3.0",
-    "react": "^18.2.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.36.0",
     "storybook": "^7.5.3",
+    "tsx": "^4.9.3",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
-    "next": "^14.1.1"
+  "peerDependencies": {
+    "next": "^14.1.1",
+    "react": "^18.2.0"
   },
   "bugs": {
     "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"
