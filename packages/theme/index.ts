@@ -4,6 +4,7 @@ import {
   defineTokens,
 } from "@pandacss/dev";
 import { color, typography } from "wowds-tokens";
+
 export const semanticTokens = defineSemanticTokens({
   colors: {
     primary: { value: color.primary },
