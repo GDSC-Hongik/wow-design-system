@@ -547,6 +547,8 @@ export interface UtilityValues {
   colorPalette:
     | "red"
     | "blue"
+    | "yellow"
+    | "green"
     | "primary"
     | "success"
     | "error"
@@ -571,10 +573,10 @@ export interface UtilityValues {
     | "discord"
     | "github";
   textStyle:
-    | "h1"
-    | "h2"
     | "display1"
     | "display2"
+    | "h1"
+    | "h2"
     | "h3"
     | "body1"
     | "body2"

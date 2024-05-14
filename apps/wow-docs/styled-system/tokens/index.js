@@ -103,6 +103,110 @@ const tokens = {
     value: "#050E19",
     variable: "var(--colors-blue-950)",
   },
+  "colors.yellow.50": {
+    value: "#FEF7E6",
+    variable: "var(--colors-yellow-50)",
+  },
+  "colors.yellow.100": {
+    value: "#FEEECC",
+    variable: "var(--colors-yellow-100)",
+  },
+  "colors.yellow.150": {
+    value: "#FDE6B3",
+    variable: "var(--colors-yellow-150)",
+  },
+  "colors.yellow.200": {
+    value: "#FDDD99",
+    variable: "var(--colors-yellow-200)",
+  },
+  "colors.yellow.300": {
+    value: "#FBCD66",
+    variable: "var(--colors-yellow-300)",
+  },
+  "colors.yellow.400": {
+    value: "#FABC33",
+    variable: "var(--colors-yellow-400)",
+  },
+  "colors.yellow.500": {
+    value: "#F9AB00",
+    variable: "var(--colors-yellow-500)",
+  },
+  "colors.yellow.600": {
+    value: "#C78900",
+    variable: "var(--colors-yellow-600)",
+  },
+  "colors.yellow.700": {
+    value: "#956700",
+    variable: "var(--colors-yellow-700)",
+  },
+  "colors.yellow.800": {
+    value: "#644400",
+    variable: "var(--colors-yellow-800)",
+  },
+  "colors.yellow.850": {
+    value: "#4B3300",
+    variable: "var(--colors-yellow-850)",
+  },
+  "colors.yellow.900": {
+    value: "#322200",
+    variable: "var(--colors-yellow-900)",
+  },
+  "colors.yellow.950": {
+    value: "#191100",
+    variable: "var(--colors-yellow-950)",
+  },
+  "colors.green.50": {
+    value: "#EBF6EE",
+    variable: "var(--colors-green-50)",
+  },
+  "colors.green.100": {
+    value: "#D6EEDD",
+    variable: "var(--colors-green-100)",
+  },
+  "colors.green.150": {
+    value: "#C2E5CB",
+    variable: "var(--colors-green-150)",
+  },
+  "colors.green.200": {
+    value: "#AEDCBA",
+    variable: "var(--colors-green-200)",
+  },
+  "colors.green.300": {
+    value: "#85CB98",
+    variable: "var(--colors-green-300)",
+  },
+  "colors.green.400": {
+    value: "#5DB975",
+    variable: "var(--colors-green-400)",
+  },
+  "colors.green.500": {
+    value: "#34A853",
+    variable: "var(--colors-green-500)",
+  },
+  "colors.green.600": {
+    value: "#2A8642",
+    variable: "var(--colors-green-600)",
+  },
+  "colors.green.700": {
+    value: "#1F6532",
+    variable: "var(--colors-green-700)",
+  },
+  "colors.green.800": {
+    value: "#154321",
+    variable: "var(--colors-green-800)",
+  },
+  "colors.green.850": {
+    value: "#103219",
+    variable: "var(--colors-green-850)",
+  },
+  "colors.green.900": {
+    value: "#0A2211",
+    variable: "var(--colors-green-900)",
+  },
+  "colors.green.950": {
+    value: "#051108",
+    variable: "var(--colors-green-950)",
+  },
   "gradients.blueGradientDark": {
     value: "linear-gradient(to right, #368FF7, #205694)",
     variable: "var(--gradients-blue-gradient-dark)",
