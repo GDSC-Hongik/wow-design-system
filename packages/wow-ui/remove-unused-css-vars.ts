@@ -36,7 +36,6 @@ export const removeUnusedCssVars = (css: string) => {
     record.dependencies.add(dependency);
   };
 
-  // Detect variable uses
   root.walkDecls((decl) => {
     const parent = decl.parent;
     if (!parent) return;
@@ -50,7 +49,6 @@ export const removeUnusedCssVars = (css: string) => {
 
     const isVar = decl.prop.startsWith("--");
 
-    // Initiate record
     if (isVar) getRecord(decl.prop).declarations.add(decl);
 
     if (!decl.value.includes("var(")) return;
@@ -67,12 +65,9 @@ export const removeUnusedCssVars = (css: string) => {
     }
   });
 
-  //   console.log(records)
-  // Remove unused variables
   for (const { uses, declarations } of records.values()) {
     if (uses === 0) {
       for (const decl of declarations) {
-        // console.log(decl.parent)
         if (decl.parent?.nodes.length === 1) decl.parent?.remove();
         else decl.remove();
       }
