@@ -7,8 +7,9 @@ export default function Home() {
     <>
       <main
         className={css({
-          color: "blue.800",
+          color: "textWhite",
           textStyle: "h1",
+          bgGradient: "blueGradientDark",
         })}
       >
         <p>docs</p>
