@@ -96,6 +96,12 @@ module.exports = {
         allowComputed: true,
       },
     ],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
   },
@@ -105,6 +111,9 @@ module.exports = {
     "import/resolver": {
       typescript: { project },
     },
+    react: {
+      version: "detect",
+    },
   },
 
   ignorePatterns: [
@@ -113,6 +122,7 @@ module.exports = {
     "dist/",
     "styled-system/",
     "panda.config.ts",
-    "rollup.config.cjs",
+    "rollup.config.js",
+    "postcss.config.cjs",
   ],
 };

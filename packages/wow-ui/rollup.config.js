@@ -12,6 +12,7 @@ import url from "rollup-plugin-url";
 import { fileURLToPath } from "url";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 process.env.BABEL_ENV = "production";

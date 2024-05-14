@@ -35,8 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "styled-system",
-    "postcss.config.cjs"
+    "styled-system"
   ],
   "exclude": ["node_modules"]
 }
