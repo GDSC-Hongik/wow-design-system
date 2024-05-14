@@ -120,6 +120,9 @@ importers:
       rollup-plugin-url:
         specifier: ^3.0.1
         version: 3.0.1(rollup@4.17.2)
+      theme:
+        specifier: workspace:*
+        version: link:packages/theme
       turbo:
         specifier: latest
         version: 1.13.3

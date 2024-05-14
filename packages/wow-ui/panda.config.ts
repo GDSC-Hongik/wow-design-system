@@ -1,6 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
-import { removeUnusedCssVars } from "./remove-unused-css-vars";
-import { removeUnusedKeyframes } from "./remove-unused-keyframes";
+import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
 
 export default defineConfig({
   preflight: true,
