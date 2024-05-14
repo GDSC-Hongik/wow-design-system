@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "files": [
-    "theme.js"
+    "src"
   ],
+  "exports": {
+    ".": "./src/index.js"
+  },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
   },

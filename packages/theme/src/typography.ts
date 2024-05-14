@@ -2,17 +2,17 @@ import { defineTextStyles } from "@pandacss/dev";
 import { typography } from "wowds-tokens";
 
 export const textStyles = defineTextStyles({
-  h1: {
-    value: typography.h1,
-  },
-  h2: {
-    value: typography.h2,
-  },
   display1: {
     value: typography.display1,
   },
   display2: {
     value: typography.display2,
+  },
+  h1: {
+    value: typography.h1,
+  },
+  h2: {
+    value: typography.h2,
   },
   h3: {
     value: typography.h3,

@@ -1,6 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
-import { tokens, semanticTokens, textStyles } from "theme";
-
+import { semanticTokens, textStyles, tokens } from "theme";
 export default defineConfig({
   preflight: true,
   minify: true,
