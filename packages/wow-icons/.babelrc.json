@@ -1,0 +1,3 @@
+{
+  "extends": "@repo/babel-config/.babelrc.react.json"
+}
