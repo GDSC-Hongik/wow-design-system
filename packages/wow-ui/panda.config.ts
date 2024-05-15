@@ -1,4 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
+import { semanticTokens, textStyles, tokens } from "theme";
+
 export default defineConfig({
   preflight: true,
   minify: true,
@@ -8,4 +10,9 @@ export default defineConfig({
   include: ["./src/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
   outdir: "styled-system",
+  theme: {
+    tokens,
+    textStyles,
+    semanticTokens,
+  },
 });
