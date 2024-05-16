@@ -7,7 +7,7 @@
     "src"
   ],
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.ts"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
