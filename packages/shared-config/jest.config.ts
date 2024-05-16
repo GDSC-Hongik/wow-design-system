@@ -1,4 +1,4 @@
-import { Config } from "jest";
+import type { Config } from "jest";
 
 const config: Config = {
   preset: "ts-jest",
@@ -12,10 +12,14 @@ const config: Config = {
     ],
   },
 
+  setupFilesAfterEnv: ["./jest.config.ts"],
   verbose: true,
   collectCoverage: true,
   restoreMocks: true,
-  testMatch: ["<rootDir>/src/**/*.test.(js|jsx|ts|tsx)"],
+  testMatch: [
+    "<rootDir>/src/**/*.test.(js|jsx|ts|tsx)",
+    "<rootDir>/app/**/*.test.(js|jsx|ts|tsx)",
+  ],
   testPathIgnorePatterns: [
     "<rootDir>/styled-system/",
     "<rootDir>/node-modules/",
