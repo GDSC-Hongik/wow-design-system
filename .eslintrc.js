@@ -114,5 +114,6 @@ module.exports = {
     "styled-system/",
     "panda.config.ts",
     "rollup.config.cjs",
+    "rollup.config.js",
   ],
 };

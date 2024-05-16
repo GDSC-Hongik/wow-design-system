@@ -3,12 +3,12 @@ import json from "@rollup/plugin-json";
 import terser from "@rollup/plugin-terser";
 import svgr from "@svgr/rollup";
 import path from "path";
-import babel from "rollup-plugin-babel";
-import commonjs from "rollup-plugin-commonjs";
-import resolve from "rollup-plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
+import { babel } from "@rollup/plugin-babel";
+import url from "@rollup/plugin-url";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "rollup-plugin-typescript2";
-import url from "rollup-plugin-url";
 import { fileURLToPath } from "url";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
@@ -55,7 +55,7 @@ export default {
     babel({
       extensions,
       include: ["src/**/*"],
-      runtimeHelpers: true,
+      babelHelpers: "runtime",
       presets: [
         ["react-app", { flow: false, typescript: true }],
         ["@babel/preset-react", { runtime: "automatic" }],
