@@ -33,6 +33,9 @@ importers:
       '@repo/babel-config':
         specifier: workspace:*
         version: link:packages/babel-config
+      '@repo/shared-config':
+        specifier: workspace:^
+        version: link:packages/shared-config
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.24.5)(rollup@4.17.2)
@@ -216,6 +219,8 @@ importers:
         version: 5.3.3
 
   packages/babel-config: {}
+
+  packages/shared-config: {}
 
   packages/theme:
     dependencies:
