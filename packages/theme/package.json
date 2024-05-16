@@ -3,11 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "files": [
-    "src"
-  ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./utils": "./utils/index.ts"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
