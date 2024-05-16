@@ -33,7 +33,7 @@ export default {
     babel({
       extensions,
       include: ["src/**/*"],
-      runtimeHelpers: true,
+      babelHelpers: "runtime",
     }),
     url(),
     svgr(),
