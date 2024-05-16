@@ -1,2 +1,2 @@
-export * from "./remove-unused-css-vars.js";
-export * from "./remove-unused-keyframes.js";
+export * from "./remove-unused-css-vars.ts";
+export * from "./remove-unused-keyframes.ts";

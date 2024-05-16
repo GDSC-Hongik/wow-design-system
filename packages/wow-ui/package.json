@@ -31,7 +31,6 @@
       "import": "./dist/Button.js"
     }
   },
-  "type": "module",
   "keywords": [],
   "license": "ISC",
   "scripts": {

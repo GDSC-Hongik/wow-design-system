@@ -1,5 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
-import { tokens, textStyles } from "theme";
+import { semanticTokens, textStyles, tokens } from "theme";
 import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
 
 export default defineConfig({
@@ -14,6 +14,7 @@ export default defineConfig({
   theme: {
     tokens,
     textStyles,
+    semanticTokens,
   },
   hooks: {
     "cssgen:done": ({ artifact, content }) => {

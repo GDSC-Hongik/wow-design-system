@@ -13,6 +13,7 @@
     },
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "allowJs": true,
     "jsx": "preserve",
     "noEmit": true,

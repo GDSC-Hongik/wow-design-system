@@ -2,13 +2,14 @@ import { css } from "@styled-system/css/css";
 import { UpArrow } from "wowds-icons";
 import Button from "wowds-ui/Button";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <main
         className={css({
-          color: "blue.800",
+          color: "textBlack",
           textStyle: "h1",
+          bg: "backgroundAlternative",
         })}
       >
         <p>docs</p>
@@ -17,4 +18,6 @@ export default function Home() {
       <Button>버튼</Button>
     </>
   );
-}
+};
+
+export default Home;
