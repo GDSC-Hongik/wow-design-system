@@ -1,5 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
 import { tokens, textStyles } from "theme";
+import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
 
 export default defineConfig({
   preflight: true,
@@ -13,5 +14,12 @@ export default defineConfig({
   theme: {
     tokens,
     textStyles,
+  },
+  hooks: {
+    "cssgen:done": ({ artifact, content }) => {
+      if (artifact === "styles.css") {
+        return removeUnusedCssVars(removeUnusedKeyframes(content));
+      }
+    },
   },
 });

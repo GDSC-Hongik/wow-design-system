@@ -23,6 +23,7 @@
     "@changesets/changelog-git": "^0.2.0",
     "@changesets/cli": "^2.27.1",
     "@pandacss/dev": "^0.39.0",
+    "theme": "workspace:*",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@svgr/rollup": "^8.1.0",
@@ -47,6 +48,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "rollup": "^4.17.2",
     "rollup-plugin-babel": "^4.4.0",
@@ -55,10 +57,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-url": "^3.0.1",
     "turbo": "latest",
-    "typescript": "^5.3.3",
-    "@typescript-eslint/parser": "^7.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1"
+    "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {

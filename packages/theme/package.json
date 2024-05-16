@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "files": [
-    "theme.js"
-  ],
+  "exports": {
+    ".": "./index.ts",
+    "./utils": "./utils/index.ts"
+  },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
   },
