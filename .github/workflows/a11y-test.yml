@@ -38,6 +38,9 @@ jobs:
         run: nohup pnpm storybook &
         working-directory: packages/wow-ui
 
+      - name: Wait for Storybook to be ready
+        run: pnpm dlx wait-on http://127.0.0.1:6006
+
       - name: Run tests
         run: pnpm test-storybook
         working-directory: packages/wow-ui
