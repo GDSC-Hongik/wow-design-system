@@ -127,4 +127,8 @@ module.exports = {
     "jest.config.ts",
     "jest.setup.ts",
   ],
+
+  env: {
+    jest: true,
+  },
 };
