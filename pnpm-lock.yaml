@@ -30,9 +30,6 @@ importers:
       '@pandacss/dev':
         specifier: ^0.39.0
         version: 0.39.0(typescript@5.3.3)
-      '@repo/babel-config':
-        specifier: workspace:*
-        version: link:packages/babel-config
       '@repo/shared-config':
         specifier: workspace:^
         version: link:packages/shared-config
@@ -217,8 +214,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-
-  packages/babel-config: {}
 
   packages/shared-config: {}
 

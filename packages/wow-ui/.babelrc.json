@@ -1,3 +1,3 @@
 {
-  "extends": "@repo/babel-config/.babelrc.react.json"
+  "extends": "@repo/shared-config/.babelrc.react.json"
 }

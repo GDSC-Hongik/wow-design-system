@@ -26,7 +26,6 @@
     "@changesets/changelog-git": "^0.2.0",
     "@changesets/cli": "^2.27.1",
     "@pandacss/dev": "^0.39.0",
-    "@repo/babel-config": "workspace:*",
     "@repo/shared-config": "workspace:^",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
