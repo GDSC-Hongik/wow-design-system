@@ -30,6 +30,9 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
+      - name: Build packages
+        run: pnpm build
+
       - name: Publish Chromatic
         id: chromatic
         uses: chromaui/action@v1
@@ -37,10 +40,3 @@ jobs:
           workingDir: packages/wow-ui/src
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.TOKEN }}
-
-      - name: Create comment PR
-        uses: thollander/actions-comment-pull-request@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          message: "🚀 storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
