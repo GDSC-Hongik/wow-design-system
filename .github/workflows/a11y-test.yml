@@ -34,15 +34,18 @@ jobs:
         run: pnpm dlx playwright install --with-deps
         working-directory: packages/wow-ui
 
-      - name: Serve Storybook
-        run: nohup pnpm storybook &
+      - name: Start Storybook
+        run: |
+          nohup pnpm storybook &
+          sleep 10
+          curl --retry 10 --retry-connrefused http://localhost:6006
         working-directory: packages/wow-ui
 
       - name: Run tests
         run: pnpm test-storybook
         working-directory: packages/wow-ui
 
-      - name: Kill pnpm storybook process
+      - name: Kill Storybook process
         run: |
           PID=$(ps -ef | grep "pnpm storybook" | grep -v grep | awk '{print $2}')
           if [ -n "$PID" ]; then
