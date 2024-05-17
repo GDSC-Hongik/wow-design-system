@@ -20,7 +20,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install pnpm
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install Pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
@@ -34,7 +42,7 @@ jobs:
         run: pnpm dlx playwright install --with-deps
         working-directory: packages/wow-ui
 
-      - name: Build packages
+      - name: Build Packages
         run: pnpm build
 
       - name: Start Storybook
@@ -44,7 +52,7 @@ jobs:
           curl --retry 10 --retry-connrefused http://localhost:6006
         working-directory: packages/wow-ui
 
-      - name: Run tests
+      - name: Run Tests
         run: pnpm test-storybook
         working-directory: packages/wow-ui
 
