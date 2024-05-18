@@ -4,12 +4,14 @@ export const display1 = {
   fontWeight: 700,
   letterSpacing: "-0.025rem",
 };
+
 export const display2 = {
   fontSize: "2rem",
   lineHeight: "130%",
   fontWeight: 700,
   letterSpacing: "-0.02rem",
 };
+
 export const h1 = {
   fontSize: "1.5rem",
   lineHeight: "130%",

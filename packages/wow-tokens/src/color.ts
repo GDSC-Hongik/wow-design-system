@@ -88,7 +88,7 @@ export const blackOpacity60 = "rgba(0, 0, 0, 0.6)";
 
 export const blackOpacity80 = "rgba(0, 0, 0, 0.8)";
 
-//시맨틱 토큰
+// 시맨틱 토큰
 export const primary = blue500;
 export const success = green500;
 export const error = red500;
@@ -128,7 +128,7 @@ export const blueGradientDark = {
 
 export const blueGradientLight = {
   gradientFrom: blue200,
-  gradientTo: "#4792EE", //NOTE: 스케일 토큰에서 정의되어 있지 않은 색상값
+  gradientTo: "#4792EE", // NOTE: 스케일 토큰에서 정의되어 있지 않은 색상값
 };
 
 export const redGradientDark = {

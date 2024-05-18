@@ -52,8 +52,8 @@ const generateRollupEntryFiles = (files: string[]) => {
 };
 
 const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
-  const __dirname = path.resolve();
-  const rollupConfigPath = path.join(__dirname, ROLLUP_CONFIG_PATH);
+  const dirname = path.resolve();
+  const rollupConfigPath = path.join(dirname, ROLLUP_CONFIG_PATH);
   let rollupConfigContent = await fs.readFile(rollupConfigPath, "utf-8");
 
   rollupConfigContent = rollupConfigContent.replace(
