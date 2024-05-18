@@ -8,23 +8,40 @@ on:
       - packages/wow-ui/src/**
 
 jobs:
-  setup-node-pnpm: 
-    uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
-  common-workflow: 
-    uses: GDSC-Hongik/wow-design-system/.github/workflows/common-workflow.yml@feature/project-setting
   chromatic-deployment:
     runs-on: ubuntu-latest
-    needs: [setup-node-pnpm, common-workflow]
-    steps:    
+    steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: Install Pnpm
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
           run_install: false
+
+      - name: Install Dependency
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --no-frozen-lockfile
+        working-directory: packages/wow-ui
+
+      - name: Build packages
+        run: pnpm build
 
       - name: Publish Chromatic
         id: chromatic
