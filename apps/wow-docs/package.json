@@ -6,7 +6,8 @@
     "dev": "pnpm panda codegen && rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest"
   },
   "dependencies": {
     "wowds-icons": "workspace:^",

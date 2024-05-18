@@ -124,5 +124,11 @@ module.exports = {
     "panda.config.ts",
     "rollup.config.js",
     "postcss.config.cjs",
+    "jest.config.ts",
+    "jest.setup.ts",
   ],
+
+  env: {
+    jest: true,
+  },
 };
