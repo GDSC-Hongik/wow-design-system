@@ -18,6 +18,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      - name: Install Dependency
+        run: pnpm install --no-frozen-lockfile
+        working-directory: packages/wow-ui
+
       - name: Build packages
         run: pnpm build
 

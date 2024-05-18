@@ -18,6 +18,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Dependency
+        run: pnpm install --no-frozen-lockfile
+        working-directory: packages/wow-ui
+
       - name: Build packages
         run: pnpm build
 
