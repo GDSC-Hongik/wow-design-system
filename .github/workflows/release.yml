@@ -21,7 +21,6 @@ jobs:
           node-version: 20.x
 
       - name: Cache Dependencies
-        id: cache
         uses: actions/cache@v2
         with:
           path: ~/.pnpm-store
@@ -36,7 +35,6 @@ jobs:
           run_install: false
 
       - name: Install Dependency
-        if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
