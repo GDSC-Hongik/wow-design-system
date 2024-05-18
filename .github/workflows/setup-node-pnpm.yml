@@ -7,6 +7,10 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -19,9 +23,3 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
-
-      - name: Install Pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false

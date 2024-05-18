@@ -14,11 +14,13 @@ jobs:
   accessibility:
     runs-on: ubuntu-latest
     needs: setup-node-pnpm
-    steps:
-      - uses: actions/checkout@v2
+    steps:      
+      - name: Install Pnpm
+        uses: pnpm/action-setup@v3
         with:
-          fetch-depth: 0
-      
+          version: 8
+          run_install: false
+
       - name: Install Dependency
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
