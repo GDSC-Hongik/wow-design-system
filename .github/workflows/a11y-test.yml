@@ -15,30 +15,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: Install Pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
-
-      - name: Install Dependency
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --no-frozen-lockfile
-        working-directory: packages/wow-ui
+      - name: Call Setup Node and pnpm Workflow
+        uses: ./setup-node-pnpm.yml
 
       - name: Install Playwright
         run: pnpm dlx playwright install --with-deps
