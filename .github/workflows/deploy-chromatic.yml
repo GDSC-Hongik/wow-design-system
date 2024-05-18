@@ -10,27 +10,21 @@ on:
 jobs:
   setup-node-pnpm: 
     uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
-
+  common-workflow: 
+    uses: GDSC-Hongik/wow-design-system/.github/workflows/common-workflow.yml@feature/project-setting
   chromatic-deployment:
     runs-on: ubuntu-latest
-    needs: setup-node-pnpm
-    steps:
+    needs: [setup-node-pnpm, common-workflow]
+    steps:    
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
       - name: Install Pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
           run_install: false
-
-      - name: Install Dependency
-        run: pnpm install --no-frozen-lockfile
-        working-directory: packages/wow-ui
-
-      - name: Build packages
-        run: pnpm build
 
       - name: Publish Chromatic
         id: chromatic
