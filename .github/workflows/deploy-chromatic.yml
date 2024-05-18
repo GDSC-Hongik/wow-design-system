@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Call Setup Node and pnpm Workflow
-        uses: ./setup-node-pnpm.yml
+        uses: ./.github/workflows/setup-node-pnpm.yml
 
       - name: Build packages
         run: pnpm build
