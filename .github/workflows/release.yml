@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Call Setup Node and pnpm Workflow
-        uses: ./.github/workflows/setup-node-pnpm.yml
+        uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
 
       - name: Build packages
         run: pnpm build
