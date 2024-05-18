@@ -30,9 +30,6 @@ importers:
       '@pandacss/dev':
         specifier: ^0.39.0
         version: 0.39.0(typescript@5.3.3)
-      '@repo/shared-config':
-        specifier: workspace:^
-        version: link:packages/shared-config
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.24.5)(rollup@4.17.2)
@@ -153,6 +150,9 @@ importers:
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
         version: 2.2.4(rollup@4.17.2)
+      shared-config:
+        specifier: workspace:^
+        version: link:packages/shared-config
       theme:
         specifier: workspace:*
         version: link:packages/theme

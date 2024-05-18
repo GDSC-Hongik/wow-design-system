@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared-config",
+  "name": "shared-config",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",

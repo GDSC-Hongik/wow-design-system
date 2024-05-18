@@ -1,5 +1,5 @@
 import type { Config } from "jest";
-import jestConfig from "@repo/shared-config/jest.config";
+import jestConfig from "shared-config/jest.config";
 import nextJest from "next/jest.js";
 
 const createJestConfig = nextJest({
