@@ -8,15 +8,15 @@ on:
       - packages/wow-ui/src/**
 
 jobs:
+  setup-node-pnpm: 
+    uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
+
   chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Call Setup Node and pnpm Workflow
-        uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
 
       - name: Build packages
         run: pnpm build

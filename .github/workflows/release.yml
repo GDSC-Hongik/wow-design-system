@@ -8,15 +8,15 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  setup-node-pnpm: 
+    uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
+
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-
-      - name: Call Setup Node and pnpm Workflow
-        uses: GDSC-Hongik/wow-design-system/.github/workflows/setup-node-pnpm.yml@feature/project-setting
 
       - name: Build packages
         run: pnpm build
