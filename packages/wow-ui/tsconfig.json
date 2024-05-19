@@ -24,6 +24,6 @@
       "@styled-system/*": ["./styled-system/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "styled-system"]
 }

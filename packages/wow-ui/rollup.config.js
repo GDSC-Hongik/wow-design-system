@@ -8,7 +8,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import { babel } from "@rollup/plugin-babel";
 import url from "@rollup/plugin-url";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 import { fileURLToPath } from "url";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
@@ -44,10 +44,8 @@ export default {
     }),
     peerDepsExternal(),
     typescript({
-      tsconfigOverride: {
-        include: ["src/components/**/*"],
-        exclude: ["**/*.stories.ts", "**/*.stories.tsx"],
-      },
+      include: ["src/components/**/*"],
+      exclude: ["**/*.stories.ts", "**/*.stories.tsx"],
     }),
     resolve({ extensions }),
     commonjs({

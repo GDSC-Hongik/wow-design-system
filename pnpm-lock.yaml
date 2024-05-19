@@ -246,6 +246,9 @@ importers:
       '@rollup/plugin-alias':
         specifier: ^5.1.0
         version: 5.1.0(rollup@4.17.2)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.6
+        version: 11.1.6(rollup@4.17.2)(typescript@5.3.3)
       '@storybook/addon-a11y':
         specifier: ^7.5.3
         version: 7.6.19
@@ -306,9 +309,6 @@ importers:
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
         version: 2.2.4(rollup@4.17.2)
-      rollup-plugin-typescript2:
-        specifier: ^0.36.0
-        version: 0.36.0(rollup@4.17.2)(typescript@5.3.3)
       storybook:
         specifier: ^7.5.3
         version: 7.6.19
@@ -3915,6 +3915,25 @@ packages:
       terser: 5.31.0
     dev: true
 
+  /@rollup/plugin-typescript@11.1.6(rollup@4.17.2)(typescript@5.3.3):
+    resolution: {integrity: sha512-R92yOmIACgYdJ7dJ97p4K69I8gg6IEHt8M7dUBxN3W6nrO8uUxX5ixl0yU/N3aZTi8WhPuICvOHXQvF6FaykAA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0||^3.0.0||^4.0.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
+      resolve: 1.22.8
+      rollup: 4.17.2
+      typescript: 5.3.3
+    dev: true
+
   /@rollup/plugin-url@8.0.2(rollup@4.17.2):
     resolution: {integrity: sha512-5yW2LP5NBEgkvIRSSEdJkmxe5cUNZKG3eenKtfJvSkxVm/xTTu7w+ayBtNwhozl1ZnTUCU0xFaRQR+cBl2H7TQ==}
     engines: {node: '>=14.0.0'}
@@ -3928,14 +3947,6 @@ packages:
       make-dir: 3.1.0
       mime: 3.0.0
       rollup: 4.17.2
-    dev: true
-
-  /@rollup/pluginutils@4.2.1:
-    resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
-    engines: {node: '>= 8.0.0'}
-    dependencies:
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
     dev: true
 
   /@rollup/pluginutils@5.1.0(rollup@4.17.2):
@@ -14716,21 +14727,6 @@ packages:
       rollup: '*'
     dependencies:
       rollup: 4.17.2
-    dev: true
-
-  /rollup-plugin-typescript2@0.36.0(rollup@4.17.2)(typescript@5.3.3):
-    resolution: {integrity: sha512-NB2CSQDxSe9+Oe2ahZbf+B4bh7pHwjV5L+RSYpCu7Q5ROuN94F9b6ioWwKfz3ueL3KTtmX4o2MUH2cgHDIEUsw==}
-    peerDependencies:
-      rollup: '>=1.26.3'
-      typescript: '>=2.4.0'
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      find-cache-dir: 3.3.2
-      fs-extra: 10.1.0
-      rollup: 4.17.2
-      semver: 7.6.0
-      tslib: 2.6.2
-      typescript: 5.3.3
     dev: true
 
   /rollup@0.63.5:
