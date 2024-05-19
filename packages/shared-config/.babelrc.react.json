@@ -1,6 +1,7 @@
 {
   "presets": [
-    ["react-app", { "flow": false, "typescript": true }],
-    ["@babel/preset-react", { "runtime": "automatic" }]
+    ["@babel/preset-react", { "runtime": "automatic" }],
+    ["@babel/preset-env"],
+    ["@babel/preset-typescript"]
   ]
 }
