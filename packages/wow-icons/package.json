@@ -26,7 +26,7 @@
     }
   },
   "scripts": {
-    "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly"
+    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly"
   },
   "keywords": [],
   "author": "gdsc-hongik",
