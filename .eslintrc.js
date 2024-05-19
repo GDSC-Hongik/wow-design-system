@@ -126,6 +126,7 @@ module.exports = {
     "postcss.config.cjs",
     "jest.config.ts",
     "jest.setup.ts",
+    "coverage/",
   ],
 
   env: {
