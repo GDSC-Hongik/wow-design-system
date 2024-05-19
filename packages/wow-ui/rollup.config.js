@@ -45,7 +45,12 @@ export default {
     peerDepsExternal(),
     typescript({
       include: ["src/components/**/*"],
-      exclude: ["**/*.stories.ts", "**/*.stories.tsx"],
+      exclude: [
+        "**/*.stories.ts",
+        "**/*.stories.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+      ],
     }),
     resolve({ extensions }),
     commonjs({
