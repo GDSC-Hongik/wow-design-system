@@ -1,0 +1,3 @@
+{
+  "extends": "shared-config/.babelrc.react.json"
+}

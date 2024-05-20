@@ -1,0 +1,16 @@
+{
+  "name": "theme",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./utils": "./utils/index.ts"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.39.0"
+  },
+  "dependencies": {
+    "wowds-tokens": "workspace:^"
+  }
+}
