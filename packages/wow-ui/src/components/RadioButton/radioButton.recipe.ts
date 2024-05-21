@@ -39,6 +39,16 @@ export const radioCircle = css({
   background: "primary",
 });
 
+export const container = css({
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+});
+
+export const text = css({
+  textStyle: "body2",
+});
+
 type State = "selected" | "unselected" | "pressed";
 
 export interface RadioButtonVariants {
