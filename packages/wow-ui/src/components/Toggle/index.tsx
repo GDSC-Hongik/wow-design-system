@@ -33,7 +33,7 @@ const ToggleIcon = ({
       className={toggleIcon({
         type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
       })}
-    ></span>
+    />
   );
 };
 
@@ -108,7 +108,7 @@ const toggleIcon = cva({
         },
       },
       disabled: {
-        bg: "lightDisabled",
+        bg: "darkDisabled",
       },
     },
   },
@@ -137,7 +137,7 @@ const toggle = cva({
         _hover: { bgColor: "sub" },
         _pressed: { bgColor: "lightDisabled" },
       },
-      disabled: { bgColor: "darkDisabled" },
+      disabled: { bgColor: "lightDisabled" },
     },
   },
   defaultVariants: {
