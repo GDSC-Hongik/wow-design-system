@@ -49,6 +49,10 @@ export const text = css({
   textStyle: "body2",
 });
 
+export const input = css({
+  display: "none",
+});
+
 type State = "selected" | "unselected" | "pressed";
 
 export interface RadioButtonVariants {
