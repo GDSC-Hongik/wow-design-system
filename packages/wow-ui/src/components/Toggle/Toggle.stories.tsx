@@ -14,6 +14,7 @@ const meta = {
       description:
         "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다.",
       table: {
+        type: { summary: "React.ElementType" },
         defaultValue: { summary: "button" },
       },
     },
@@ -21,6 +22,7 @@ const meta = {
       description:
         "initialIsActive는 토글 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
       table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
       control: {
@@ -31,10 +33,20 @@ const meta = {
       description:
         "isDisabled는 토글 버튼이 비활성화되어 있는지 여부를 나타냅니다.",
       table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
       control: {
         type: "boolean",
+      },
+    },
+    text: {
+      description: "토글 버튼 오른쪽에 들어갈 텍스트입니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: {
+        type: "text",
       },
     },
   },
@@ -57,5 +69,11 @@ export const InitialActive: Story = {
 export const Disabled: Story = {
   args: {
     isDisabled: true,
+  },
+};
+
+export const WithText: Story = {
+  args: {
+    text: "Text",
   },
 };
