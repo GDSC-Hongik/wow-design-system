@@ -74,7 +74,7 @@ const Toggle = forwardRef(
           {...rest}
           aria-label={isActive ? "toggle-activated" : "toggle-inactivated"}
           aria-pressed={isActive}
-          data-disabled={isDisabled ? "" : undefined}
+          data-disabled={isDisabled}
           className={toggle({
             type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
           })}
