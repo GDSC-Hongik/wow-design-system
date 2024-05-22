@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom";
-
 import { render, type RenderResult, waitFor } from "@testing-library/react";
 import fireEvent from "@testing-library/user-event";
 

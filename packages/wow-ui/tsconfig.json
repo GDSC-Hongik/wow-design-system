@@ -19,6 +19,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2022",
+    "types": ["@testing-library/jest-dom"],
     "paths": {
       "@/*": ["src/*"],
       "@styled-system/*": ["./styled-system/*"]
