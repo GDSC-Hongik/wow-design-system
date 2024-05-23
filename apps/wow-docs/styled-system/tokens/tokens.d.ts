@@ -60,6 +60,23 @@ export type Token =
   | "gradients.greenGradientLight"
   | "gradients.yellowGradientDark"
   | "gradients.yellowGradientLight"
+  | "spacing.spacing.4"
+  | "spacing.spacing.8"
+  | "spacing.spacing.12"
+  | "spacing.spacing.16"
+  | "spacing.spacing.20"
+  | "spacing.spacing.24"
+  | "spacing.spacing.32"
+  | "spacing.spacing.36"
+  | "spacing.spacing.40"
+  | "radii.radius.4"
+  | "radii.radius.8"
+  | "radii.radius.12"
+  | "radii.radius.full"
+  | "stroke.stroke.8"
+  | "stroke.stroke.10"
+  | "stroke.stroke.12"
+  | "stroke.stroke.20"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
@@ -93,6 +110,15 @@ export type Token =
   | "colors.blueShadow"
   | "colors.discord"
   | "colors.github"
+  | "spacing.spacing.-4"
+  | "spacing.spacing.-8"
+  | "spacing.spacing.-12"
+  | "spacing.spacing.-16"
+  | "spacing.spacing.-20"
+  | "spacing.spacing.-24"
+  | "spacing.spacing.-32"
+  | "spacing.spacing.-36"
+  | "spacing.spacing.-40"
   | "colors.colorPalette.50"
   | "colors.colorPalette.100"
   | "colors.colorPalette.150"
@@ -238,6 +264,30 @@ export type GradientToken =
   | "yellowGradientDark"
   | "yellowGradientLight";
 
+export type SpacingToken =
+  | "spacing.4"
+  | "spacing.8"
+  | "spacing.12"
+  | "spacing.16"
+  | "spacing.20"
+  | "spacing.24"
+  | "spacing.32"
+  | "spacing.36"
+  | "spacing.40"
+  | "-spacing.4"
+  | "-spacing.8"
+  | "-spacing.12"
+  | "-spacing.16"
+  | "-spacing.20"
+  | "-spacing.24"
+  | "-spacing.32"
+  | "-spacing.36"
+  | "-spacing.40";
+
+export type RadiusToken = "radius.4" | "radius.8" | "radius.12" | "radius.full";
+
+export type StrokeToken = "stroke.8" | "stroke.10" | "stroke.12" | "stroke.20";
+
 export type BreakpointToken = "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type SizeToken =
@@ -250,6 +300,9 @@ export type SizeToken =
 export type Tokens = {
   colors: ColorToken;
   gradients: GradientToken;
+  spacing: SpacingToken;
+  radii: RadiusToken;
+  stroke: StrokeToken;
   breakpoints: BreakpointToken;
   sizes: SizeToken;
 } & { [token: string]: never };

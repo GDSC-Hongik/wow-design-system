@@ -4,11 +4,22 @@ import type { CssProperties } from "./system-types";
 import type { Tokens } from "../tokens/index";
 
 export interface UtilityValues {
-  inset: "auto";
+  top: Tokens["spacing"];
+  left: Tokens["spacing"];
+  insetInline: Tokens["spacing"];
+  insetBlock: Tokens["spacing"];
+  inset: "auto" | Tokens["spacing"];
+  insetBlockEnd: Tokens["spacing"];
+  insetBlockStart: Tokens["spacing"];
+  insetInlineEnd: Tokens["spacing"];
+  insetInlineStart: Tokens["spacing"];
+  right: Tokens["spacing"];
+  bottom: Tokens["spacing"];
   float: "start" | "end" | CssProperties["float"];
   hideFrom: Tokens["breakpoints"];
   hideBelow: Tokens["breakpoints"];
   flexBasis:
+    | Tokens["spacing"]
     | "1/2"
     | "1/3"
     | "2/3"
@@ -93,20 +104,38 @@ export interface UtilityValues {
     | "full";
   gridAutoColumns: "min" | "max" | "fr";
   gridAutoRows: "min" | "max" | "fr";
-  marginLeft: "auto";
-  marginRight: "auto";
-  marginTop: "auto";
-  marginBottom: "auto";
-  margin: "auto";
-  marginBlock: "auto";
-  marginBlockEnd: "auto";
-  marginBlockStart: "auto";
-  marginInline: "auto";
-  marginInlineEnd: "auto";
-  marginInlineStart: "auto";
-  spaceX: "auto" | CssProperties["marginInlineStart"];
-  spaceY: "auto" | CssProperties["marginBlockStart"];
+  gap: Tokens["spacing"];
+  gridGap: Tokens["spacing"];
+  gridRowGap: Tokens["spacing"];
+  gridColumnGap: Tokens["spacing"];
+  rowGap: Tokens["spacing"];
+  columnGap: Tokens["spacing"];
+  padding: Tokens["spacing"];
+  paddingLeft: Tokens["spacing"];
+  paddingRight: Tokens["spacing"];
+  paddingTop: Tokens["spacing"];
+  paddingBottom: Tokens["spacing"];
+  paddingBlock: Tokens["spacing"];
+  paddingBlockEnd: Tokens["spacing"];
+  paddingBlockStart: Tokens["spacing"];
+  paddingInline: Tokens["spacing"];
+  paddingInlineEnd: Tokens["spacing"];
+  paddingInlineStart: Tokens["spacing"];
+  marginLeft: "auto" | Tokens["spacing"];
+  marginRight: "auto" | Tokens["spacing"];
+  marginTop: "auto" | Tokens["spacing"];
+  marginBottom: "auto" | Tokens["spacing"];
+  margin: "auto" | Tokens["spacing"];
+  marginBlock: "auto" | Tokens["spacing"];
+  marginBlockEnd: "auto" | Tokens["spacing"];
+  marginBlockStart: "auto" | Tokens["spacing"];
+  marginInline: "auto" | Tokens["spacing"];
+  marginInlineEnd: "auto" | Tokens["spacing"];
+  marginInlineStart: "auto" | Tokens["spacing"];
+  spaceX: "auto" | Tokens["spacing"] | CssProperties["marginInlineStart"];
+  spaceY: "auto" | Tokens["spacing"] | CssProperties["marginBlockStart"];
   outlineColor: Tokens["colors"];
+  outlineOffset: Tokens["spacing"];
   divideColor: Tokens["colors"];
   divideStyle: CssProperties["borderStyle"];
   width:
@@ -425,6 +454,7 @@ export interface UtilityValues {
   fontSmoothing: "antialiased" | "subpixel-antialiased";
   textDecorationColor: Tokens["colors"];
   textEmphasisColor: Tokens["colors"];
+  textIndent: Tokens["spacing"];
   textShadowColor: Tokens["colors"];
   textWrap: "wrap" | "balance" | "nowrap";
   truncate: boolean;
@@ -453,12 +483,21 @@ export interface UtilityValues {
   gradientFrom: Tokens["colors"];
   gradientTo: Tokens["colors"];
   gradientVia: Tokens["colors"];
-  borderTopRadius: CssProperties["borderRadius"];
-  borderRightRadius: CssProperties["borderRadius"];
-  borderBottomRadius: CssProperties["borderRadius"];
-  borderLeftRadius: CssProperties["borderRadius"];
-  borderStartRadius: CssProperties["borderRadius"];
-  borderEndRadius: CssProperties["borderRadius"];
+  borderRadius: Tokens["radii"];
+  borderTopLeftRadius: Tokens["radii"];
+  borderTopRightRadius: Tokens["radii"];
+  borderBottomRightRadius: Tokens["radii"];
+  borderBottomLeftRadius: Tokens["radii"];
+  borderTopRadius: Tokens["radii"] | CssProperties["borderRadius"];
+  borderRightRadius: Tokens["radii"] | CssProperties["borderRadius"];
+  borderBottomRadius: Tokens["radii"] | CssProperties["borderRadius"];
+  borderLeftRadius: Tokens["radii"] | CssProperties["borderRadius"];
+  borderStartStartRadius: Tokens["radii"];
+  borderStartEndRadius: Tokens["radii"];
+  borderStartRadius: Tokens["radii"] | CssProperties["borderRadius"];
+  borderEndStartRadius: Tokens["radii"];
+  borderEndEndRadius: Tokens["radii"];
+  borderEndRadius: Tokens["radii"] | CssProperties["borderRadius"];
   borderColor: Tokens["colors"];
   borderInlineColor: Tokens["colors"];
   borderBlockColor: Tokens["colors"];
@@ -473,7 +512,9 @@ export interface UtilityValues {
   boxShadowColor: Tokens["colors"];
   filter: "auto";
   backdropFilter: "auto";
-  borderSpacing: "auto";
+  borderSpacing: Tokens["spacing"] | "auto";
+  borderSpacingX: Tokens["spacing"];
+  borderSpacingY: Tokens["spacing"];
   transition:
     | "all"
     | "common"
@@ -490,6 +531,7 @@ export interface UtilityValues {
   scale: "auto" | CssProperties["scale"];
   translate: "auto" | "auto-3d" | CssProperties["translate"];
   translateX:
+    | Tokens["spacing"]
     | "1/2"
     | "1/3"
     | "2/3"
@@ -505,6 +547,7 @@ export interface UtilityValues {
     | "-3/4"
     | "-full";
   translateY:
+    | Tokens["spacing"]
     | "1/2"
     | "1/3"
     | "2/3"
@@ -520,6 +563,7 @@ export interface UtilityValues {
     | "-3/4"
     | "-full";
   translateZ:
+    | Tokens["spacing"]
     | "1/2"
     | "1/3"
     | "2/3"
@@ -537,8 +581,35 @@ export interface UtilityValues {
   accentColor: Tokens["colors"];
   caretColor: Tokens["colors"];
   scrollbar: "visible" | "hidden";
+  scrollMargin: Tokens["spacing"];
+  scrollMarginLeft: Tokens["spacing"];
+  scrollMarginRight: Tokens["spacing"];
+  scrollMarginTop: Tokens["spacing"];
+  scrollMarginBottom: Tokens["spacing"];
+  scrollMarginBlock: Tokens["spacing"];
+  scrollMarginBlockEnd: Tokens["spacing"];
+  scrollMarginBlockStart: Tokens["spacing"];
+  scrollMarginInline: Tokens["spacing"];
+  scrollMarginInlineEnd: Tokens["spacing"];
+  scrollMarginInlineStart: Tokens["spacing"];
+  scrollPadding: Tokens["spacing"];
+  scrollPaddingBlock: Tokens["spacing"];
+  scrollPaddingBlockStart: Tokens["spacing"];
+  scrollPaddingBlockEnd: Tokens["spacing"];
+  scrollPaddingInline: Tokens["spacing"];
+  scrollPaddingInlineEnd: Tokens["spacing"];
+  scrollPaddingInlineStart: Tokens["spacing"];
+  scrollPaddingLeft: Tokens["spacing"];
+  scrollPaddingRight: Tokens["spacing"];
+  scrollPaddingTop: Tokens["spacing"];
+  scrollPaddingBottom: Tokens["spacing"];
   scrollSnapType: "none" | "x" | "y" | "both";
   scrollSnapStrictness: "mandatory" | "proximity";
+  scrollSnapMargin: Tokens["spacing"];
+  scrollSnapMarginTop: Tokens["spacing"];
+  scrollSnapMarginBottom: Tokens["spacing"];
+  scrollSnapMarginLeft: Tokens["spacing"];
+  scrollSnapMarginRight: Tokens["spacing"];
   fill: Tokens["colors"];
   stroke: Tokens["colors"];
   srOnly: boolean;
