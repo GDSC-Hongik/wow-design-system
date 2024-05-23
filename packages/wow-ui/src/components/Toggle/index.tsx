@@ -128,8 +128,8 @@ const toggleIcon = cva({
 
 const toggle = cva({
   base: {
-    width: "52px",
-    height: "28px",
+    width: "52px !important",
+    height: "28px !important",
     borderRadius: "40px",
     cursor: "pointer",
     position: "relative",
