@@ -1,19 +1,17 @@
 import { defineTokens } from "@pandacss/dev";
 import { stroke as wowStroke } from "wowds-tokens";
 
-export const stroke = defineTokens.sizes({
-  stroke: {
-    "8": {
-      value: wowStroke.stroke8,
-    },
-    "10": {
-      value: wowStroke.stroke10,
-    },
-    "12": {
-      value: wowStroke.stroke12,
-    },
-    "20": {
-      value: wowStroke.stroke20,
-    },
+export const borderWidths = defineTokens.borderWidths({
+  stroke8: {
+    value: wowStroke.stroke8,
+  },
+  stroke10: {
+    value: wowStroke.stroke10,
+  },
+  stroke12: {
+    value: wowStroke.stroke12,
+  },
+  stroke20: {
+    value: wowStroke.stroke20,
   },
 });
