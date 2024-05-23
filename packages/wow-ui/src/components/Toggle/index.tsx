@@ -1,3 +1,5 @@
+"use client";
+
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type {
