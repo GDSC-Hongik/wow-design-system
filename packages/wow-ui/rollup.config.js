@@ -18,7 +18,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.env.BABEL_ENV = "production";
 
 export default {
-  input: { Box: "./src/components/Box", Button: "./src/components/Button" },
+  input: {
+    Box: "./src/components/Box",
+    Button: "./src/components/Button",
+    Toggle: "./src/components/Toggle",
+  },
   output: [
     {
       format: "esm",
