@@ -3,13 +3,18 @@
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
   ElementType,
   KeyboardEvent,
+  NamedExoticComponent,
   ReactNode,
 } from "react";
 import { forwardRef, useEffect, useState } from "react";
+
+import type {
+  AsProps,
+  PolymorphicComponentProps,
+  PolymorphicRef,
+} from "@/types/Polymorphic";
 
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
@@ -25,8 +30,7 @@ import { forwardRef, useEffect, useState } from "react";
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
-export interface ToggleProps<T extends ElementType> {
-  as?: T;
+export interface ToggleProps<T extends ElementType> extends AsProps<T> {
   defaultChecked?: boolean;
   isDisabled?: boolean;
   isChecked?: boolean;
@@ -52,8 +56,12 @@ const ToggleIcon = ({
   );
 };
 
-const Toggle = forwardRef(
-  <T extends ElementType>(
+type ToggleComponent = <T extends ElementType = "button">(
+  props: ToggleProps<T>
+) => ReactNode | null;
+
+const Toggle: ToggleComponent = forwardRef(
+  <T extends ElementType = "button">(
     {
       as,
       defaultChecked = false,
@@ -64,8 +72,8 @@ const Toggle = forwardRef(
       onKeyDown,
       onChange,
       ...rest
-    }: ToggleProps<T> & ComponentPropsWithoutRef<T>,
-    ref: ComponentPropsWithRef<T>["ref"]
+    }: PolymorphicComponentProps<T, ToggleProps<T>>,
+    ref: PolymorphicRef<T>
   ) => {
     const [isActive, setIsActive] = useState(() => defaultChecked);
 
@@ -178,6 +186,6 @@ const toggle = cva({
   },
 });
 
-Toggle.displayName = "Toggle";
+(Toggle as NamedExoticComponent).displayName = "Toggle";
 
 export default Toggle;
