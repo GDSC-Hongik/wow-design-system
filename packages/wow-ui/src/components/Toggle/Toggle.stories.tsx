@@ -49,6 +49,25 @@ const meta = {
         type: "text",
       },
     },
+    onClick: {
+      description: "토글 버튼 클릭 시 동작할 이벤트입니다.",
+      table: {
+        type: { summary: "() => void" },
+        control: {
+          type: "function",
+        },
+      },
+    },
+    onKeyDown: {
+      description:
+        "토글 버튼이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
+      table: {
+        type: { summary: "() => void" },
+        control: {
+          type: "function",
+        },
+      },
+    },
   },
 } satisfies Meta<typeof Toggle>;
 
