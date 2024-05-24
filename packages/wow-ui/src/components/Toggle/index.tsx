@@ -75,17 +75,18 @@ const Toggle: ToggleComponent = forwardRef(
     }: PolymorphicComponentProps<T, ToggleProps<T>>,
     ref: PolymorphicRef<T>
   ) => {
-    const [isActive, setIsActive] = useState(() => defaultChecked);
+    const [isActive, setIsActive] = useState(() =>
+      isChecked ? isChecked : defaultChecked
+    );
 
     useEffect(() => {
-      if (isChecked) {
+      if (isChecked !== undefined) {
         setIsActive(isChecked);
       }
     }, [isChecked]);
 
     const handleClick = () => {
-      setIsActive((prev) => !prev);
-      onChange?.();
+      onChange ? onChange() : setIsActive((prev) => !prev);
       onClick?.();
     };
 
@@ -93,8 +94,7 @@ const Toggle: ToggleComponent = forwardRef(
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
 
-        setIsActive((prev) => !prev);
-        onChange?.();
+        onChange ? onChange() : setIsActive((prev) => !prev);
         onKeyDown?.();
       }
     };
