@@ -11,7 +11,6 @@ import type {
 import { forwardRef, useEffect, useState } from "react";
 
 import type {
-  AsProps,
   PolymorphicComponentProps,
   PolymorphicRef,
 } from "@/types/Polymorphic";
@@ -30,7 +29,7 @@ import type {
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
-export interface ToggleProps<T extends ElementType> extends AsProps<T> {
+export interface ToggleProps {
   defaultChecked?: boolean;
   isDisabled?: boolean;
   isChecked?: boolean;
@@ -57,7 +56,7 @@ const ToggleIcon = ({
 };
 
 type ToggleComponent = <T extends ElementType = "button">(
-  props: ToggleProps<T>
+  props: PolymorphicComponentProps<T, ToggleProps>
 ) => ReactNode | null;
 
 const Toggle: ToggleComponent = forwardRef(
@@ -72,7 +71,7 @@ const Toggle: ToggleComponent = forwardRef(
       onKeyDown,
       onChange,
       ...rest
-    }: PolymorphicComponentProps<T, ToggleProps<T>>,
+    }: PolymorphicComponentProps<T, ToggleProps>,
     ref: PolymorphicRef<T>
   ) => {
     const [isActive, setIsActive] = useState(() =>
