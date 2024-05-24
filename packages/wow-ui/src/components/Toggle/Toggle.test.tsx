@@ -61,7 +61,7 @@ describe("toggle", () => {
   });
 });
 
-describe("when initialIsActive is true", () => {
+describe("when defaultChecked is true", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
