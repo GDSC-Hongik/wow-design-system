@@ -65,7 +65,7 @@ describe("when initialIsActive is true", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
-    rendered = render(<Toggle initialIsActive />);
+    rendered = render(<Toggle defaultChecked />);
   });
 
   it("should render with attributes aria-pressed to be true, data-disabled to be false, aria-label to be toggle-activated", () => {
