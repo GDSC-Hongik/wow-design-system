@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import Toggle from "@/components/Toggle";
 
@@ -18,9 +19,9 @@ const meta = {
         defaultValue: { summary: "button" },
       },
     },
-    initialIsActive: {
+    defaultChecked: {
       description:
-        "initialIsActive는 토글 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
+        "defaultChecked는 토글 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -40,6 +41,16 @@ const meta = {
         type: "boolean",
       },
     },
+    isChecked: {
+      description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+      control: {
+        type: "boolean",
+      },
+    },
     text: {
       description: "토글 버튼 오른쪽에 들어갈 텍스트입니다.",
       table: {
@@ -47,6 +58,15 @@ const meta = {
       },
       control: {
         type: "text",
+      },
+    },
+    onChange: {
+      description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
+      table: {
+        type: { summary: "() => void" },
+        control: {
+          type: "function",
+        },
       },
     },
     onClick: {
@@ -79,9 +99,9 @@ export const Primary: Story = {
   args: {},
 };
 
-export const InitialActive: Story = {
+export const DefaultChecked: Story = {
   args: {
-    initialIsActive: true,
+    defaultChecked: true,
   },
 };
 
@@ -95,4 +115,18 @@ export const WithText: Story = {
   args: {
     text: "Text",
   },
+};
+
+const ControlledToggle = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  return <Toggle isChecked={isChecked} onChange={handleChange} />;
+};
+
+export const ControlledState: Story = {
+  render: () => <ControlledToggle />,
 };
