@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
 
 import Chip from "@/components/Chip";
 
@@ -13,15 +12,15 @@ const meta = {
   argTypes: {
     as: {
       description:
-        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다.",
+        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다. 칩의 경우 input으로도 사용 가능합니다.",
       table: {
         type: { summary: "React.ElementType" },
         defaultValue: { summary: "button" },
       },
     },
-    defaultChecked: {
+    defaultSelected: {
       description:
-        "defaultChecked는 토글 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
+        "defaultSelected는 칩 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -30,29 +29,40 @@ const meta = {
         type: "boolean",
       },
     },
-    isDisabled: {
+    isSelected: {
+      description: "isSelected는 외부에서 제어할 활성 상태를 나타냅니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+      control: {
+        type: "boolean",
+      },
+    },
+    clickable: {
+      description: "Toggle이 가능한 칩인지에 대한 여부를 확인합니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+      control: {
+        type: "boolean",
+      },
+    },
+    variant: {
       description:
-        "isDisabled는 토글 버튼이 비활성화되어 있는지 여부를 나타냅니다.",
+        "칩의 테마를 나타앱니다. 기본 색상은 default이며, 긍정적인 피드백은 positive, 부정적인 피드백은 negative를 활용합니다.",
       table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: {
+          defaultValue: { summary: "default" },
+        },
       },
       control: {
-        type: "boolean",
+        type: "default | positive | negative",
       },
     },
-    isChecked: {
-      description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-      control: {
-        type: "boolean",
-      },
-    },
-    text: {
-      description: "토글 버튼 오른쪽에 들어갈 텍스트입니다.",
+    label: {
+      description: "칩에 들어가게 될 텍스트입니다.",
       table: {
         type: { summary: "string" },
       },
@@ -60,8 +70,8 @@ const meta = {
         type: "text",
       },
     },
-    onChange: {
-      description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
+    onClick: {
+      description: "칩 클릭 시 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
         control: {
@@ -69,8 +79,8 @@ const meta = {
         },
       },
     },
-    onClick: {
-      description: "토글 버튼 클릭 시 동작할 이벤트입니다.",
+    onDelete: {
+      description: "칩에 대한 필터를 제거하기 위한 함수입니다.",
       table: {
         type: { summary: "() => void" },
         control: {
@@ -80,7 +90,7 @@ const meta = {
     },
     onKeyDown: {
       description:
-        "토글 버튼이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
+        "칩이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
         control: {
@@ -102,6 +112,14 @@ export const Default: Story = {
   },
 };
 
+export const NonClickable: Story = {
+  args: {
+    label: "Chip",
+    variant: "default",
+    clickable: false,
+  },
+};
+
 export const Positive: Story = {
   args: {
     label: "Chip",
@@ -116,16 +134,12 @@ export const Negative: Story = {
   },
 };
 
-// const ControlledToggle = () => {
-//   const [isChecked, setIsChecked] = useState(false);
-
-//   const handleChange = () => {
-//     setIsChecked((prev) => !prev);
-//   };
-
-//   return <Chip isChecked={isChecked} onChange={handleChange} />;
-// };
-
-// export const ControlledState: Story = {
-//   render: () => <ControlledToggle />,
-// };
+export const CanDelete: Story = {
+  args: {
+    label: "Chip",
+    variant: "default",
+    onDelete: () => {
+      console.log("삭제합니다.");
+    },
+  },
+};

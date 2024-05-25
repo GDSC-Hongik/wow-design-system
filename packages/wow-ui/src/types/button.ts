@@ -74,9 +74,6 @@ export interface ToggleButtonProps extends BasicButtonProps {
 
   /** 해당 요소가 기본적으로 선택되어 있는 상태인지 판단합니다. */
   defaultSelected?: boolean;
-
-  /** 버튼의 상태를 바꾸는 함수입니다.*/
-  onChange?: (isSelected: boolean) => void;
 }
 
 export interface MenuButtonProps extends BasicButtonProps {
