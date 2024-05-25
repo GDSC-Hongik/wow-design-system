@@ -124,3 +124,50 @@ describe("disabled", () => {
     });
   });
 });
+
+describe("external control and events", () => {
+  let rendered: RenderResult;
+
+  it("should fire external onClick event", async () => {
+    rendered = render(<Switch />);
+    const switchComponent = rendered.getByRole("checkbox");
+    const onClickHandler = jest.fn();
+    switchComponent.onclick = onClickHandler;
+
+    fireEvent.click(switchComponent);
+
+    await waitFor(() => {
+      expect(onClickHandler).toHaveBeenCalled();
+    });
+  });
+
+  it("should fire external onKeyDown event", async () => {
+    rendered = render(<Switch />);
+    const switchComponent = rendered.getByRole("checkbox");
+    const onKeyDownHandler = jest.fn();
+    switchComponent.onkeydown = onKeyDownHandler;
+
+    fireEvent.type(switchComponent, "{enter}");
+
+    await waitFor(() => {
+      expect(onKeyDownHandler).toHaveBeenCalled();
+    });
+  });
+
+  it("should toggle external checked state when onClick event fired", async () => {
+    let isChecked = false;
+    const handleChange = () => {
+      isChecked = !isChecked;
+    };
+    const rendered = render(<Switch isChecked={isChecked} />);
+    const switchComponent = rendered.getByRole("checkbox");
+    switchComponent.onchange = handleChange;
+
+    fireEvent.click(switchComponent);
+
+    await waitFor(() => {
+      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(switchComponent).toHaveAttribute("aria-disabled", "false");
+    });
+  });
+});
