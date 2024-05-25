@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import Toggle from "@/components/Toggle";
+import Switch from "@/components/Switch";
 
 const meta = {
-  title: "UI/Toggle",
-  component: Toggle,
+  title: "UI/Switch",
+  component: Switch,
   tags: ["autodocs"],
   parameters: {
-    componentSubtitle: "토글 컴포넌트",
+    componentSubtitle: "스위치 컴포넌트",
   },
   argTypes: {
     as: {
@@ -21,7 +21,7 @@ const meta = {
     },
     defaultChecked: {
       description:
-        "defaultChecked는 토글 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
+        "defaultChecked는 스위치가 처음에 활성화되어 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -32,7 +32,7 @@ const meta = {
     },
     isDisabled: {
       description:
-        "isDisabled는 토글 버튼이 비활성화되어 있는지 여부를 나타냅니다.",
+        "isDisabled는 스위치가 비활성화되어 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -52,7 +52,7 @@ const meta = {
       },
     },
     text: {
-      description: "토글 버튼 오른쪽에 들어갈 텍스트입니다.",
+      description: "스위치 오른쪽에 들어갈 텍스트입니다.",
       table: {
         type: { summary: "string" },
       },
@@ -70,7 +70,7 @@ const meta = {
       },
     },
     onClick: {
-      description: "토글 버튼 클릭 시 동작할 이벤트입니다.",
+      description: "스위치 클릭 시 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
         control: {
@@ -80,7 +80,7 @@ const meta = {
     },
     onKeyDown: {
       description:
-        "토글 버튼이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
+        "스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
         control: {
@@ -89,7 +89,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Toggle>;
+} satisfies Meta<typeof Switch>;
 
 export default meta;
 
@@ -117,16 +117,16 @@ export const WithText: Story = {
   },
 };
 
-const ControlledToggle = () => {
+const ControlledSwitch = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = () => {
     setIsChecked((prev) => !prev);
   };
 
-  return <Toggle isChecked={isChecked} onChange={handleChange} />;
+  return <Switch isChecked={isChecked} onChange={handleChange} />;
 };
 
 export const ControlledState: Story = {
-  render: () => <ControlledToggle />,
+  render: () => <ControlledSwitch />,
 };

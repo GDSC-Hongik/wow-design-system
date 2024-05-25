@@ -29,7 +29,7 @@ import type {
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
-export interface ToggleProps {
+export interface SwitchProps {
   defaultChecked?: boolean;
   isDisabled?: boolean;
   isChecked?: boolean;
@@ -39,7 +39,7 @@ export interface ToggleProps {
   onChange?: () => void;
 }
 
-const ToggleIcon = ({
+const SwitchIcon = ({
   isDisabled,
   isActive,
 }: {
@@ -48,18 +48,18 @@ const ToggleIcon = ({
 }) => {
   return (
     <span
-      className={toggleIcon({
+      className={switchIconStyle({
         type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
       })}
     />
   );
 };
 
-type ToggleComponent = <T extends ElementType = "button">(
-  props: PolymorphicComponentProps<T, ToggleProps>
+type SwitchComponent = <T extends ElementType = "button">(
+  props: PolymorphicComponentProps<T, SwitchProps>
 ) => ReactNode | null;
 
-const Toggle: ToggleComponent = forwardRef(
+const Switch: SwitchComponent = forwardRef(
   <T extends ElementType = "button">(
     {
       as,
@@ -71,7 +71,7 @@ const Toggle: ToggleComponent = forwardRef(
       onKeyDown,
       onChange,
       ...rest
-    }: PolymorphicComponentProps<T, ToggleProps>,
+    }: PolymorphicComponentProps<T, SwitchProps>,
     ref: PolymorphicRef<T>
   ) => {
     const [isActive, setIsActive] = useState(() =>
@@ -105,16 +105,16 @@ const Toggle: ToggleComponent = forwardRef(
         <Component
           ref={ref}
           {...rest}
-          aria-label={isActive ? "toggle-activated" : "toggle-inactivated"}
+          aria-label={isActive ? "switch-activated" : "switch-inactivated"}
           aria-pressed={isActive}
           data-disabled={isDisabled}
-          className={toggle({
+          className={switchStyle({
             type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
           })}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
         >
-          <ToggleIcon isActive={isActive} isDisabled={isDisabled} />
+          <SwitchIcon isActive={isActive} isDisabled={isDisabled} />
         </Component>
         {!!text && <styled.span textStyle="body2">{text}</styled.span>}
       </Flex>
@@ -122,7 +122,7 @@ const Toggle: ToggleComponent = forwardRef(
   }
 );
 
-const toggleIcon = cva({
+const switchIconStyle = cva({
   base: {
     width: "24px",
     height: "24px",
@@ -157,7 +157,7 @@ const toggleIcon = cva({
   },
 });
 
-const toggle = cva({
+const switchStyle = cva({
   base: {
     width: "52px !important",
     height: "28px !important",
@@ -185,6 +185,6 @@ const toggle = cva({
   },
 });
 
-(Toggle as NamedExoticComponent).displayName = "Toggle";
+(Switch as NamedExoticComponent).displayName = "Switch";
 
-export default Toggle;
+export default Switch;
