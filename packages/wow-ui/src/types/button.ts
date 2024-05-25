@@ -49,23 +49,6 @@ export interface BasicButtonProps {
    * 접근성을 위해 Key를 눌렀을 때 발생하는 이벤트를 감지합니다.
    */
   onKeyUp?: () => void;
-
-  // /**
-  //  * 버튼에서 나타내고 있는 string value를 나타냅니다.
-  //  */
-  // "aria-label"?: string;
-  // /**
-  //  * 버튼에서 나타내고 있는 string value를 나타냅니다.
-  //  */
-  // "aria-labelledby"?: string;
-  // /**
-  //  * 버튼이 어떤 역할을 하는지를 묘사하는 속성입니다. 이는 버튼의 ID와 설명에 대해 다룹니다.
-  //  */
-  // "aria-describedby"?: string;
-  // /**
-  //  * 버튼이 사용 불가능 상황일때, true 속성으로 변경해야 합니다.
-  //  */
-  // "aria-disabled"?: string;
 }
 
 export interface ToggleButtonProps extends BasicButtonProps {
@@ -87,15 +70,4 @@ export interface MenuButtonProps extends BasicButtonProps {
    * @default 'menu'
    */
   role?: string;
-
-  // /**
-  //  * menu가 보여지고 있을 때, button 속성을 가지고 있는 요소는 true값으로 설정되어야 합니다. 만약 메뉴가 사라지거나 숨겨지면, false로 설정합니다.
-  //  */
-  // "aria-expanded"?: string;
-
-  // /**
-  //  * menu 속성을 가진 button은 'menu'로 설정되어 있어야 합니다.
-  //  * @default 'menu'
-  //  */
-  // "aria-controls"?: string;
 }
