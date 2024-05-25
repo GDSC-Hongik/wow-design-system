@@ -2,7 +2,7 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { ElementType, MouseEvent, ReactNode } from "react";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import CloseButton from "@/components/Chip/closeButton";
 import type {
@@ -81,6 +81,7 @@ const Chip: ChipComponent = forwardRef(
     const [isActived, setIsActive] = useState(() =>
       isSelected ? isSelected : defaultSelected
     );
+    const closeButtonRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
       if (isSelected !== undefined) {
@@ -102,10 +103,10 @@ const Chip: ChipComponent = forwardRef(
       if (!clickable) return;
       if (event.currentTarget === event.target) {
         event.preventDefault();
-      }
-      if (event.key === "Enter" || event.key === " ") {
-        setIsActive((prev) => !prev);
-        onKeyDown?.();
+        if (event.key === "Enter" || event.key === " ") {
+          setIsActive((prev) => !prev);
+          onKeyDown?.();
+        }
       }
     };
 
@@ -124,7 +125,13 @@ const Chip: ChipComponent = forwardRef(
       >
         <ChipLabel isActived={isActived} label={label} variant={variant} />
         {onDelete ? (
-          <div onClick={handleDeleteButtonClick}>
+          <div
+            ref={closeButtonRef}
+            role="button"
+            tabIndex={0}
+            onClick={handleDeleteButtonClick}
+            onKeyDown={onDelete}
+          >
             <CloseButton color={isActived ? "#ffffff" : "#8f8f8f"} size={14} />
           </div>
         ) : null}

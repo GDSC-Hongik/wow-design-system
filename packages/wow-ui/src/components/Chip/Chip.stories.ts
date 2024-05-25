@@ -139,6 +139,7 @@ export const CanDelete: Story = {
     label: "Chip",
     variant: "default",
     onDelete: () => {
+      // eslint-disable-next-line no-undef
       console.log("삭제합니다.");
     },
   },
