@@ -11,14 +11,6 @@ const meta = {
     componentSubtitle: "스위치 컴포넌트",
   },
   argTypes: {
-    as: {
-      description:
-        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다.",
-      table: {
-        type: { summary: "React.ElementType" },
-        defaultValue: { summary: "button" },
-      },
-    },
     defaultChecked: {
       description:
         "defaultChecked는 스위치가 처음에 활성화되어 있는지 여부를 나타냅니다.",
@@ -55,6 +47,7 @@ const meta = {
       description: "스위치 오른쪽에 들어갈 텍스트입니다.",
       table: {
         type: { summary: "string" },
+        defaultValue: { summary: null },
       },
       control: {
         type: "text",
@@ -64,6 +57,7 @@ const meta = {
       description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
       table: {
         type: { summary: "() => void" },
+        defaultValue: { summary: null },
         control: {
           type: "function",
         },
@@ -73,6 +67,7 @@ const meta = {
       description: "스위치 클릭 시 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
+        defaultValue: { summary: null },
         control: {
           type: "function",
         },
@@ -83,6 +78,7 @@ const meta = {
         "스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
+        defaultValue: { summary: null },
         control: {
           type: "function",
         },

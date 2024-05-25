@@ -2,30 +2,19 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type {
-  ElementType,
-  KeyboardEvent,
-  NamedExoticComponent,
-  ReactNode,
-} from "react";
+import type { ComponentPropsWithRef, KeyboardEvent, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
-
-import type {
-  PolymorphicComponentProps,
-  PolymorphicRef,
-} from "@/types/Polymorphic";
 
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
  *
- * @param {T} [as] 렌더링할 요소 또는 컴포넌트. 기본값은 button.
- * @param {boolean} [defaultChecked=false] 토글 버튼이 처음에 눌려 있는지 여부.
- * @param {boolean} [isDisabled=false] 토글 버튼이 비활성화되어 있는지 여부.
+ * @param {boolean} [defaultChecked=false] 스위치가 처음에 활성화되어 있는지 여부.
+ * @param {boolean} [isDisabled=false] 스위치가 비활성화되어 있는지 여부.
  * @param {boolean} [isChecked=false] 외부에서 제어할 활성 상태.
  * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
- * @param {ReactNode} [text] 토글 버튼 오른 쪽에 들어갈 텍스트.
- * @param {() => void} [onClick] 토글 버튼 클릭 시 동작할 이벤트.
- * @param {() => void} [onKeyDown] 토글 버튼이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
+ * @param {ReactNode} [text] 스위치 오른 쪽에 들어갈 텍스트.
+ * @param {() => void} [onClick] 스위치 클릭 시 동작할 이벤트.
+ * @param {() => void} [onKeyDown] 스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
@@ -55,14 +44,9 @@ const SwitchIcon = ({
   );
 };
 
-type SwitchComponent = <T extends ElementType = "button">(
-  props: PolymorphicComponentProps<T, SwitchProps>
-) => ReactNode | null;
-
-const Switch: SwitchComponent = forwardRef(
-  <T extends ElementType = "button">(
+const Switch = forwardRef(
+  (
     {
-      as,
       defaultChecked = false,
       isDisabled = false,
       isChecked,
@@ -71,8 +55,8 @@ const Switch: SwitchComponent = forwardRef(
       onKeyDown,
       onChange,
       ...rest
-    }: PolymorphicComponentProps<T, SwitchProps>,
-    ref: PolymorphicRef<T>
+    }: SwitchProps,
+    ref: ComponentPropsWithRef<"input">["ref"]
   ) => {
     const [isActive, setIsActive] = useState(() =>
       isChecked ? isChecked : defaultChecked
@@ -98,71 +82,41 @@ const Switch: SwitchComponent = forwardRef(
       }
     };
 
-    const Component = as || "button";
-
     return (
-      <Flex alignItems="center" display="inline-flex" gap="8px">
-        <Component
-          ref={ref}
-          {...rest}
-          aria-label={isActive ? "switch-activated" : "switch-inactivated"}
-          aria-pressed={isActive}
-          data-disabled={isDisabled}
+      <Flex alignItems="center" gap="0.5rem">
+        <styled.label
+          htmlFor="switch"
           className={switchStyle({
             type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
           })}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
         >
+          <input
+            id="switch"
+            ref={ref}
+            {...rest}
+            aria-checked={isActive}
+            aria-disabled={isDisabled}
+            aria-label="switch"
+            className={inputStyle()}
+            type="checkbox"
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+          />
           <SwitchIcon isActive={isActive} isDisabled={isDisabled} />
-        </Component>
+        </styled.label>
         {!!text && <styled.span textStyle="body2">{text}</styled.span>}
       </Flex>
     );
   }
 );
 
-const switchIconStyle = cva({
-  base: {
-    width: "24px",
-    height: "24px",
-    borderRadius: "50%",
-    zIndex: 1,
-    position: "absolute",
-    top: 2,
-  },
-  variants: {
-    type: {
-      active: {
-        left: 26,
-        bg: "backgroundNormal",
-        _pressed: {
-          bg: "blueBackgroundPressed",
-        },
-      },
-      inactive: {
-        left: 2,
-        bg: "backgroundNormal",
-        _pressed: {
-          bg: "monoBackgroundPressed",
-        },
-      },
-      disabled: {
-        bg: "darkDisabled",
-      },
-    },
-  },
-  defaultVariants: {
-    type: "active",
-  },
-});
-
 const switchStyle = cva({
   base: {
-    width: "52px !important",
-    height: "28px !important",
-    borderRadius: "40px",
+    width: "3.25rem !important",
+    height: "1.75rem !important",
+    borderRadius: "2.5rem",
     cursor: "pointer",
+    display: "flex",
     position: "relative",
   },
   variants: {
@@ -185,6 +139,51 @@ const switchStyle = cva({
   },
 });
 
-(Switch as NamedExoticComponent).displayName = "Switch";
+const inputStyle = cva({
+  base: {
+    opacity: 0,
+    width: 0,
+    height: 0,
+    overflow: "hidden",
+    position: "absolute",
+  },
+});
+
+const switchIconStyle = cva({
+  base: {
+    width: "1.5rem",
+    height: "1.5rem",
+    borderRadius: "50%",
+    position: "absolute",
+    top: "0.125rem",
+    left: "0.125rem",
+  },
+  variants: {
+    type: {
+      active: {
+        left: "1.625rem",
+        bg: "backgroundNormal",
+        _pressed: {
+          bg: "blueBackgroundPressed",
+        },
+      },
+      inactive: {
+        left: "0.125rem",
+        bg: "backgroundNormal",
+        _pressed: {
+          bg: "monoBackgroundPressed",
+        },
+      },
+      disabled: {
+        bg: "darkDisabled",
+      },
+    },
+  },
+  defaultVariants: {
+    type: "active",
+  },
+});
+
+Switch.displayName = "Switch";
 
 export default Switch;
