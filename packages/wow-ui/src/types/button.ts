@@ -1,10 +1,10 @@
-import type { CSSProperties, MouseEvent } from "react";
+import type { CSSProperties } from "react";
 
 export type ButtonElementType = "button" | "div" | "span" | "input";
 
 // 버튼의 주요한 HTML Attributes를 미리 정의한 ButtonProps 타입입니다. [https://www.w3schools.com/tags/tag_button.asp]
 
-export interface BasicButtonProps<T extends ButtonElementType = "button"> {
+export interface BasicButtonProps {
   /**
    * 버튼의 ID를 지정합니다.
    */
@@ -30,12 +30,6 @@ export interface BasicButtonProps<T extends ButtonElementType = "button"> {
   type?: "button" | "submit" | "reset";
 
   /**
-   * HTML에서 버튼을 어떤 타입으로 랜더링할지 결정합니다. e.g. 'div', 'a', 'span', 'input'.
-   * @default 'button'
-   */
-  as?: T;
-
-  /**
    * wow-ds에서 지정하고 있는 스타일을 제외하고 사용자가 React 스타일 객체를 이용하여 커스텀하게 스타일을 적용할 수 있도록 합니다.
    */
 
@@ -44,28 +38,37 @@ export interface BasicButtonProps<T extends ButtonElementType = "button"> {
   /**
    * 버튼이 클릭되었을때 호출되는 함수입니다.
    */
-  onClick?: (event: MouseEvent) => void;
+  onClick?: () => void;
 
   /**
-   * 버튼에서 나타내고 있는 string value를 나타냅니다.
+   * 접근성을 위해 Key를 눌렀을 때 발생하는 이벤트를 감지합니다.
    */
-  "aria-label"?: string;
+  onKeyDown?: () => void;
+
   /**
-   * 버튼에서 나타내고 있는 string value를 나타냅니다.
+   * 접근성을 위해 Key를 눌렀을 때 발생하는 이벤트를 감지합니다.
    */
-  "aria-labelledby"?: string;
-  /**
-   * 버튼이 어떤 역할을 하는지를 묘사하는 속성입니다. 이는 버튼의 ID와 설명에 대해 다룹니다.
-   */
-  "aria-describedby"?: string;
-  /**
-   * 버튼이 사용 불가능 상황일때, true 속성으로 변경해야 합니다.
-   */
-  "aria-disabled"?: string;
+  onKeyUp?: () => void;
+
+  // /**
+  //  * 버튼에서 나타내고 있는 string value를 나타냅니다.
+  //  */
+  // "aria-label"?: string;
+  // /**
+  //  * 버튼에서 나타내고 있는 string value를 나타냅니다.
+  //  */
+  // "aria-labelledby"?: string;
+  // /**
+  //  * 버튼이 어떤 역할을 하는지를 묘사하는 속성입니다. 이는 버튼의 ID와 설명에 대해 다룹니다.
+  //  */
+  // "aria-describedby"?: string;
+  // /**
+  //  * 버튼이 사용 불가능 상황일때, true 속성으로 변경해야 합니다.
+  //  */
+  // "aria-disabled"?: string;
 }
 
-export interface ToggleButtonProps<T extends ButtonElementType = "button">
-  extends BasicButtonProps<T> {
+export interface ToggleButtonProps extends BasicButtonProps {
   /** 해당 버튼이 선택되었는지 판단합니다. */
   isSelected?: boolean;
 
@@ -74,15 +77,9 @@ export interface ToggleButtonProps<T extends ButtonElementType = "button">
 
   /** 버튼의 상태를 바꾸는 함수입니다.*/
   onChange?: (isSelected: boolean) => void;
-
-  /**
-   * 버튼이 토글되었을때, true로 변경합니다. 만약 버튼이 토글되지 않았으면, false로 설정합니다.
-   */
-  "aria-pressed"?: string;
 }
 
-export interface MenuButtonProps<T extends ButtonElementType = "button">
-  extends BasicButtonProps<T> {
+export interface MenuButtonProps extends BasicButtonProps {
   /**
    * menuButton으로 사용될 경우 해당 값이 'menu'나 'true'로 설정되어 있어야 합니다.
    */
@@ -94,14 +91,14 @@ export interface MenuButtonProps<T extends ButtonElementType = "button">
    */
   role?: string;
 
-  /**
-   * menu가 보여지고 있을 때, button 속성을 가지고 있는 요소는 true값으로 설정되어야 합니다. 만약 메뉴가 사라지거나 숨겨지면, false로 설정합니다.
-   */
-  "aria-expanded"?: string;
+  // /**
+  //  * menu가 보여지고 있을 때, button 속성을 가지고 있는 요소는 true값으로 설정되어야 합니다. 만약 메뉴가 사라지거나 숨겨지면, false로 설정합니다.
+  //  */
+  // "aria-expanded"?: string;
 
-  /**
-   * menu 속성을 가진 button은 'menu'로 설정되어 있어야 합니다.
-   * @default 'menu'
-   */
-  "aria-controls"?: string;
+  // /**
+  //  * menu 속성을 가진 button은 'menu'로 설정되어 있어야 합니다.
+  //  * @default 'menu'
+  //  */
+  // "aria-controls"?: string;
 }

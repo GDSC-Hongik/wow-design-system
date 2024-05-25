@@ -39,6 +39,11 @@
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
+    },
+    "./Chip": {
+      "types": "./dist/Chip/index.d.ts",
+      "require": "./dist/Chip.cjs",
+      "import": "./dist/Chip.js"
     }
   },
   "keywords": [],

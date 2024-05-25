@@ -62,6 +62,22 @@ export const colors = defineTokens.colors({
     900: { value: color.green900 },
     950: { value: color.green950 },
   },
+  mono: {
+    50: { value: color.mono50 },
+    100: { value: color.mono100 },
+    150: { value: color.mono150 },
+    200: { value: color.mono200 },
+    300: { value: color.mono300 },
+    400: { value: color.mono400 },
+    500: { value: color.mono500 },
+    600: { value: color.mono600 },
+    700: { value: color.mono700 },
+    800: { value: color.mono800 },
+    900: { value: color.mono900 },
+    950: { value: color.mono950 },
+  },
+  white: { value: color.white },
+  black: { value: color.black },
 });
 
 export const semanticTokens = defineSemanticTokens({

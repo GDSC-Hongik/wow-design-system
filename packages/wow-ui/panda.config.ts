@@ -9,6 +9,7 @@ export default defineConfig({
   outExtension: "js",
   polyfill: true,
   jsxFramework: "react",
+  dependencies: ["./src/components/**"],
   include: ["./src/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
   hooks: {
