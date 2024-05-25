@@ -124,6 +124,7 @@ export const Positive: Story = {
   args: {
     label: "Chip",
     variant: "positive",
+    clickable: false,
   },
 };
 
@@ -131,16 +132,15 @@ export const Negative: Story = {
   args: {
     label: "Chip",
     variant: "negative",
+    clickable: false,
   },
 };
-
 export const CanDelete: Story = {
   args: {
     label: "Chip",
     variant: "default",
     onDelete: () => {
-      // eslint-disable-next-line no-undef
-      console.log("삭제합니다.");
+      alert("delete");
     },
   },
 };

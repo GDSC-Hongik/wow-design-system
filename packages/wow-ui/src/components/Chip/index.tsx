@@ -81,7 +81,7 @@ const Chip: ChipComponent = forwardRef(
     const [isActived, setIsActive] = useState(() =>
       isSelected ? isSelected : defaultSelected
     );
-    const closeButtonRef = useRef<HTMLDivElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
       if (isSelected !== undefined) {
@@ -94,7 +94,7 @@ const Chip: ChipComponent = forwardRef(
       clickable ? setIsActive((prev) => !prev) : null;
     };
 
-    const handleDeleteButtonClick = (event: MouseEvent<HTMLDivElement>) => {
+    const handleDeleteButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       onDelete?.();
     };
@@ -125,15 +125,15 @@ const Chip: ChipComponent = forwardRef(
       >
         <ChipLabel isActived={isActived} label={label} variant={variant} />
         {onDelete ? (
-          <div
+          <button
+            aria-label="chip delete button"
             ref={closeButtonRef}
-            role="button"
             tabIndex={0}
             onClick={handleDeleteButtonClick}
             onKeyDown={onDelete}
           >
             <CloseButton color={isActived ? "#ffffff" : "#8f8f8f"} size={14} />
-          </div>
+          </button>
         ) : null}
       </Component>
     );
