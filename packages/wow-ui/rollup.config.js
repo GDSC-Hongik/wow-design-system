@@ -21,7 +21,7 @@ export default {
   input: {
     Box: "./src/components/Box",
     Button: "./src/components/Button",
-    Toggle: "./src/components/Toggle",
+    Switch: "./src/components/Switch",
   },
   output: [
     {
