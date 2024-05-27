@@ -30,15 +30,15 @@ export interface SwitchProps {
 
 const SwitchIcon = ({
   isDisabled,
-  isActive,
+  isChecked,
 }: {
   isDisabled: boolean;
-  isActive: boolean;
+  isChecked: boolean;
 }) => {
   return (
     <span
       className={switchIconStyle({
-        type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
+        type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
       })}
     />
   );
@@ -49,7 +49,7 @@ const Switch = forwardRef(
     {
       defaultChecked = false,
       isDisabled = false,
-      isChecked,
+      isChecked: isCheckedProp,
       text = "",
       onClick,
       onKeyDown,
@@ -58,18 +58,18 @@ const Switch = forwardRef(
     }: SwitchProps,
     ref: ComponentPropsWithRef<"input">["ref"]
   ) => {
-    const [isActive, setIsActive] = useState(() =>
-      isChecked ? isChecked : defaultChecked
+    const [isChecked, setIsChecked] = useState(() =>
+      isCheckedProp ? isCheckedProp : defaultChecked
     );
 
     useEffect(() => {
-      if (isChecked !== undefined) {
-        setIsActive(isChecked);
+      if (isCheckedProp !== undefined) {
+        setIsChecked(isCheckedProp);
       }
-    }, [isChecked]);
+    }, [isCheckedProp]);
 
     const handleClick = () => {
-      onChange ? onChange() : setIsActive((prev) => !prev);
+      onChange ? onChange() : setIsChecked((prev) => !prev);
       onClick?.();
     };
 
@@ -77,7 +77,7 @@ const Switch = forwardRef(
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
 
-        onChange ? onChange() : setIsActive((prev) => !prev);
+        onChange ? onChange() : setIsChecked((prev) => !prev);
         onKeyDown?.();
       }
     };
@@ -87,14 +87,14 @@ const Switch = forwardRef(
         <styled.label
           htmlFor="switch"
           className={switchStyle({
-            type: isDisabled ? "disabled" : isActive ? "active" : "inactive",
+            type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
           })}
         >
           <input
             id="switch"
             ref={ref}
             {...rest}
-            aria-checked={isActive}
+            aria-checked={isChecked}
             aria-disabled={isDisabled}
             aria-label="switch"
             className={inputStyle()}
@@ -102,7 +102,7 @@ const Switch = forwardRef(
             onClick={handleClick}
             onKeyDown={handleKeyDown}
           />
-          <SwitchIcon isActive={isActive} isDisabled={isDisabled} />
+          <SwitchIcon isChecked={isChecked} isDisabled={isDisabled} />
         </styled.label>
         {!!text && <styled.span textStyle="body2">{text}</styled.span>}
       </Flex>
@@ -121,12 +121,12 @@ const switchStyle = cva({
   },
   variants: {
     type: {
-      active: {
+      checked: {
         bgColor: "primary",
         _hover: { bgColor: "blueHover" },
         _pressed: { bgColor: "bluePressed" },
       },
-      inactive: {
+      unchecked: {
         bgColor: "outline",
         _hover: { bgColor: "sub" },
         _pressed: { bgColor: "lightDisabled" },
@@ -135,7 +135,7 @@ const switchStyle = cva({
     },
   },
   defaultVariants: {
-    type: "active",
+    type: "checked",
   },
 });
 
@@ -160,14 +160,14 @@ const switchIconStyle = cva({
   },
   variants: {
     type: {
-      active: {
+      checked: {
         left: "1.625rem",
         bg: "backgroundNormal",
         _pressed: {
           bg: "blueBackgroundPressed",
         },
       },
-      inactive: {
+      unchecked: {
         left: "0.125rem",
         bg: "backgroundNormal",
         _pressed: {
@@ -180,7 +180,7 @@ const switchIconStyle = cva({
     },
   },
   defaultVariants: {
-    type: "active",
+    type: "checked",
   },
 });
 
