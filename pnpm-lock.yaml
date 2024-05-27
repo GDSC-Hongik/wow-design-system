@@ -153,6 +153,9 @@ importers:
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
         version: 2.2.4(rollup@4.17.2)
+      rollup-plugin-preserve-directives:
+        specifier: ^0.4.0
+        version: 0.4.0(rollup@4.17.2)
       shared-config:
         specifier: workspace:^
         version: link:packages/shared-config
@@ -14738,6 +14741,16 @@ packages:
     peerDependencies:
       rollup: '*'
     dependencies:
+      rollup: 4.17.2
+    dev: true
+
+  /rollup-plugin-preserve-directives@0.4.0(rollup@4.17.2):
+    resolution: {integrity: sha512-gx4nBxYm5BysmEQS+e2tAMrtFxrGvk+Pe5ppafRibQi0zlW7VYAbEGk6IKDw9sJGPdFWgVTE0o4BU4cdG0Fylg==}
+    peerDependencies:
+      rollup: 2.x || 3.x || 4.x
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
+      magic-string: 0.30.10
       rollup: 4.17.2
     dev: true
 

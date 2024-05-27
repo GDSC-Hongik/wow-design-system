@@ -10,6 +10,7 @@ import url from "@rollup/plugin-url";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "@rollup/plugin-typescript";
 import { fileURLToPath } from "url";
+import preserveDirectives from "rollup-plugin-preserve-directives";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
 
@@ -28,6 +29,7 @@ export default {
       format: "esm",
       dir: "dist",
       entryFileNames: "[name].js",
+      preserveModules: true,
     },
     {
       format: "cjs",
@@ -67,10 +69,9 @@ export default {
     }),
     url(),
     svgr(),
-    terser({
-      compress: { directives: false },
-    }),
+    terser(),
     json(),
+    preserveDirectives.default(),
   ],
   onwarn: (warning) => {
     if (warning.code !== "MODULE_LEVEL_DIRECTIVE") {
