@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import RadioButton from "@/components/RadioButton/RadioButton";
+import RadioButton from ".";
 
 const meta = {
   title: "Example/RadioButton",
@@ -12,23 +12,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Selected: Story = {
+export const Default: Story = {
   args: {
-    state: "selected",
-    label: "Text",
-  },
-};
-
-export const Unselected: Story = {
-  args: {
-    state: "unselected",
-    label: "Text",
-  },
-};
-
-export const Pressed: Story = {
-  args: {
-    state: "pressed",
     label: "Text",
   },
 };

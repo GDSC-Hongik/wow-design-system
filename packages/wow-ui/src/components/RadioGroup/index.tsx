@@ -1,8 +1,8 @@
 import { Flex } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 
-import type { RadioContextProps } from "@/components/RadioButton/RadioContext";
-import RadioContext from "@/components/RadioButton/RadioContext";
+import type { RadioContextProps } from "./RadioContext";
+import RadioContext from "./RadioContext";
 
 export interface RadioGroupProps extends RadioContextProps {
   children: ReactNode;
