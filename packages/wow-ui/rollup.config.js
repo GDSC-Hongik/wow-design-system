@@ -67,7 +67,14 @@ export default {
     }),
     url(),
     svgr(),
-    terser(),
+    terser({
+      compress: { directives: false },
+    }),
     json(),
   ],
+  onwarn: (warning) => {
+    if (warning.code !== "MODULE_LEVEL_DIRECTIVE") {
+      return;
+    }
+  },
 };
