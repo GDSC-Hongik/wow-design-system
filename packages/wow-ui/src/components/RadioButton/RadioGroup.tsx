@@ -6,13 +6,11 @@ import RadioContext from "@/components/RadioButton/RadioContext";
 
 export interface RadioGroupProps extends RadioContextProps {
   children: ReactNode;
-  label?: string;
 }
 
-const RadioGroup = ({ label, children, ...props }: RadioGroupProps) => {
+const RadioGroup = ({ children, ...props }: RadioGroupProps) => {
   return (
     <Flex direction="column" gap="0.5rem">
-      <span>{label}</span>
       <RadioContext.Provider value={props}>{children}</RadioContext.Provider>
     </Flex>
   );

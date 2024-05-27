@@ -8,7 +8,7 @@ export interface RadioGridProps {
   label?: string;
 }
 
-const RadioGrid = ({ label, items }: RadioGridProps) => {
+const RadioGrid = ({ items }: RadioGridProps) => {
   const [value, setValue] = useState(items[0]);
 
   const handleChangeValue = (value: string) => {
@@ -16,7 +16,7 @@ const RadioGrid = ({ label, items }: RadioGridProps) => {
   };
 
   return (
-    <RadioGroup label={label} value={value} onChange={handleChangeValue}>
+    <RadioGroup value={value} onChange={handleChangeValue}>
       {items.map((item: string) => (
         <RadioButton
           key={item}
