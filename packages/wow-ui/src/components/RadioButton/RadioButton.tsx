@@ -1,9 +1,9 @@
+import { Flex } from "@styled-system/jsx";
 import type { ChangeEvent } from "react";
 import { useContext } from "react";
 
 import type { RadioButtonVariants } from "@/components/RadioButton/radioButton.recipe";
 import {
-  container,
   input,
   radioButtonRecipe,
   radioCircle,
@@ -23,7 +23,7 @@ const RadioButton = ({ state, label }: RadioButtonProps) => {
   };
 
   return (
-    <div className={container}>
+    <Flex align="center" gap="0.5rem">
       <label className={radioButtonRecipe({ state })}>
         <input
           checked={group?.value === label}
@@ -35,7 +35,7 @@ const RadioButton = ({ state, label }: RadioButtonProps) => {
         {state === "selected" && <div className={radioCircle}></div>}
       </label>
       <span className={text}>{label}</span>
-    </div>
+    </Flex>
   );
 };
 
