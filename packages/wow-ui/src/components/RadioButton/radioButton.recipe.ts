@@ -52,9 +52,7 @@ export const text = css({
 });
 
 export const input = css({
-  display: "none",
-
-  _pressed: { background: "black" },
+  appearance: "none",
 });
 
 type State = "selected" | "unselected" | "pressed" | "disabled";
