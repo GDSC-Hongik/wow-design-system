@@ -26,6 +26,8 @@ const RadioButton = ({ state, label }: RadioButtonProps) => {
     <Flex align="center" gap="0.5rem">
       <label className={radioButtonRecipe({ state })}>
         <input
+          aria-checked={group?.value === label}
+          aria-label={label}
           checked={group?.value === label}
           className={input}
           type="radio"
