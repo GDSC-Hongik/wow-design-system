@@ -25,6 +25,10 @@ export const radioButtonRecipe = cva({
         background: "blueBackgroundPressed",
         borderColor: "bluePressed",
       },
+      disabled: {
+        background: "darkDisabled",
+        borderColor: "lightDisabled",
+      },
     },
   },
   defaultVariants: {
@@ -47,7 +51,7 @@ export const input = css({
   display: "none",
 });
 
-type State = "selected" | "unselected" | "pressed";
+type State = "selected" | "unselected" | "pressed" | "disabled";
 
 export interface RadioButtonVariants {
   state: State;
