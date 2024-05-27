@@ -17,3 +17,10 @@ export const Default: Story = {
     label: "Text",
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    label: "Text",
+  },
+};

@@ -11,6 +11,8 @@ export const radioButtonRecipe = cva({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+
+    cursor: "pointer",
   },
   variants: {
     state: {
@@ -26,8 +28,10 @@ export const radioButtonRecipe = cva({
         borderColor: "bluePressed",
       },
       disabled: {
-        background: "darkDisabled",
-        borderColor: "lightDisabled",
+        background: "lightDisabled",
+        borderColor: "darkDisabled",
+
+        cursor: "not-allowed",
       },
     },
   },
@@ -49,6 +53,8 @@ export const text = css({
 
 export const input = css({
   display: "none",
+
+  _pressed: { background: "black" },
 });
 
 type State = "selected" | "unselected" | "pressed" | "disabled";

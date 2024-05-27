@@ -12,33 +12,40 @@ import {
 } from "./radioButton.recipe";
 
 export interface RadioButtonProps {
+  disabled?: boolean;
   label: string;
 }
 
-const RadioButton = ({ label }: RadioButtonProps) => {
+const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
   const group = useContext(RadioContext);
 
-  const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
-    group?.onChange(e.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    group.onChange(e, e.target.value);
   };
 
   return (
     <Flex align="center" gap="0.5rem">
       <label
         className={radioButtonRecipe({
-          state: group?.value === label ? "selected" : "unselected",
+          state:
+            group.value === label
+              ? "selected"
+              : disabled
+                ? "disabled"
+                : "unselected",
         })}
       >
         <input
-          aria-checked={group?.value === label}
+          aria-checked={group.value === label}
           aria-label={label}
-          checked={group?.value === label}
+          checked={group.value === label}
           className={input}
+          disabled={disabled}
           type="radio"
           value={label}
-          onChange={handleChangeValue}
+          onChange={handleChange}
         />
-        {group?.value === label && <div className={radioCircle}></div>}
+        {group.value === label && <div className={radioCircle}></div>}
       </label>
       <span className={text}>{label}</span>
     </Flex>
