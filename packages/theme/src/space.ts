@@ -3,22 +3,22 @@ import { space } from "wowds-tokens";
 
 export const spacing = defineTokens.spacing({
   spacing: {
-    4: {
+    xxs: {
       value: space.xxs,
     },
-    8: {
+    xs: {
       value: space.xs,
     },
-    12: {
+    sm: {
       value: space.sm,
     },
-    16: {
+    md: {
       value: space.md,
     },
-    20: {
+    lg: {
       value: space.lg,
     },
-    24: {
+    xl: {
       value: space.xl,
     },
   },
