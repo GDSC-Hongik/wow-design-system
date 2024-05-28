@@ -8,6 +8,21 @@ const generateReactComponentFromSvg = async () => {
   const svgFiles = (await fs.readdir(SVG_DIR)).filter((file) =>
     file.endsWith(".svg")
   );
+  const componentFiles = (await fs.readdir(COMPONENT_DIR)).filter((file) =>
+    file.endsWith(".tsx")
+  );
+  const componentFilesToDelete = componentFiles.filter((file) => {
+    const componentName = path
+      .basename(file, ".tsx")
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .toLowerCase();
+    return !svgFiles.includes(`${componentName}.tsx`);
+  });
+
+  for (const file of componentFilesToDelete) {
+    const componentFilePath = path.resolve(COMPONENT_DIR, file);
+    await fs.unlink(componentFilePath);
+  }
 
   const components = [];
 
