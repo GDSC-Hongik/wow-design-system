@@ -1,4 +1,3 @@
-export const radius4 = "0.25rem";
-export const radius8 = "0.5rem";
-export const radius12 = "0.75rem";
-export const radiusFull = "2.5rem";
+export const sm = "0.25rem";
+export const md = "0.5rem";
+export const full = "2.5rem";

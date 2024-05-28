@@ -1,10 +1,6 @@
-export const space4 = "0.25rem";
-export const space8 = "0.5rem";
-export const space12 = "0.75rem";
-export const space16 = "1rem";
-export const space20 = "1.25rem";
-export const space24 = "1.5rem";
-export const space28 = "1.75rem";
-export const space32 = "2rem";
-export const space36 = "2.25rem";
-export const space40 = "2.5rem";
+export const xxs = "0.25rem";
+export const xs = "0.5rem";
+export const sm = "0.75rem";
+export const md = "1rem";
+export const lg = "1.25rem";
+export const xl = "1.5rem";
