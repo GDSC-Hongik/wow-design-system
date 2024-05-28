@@ -1,4 +1,3 @@
-import { Flex } from "@styled-system/jsx";
 import type { ChangeEvent } from "react";
 import { useContext } from "react";
 
@@ -6,6 +5,7 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
 
 import {
   input,
+  labelRecipe,
   radioButtonRecipe,
   radioCircle,
   text,
@@ -24,8 +24,10 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
   };
 
   return (
-    <Flex align="center" gap="0.5rem">
-      <label
+    <label
+      className={labelRecipe({ state: disabled ? "disabled" : "default" })}
+    >
+      <div
         className={radioButtonRecipe({
           state:
             group.value === label
@@ -47,9 +49,9 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
           onChange={handleChange}
         />
         {group.value === label && <div className={radioCircle}></div>}
-      </label>
+      </div>
       <span className={text}>{label}</span>
-    </Flex>
+    </label>
   );
 };
 
