@@ -39,6 +39,7 @@ yarn-error.log*
 
 ## Panda
 styled-system-studio
+
 *storybook.log
 
 .eslintcache
