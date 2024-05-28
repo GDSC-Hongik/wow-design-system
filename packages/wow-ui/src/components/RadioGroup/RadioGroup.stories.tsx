@@ -24,7 +24,12 @@ const RadioGrid = () => {
   };
 
   return (
-    <RadioGroup defaultValue="1학년" value={value} onChange={handleChangeValue}>
+    <RadioGroup
+      defaultValue="1학년"
+      name="학년"
+      value={value}
+      onChange={handleChangeValue}
+    >
       <RadioButton label="1학년" />
       <RadioButton label="2학년" />
       <RadioButton label="3학년" />

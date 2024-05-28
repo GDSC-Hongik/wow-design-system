@@ -41,6 +41,7 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
           checked={group.value === label}
           className={input}
           disabled={disabled}
+          name={group.name}
           type="radio"
           value={label}
           onChange={handleChange}

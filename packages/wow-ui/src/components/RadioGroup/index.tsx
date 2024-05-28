@@ -7,10 +7,16 @@ import RadioContext from "./RadioContext";
 
 export interface RadioGroupProps extends RadioContextProps {
   children: ReactNode;
+  name: string;
   defaultValue: string;
 }
 
-const RadioGroup = ({ children, defaultValue, onChange }: RadioGroupProps) => {
+const RadioGroup = ({
+  children,
+  name,
+  defaultValue,
+  onChange,
+}: RadioGroupProps) => {
   const [value, setValue] = useState(defaultValue);
 
   const contextValue = useMemo(
@@ -22,12 +28,13 @@ const RadioGroup = ({ children, defaultValue, onChange }: RadioGroupProps) => {
         }
       },
       value,
+      name,
     }),
-    [onChange, setValue, value]
+    [onChange, setValue, value, name]
   );
 
   return (
-    <Flex direction="column" gap="0.5rem">
+    <Flex direction="column" gap="0.5rem" role="radiogroup">
       <RadioContext.Provider value={contextValue}>
         {children}
       </RadioContext.Provider>
