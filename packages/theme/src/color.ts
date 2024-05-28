@@ -1,7 +1,7 @@
 import { defineSemanticTokens, defineTokens } from "@pandacss/dev";
 import { color } from "wowds-tokens";
 
-const colors = defineTokens.colors({
+export const colors = defineTokens.colors({
   red: {
     50: { value: color.red50 },
     100: { value: color.red100 },
@@ -92,7 +92,7 @@ export const semanticTokens = defineSemanticTokens({
   },
 });
 
-const gradients = defineTokens.gradients({
+export const gradients = defineTokens.gradients({
   blueGradientDark: {
     value: `linear-gradient(to right, ${color.blueGradientDark.gradientFrom}, ${color.blueGradientDark.gradientTo})`,
   },
@@ -117,9 +117,4 @@ const gradients = defineTokens.gradients({
   yellowGradientLight: {
     value: `linear-gradient(to right, ${color.yellowGradientLight.gradientFrom}, ${color.yellowGradientLight.gradientTo})`,
   },
-});
-
-export const tokens = defineTokens({
-  colors,
-  gradients,
 });
