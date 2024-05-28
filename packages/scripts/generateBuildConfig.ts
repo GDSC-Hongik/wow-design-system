@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
-import packageJSON from "package.json";
 import path from "path";
+
+import packageJSON from "../wow-ui/package.json";
 
 type ExportItem =
   | {
