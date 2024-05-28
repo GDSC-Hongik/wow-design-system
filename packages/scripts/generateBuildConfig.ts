@@ -14,8 +14,6 @@ type ExportObject = { [key: string]: ExportItem };
 type EntryFileObject = { [key: string]: string };
 
 const COMPONENT_PATH = "./src/components";
-const ROLLUP_CONFIG_PATH = "rollup.config.js";
-const PACKAGEJSON_PATH = "package.json";
 
 const generateExports = (files: string[]) => {
   const exportsObj: ExportObject = {
@@ -37,6 +35,8 @@ const generateExports = (files: string[]) => {
 };
 
 const applyExportsToPackageJSON = async (exportsObj: ExportObject) => {
+  const PACKAGEJSON_PATH = "package.json";
+
   packageJSON.exports = packageJSON.exports || {};
   Object.assign(packageJSON.exports, exportsObj);
 
@@ -54,6 +54,8 @@ const generateRollupEntryFiles = (files: string[]) => {
 };
 
 const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
+  const ROLLUP_CONFIG_PATH = "rollup.config.js";
+
   const dirname = path.resolve();
   const rollupConfigPath = path.join(dirname, ROLLUP_CONFIG_PATH);
   let rollupConfigContent = await fs.readFile(rollupConfigPath, "utf-8");
