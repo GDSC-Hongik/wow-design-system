@@ -3,8 +3,9 @@ import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { ElementType, MouseEvent, ReactNode } from "react";
 import { forwardRef, useEffect, useRef, useState } from "react";
+import { color } from "wowds-tokens";
 
-import CloseButton from "@/components/Chip/closeButton";
+import CloseButton from "@/components/Chip/CloseButton";
 import type {
   PolymorphicComponentProps,
   PolymorphicRef,
@@ -17,7 +18,7 @@ import type {
  * @param {T} [as] 렌더링할 요소 또는 컴포넌트. 기본값은 button이며, Chip의 경우 input으로 사용될 수 있음
  * @param {boolean} [defaultSelected=false] 칩의 토글의 default 활성화 상태
  * @param {boolean} [isSelected=false] 외부에서 제어할 활성 상태.
- * @param {string} [label] 칩 버튼에 들어갈 텍스트
+ * @param {string} label 칩 버튼에 들어갈 텍스트
  * @param {boolean} [clickable=true] 클릭할 수 있는 칩인지 여부 판단
  * @param {ChipType} [variant=default] 칩 버튼의 타입, 기본은 default
  * @param {() => void} [onDelete] 칩 버튼을 삭제했을 때의 동작
@@ -42,15 +43,15 @@ type ChipComponent = <T extends ElementType = "button">(
 const ChipLabel = ({
   label,
   variant,
-  isActived,
+  isChecked,
 }: {
   label: string;
   variant: "default" | "positive" | "negative";
-  isActived: boolean;
+  isChecked: boolean;
 }) => {
   return (
     <styled.span
-      data-selected={isActived}
+      data-selected={isChecked}
       textStyle="label2"
       className={chipLabel({
         type: variant,
@@ -74,24 +75,24 @@ const Chip: ChipComponent = forwardRef(
       onKeyDown,
       onClick,
       onDelete,
-      isSelected = false,
-      defaultSelected = false,
+      isChecked: checkedProp = false,
+      defaultChecked = false,
       ...rest
     } = props;
-    const [isActived, setIsActive] = useState(() =>
-      isSelected ? isSelected : defaultSelected
+    const [isChecked, setIsChecked] = useState(() =>
+      checkedProp ? checkedProp : defaultChecked
     );
     const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-      if (isSelected !== undefined) {
-        setIsActive(isSelected);
+      if (checkedProp !== undefined) {
+        setIsChecked(checkedProp);
       }
-    }, [isSelected]);
+    }, [checkedProp]);
 
     const handleClick = () => {
       onClick?.();
-      clickable ? setIsActive((prev) => !prev) : null;
+      clickable ? setIsChecked((prev) => !prev) : null;
     };
 
     const handleDeleteButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -104,7 +105,7 @@ const Chip: ChipComponent = forwardRef(
       if (event.currentTarget === event.target) {
         event.preventDefault();
         if (event.key === "Enter" || event.key === " ") {
-          setIsActive((prev) => !prev);
+          setIsChecked((prev) => !prev);
           onKeyDown?.();
         }
       }
@@ -112,8 +113,8 @@ const Chip: ChipComponent = forwardRef(
 
     return (
       <Component
-        aria-label={`chip button ${isActived ? true : false}`}
-        data-selected={isActived}
+        aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
+        data-selected={isChecked}
         ref={ref}
         className={chip({
           type: variant,
@@ -123,7 +124,7 @@ const Chip: ChipComponent = forwardRef(
         onKeyDown={handleKeyDown}
         {...rest.customStyle}
       >
-        <ChipLabel isActived={isActived} label={label} variant={variant} />
+        <ChipLabel isChecked={isChecked} label={label} variant={variant} />
         {onDelete ? (
           <button
             aria-label="chip delete button"
@@ -132,7 +133,10 @@ const Chip: ChipComponent = forwardRef(
             onClick={handleDeleteButtonClick}
             onKeyDown={onDelete}
           >
-            <CloseButton color={isActived ? "#ffffff" : "#8f8f8f"} size={14} />
+            <CloseButton
+              color={isChecked ? `${color.white}` : `${color.mono600}`}
+              size={14}
+            />
           </button>
         ) : null}
       </Component>

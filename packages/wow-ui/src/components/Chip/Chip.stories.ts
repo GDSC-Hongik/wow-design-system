@@ -50,18 +50,27 @@ const meta = {
       },
     },
     variant: {
-      description:
-        "칩의 테마를 나타앱니다. 기본 색상은 default이며, 긍정적인 피드백은 positive, 부정적인 피드백은 negative를 활용합니다.",
-      table: {
-        type: {
-          defaultValue: { summary: "default" },
+      control: {
+        type: "select",
+        options: ["default", "positive", "negative"],
+        labels: {
+          default: "default",
+          positive: "positive",
+          negative: "negative",
         },
       },
-      control: {
-        type: "default | positive | negative",
+      options: ["default", "positive", "negative"],
+      description:
+        "칩의 테마를 나타냅니다. 기본 색상은 default이며, 긍정적인 피드백은 positive, 부정적인 피드백은 negative를 활용합니다.",
+      table: {
+        defaultValue: { summary: "default" },
+        type: {
+          summary: "default | positive | negative",
+        },
       },
     },
     label: {
+      required: true,
       description: "칩에 들어가게 될 텍스트입니다.",
       table: {
         type: { summary: "string" },

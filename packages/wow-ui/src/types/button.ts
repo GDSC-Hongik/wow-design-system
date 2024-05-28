@@ -53,10 +53,10 @@ export interface BasicButtonProps {
 
 export interface ToggleButtonProps extends BasicButtonProps {
   /** 해당 버튼이 선택되었는지 판단합니다. */
-  isSelected?: boolean;
+  isChecked?: boolean;
 
   /** 해당 요소가 기본적으로 선택되어 있는 상태인지 판단합니다. */
-  defaultSelected?: boolean;
+  defaultChecked?: boolean;
 }
 
 export interface MenuButtonProps extends BasicButtonProps {
