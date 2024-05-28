@@ -168,6 +168,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.11.24)(typescript@5.3.3)
+      tsx:
+        specifier: ^4.11.0
+        version: 4.11.0
       turbo:
         specifier: latest
         version: 1.13.3
@@ -318,9 +321,6 @@ importers:
       storybook:
         specifier: ^7.5.3
         version: 7.6.19
-      tsx:
-        specifier: ^4.9.3
-        version: 4.9.3
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -16125,8 +16125,8 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /tsx@4.9.3:
-    resolution: {integrity: sha512-czVbetlILiyJZI5zGlj2kw9vFiSeyra9liPD4nG+Thh4pKTi0AmMEQ8zdV/L2xbIVKrIqif4sUNrsMAOksx9Zg==}
+  /tsx@4.11.0:
+    resolution: {integrity: sha512-vzGGELOgAupsNVssAmZjbUDfdm/pWP4R+Kg8TVdsonxbXk0bEpE1qh0yV6/QxUVXaVlNemgcPajGdJJ82n3stg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:

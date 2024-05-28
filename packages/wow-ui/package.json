@@ -77,7 +77,6 @@
     "eslint-plugin-storybook": "^0.6.15",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.5.3",
-    "tsx": "^4.9.3",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {

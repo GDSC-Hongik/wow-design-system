@@ -72,6 +72,7 @@
     "theme": "workspace:*",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
+    "tsx": "^4.11.0",
     "turbo": "latest",
     "typescript": "^5.3.3"
   },
