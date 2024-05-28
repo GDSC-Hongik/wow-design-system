@@ -30,6 +30,10 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
   return (
     <label
       className={labelRecipe({ state: disabled ? "disabled" : "default" })}
+      role="presentation"
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseUp}
+      onMouseUp={handleMouseUp}
     >
       <input
         aria-checked={group.value === label}
@@ -42,9 +46,6 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
         type="radio"
         value={label}
         onChange={handleChange}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
       />
       <span className={text}>{label}</span>
     </label>
