@@ -160,7 +160,7 @@ importers:
         specifier: workspace:^
         version: link:packages/shared-config
       theme:
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:packages/theme
       ts-jest:
         specifier: ^29.1.2
@@ -177,6 +177,9 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
+      wowds-tokens:
+        specifier: workspace:^
+        version: link:packages/wow-tokens
 
   apps/wow-docs:
     dependencies:
