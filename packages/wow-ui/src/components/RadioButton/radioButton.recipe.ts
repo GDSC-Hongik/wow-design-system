@@ -13,37 +13,57 @@ export const radioButton = cva({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    cursor: "pointer",
+
+    background: "background",
+    borderColor: "darkDisabled",
   },
   variants: {
     state: {
-      default: {
-        cursor: "pointer",
-        borderColor: "darkDisabled",
-        _checked: {
-          background: "blueBackgroundPressed",
-          borderColor: "primary",
+      active: {
+        base: {
           _before: {
             content: `""`,
             width: 10,
             height: 10,
             borderRadius: 9999,
+          },
+        },
+        _checked: {
+          background: "blueBackgroundPressed",
+          borderColor: "primary",
+          _before: {
             background: "primary",
           },
+        },
+        _disabled: {
+          background: "lightDisabled",
+          borderColor: "darkDisabled",
+          cursor: "not-allowed",
+          _before: {
+            background: "darkDisabled",
+          },
+        },
+        "&[data-pressed=true]": {
+          background: "blueBackgroundPressed",
+          borderColor: "bluePressed",
+          _before: {
+            background: "bluePressed",
+          },
+        },
+      },
+      inactive: {
+        _disabled: {
+          background: "lightDisabled",
+          borderColor: "darkDisabled",
+          cursor: "not-allowed",
         },
         "&[data-pressed=true]": {
           background: "blueBackgroundPressed",
           borderColor: "bluePressed",
         },
       },
-      disabled: {
-        background: "lightDisabled",
-        borderColor: "darkDisabled",
-        cursor: "not-allowed",
-      },
     },
-  },
-  defaultVariants: {
-    state: "default",
   },
 });
 
@@ -51,24 +71,17 @@ export const text = css({
   textStyle: "body2",
 });
 
-export const labelRecipe = cva({
+export const labelRecipe = css({
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
   base: {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
+    cursor: "pointer",
+    color: "textBlack",
   },
-  variants: {
-    state: {
-      default: {
-        cursor: "pointer",
-      },
-      disabled: {
-        cursor: "not-allowed",
-        color: "darkDisabled",
-      },
-    },
-  },
-  defaultVariants: {
-    state: "default",
+
+  "&[data-disabled=true]": {
+    cursor: "not-allowed",
+    color: "sub",
   },
 });

@@ -8,10 +8,15 @@ import { labelRecipe, radioButton, text } from "./radioButton.recipe";
 
 export interface RadioButtonProps {
   disabled?: boolean;
+  active?: boolean;
   label: string;
 }
 
-const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
+const RadioButton = ({
+  active = false,
+  disabled = false,
+  label,
+}: RadioButtonProps) => {
   const group = useContext(RadioContext);
 
   const [pressed, setPressed] = useState(false);
@@ -21,31 +26,32 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
   };
 
   const handleMouseDown = () => {
-    setPressed(true);
+    if (!disabled) setPressed(true);
   };
 
   const handleMouseUp = () => {
-    setPressed(false);
+    if (!disabled) setPressed(false);
   };
 
   return (
     <label
-      className={labelRecipe({ state: disabled ? "disabled" : "default" })}
+      className={labelRecipe}
+      data-disabled={disabled}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseUp}
+      onMouseUp={handleMouseUp}
     >
       <input
         aria-checked={group.value === label}
         aria-label={label}
         checked={group.value === label}
-        className={radioButton({ state: disabled ? "disabled" : "default" })}
+        className={radioButton({ state: active ? "active" : "inactive" })}
         data-pressed={pressed}
         disabled={disabled}
         name={group.name}
         type="radio"
         value={label}
         onChange={handleChange}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
       />
       <span className={text}>{label}</span>
     </label>
