@@ -3,7 +3,7 @@ import { color } from "wowds-tokens";
 
 import type { IconProps } from "../types/Icon.ts";
 
-const UpArrow = forwardRef<HTMLSpanElement, IconProps>(
+const UpArrow = forwardRef<SVGSVGElement, IconProps>(
   (
     {
       className,
@@ -17,49 +17,46 @@ const UpArrow = forwardRef<HTMLSpanElement, IconProps>(
     ref
   ) => {
     return (
-      <span
+      <svg
+        aria-label="up-arrow icon"
         className={className}
+        fill={color[fill]}
+        height={height}
         ref={ref}
-        style={{ display: "inline-flex", width, height }}
+        viewBox={viewBox}
+        width={width}
+        xmlns="http://www.w3.org/2000/svg"
         {...rest}
       >
-        <svg
-          fill={color[fill]}
-          height={height}
-          viewBox={viewBox}
-          width={width}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clipPath="url(#clip0_36_3519)">
-            <path
-              d="M19 12L5 12"
-              stroke={color[stroke]}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.6"
-            />
-            <path
-              d="M19 12L13 6"
-              stroke={color[stroke]}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.6"
-            />
-            <path
-              d="M19 12L13 18"
-              stroke={color[stroke]}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.6"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_36_3519">
-              <rect fill={color[fill]} height={height} width={width} />
-            </clipPath>
-          </defs>
-        </svg>
-      </span>
+        <g clipPath="url(#clip0_36_3519)">
+          <path
+            d="M19 12L5 12"
+            stroke={color[stroke]}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.6"
+          />
+          <path
+            d="M19 12L13 6"
+            stroke={color[stroke]}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.6"
+          />
+          <path
+            d="M19 12L13 18"
+            stroke={color[stroke]}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.6"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_36_3519">
+            <rect fill={color[fill]} height={height} width={width} />
+          </clipPath>
+        </defs>
+      </svg>
     );
   }
 );

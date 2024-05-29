@@ -39,15 +39,21 @@ const deleteUnusedComponentFiles = async (svgComponentMap: SvgComponentMap) => {
 
 const createComponentContent = (
   componentName: string,
-  svgContent: string
+  svgContent: string,
+  svgFile: string
 ): string => {
+  const iconName = path.basename(svgFile, ".svg");
   const modifiedSvgContent = svgContent
+    .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
+    .replace(
+      /<svg([^>]*)>/,
+      `<svg$1 aria-label="${iconName} icon" ref={ref} className={className} {...rest}>`
+    )
     .replace(/width="(\d+)"/g, `width={width}`)
     .replace(/height="(\d+)"/g, `height={height}`)
     .replace(/viewBox="(.*?)"/g, `viewBox={viewBox}`)
     .replace(/fill="([^"]+)"/g, `fill={color[fill]}`)
-    .replace(/stroke="([^"]+)"/g, `stroke={color[stroke]}`)
-    .replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
+    .replace(/stroke="([^"]+)"/g, `stroke={color[stroke]}`);
 
   return `
     import { forwardRef } from 'react';
@@ -55,17 +61,10 @@ const createComponentContent = (
     
     import type { IconProps } from "../types/Icon.ts";
 
-    const ${componentName} = forwardRef<HTMLSpanElement, IconProps>(
+    const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
       ({ className, width = 24, height = 24, viewBox = "0 0 24 24", fill = "white", stroke = "white", ...rest }, ref) => {
         return (
-          <span
-            ref={ref}
-            style={{ display: "inline-flex", width, height }}
-            className={className}
-            {...rest}
-          >
-            ${modifiedSvgContent}
-          </span>
+          ${modifiedSvgContent}
         );
       }
     );    
@@ -82,7 +81,11 @@ const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
     const svgFilePath = path.resolve(SVG_DIR, svgFile);
     const svgContent = (await fs.readFile(svgFilePath)).toString();
 
-    const componentContent = createComponentContent(componentName, svgContent);
+    const componentContent = createComponentContent(
+      componentName,
+      svgContent,
+      svgFile
+    );
     const componentFilePath = path.resolve(
       COMPONENT_DIR,
       `${componentName}.tsx`
