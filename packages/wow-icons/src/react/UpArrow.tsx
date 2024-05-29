@@ -3,7 +3,15 @@ import type { Ref } from "react";
 import type { IconProps } from "../types/Icon.ts";
 
 const UpArrow = (
-  { className, width = 24, height = 24 }: IconProps,
+  {
+    className,
+    width = 24,
+    height = 24,
+    viewBox = "0 0 24 24",
+    fill = "#E4E4E5",
+    stroke = "#E4E4E5",
+    ...rest
+  }: IconProps,
   ref: Ref<HTMLSpanElement>
 ) => {
   return (
@@ -11,32 +19,33 @@ const UpArrow = (
       className={className}
       ref={ref}
       style={{ display: "inline-flex", width: width, height: height }}
+      {...rest}
     >
       <svg
-        fill="none"
-        height="24"
-        viewBox="0 0 24 24"
-        width="24"
+        fill={fill}
+        height={height}
+        viewBox={viewBox}
+        width={width}
         xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_36_3519)">
           <path
             d="M19 12L5 12"
-            stroke="#E4E4E5"
+            stroke={stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="1.6"
           />
           <path
             d="M19 12L13 6"
-            stroke="#E4E4E5"
+            stroke={stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="1.6"
           />
           <path
             d="M19 12L13 18"
-            stroke="#E4E4E5"
+            stroke={stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="1.6"
@@ -44,7 +53,7 @@ const UpArrow = (
         </g>
         <defs>
           <clipPath id="clip0_36_3519">
-            <rect fill="white" height="24" width="24" />
+            <rect fill={fill} height={height} width={width} />
           </clipPath>
         </defs>
       </svg>

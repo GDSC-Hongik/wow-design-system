@@ -41,12 +41,20 @@ const createComponentContent = (
   componentName: string,
   svgContent: string
 ): string => {
+  const modifiedSvgContent = svgContent
+    .replace(/width="(\d+)"/g, `width={width}`)
+    .replace(/height="(\d+)"/g, `height={height}`)
+    .replace(/viewBox="(.*?)"/g, `viewBox={viewBox}`)
+    .replace(/fill="([^"]+)"/g, `fill={fill}`)
+    .replace(/stroke="([^"]+)"/g, `stroke={stroke}`)
+    .replace(/-(\w)/g, (_, letter) => letter.toUpperCase());
+
   return `
     import { Ref } from 'react';
     import type { IconProps } from "../types/Icon.ts";
 
     const ${componentName} = (
-      { className, width = 24, height = 24 }: IconProps,
+      { className, width = 24, height = 24, viewBox = "0 0 24 24", fill = "#E4E4E5", stroke = "#E4E4E5", ...rest }: IconProps,
       ref: Ref<HTMLSpanElement>
     ) => {
       return (
@@ -54,8 +62,9 @@ const createComponentContent = (
           ref={ref}
           style={{ display: "inline-flex", width: width, height: height }}
           className={className}
+          {...rest}
         >
-          ${svgContent.replace(/-(\w)/g, (_, letter) => letter.toUpperCase())}
+          ${modifiedSvgContent}
         </span>
       );
     };

@@ -1,7 +1,10 @@
-import type { SVGProps } from "react";
+import type { HTMLAttributes } from "react";
 
-export interface IconProps extends SVGProps<SVGSVGElement> {
+export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
   className?: string;
   width?: number | string;
   height?: number | string;
+  viewBox?: string;
+  fill?: string;
+  stroke?: string;
 }
