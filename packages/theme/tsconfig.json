@@ -21,6 +21,6 @@
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "utils"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
