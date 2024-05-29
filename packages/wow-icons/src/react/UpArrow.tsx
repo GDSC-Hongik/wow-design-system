@@ -20,7 +20,7 @@ const UpArrow = forwardRef<SVGSVGElement, IconProps>(
       <svg
         aria-label="up-arrow icon"
         className={className}
-        fill={color[fill]}
+        fill="none"
         height={height}
         ref={ref}
         viewBox={viewBox}

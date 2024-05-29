@@ -45,15 +45,16 @@ const createComponentContent = (
   const iconName = path.basename(svgFile, ".svg");
   const modifiedSvgContent = svgContent
     .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
-    .replace(
-      /<svg([^>]*)>/,
-      `<svg$1 aria-label="${iconName} icon" ref={ref} className={className} {...rest}>`
-    )
     .replace(/width="(\d+)"/g, `width={width}`)
     .replace(/height="(\d+)"/g, `height={height}`)
     .replace(/viewBox="(.*?)"/g, `viewBox={viewBox}`)
+    .replace(/<svg([^>]*)fill="[^"]*"([^>]*)>/, "<svg$1$2>")
     .replace(/fill="([^"]+)"/g, `fill={color[fill]}`)
-    .replace(/stroke="([^"]+)"/g, `stroke={color[stroke]}`);
+    .replace(/stroke="([^"]+)"/g, `stroke={color[stroke]}`)
+    .replace(
+      /<svg([^>]*)>/,
+      `<svg$1 aria-label="${iconName} icon" fill="none" ref={ref} className={className} {...rest}>`
+    );
 
   return `
     import { forwardRef } from 'react';
