@@ -1,66 +1,84 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-const generateReactComponentFromSvg = async () => {
-  const SVG_DIR = "../wow-icons/src/svg";
-  const COMPONENT_DIR = "../wow-icons/src/react";
+const SVG_DIR = "../wow-icons/src/svg";
+const COMPONENT_DIR = "../wow-icons/src/react";
 
-  const svgFiles = (await fs.readdir(SVG_DIR)).filter((file) =>
-    file.endsWith(".svg")
+type SvgComponentMap = { [key: string]: string };
+
+const generateSvgComponentMap = async () => {
+  const svgFiles = (await fs.readdir(SVG_DIR)).reduce<SvgComponentMap>(
+    (map, svgFile) => {
+      const componentName = path
+        .basename(svgFile, ".svg")
+        .replace(/(^\w|-\w)/g, (match) => match.replace("-", "").toUpperCase());
+      map[componentName] = svgFile;
+
+      return map;
+    },
+    {}
   );
-  const componentFiles = (await fs.readdir(COMPONENT_DIR)).filter((file) =>
-    file.endsWith(".tsx")
-  );
-  const componentFilesToDelete = componentFiles.filter((file) => {
-    const componentName = path
-      .basename(file, ".tsx")
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .toLowerCase();
-    return !svgFiles.includes(`${componentName}.tsx`);
+
+  return svgFiles;
+};
+
+const deleteUnusedComponentFiles = async (svgComponentMap: SvgComponentMap) => {
+  const componentFiles = await fs.readdir(COMPONENT_DIR);
+  const componentFilesToDelete = componentFiles.filter((componentFile) => {
+    const componentName = path.basename(componentFile, ".tsx");
+    return !(componentName in svgComponentMap);
   });
 
-  for (const file of componentFilesToDelete) {
-    const componentFilePath = path.resolve(COMPONENT_DIR, file);
-    await fs.unlink(componentFilePath);
-  }
+  await Promise.all(
+    componentFilesToDelete.map((file) => {
+      const componentFilePath = path.resolve(COMPONENT_DIR, file);
+      return fs.unlink(componentFilePath);
+    })
+  );
+};
 
+const createComponentContent = (
+  componentName: string,
+  svgContent: string
+): string => {
+  return `
+    import { Ref } from 'react';
+    import type { IconProps } from "../types/Icon.ts";
+
+    const ${componentName} = (
+      { className, width = 24, height = 24 }: IconProps,
+      ref: Ref<HTMLSpanElement>
+    ) => {
+      return (
+        <span
+          ref={ref}
+          style={{ display: "inline-flex", width: width, height: height }}
+          className={className}
+        >
+          ${svgContent.replace(/-(\w)/g, (_, letter) => letter.toUpperCase())}
+        </span>
+      );
+    };
+
+    export default ${componentName};
+  `;
+};
+
+const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
   const components = [];
 
-  for (const file of svgFiles) {
-    const componentName = path
-      .basename(file, ".svg")
-      .replace(/(^\w|-\w)/g, (match) => match.replace("-", "").toUpperCase());
-    components.push(componentName);
-    const svgFilePath = path.resolve(SVG_DIR, file);
+  for (const [componentName, svgFile] of Object.entries(svgComponentMap)) {
+    const svgFilePath = path.resolve(SVG_DIR, svgFile);
     const svgContent = (await fs.readFile(svgFilePath)).toString();
 
-    const componentContent = `
-      import { Ref } from 'react';
-      import type { IconProps } from "../types/Icon.ts";
-
-      const ${componentName} = (
-        { className, width = 24, height = 24 }: IconProps,
-        ref: Ref<HTMLSpanElement>
-      ) => {
-        return (
-          <span
-            ref={ref}
-            style={{ display: "inline-flex", width: width, height: height }}
-            className={className}
-          >
-            ${svgContent.replace(/-(\w)/g, (_, letter) => letter.toUpperCase())}
-          </span>
-        );
-      };
-
-      export default ${componentName};
-    `;
+    const componentContent = createComponentContent(componentName, svgContent);
     const componentFilePath = path.resolve(
       COMPONENT_DIR,
       `${componentName}.tsx`
     );
 
     await fs.writeFile(componentFilePath, componentContent);
+    components.push(componentName);
   }
 
   return components;
@@ -79,6 +97,12 @@ const generateEntryFile = async (components: string[]) => {
 };
 
 (async () => {
-  const components = await generateReactComponentFromSvg();
-  generateEntryFile(components);
+  try {
+    const svgComponentMap = await generateSvgComponentMap();
+    await deleteUnusedComponentFiles(svgComponentMap);
+    const components = await generateComponentFiles(svgComponentMap);
+    await generateEntryFile(components);
+  } catch (error) {
+    console.log("Error generating components:", error);
+  }
 })();
