@@ -16,21 +16,22 @@ const RadioGroup = ({
   name,
   defaultValue,
   onChange,
+  value,
 }: RadioGroupProps) => {
-  const [value, setValue] = useState(defaultValue);
+  const [selected, setSelected] = useState(defaultValue);
 
   const contextValue = useMemo(
     () => ({
       onChange(event: ChangeEvent<HTMLInputElement>) {
-        setValue(event.target.value);
+        setSelected(event.target.value);
         if (onChange) {
-          onChange(event, event.target.value);
+          onChange(event);
         }
       },
-      value,
+      value: value ? value : selected,
       name,
     }),
-    [onChange, setValue, value, name]
+    [onChange, setSelected, value, selected, name]
   );
 
   return (

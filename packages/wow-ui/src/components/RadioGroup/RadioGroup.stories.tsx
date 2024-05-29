@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import type { ChangeEvent } from "react";
 import { useState } from "react";
 
 import RadioButton from "@/components/RadioButton";
@@ -13,22 +12,25 @@ const meta = {
 
 export default meta;
 
-const RadioGrid = () => {
-  const [value, setValue] = useState("1학년");
+const RadioGridDefault = () => {
+  return (
+    <RadioGroup defaultValue="1학년" name="defaultgrade">
+      <RadioButton label="1학년" />
+      <RadioButton label="2학년" />
+      <RadioButton label="3학년" />
+      <RadioButton disabled label="4학년" />
+    </RadioGroup>
+  );
+};
 
-  const handleChangeValue = (
-    e: ChangeEvent<HTMLInputElement>,
-    value: string
-  ) => {
-    setValue(value);
-  };
-
+const RadioGridControlled = () => {
+  const [value, setState] = useState("1학년");
   return (
     <RadioGroup
       defaultValue="1학년"
-      name="학년"
+      name="conotrolledgrade"
       value={value}
-      onChange={handleChangeValue}
+      onChange={(e) => setState(e.target.value)}
     >
       <RadioButton label="1학년" />
       <RadioButton label="2학년" />
@@ -39,5 +41,9 @@ const RadioGrid = () => {
 };
 
 export const Default: StoryObj = {
-  render: () => <RadioGrid />,
+  render: () => <RadioGridDefault />,
+};
+
+export const Controlled: StoryObj = {
+  render: () => <RadioGridControlled />,
 };
