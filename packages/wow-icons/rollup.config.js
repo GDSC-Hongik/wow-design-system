@@ -7,6 +7,7 @@ const extensions = [".ts", ".tsx", ".js", ".jsx"];
 
 export default {
   ...baseConfig,
+  input: "./src/react/index.ts",
   plugins: [
     ...baseConfig.plugins,
     babel({
