@@ -59,7 +59,6 @@ const meta = {
           negative: "negative",
         },
       },
-      options: ["default", "positive", "negative"],
       description:
         "칩의 테마를 나타냅니다. 기본 색상은 default이며, 긍정적인 피드백은 positive, 부정적인 피드백은 negative를 활용합니다.",
       table: {
@@ -70,10 +69,13 @@ const meta = {
       },
     },
     label: {
-      required: true,
       description: "칩에 들어가게 될 텍스트입니다.",
       table: {
         type: { summary: "string" },
+      },
+      type: {
+        name: "string",
+        required: true,
       },
       control: {
         type: "text",
