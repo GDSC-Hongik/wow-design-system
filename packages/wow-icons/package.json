@@ -26,7 +26,7 @@
     }
   },
   "scripts": {
-    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly",
+    "build": "pnpm generate:icons && rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly",
     "generate:icons": "tsx ../scripts/generateReactComponentFromSvg.ts && pnpm format && pnpm lint",
     "lint": "eslint --fix ./src/react/**/*.tsx",
     "format": "prettier --write ./src/react/**/*.tsx ./src/react/index.ts"
