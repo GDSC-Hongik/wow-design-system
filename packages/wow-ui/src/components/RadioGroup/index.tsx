@@ -1,3 +1,4 @@
+"use client";
 import { Flex } from "@styled-system/jsx";
 import type { ChangeEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";

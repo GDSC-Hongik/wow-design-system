@@ -1,3 +1,4 @@
+"use client";
 import type { ChangeEvent } from "react";
 import { useContext, useState } from "react";
 
