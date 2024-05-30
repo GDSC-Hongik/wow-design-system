@@ -3,7 +3,7 @@
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type { ComponentPropsWithRef, KeyboardEvent, ReactNode } from "react";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useId, useState } from "react";
 
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
@@ -62,6 +62,8 @@ const Switch = forwardRef(
       isCheckedProp ? isCheckedProp : defaultChecked
     );
 
+    const id = useId();
+
     useEffect(() => {
       if (isCheckedProp !== undefined) {
         setIsChecked(isCheckedProp);
@@ -85,13 +87,13 @@ const Switch = forwardRef(
     return (
       <Flex alignItems="center" gap="0.5rem">
         <styled.label
-          htmlFor="switch"
+          htmlFor={`switch-${id}`}
           className={switchStyle({
             type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
           })}
         >
           <input
-            id="switch"
+            id={`switch-${id}`}
             ref={ref}
             {...rest}
             aria-checked={isChecked}
