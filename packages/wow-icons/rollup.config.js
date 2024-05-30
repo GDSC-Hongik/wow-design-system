@@ -2,8 +2,6 @@ import baseConfig from "../shared-config/rollup.config.js";
 import babel from "@rollup/plugin-babel";
 import url from "@rollup/plugin-url";
 import typescript from "@rollup/plugin-typescript";
-import path from "path";
-import { fileURLToPath } from "url";
 
 const extensions = [".ts", ".tsx", ".js", ".jsx"];
 
