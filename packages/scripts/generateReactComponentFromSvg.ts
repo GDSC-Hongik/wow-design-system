@@ -87,9 +87,19 @@ const createComponentContent = (
 };
 
 const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
-  const components = [];
+  const components: string[] = [];
 
   for (const [componentName, svgFile] of Object.entries(svgComponentMap)) {
+    const componentFilePath = path.resolve(
+      COMPONENT_DIR,
+      `${componentName}.tsx`
+    );
+
+    if (existsSync(componentFilePath)) {
+      components.push(componentName);
+      continue;
+    }
+
     const svgFilePath = path.resolve(SVG_DIR, svgFile);
     const svgContent = (await fs.readFile(svgFilePath)).toString();
 
@@ -97,10 +107,6 @@ const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
       componentName,
       svgContent,
       svgFile
-    );
-    const componentFilePath = path.resolve(
-      COMPONENT_DIR,
-      `${componentName}.tsx`
     );
 
     await fs.writeFile(componentFilePath, componentContent);
