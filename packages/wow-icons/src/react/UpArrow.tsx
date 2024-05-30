@@ -10,8 +10,8 @@ const UpArrow = forwardRef<SVGSVGElement, IconProps>(
       width = 24,
       height = 24,
       viewBox = "0 0 24 24",
-      fill = "white",
       stroke = "white",
+      fill = "white",
       ...rest
     },
     ref

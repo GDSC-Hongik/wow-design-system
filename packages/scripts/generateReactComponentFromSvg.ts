@@ -48,6 +48,12 @@ const createComponentContent = (
   svgFile: string
 ): string => {
   const iconName = path.basename(svgFile, ".svg");
+  const hasStroke = svgContent.includes("stroke=");
+  const fillAttributes = (svgContent.match(/fill="([^"]*)"/g) || []).filter(
+    (attr) => attr !== 'fill="none"'
+  );
+  const hasFill = fillAttributes.length;
+  const propsString = `{ className, width = 24, height = 24, viewBox = "0 0 24 24"${hasStroke || hasFill ? ` ${hasStroke ? ', stroke = "white"' : ""}${hasFill ? ', fill = "white"' : ""}` : ""}, ...rest }`;
   const modifiedSvgContent = svgContent
     .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
     .replace(/width="(\d+)"/g, `width={width}`)
@@ -68,7 +74,7 @@ const createComponentContent = (
     import type { IconProps } from "../types/Icon.ts";
 
     const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
-      ({ className, width = 24, height = 24, viewBox = "0 0 24 24", fill = "white", stroke = "white", ...rest }, ref) => {
+      (${propsString}, ref) => {
         return (
           ${modifiedSvgContent}
         );
