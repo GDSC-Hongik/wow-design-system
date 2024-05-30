@@ -99,16 +99,16 @@ const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
   return components;
 };
 
-const generateEntryFile = async (components: string[]) => {
-  const ENTRY_FILE_PATH = "../wow-icons/src/react/index.ts";
-  const entryFileContent = components
+const generateExportFile = async (components: string[]) => {
+  const EXPORT_FILE_PATH = "../wow-icons/src/react/index.ts";
+  const exportFileContent = components
     .map(
       (component) =>
         `export { default as ${component} } from "./${component}.tsx";`
     )
     .join("\n");
 
-  await fs.writeFile(ENTRY_FILE_PATH, entryFileContent);
+  await fs.writeFile(EXPORT_FILE_PATH, exportFileContent);
 };
 
 (async () => {
@@ -116,7 +116,7 @@ const generateEntryFile = async (components: string[]) => {
     const svgComponentMap = await generateSvgComponentMap();
     await deleteUnusedComponentFiles(svgComponentMap);
     const components = await generateComponentFiles(svgComponentMap);
-    await generateEntryFile(components);
+    await generateExportFile(components);
   } catch (error) {
     console.log("Error generating components:", error);
   }
