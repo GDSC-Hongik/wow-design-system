@@ -11,16 +11,25 @@ const meta = {
   },
   argTypes: {
     as: {
+      control: {
+        type: "select",
+        options: ["button", "div", "span"],
+        labels: {
+          button: "button",
+          div: "div",
+          span: "span",
+        },
+      },
       description:
-        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다. 칩의 경우 input으로도 사용 가능합니다.",
+        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다. 칩의 경우 div, span으로도 사용 가능합니다.",
       table: {
-        type: { summary: "React.ElementType" },
         defaultValue: { summary: "button" },
+        type: { summary: "React.ElementType" },
       },
     },
-    defaultSelected: {
+    defaultChecked: {
       description:
-        "defaultSelected는 칩 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
+        "defaultChecked는 칩 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -29,8 +38,8 @@ const meta = {
         type: "boolean",
       },
     },
-    isSelected: {
-      description: "isSelected는 외부에서 제어할 활성 상태를 나타냅니다.",
+    isChecked: {
+      description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -47,25 +56,6 @@ const meta = {
       },
       control: {
         type: "boolean",
-      },
-    },
-    variant: {
-      control: {
-        type: "select",
-        options: ["default", "positive", "negative"],
-        labels: {
-          default: "default",
-          positive: "positive",
-          negative: "negative",
-        },
-      },
-      description:
-        "칩의 테마를 나타냅니다. 기본 색상은 default이며, 긍정적인 피드백은 positive, 부정적인 피드백은 negative를 활용합니다.",
-      table: {
-        defaultValue: { summary: "default" },
-        type: {
-          summary: "default | positive | negative",
-        },
       },
     },
     label: {
@@ -120,38 +110,21 @@ export const Default: Story = {
   args: {
     label: "Chip",
     variant: "default",
+    as: "button",
+  },
+};
+
+export const DivChip: Story = {
+  args: {
+    label: "Chip",
+    clickable: false,
+    as: "div",
   },
 };
 
 export const NonClickable: Story = {
   args: {
     label: "Chip",
-    variant: "default",
     clickable: false,
-  },
-};
-
-export const Positive: Story = {
-  args: {
-    label: "Chip",
-    variant: "positive",
-    clickable: false,
-  },
-};
-
-export const Negative: Story = {
-  args: {
-    label: "Chip",
-    variant: "negative",
-    clickable: false,
-  },
-};
-export const CanDelete: Story = {
-  args: {
-    label: "Chip",
-    variant: "default",
-    onDelete: () => {
-      alert("delete");
-    },
   },
 };
