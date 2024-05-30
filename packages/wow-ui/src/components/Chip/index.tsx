@@ -4,6 +4,7 @@ import { styled } from "@styled-system/jsx";
 import type { ElementType, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 
+import { Disabled } from "@/components/Switch/Switch.stories";
 import type {
   PolymorphicComponentProps,
   PolymorphicRef,
@@ -36,13 +37,16 @@ type ChipComponent = <T extends ElementType = "button">(
 const ChipLabel = ({
   label,
   isChecked,
+  disabled = true,
 }: {
   label: string;
   isChecked: boolean;
+  disabled: boolean;
 }) => {
   return (
     <styled.span
-      className={chipLabel({})}
+      className={chipLabel({ disabled: disabled })}
+      data-disabled={disabled}
       data-selected={isChecked}
       textStyle="label2"
     >
@@ -64,6 +68,7 @@ const Chip: ChipComponent = forwardRef(
       onClick,
       isChecked: checkedProp = false,
       defaultChecked = false,
+      disabled = false,
       ...rest
     } = props;
     const [isChecked, setIsChecked] = useState(() =>
@@ -76,12 +81,13 @@ const Chip: ChipComponent = forwardRef(
     }, [checkedProp]);
 
     const handleClick = () => {
+      if (disabled) return;
       onClick?.();
       clickable ? setIsChecked((prev) => !prev) : null;
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!clickable) return;
+      if (!clickable || disabled) return;
       if (event.currentTarget === event.target) {
         event.preventDefault();
         if (event.key === "Enter" || event.key === " ") {
@@ -97,13 +103,14 @@ const Chip: ChipComponent = forwardRef(
         data-selected={isChecked}
         ref={ref}
         className={chip({
-          clickable: clickable,
+          clickable: disabled ? false : clickable,
+          disabled: disabled,
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         {...rest.customStyle}
       >
-        <ChipLabel isChecked={isChecked} label={label} />
+        <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
       </Component>
     );
   }
@@ -118,21 +125,23 @@ const chipLabel = cva({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-  },
-  variants: {
-    type: {
-      default: {
-        "&[data-selected=true]": {
-          color: "white",
-        },
-        "&[data-selected=false]": {
-          color: "mono.950",
-        },
-      },
+    "&[data-selected=true]": {
+      color: "white",
+    },
+    "&[data-selected=false]": {
+      color: "mono.950",
     },
   },
-  defaultVariants: {
-    type: "default",
+  variants: {
+    disabled: {
+      true: {
+        color: "darkDisabled",
+        "&[data-selected=false]": {
+          color: "darkDisabled",
+        },
+      },
+      false: {},
+    },
   },
 });
 
@@ -143,21 +152,6 @@ const chip = cva({
     height: "1.875rem",
     borderRadius: "1.25rem",
     padding: "0.5rem 0.75rem",
-    "&[data-selected=true]": {
-      bgColor: "blue.500",
-      _hover: {
-        bgColor: "blue.500",
-        shadow: "0px 0.25rem 0.5rem 0px rgba(16, 43, 74, 0.20)",
-      },
-      _pressed: { bgColor: "blue.400" },
-    },
-    "&[data-selected=false]": {
-      bgColor: "white",
-      borderWidth: "0.0625rem",
-      borderColor: "mono.600",
-      _hover: { borderColor: "mono.950" },
-      _pressed: { borderColor: "mono.400", bgColor: "mono.50" },
-    },
   },
   variants: {
     clickable: {
@@ -166,6 +160,30 @@ const chip = cva({
       },
       false: {
         cursor: "default",
+      },
+    },
+    disabled: {
+      true: {
+        bgColor: "lightDisabled",
+        borderWidth: "0.0625rem",
+        borderColor: "darkDisabled",
+      },
+      false: {
+        "&[data-selected=true]": {
+          bgColor: "blue.500",
+          _hover: {
+            bgColor: "blue.500",
+            shadow: "0px 0.25rem 0.5rem 0px rgba(16, 43, 74, 0.20)",
+          },
+          _pressed: { bgColor: "blue.400" },
+        },
+        "&[data-selected=false]": {
+          bgColor: "white",
+          borderWidth: "0.0625rem",
+          borderColor: "mono.600",
+          _hover: { borderColor: "mono.950" },
+          _pressed: { borderColor: "mono.400", bgColor: "mono.50" },
+        },
       },
     },
   },

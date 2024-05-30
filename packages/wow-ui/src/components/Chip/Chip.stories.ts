@@ -27,6 +27,16 @@ const meta = {
         type: { summary: "React.ElementType" },
       },
     },
+    disabled: {
+      description: "disabled는 칩 버튼이 비활성화 상태인지 여부를 나타냅니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+      control: {
+        type: "boolean",
+      },
+    },
     defaultChecked: {
       description:
         "defaultChecked는 칩 버튼이 처음에 눌려 있는지 여부를 나타냅니다.",
@@ -38,6 +48,7 @@ const meta = {
         type: "boolean",
       },
     },
+
     isChecked: {
       description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
@@ -119,6 +130,14 @@ export const DivChip: Story = {
     label: "Chip",
     clickable: false,
     as: "div",
+  },
+};
+export const DisabledChip: Story = {
+  args: {
+    label: "Chip",
+    clickable: true,
+    disabled: true,
+    as: "button",
   },
 };
 
