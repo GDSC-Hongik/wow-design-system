@@ -24,6 +24,7 @@ const generateExports = (files: string[]) => {
   for (const file of files) {
     const filePath = `./${file}`;
     const distPath = `./dist/${file}`;
+
     exportsObj[filePath] = {
       types: `${distPath}/index.d.ts`,
       require: `${distPath}.cjs`,

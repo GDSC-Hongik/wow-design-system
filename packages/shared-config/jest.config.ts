@@ -12,7 +12,7 @@ const config: Config = {
     ],
   },
 
-  setupFilesAfterEnv: ["./jest.config.ts"],
+  setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
   verbose: true,
   collectCoverage: true,
   restoreMocks: true,
@@ -29,7 +29,8 @@ const config: Config = {
     "<rootDir>/node-modules/",
   ],
   moduleNameMapper: {
-    "^@styled-system(.*)$": "<rootDir>/styled-system$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@styled-system(.*)$": "<rootDir>/styled-system/$1",
   },
 };
 

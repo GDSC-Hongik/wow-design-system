@@ -34,6 +34,11 @@
       "types": "./dist/Checkbox/index.d.ts",
       "require": "./dist/Checkbox.cjs",
       "import": "./dist/Checkbox.js"
+    },
+    "./Switch": {
+      "types": "./dist/Switch/index.d.ts",
+      "require": "./dist/Switch.cjs",
+      "import": "./dist/Switch.js"
     }
   },
   "keywords": [],
