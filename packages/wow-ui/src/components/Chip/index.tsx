@@ -4,7 +4,6 @@ import { styled } from "@styled-system/jsx";
 import type { ElementType, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 
-import { Disabled } from "@/components/Switch/Switch.stories";
 import type {
   PolymorphicComponentProps,
   PolymorphicRef,

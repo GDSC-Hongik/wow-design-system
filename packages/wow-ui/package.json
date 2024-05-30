@@ -41,7 +41,7 @@
       "import": "./dist/Switch.js"
     },
     "./Chip": {
-      "types": "./dist/Chip/index.d.ts",
+      "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
       "import": "./dist/Chip.js"
     }
