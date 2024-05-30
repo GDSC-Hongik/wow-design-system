@@ -60,7 +60,7 @@ const createComponentContent = (
     import { forwardRef } from 'react';
     import { color } from "wowds-tokens";
     
-    import type { IconProps } from "../types/Icon.ts";
+    import type { IconProps } from "@/types/Icon.ts";
 
     const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
       ({ className, width = 24, height = 24, viewBox = "0 0 24 24", fill = "white", stroke = "white", ...rest }, ref) => {
