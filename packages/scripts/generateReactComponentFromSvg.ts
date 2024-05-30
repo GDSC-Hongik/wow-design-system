@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import { existsSync, promises as fs } from "fs";
 import path from "path";
 
 const SVG_DIR = "../wow-icons/src/svg";
@@ -23,6 +23,11 @@ const generateSvgComponentMap = async () => {
 };
 
 const deleteUnusedComponentFiles = async (svgComponentMap: SvgComponentMap) => {
+  if (!existsSync(COMPONENT_DIR)) {
+    fs.mkdir(COMPONENT_DIR);
+    return;
+  }
+
   const componentFiles = await fs.readdir(COMPONENT_DIR);
   const componentFilesToDelete = componentFiles.filter((componentFile) => {
     const componentName = path.basename(componentFile, ".tsx");
