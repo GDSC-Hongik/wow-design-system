@@ -114,7 +114,7 @@ const switchStyle = cva({
   base: {
     width: "3.25rem !important",
     height: "1.75rem !important",
-    borderRadius: "radius.full",
+    borderRadius: "full",
     cursor: "pointer",
     display: "flex",
     position: "relative",
