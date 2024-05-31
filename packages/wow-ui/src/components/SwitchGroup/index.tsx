@@ -23,7 +23,7 @@ const init = (value: boolean[], childrenArray: ReactElement[]): boolean[] => {
 };
 
 /**
- * @param {ReactNode} children 렌더링할 자식 요소 (Switch 컴포넌트)
+ * @param {ReactNode} children 렌더링할 자식 요소.
  * @param {boolean[]} [value] 외부에서 제어할 활성 상태.
  * @param {(index: number) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
  */
