@@ -23,6 +23,7 @@ export default {
     Box: "./src/components/Box",
     Button: "./src/components/Button",
     Switch: "./src/components/Switch",
+    SwitchGroup: "./src/components/SwitchGroup",
   },
   output: [
     {

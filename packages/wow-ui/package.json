@@ -21,12 +21,12 @@
   "exports": {
     "./styles.css": "./dist/styles.css",
     "./Box": {
-      "types": "./dist/Box/index.d.ts",
+      "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
     },
     "./Button": {
-      "types": "./dist/Button/index.d.ts",
+      "types": "./dist/components/Button/index.d.ts",
       "require": "./dist/Button.cjs",
       "import": "./dist/Button.js"
     },
@@ -36,9 +36,14 @@
       "import": "./dist/Toggle.js"
     },
     "./Switch": {
-      "types": "./dist/Switch/index.d.ts",
+      "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
+    },
+    "./SwitchGroup": {
+      "types": "./dist/components/SwitchGroup/index.d.ts",
+      "require": "./dist/SwitchGroup.cjs",
+      "import": "./dist/SwitchGroup.js"
     }
   },
   "keywords": [],
