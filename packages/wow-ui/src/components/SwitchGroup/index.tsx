@@ -6,7 +6,7 @@ import { cloneElement, useMemo, useState } from "react";
 
 import { extractChildrenArray } from "@/utils/extractChildrenArray";
 
-const init = (value: boolean[], childrenArray: ReactElement[]) => {
+const init = (value: boolean[], childrenArray: ReactElement[]): boolean[] => {
   const initialValue = value.slice(0, childrenArray.length);
   const remainingLength = childrenArray.length - initialValue.length;
 
