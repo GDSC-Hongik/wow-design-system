@@ -3,7 +3,7 @@ import fireEvent from "@testing-library/user-event";
 
 import Switch from "@/components/Switch";
 
-describe("toggle", () => {
+describe("switch", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
