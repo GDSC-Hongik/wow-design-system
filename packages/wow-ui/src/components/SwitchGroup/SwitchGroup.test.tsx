@@ -11,7 +11,7 @@ describe("switch group", () => {
   beforeEach(() => {
     rendered = render(
       <SwitchGroup>
-        <Switch defaultChecked text="Switch 1" />
+        <Switch text="Switch 1" />
         <Switch isDisabled text="Switch 2" />
         <Switch text="Switch 3" />
       </SwitchGroup>
@@ -21,7 +21,7 @@ describe("switch group", () => {
   it("should render switch components with its own state", () => {
     const switchComponents = rendered.getAllByRole("checkbox");
 
-    expect(switchComponents[0]).toHaveAttribute("aria-checked", "true");
+    expect(switchComponents[0]).toHaveAttribute("aria-checked", "false");
     expect(switchComponents[1]).toHaveAttribute("aria-disabled", "true");
     expect(switchComponents[2]).toHaveAttribute("aria-checked", "false");
   });

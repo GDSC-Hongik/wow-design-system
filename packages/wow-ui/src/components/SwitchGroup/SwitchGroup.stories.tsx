@@ -59,7 +59,7 @@ export const Primary: Story = {
       <>
         <Switch text="Switch 1" />
         <Switch isDisabled text="Switch 2" />
-        <Switch defaultChecked text="Switch 3" />
+        <Switch text="Switch 3" />
       </>
     ),
   },
