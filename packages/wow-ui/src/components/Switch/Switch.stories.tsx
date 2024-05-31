@@ -58,9 +58,9 @@ const meta = {
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onClick: {
@@ -68,9 +68,9 @@ const meta = {
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onKeyDown: {
@@ -79,9 +79,9 @@ const meta = {
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
   },
