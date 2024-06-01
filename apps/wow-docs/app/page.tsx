@@ -1,5 +1,3 @@
-"use client";
-
 import { css } from "@styled-system/css/css";
 import Switch from "wowds-ui/Switch";
 
