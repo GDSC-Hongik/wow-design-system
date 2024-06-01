@@ -21,22 +21,22 @@
   "exports": {
     "./styles.css": "./dist/styles.css",
     "./Box": {
-      "types": "./dist/Box/index.d.ts",
+      "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
     },
     "./Button": {
-      "types": "./dist/Button/index.d.ts",
+      "types": "./dist/components/Button/index.d.ts",
       "require": "./dist/Button.cjs",
       "import": "./dist/Button.js"
     },
     "./Checkbox": {
-      "types": "./dist/Checkbox/index.d.ts",
+      "types": "./dist/components/Checkbox/index.d.ts",
       "require": "./dist/Checkbox.cjs",
       "import": "./dist/Checkbox.js"
     },
     "./Switch": {
-      "types": "./dist/Switch/index.d.ts",
+      "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
     }
