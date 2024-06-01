@@ -239,6 +239,50 @@ const tokens = {
     value: "linear-gradient(to right, #FDE6B2, #FDDD99)",
     variable: "var(--gradients-yellow-gradient-light)",
   },
+  "spacing.spacing.xxs": {
+    value: "0.25rem",
+    variable: "var(--spacing-spacing-xxs)",
+  },
+  "spacing.spacing.xs": {
+    value: "0.5rem",
+    variable: "var(--spacing-spacing-xs)",
+  },
+  "spacing.spacing.sm": {
+    value: "0.75rem",
+    variable: "var(--spacing-spacing-sm)",
+  },
+  "spacing.spacing.md": {
+    value: "1rem",
+    variable: "var(--spacing-spacing-md)",
+  },
+  "spacing.spacing.lg": {
+    value: "1.25rem",
+    variable: "var(--spacing-spacing-lg)",
+  },
+  "spacing.spacing.xl": {
+    value: "1.5rem",
+    variable: "var(--spacing-spacing-xl)",
+  },
+  "radii.radius.sm": {
+    value: "0.25rem",
+    variable: "var(--radii-radius-sm)",
+  },
+  "radii.radius.md": {
+    value: "0.5rem",
+    variable: "var(--radii-radius-md)",
+  },
+  "radii.radius.full": {
+    value: "2.5rem",
+    variable: "var(--radii-radius-full)",
+  },
+  "borderWidths.button": {
+    value: "1px",
+    variable: "var(--border-widths-button)",
+  },
+  "borderWidths.arrow": {
+    value: "1.2px",
+    variable: "var(--border-widths-arrow)",
+  },
   "breakpoints.sm": {
     value: "640px",
     variable: "var(--breakpoints-sm)",
@@ -370,6 +414,30 @@ const tokens = {
   "colors.github": {
     value: "#000000",
     variable: "var(--colors-github)",
+  },
+  "spacing.spacing.-xxs": {
+    value: "calc(var(--spacing-spacing-xxs) * -1)",
+    variable: "var(--spacing-spacing-xxs)",
+  },
+  "spacing.spacing.-xs": {
+    value: "calc(var(--spacing-spacing-xs) * -1)",
+    variable: "var(--spacing-spacing-xs)",
+  },
+  "spacing.spacing.-sm": {
+    value: "calc(var(--spacing-spacing-sm) * -1)",
+    variable: "var(--spacing-spacing-sm)",
+  },
+  "spacing.spacing.-md": {
+    value: "calc(var(--spacing-spacing-md) * -1)",
+    variable: "var(--spacing-spacing-md)",
+  },
+  "spacing.spacing.-lg": {
+    value: "calc(var(--spacing-spacing-lg) * -1)",
+    variable: "var(--spacing-spacing-lg)",
+  },
+  "spacing.spacing.-xl": {
+    value: "calc(var(--spacing-spacing-xl) * -1)",
+    variable: "var(--spacing-spacing-xl)",
   },
   "colors.colorPalette.50": {
     value: "var(--colors-color-palette-50)",

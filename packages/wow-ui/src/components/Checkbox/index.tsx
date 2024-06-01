@@ -20,7 +20,7 @@ export interface CheckBoxProps extends PropsWithChildren {
   onMouseLeave?: () => void;
   position?: "vertical" | "horizontal";
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
-  style: CSSProperties;
+  style?: CSSProperties;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
@@ -71,7 +71,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
         cursor={disabled ? "none" : "pointer"}
         display="flex"
         flexDirection={position === "vertical" ? "column-reverse" : "row"}
-        gap="10px"
+        gap="spacing.xs"
         htmlFor={id}
         pointerEvents={disabled ? "none" : "auto"}
         width="fit-content"

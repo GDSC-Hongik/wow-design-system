@@ -27,7 +27,9 @@ const Home = () => {
         <UpArrow />
       </main>
       <Switch />
-      <Checkbox checked={checked} onChange={handleChange}></Checkbox>
+      <Checkbox checked={checked} onChange={handleChange}>
+        test
+      </Checkbox>
     </>
   );
 };
