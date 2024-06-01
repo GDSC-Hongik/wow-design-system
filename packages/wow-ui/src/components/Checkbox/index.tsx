@@ -1,11 +1,12 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type {
+  CSSProperties,
   InputHTMLAttributes,
   KeyboardEvent,
   PropsWithChildren,
 } from "react";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
 export interface CheckBoxProps extends PropsWithChildren {
@@ -19,84 +20,88 @@ export interface CheckBoxProps extends PropsWithChildren {
   onMouseLeave?: () => void;
   position?: "vertical" | "horizontal";
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  style: CSSProperties;
 }
 
-const Checkbox = ({
-  defaultChecked = true,
-  disabled = false,
-  checked: checkedProp,
-  onClick,
-  onChange,
-  children,
-  position = "horizontal",
-  inputProps,
-  onMouseEnter,
-  onMouseLeave,
-  onKeyDown,
-  ...rest
-}: CheckBoxProps) => {
-  const id = inputProps?.id ?? "checkbox";
+const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
+  (
+    {
+      defaultChecked = true,
+      disabled = false,
+      checked: checkedProp,
+      onClick,
+      onChange,
+      children,
+      position = "horizontal",
+      inputProps,
+      onKeyDown,
+      ...rest
+    },
+    ref
+  ) => {
+    const id = inputProps?.id ?? "checkbox";
 
-  const [isChecked, setIsChecked] = useState<boolean>(() =>
-    checkedProp !== undefined ? checkedProp : defaultChecked
-  );
+    const [isChecked, setIsChecked] = useState<boolean>(() =>
+      checkedProp !== undefined ? checkedProp : defaultChecked
+    );
 
-  useEffect(() => {
-    if (checkedProp !== undefined) {
-      setIsChecked(checkedProp);
-    }
-  }, [checkedProp]);
+    useEffect(() => {
+      if (checkedProp !== undefined) {
+        setIsChecked(checkedProp);
+      }
+    }, [checkedProp]);
 
-  const handleClick = () => {
-    onChange ? onChange() : setIsChecked((prev) => !prev);
-    onClick?.();
-  };
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-
+    const handleClick = () => {
       onChange ? onChange() : setIsChecked((prev) => !prev);
-      onKeyDown?.();
-    }
-  };
+      onClick?.();
+    };
 
-  return (
-    <styled.label
-      alignItems="center"
-      cursor={disabled ? "none" : "pointer"}
-      display="flex"
-      flexDirection={position === "vertical" ? "column-reverse" : "row"}
-      gap="10px"
-      htmlFor={id}
-      pointerEvents={disabled ? "none" : "auto"}
-      width="fit-content"
-      onKeyDown={handleKeyDown}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <styled.span
-        className={checkboxStyle({
-          type: disabled ? "disabled" : isChecked ? "checked" : "default",
-        })}
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+
+        onChange ? onChange() : setIsChecked((prev) => !prev);
+        onKeyDown?.();
+      }
+    };
+
+    return (
+      <styled.label
+        alignItems="center"
+        cursor={disabled ? "none" : "pointer"}
+        display="flex"
+        flexDirection={position === "vertical" ? "column-reverse" : "row"}
+        gap="10px"
+        htmlFor={id}
+        pointerEvents={disabled ? "none" : "auto"}
+        width="fit-content"
+        onKeyDown={handleKeyDown}
+        {...rest}
       >
-        <styled.input
-          aria-checked={isChecked}
-          aria-disabled={disabled}
-          aria-label={inputProps?.["aria-label"] ?? "checkbox"}
-          className={inputStyle()}
-          id={id}
-          type="checkbox"
-          onClick={handleClick}
-          {...inputProps}
-          {...rest}
-        />
-        {isChecked && <CheckIcon />}
-      </styled.span>
-      <styled.span textStyle="body1">{children}</styled.span>
-    </styled.label>
-  );
-};
+        <styled.span
+          className={checkboxStyle({
+            type: disabled ? "disabled" : isChecked ? "checked" : "default",
+          })}
+        >
+          <styled.input
+            aria-checked={isChecked}
+            aria-disabled={disabled}
+            aria-label={inputProps?.["aria-label"] ?? "checkbox"}
+            className={inputStyle()}
+            id={id}
+            ref={ref}
+            tabIndex={0}
+            type="checkbox"
+            onClick={handleClick}
+            {...inputProps}
+          />
+          {isChecked && <CheckIcon />}
+        </styled.span>
+        <styled.span textStyle="body1">{children}</styled.span>
+      </styled.label>
+    );
+  }
+);
 
 export default Checkbox;
 
