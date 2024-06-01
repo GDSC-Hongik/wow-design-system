@@ -26,6 +26,7 @@ import type {
 
 export interface _ChipProps extends ToggleButtonProps {
   label: string;
+  clickable?: boolean;
   onDelete?: () => void;
 }
 
@@ -63,7 +64,6 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
   <T extends ElementType = "button">(
     {
       as,
-      clickable = true,
       label,
       onKeyDown,
       onClick,
