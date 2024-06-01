@@ -8,6 +8,7 @@ export default defineConfig({
   watch: true,
   outExtension: "js",
   polyfill: true,
+  jsxFramework: "react",
   include: ["./app/**/*.{ts,tsx,js,jsx}"],
   exclude: [],
   outdir: "styled-system",
