@@ -3,12 +3,12 @@ import { styled } from "@styled-system/jsx";
 import type {
   CSSProperties,
   InputHTMLAttributes,
-  KeyboardEvent,
   PropsWithChildren,
 } from "react";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
+import { useCheckedState } from "../../hooks";
 /**
  * @description 사용자가 선택하거나 선택 해제할 수 있는 체크박스 컴포넌트입니다.
  *
@@ -61,29 +61,13 @@ const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
   ) => {
     const id = inputProps?.id ?? "checkbox";
 
-    const [checked, setChecked] = useState<boolean>(() =>
-      checkedProp !== undefined ? checkedProp : defaultChecked
-    );
-
-    useEffect(() => {
-      if (checkedProp !== undefined) {
-        setChecked(checkedProp);
-      }
-    }, [checkedProp]);
-
-    const handleClick = () => {
-      onChange ? onChange() : setChecked((prev) => !prev);
-      onClick?.();
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-
-        onChange ? onChange() : setChecked((prev) => !prev);
-        onKeyDown?.();
-      }
-    };
+    const { checked, handleClick, handleKeyDown } = useCheckedState({
+      defaultChecked,
+      checked: checkedProp,
+      onChange,
+      onClick,
+      onKeyDown,
+    });
 
     return (
       <styled.label
