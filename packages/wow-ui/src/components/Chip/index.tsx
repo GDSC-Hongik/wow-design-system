@@ -24,14 +24,19 @@ import type {
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 
-export interface ChipProps extends ToggleButtonProps {
+export interface _ChipProps extends ToggleButtonProps {
   label: string;
   onDelete?: () => void;
 }
 
+export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
+  C,
+  _ChipProps
+>;
+
 type ChipComponent = <T extends ElementType = "button">(
-  props: PolymorphicComponentProps<T, ChipProps>
-) => ReactNode | null;
+  props: ChipProps<T>
+) => ReactNode;
 
 const ChipLabel = ({
   label,
@@ -66,7 +71,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       defaultChecked = false,
       disabled = false,
       ...rest
-    }: PolymorphicComponentProps<T, ChipProps>,
+    }: ChipProps<T>,
     ref: PolymorphicRef<T>
   ) => {
     const Component = as || "button";
@@ -98,8 +103,6 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
 
     return (
       <Component
-        // aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
-        data-selected={isChecked}
         ref={ref}
         className={chip({
           clickable: disabled ? false : clickable,
@@ -108,6 +111,8 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
         onClick={handleClick}
         // onKeyDown={handleKeyDown}
         {...rest.customStyle}
+        aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
+        data-selected={isChecked}
       >
         <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
       </Component>
