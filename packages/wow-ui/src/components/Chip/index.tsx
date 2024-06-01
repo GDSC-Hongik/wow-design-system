@@ -65,6 +65,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     {
       as,
       label,
+      clickable,
       onKeyDown,
       onClick,
       isChecked: checkedProp = false,
