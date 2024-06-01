@@ -105,7 +105,9 @@ const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
             <CheckIcon stroke={disabled ? "darkDisabled" : "primary"} />
           )}
         </styled.span>
-        <styled.span textStyle="body1">{children}</styled.span>
+        <styled.span color={checked ? "textBlack" : "sub"} textStyle="body1">
+          {children}
+        </styled.span>
       </styled.label>
     );
   }
