@@ -54,13 +54,10 @@ const ChipLabel = ({
   );
 };
 
-const Chip: ChipComponent = forwardRef(
+const Chip: ChipComponent & { displayName?: string } = forwardRef(
   <T extends ElementType = "button">(
-    props: PolymorphicComponentProps<T, ChipProps>,
-    ref: PolymorphicRef<T>
-  ) => {
-    const {
-      as: Component = "button" as ElementType,
+    {
+      as,
       clickable = true,
       label,
       onKeyDown,
@@ -69,7 +66,10 @@ const Chip: ChipComponent = forwardRef(
       defaultChecked = false,
       disabled = false,
       ...rest
-    } = props;
+    }: PolymorphicComponentProps<T, ChipProps>,
+    ref: PolymorphicRef<T>
+  ) => {
+    const Component = as || "button";
     const [isChecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
@@ -98,7 +98,7 @@ const Chip: ChipComponent = forwardRef(
 
     return (
       <Component
-        aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
+        // aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
         data-selected={isChecked}
         ref={ref}
         className={chip({
@@ -106,7 +106,7 @@ const Chip: ChipComponent = forwardRef(
           disabled: disabled,
         })}
         onClick={handleClick}
-        onKeyDown={handleKeyDown}
+        // onKeyDown={handleKeyDown}
         {...rest.customStyle}
       >
         <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
@@ -115,6 +115,7 @@ const Chip: ChipComponent = forwardRef(
   }
 );
 
+Chip.displayName = "Chip";
 export default Chip;
 
 const chipLabel = cva({
