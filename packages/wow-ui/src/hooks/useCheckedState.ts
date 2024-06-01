@@ -16,7 +16,7 @@ const useCheckedState = ({
   onClick,
   onKeyDown,
 }: Props) => {
-  const [checked, setChecked] = useState(() =>
+  const [checked, setChecked] = useState<boolean>(() =>
     checkedProp !== undefined ? checkedProp : defaultChecked
   );
 
@@ -27,20 +27,15 @@ const useCheckedState = ({
   }, [checkedProp]);
 
   const handleClick = () => {
-    if (checkedProp === undefined) {
-      setChecked((prev) => !prev);
-    }
-    onChange?.();
+    onChange ? onChange() : setChecked((prev) => !prev);
     onClick?.();
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      if (checkedProp === undefined) {
-        setChecked((prev) => !prev);
-      }
-      onChange?.();
+
+      onChange ? onChange() : setChecked((prev) => !prev);
       onKeyDown?.();
     }
   };
