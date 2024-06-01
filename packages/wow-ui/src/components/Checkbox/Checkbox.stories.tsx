@@ -127,7 +127,7 @@ const meta = {
       },
     },
     style: {
-      description: "체크박스의 스타일을 설정합니다.",
+      description: "체크박스의 커스텀 스타일을 설정합니다.",
       table: {
         type: { summary: "CSSProperties" },
         defaultValue: { summary: "{}" },

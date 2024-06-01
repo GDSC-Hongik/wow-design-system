@@ -22,7 +22,8 @@ import { Check as CheckIcon } from "wowds-icons";
  * @param {() => void} [onMouseLeave] 마우스가 체크박스에서 벗어날 때 호출되는 함수.
  * @param {"vertical" | "horizontal"} [position="horizontal"] 체크박스와 텍스트의 배치를 설정. 'vertical' 또는 'horizontal' 값을 가집니다.
  * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 체크박스의 기본 input 요소에 전달할 추가 속성들.
- * @param {CSSProperties} [style] 체크박스의 스타일을 설정합니다.
+ * @param {CSSProperties} [style] 체크박스의 커스텀 스타일을 설정합니다.
+ * @param {string} [className] 체크박스에 전달하는 커스텀 클래스를 설정합니다.
  * @param {React.ReactNode} [children] 체크박스 오른쪽이나 위쪽에 들어갈 텍스트.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
@@ -39,6 +40,7 @@ export interface CheckBoxProps extends PropsWithChildren {
   position?: "vertical" | "horizontal";
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
   style?: CSSProperties;
+  className?: string;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
