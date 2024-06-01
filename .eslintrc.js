@@ -28,6 +28,7 @@ module.exports = {
   globals: {
     React: true,
     JSX: true,
+    console: true,
   },
   env: {
     browser: true,
