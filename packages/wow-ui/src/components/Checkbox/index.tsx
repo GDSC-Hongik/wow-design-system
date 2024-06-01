@@ -123,12 +123,15 @@ const checkboxStyle = cva({
         borderColor: "darkDisabled",
         _pressed: {
           bg: "blueBackgroundPressed",
-          borderColor: "primary",
+          borderColor: "bluePressed",
         },
       },
       checked: {
         bg: "blueBackgroundPressed",
         borderColor: "primary",
+        _pressed: {
+          borderColor: "bluePressed",
+        },
       },
       disabled: {
         bg: "lightDisabled",
