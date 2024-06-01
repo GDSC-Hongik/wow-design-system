@@ -113,6 +113,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
   }
 );
 
+Checkbox.displayName = "Checkbox";
 export default Checkbox;
 
 const checkboxStyle = cva({
