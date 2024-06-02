@@ -35,7 +35,6 @@ const RadioButton = ({ defaultState = "default", label }: RadioButtonProps) => {
         aria-checked={group.value === label}
         aria-disabled={defaultState === "disabled"}
         aria-label={label}
-        aria-readonly={defaultState === "readonly"}
         checked={group.value === label}
         className={radioButtonRecipe({ state: defaultState })}
         data-pressed={pressed}
@@ -44,6 +43,7 @@ const RadioButton = ({ defaultState = "default", label }: RadioButtonProps) => {
         readOnly={defaultState === "readonly"}
         type="radio"
         value={label}
+        onChange={group.onChange}
       />
       <span className={text}>{label}</span>
     </label>
