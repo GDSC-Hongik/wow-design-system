@@ -18,6 +18,7 @@ const RadioGroup = ({
   defaultValue,
   onChange,
   value,
+  disabled,
 }: RadioGroupProps) => {
   const [selected, setSelected] = useState(defaultValue);
 
@@ -31,8 +32,9 @@ const RadioGroup = ({
       },
       value: value ? value : selected,
       name,
+      disabled,
     }),
-    [onChange, setSelected, value, selected, name]
+    [onChange, setSelected, value, selected, name, disabled]
   );
 
   return (
