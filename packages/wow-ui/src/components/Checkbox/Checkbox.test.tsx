@@ -2,11 +2,11 @@ import type { RenderResult } from "@testing-library/react";
 import { render, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
-import type { CheckBoxProps } from "./index";
+import type { CheckboxProps } from "./index";
 import Checkbox from "./index";
 
 describe("Checkbox component", () => {
-  const renderCheckbox = (props: Partial<CheckBoxProps> = {}): RenderResult => {
+  const renderCheckbox = (props: Partial<CheckboxProps> = {}): RenderResult => {
     return render(<Checkbox {...props}>Text</Checkbox>);
   };
 
