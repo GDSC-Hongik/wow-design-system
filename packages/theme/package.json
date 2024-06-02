@@ -10,8 +10,5 @@
   },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
-  },
-  "dependencies": {
-    "wowds-tokens": "workspace:^"
   }
 }

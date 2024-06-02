@@ -60,6 +60,17 @@ export type Token =
   | "gradients.greenGradientLight"
   | "gradients.yellowGradientDark"
   | "gradients.yellowGradientLight"
+  | "spacing.xxs"
+  | "spacing.xs"
+  | "spacing.sm"
+  | "spacing.md"
+  | "spacing.lg"
+  | "spacing.xl"
+  | "radii.sm"
+  | "radii.md"
+  | "radii.full"
+  | "borderWidths.button"
+  | "borderWidths.arrow"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
@@ -93,6 +104,12 @@ export type Token =
   | "colors.blueShadow"
   | "colors.discord"
   | "colors.github"
+  | "spacing.-xxs"
+  | "spacing.-xs"
+  | "spacing.-sm"
+  | "spacing.-md"
+  | "spacing.-lg"
+  | "spacing.-xl"
   | "colors.colorPalette.50"
   | "colors.colorPalette.100"
   | "colors.colorPalette.150"
@@ -238,6 +255,24 @@ export type GradientToken =
   | "yellowGradientDark"
   | "yellowGradientLight";
 
+export type SpacingToken =
+  | "xxs"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "-xxs"
+  | "-xs"
+  | "-sm"
+  | "-md"
+  | "-lg"
+  | "-xl";
+
+export type RadiusToken = "sm" | "md" | "full";
+
+export type BorderWidthToken = "button" | "arrow";
+
 export type BreakpointToken = "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type SizeToken =
@@ -250,6 +285,9 @@ export type SizeToken =
 export type Tokens = {
   colors: ColorToken;
   gradients: GradientToken;
+  spacing: SpacingToken;
+  radii: RadiusToken;
+  borderWidths: BorderWidthToken;
   breakpoints: BreakpointToken;
   sizes: SizeToken;
 } & { [token: string]: never };
