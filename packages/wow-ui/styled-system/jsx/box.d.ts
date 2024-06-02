@@ -1,10 +1,11 @@
 /* eslint-disable */
-import type { FunctionComponent } from 'react'
-import type { BoxProperties } from '../patterns/box';
-import type { HTMLStyledProps } from '../types/jsx';
-import type { DistributiveOmit } from '../types/system-types';
+import type { FunctionComponent } from "react";
+import type { BoxProperties } from "../patterns/box";
+import type { HTMLStyledProps } from "../types/jsx";
+import type { DistributiveOmit } from "../types/system-types";
 
-export interface BoxProps extends BoxProperties, DistributiveOmit<HTMLStyledProps<'div'>, keyof BoxProperties > {}
+export interface BoxProps
+  extends BoxProperties,
+    DistributiveOmit<HTMLStyledProps<"div">, keyof BoxProperties> {}
 
-
-export declare const Box: FunctionComponent<BoxProps>
+export declare const Box: FunctionComponent<BoxProps>;
