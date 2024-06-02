@@ -1,7 +1,7 @@
 import { css } from "@styled-system/css/css";
 import { cva } from "@styled-system/css/cva";
 
-export const radioButton = cva({
+export const radioButtonRecipe = cva({
   base: {
     appearance: "none",
 
@@ -13,55 +13,47 @@ export const radioButton = cva({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    cursor: "pointer",
 
     background: "background",
     borderColor: "darkDisabled",
   },
   variants: {
     state: {
-      active: {
+      default: {
         base: {
-          _before: {
-            content: `""`,
-            width: 10,
-            height: 10,
-            borderRadius: 9999,
-          },
+          cursor: "pointer",
         },
         _checked: {
           background: "blueBackgroundPressed",
           borderColor: "primary",
           _before: {
+            content: `""`,
+            width: 10,
+            height: 10,
+            borderRadius: 9999,
             background: "primary",
           },
         },
-        _disabled: {
-          background: "lightDisabled",
-          borderColor: "darkDisabled",
-          cursor: "not-allowed",
-          _before: {
-            background: "darkDisabled",
-          },
-        },
         "&[data-pressed=true]": {
           background: "blueBackgroundPressed",
           borderColor: "bluePressed",
-          _before: {
-            background: "bluePressed",
-          },
         },
       },
-      inactive: {
-        _disabled: {
-          background: "lightDisabled",
-          borderColor: "darkDisabled",
-          cursor: "not-allowed",
+      readonly: {
+        background: "lightDisabled",
+        borderColor: "darkDisabled",
+        _before: {
+          content: `""`,
+          width: 10,
+          height: 10,
+          borderRadius: 9999,
+          background: "darkDisabled",
         },
-        "&[data-pressed=true]": {
-          background: "blueBackgroundPressed",
-          borderColor: "bluePressed",
-        },
+      },
+      disabled: {
+        background: "lightDisabled",
+        borderColor: "darkDisabled",
+        cursor: "not-allowed",
       },
     },
   },
@@ -71,17 +63,27 @@ export const text = css({
   textStyle: "body2",
 });
 
-export const labelRecipe = css({
-  display: "flex",
-  alignItems: "center",
-  gap: "0.5rem",
+export const labelRecipe = cva({
   base: {
-    cursor: "pointer",
+    width: "fit-content",
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
     color: "textBlack",
   },
-
-  "&[data-disabled=true]": {
-    cursor: "not-allowed",
-    color: "sub",
+  variants: {
+    state: {
+      default: {
+        cursor: "pointer",
+        color: "textBlack",
+      },
+      readonly: {
+        color: "sub",
+      },
+      disabled: {
+        color: "sub",
+        cursor: "not-allowed",
+      },
+    },
   },
 });

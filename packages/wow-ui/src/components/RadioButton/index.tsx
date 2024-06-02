@@ -1,57 +1,49 @@
 "use client";
-import type { ChangeEvent } from "react";
 import { useContext, useState } from "react";
 
 import RadioContext from "@/components/RadioGroup/RadioContext";
 
-import { labelRecipe, radioButton, text } from "./radioButton.recipe";
+import { labelRecipe, radioButtonRecipe, text } from "./radioButton.recipe";
+
+export type RadiodefaultState = "default" | "readonly" | "disabled";
 
 export interface RadioButtonProps {
-  disabled?: boolean;
-  active?: boolean;
+  defaultState?: RadiodefaultState;
   label: string;
 }
 
-const RadioButton = ({
-  active = false,
-  disabled = false,
-  label,
-}: RadioButtonProps) => {
+const RadioButton = ({ defaultState = "default", label }: RadioButtonProps) => {
   const group = useContext(RadioContext);
-
   const [pressed, setPressed] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (group.onChange) group.onChange(e);
-  };
-
   const handleMouseDown = () => {
-    if (!disabled) setPressed(true);
+    if (defaultState === "default") setPressed(true);
   };
 
   const handleMouseUp = () => {
-    if (!disabled) setPressed(false);
+    if (defaultState === "default") setPressed(false);
   };
 
   return (
     <label
-      className={labelRecipe}
-      data-disabled={disabled}
+      className={labelRecipe({ state: defaultState })}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseUp}
       onMouseUp={handleMouseUp}
     >
       <input
         aria-checked={group.value === label}
+        aria-disabled={defaultState === "disabled"}
         aria-label={label}
+        aria-readonly={defaultState === "readonly"}
         checked={group.value === label}
-        className={radioButton({ state: active ? "active" : "inactive" })}
+        className={radioButtonRecipe({ state: defaultState })}
         data-pressed={pressed}
-        disabled={disabled}
+        disabled={defaultState === "disabled"}
         name={group.name}
+        readOnly={defaultState === "readonly"}
         type="radio"
         value={label}
-        onChange={handleChange}
       />
       <span className={text}>{label}</span>
     </label>
