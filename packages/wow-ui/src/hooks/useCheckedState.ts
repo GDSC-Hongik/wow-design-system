@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from "react";
 import { useEffect, useState } from "react";
 
-interface Props {
+interface CheckedStateProps {
   defaultChecked?: boolean;
   checked?: boolean;
   onChange?: () => void;
@@ -15,7 +15,7 @@ const useCheckedState = ({
   onChange,
   onClick,
   onKeyDown,
-}: Props) => {
+}: CheckedStateProps) => {
   const [checked, setChecked] = useState<boolean>(() =>
     checkedProp !== undefined ? checkedProp : defaultChecked
   );

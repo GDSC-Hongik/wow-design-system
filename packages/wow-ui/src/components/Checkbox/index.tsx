@@ -31,7 +31,7 @@ import { useCheckedState } from "../../hooks";
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
-export interface CheckBoxProps extends PropsWithChildren {
+export interface CheckboxProps extends PropsWithChildren {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
@@ -46,7 +46,7 @@ export interface CheckBoxProps extends PropsWithChildren {
   className?: string;
 }
 
-const Checkbox = forwardRef<HTMLInputElement, CheckBoxProps>(
+const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       defaultChecked = false,
