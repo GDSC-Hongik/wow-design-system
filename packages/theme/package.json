@@ -4,13 +4,11 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./utils": "./utils/index.ts"
+    ".": "./src/tokens/index.ts",
+    "./utils": "./src/utils/index.ts",
+    "./types": "./src/types/index.ts"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.39.0"
-  },
-  "dependencies": {
-    "wowds-tokens": "workspace:^"
   }
 }
