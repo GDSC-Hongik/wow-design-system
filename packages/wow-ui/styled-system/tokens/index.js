@@ -239,6 +239,50 @@ const tokens = {
     value: "linear-gradient(to right, #FDE6B2, #FDDD99)",
     variable: "var(--gradients-yellow-gradient-light)",
   },
+  "spacing.xxs": {
+    value: "0.25rem",
+    variable: "var(--spacing-xxs)",
+  },
+  "spacing.xs": {
+    value: "0.5rem",
+    variable: "var(--spacing-xs)",
+  },
+  "spacing.sm": {
+    value: "0.75rem",
+    variable: "var(--spacing-sm)",
+  },
+  "spacing.md": {
+    value: "1rem",
+    variable: "var(--spacing-md)",
+  },
+  "spacing.lg": {
+    value: "1.25rem",
+    variable: "var(--spacing-lg)",
+  },
+  "spacing.xl": {
+    value: "1.5rem",
+    variable: "var(--spacing-xl)",
+  },
+  "radii.sm": {
+    value: "0.25rem",
+    variable: "var(--radii-sm)",
+  },
+  "radii.md": {
+    value: "0.5rem",
+    variable: "var(--radii-md)",
+  },
+  "radii.full": {
+    value: "2.5rem",
+    variable: "var(--radii-full)",
+  },
+  "borderWidths.button": {
+    value: "1px",
+    variable: "var(--border-widths-button)",
+  },
+  "borderWidths.arrow": {
+    value: "1.2px",
+    variable: "var(--border-widths-arrow)",
+  },
   "breakpoints.sm": {
     value: "640px",
     variable: "var(--breakpoints-sm)",
@@ -370,6 +414,30 @@ const tokens = {
   "colors.github": {
     value: "#000000",
     variable: "var(--colors-github)",
+  },
+  "spacing.-xxs": {
+    value: "calc(var(--spacing-xxs) * -1)",
+    variable: "var(--spacing-xxs)",
+  },
+  "spacing.-xs": {
+    value: "calc(var(--spacing-xs) * -1)",
+    variable: "var(--spacing-xs)",
+  },
+  "spacing.-sm": {
+    value: "calc(var(--spacing-sm) * -1)",
+    variable: "var(--spacing-sm)",
+  },
+  "spacing.-md": {
+    value: "calc(var(--spacing-md) * -1)",
+    variable: "var(--spacing-md)",
+  },
+  "spacing.-lg": {
+    value: "calc(var(--spacing-lg) * -1)",
+    variable: "var(--spacing-lg)",
+  },
+  "spacing.-xl": {
+    value: "calc(var(--spacing-xl) * -1)",
+    variable: "var(--spacing-xl)",
   },
   "colors.colorPalette.50": {
     value: "var(--colors-color-palette-50)",
