@@ -1,30 +1,106 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import RadioButton from "@/components/RadioButton";
-import RadioGroup from "@/components/RadioGroup";
+import { RadioButton, RadioGroup } from "@/components/RadioGroup";
+import type { RadioGroupProps } from "@/components/RadioGroup/RadioGroup";
 
 const meta = {
-  title: "Example/RadioGroup",
+  title: "UI/RadioGroup",
   component: RadioGroup,
   tags: ["autodocs"],
+  parameters: {
+    componentSubtitle: "라디오 그룹 컴포넌트",
+  },
+  argTypes: {
+    defaultValue: {
+      description: "라디오 그룹의 초기 선택값을 나타냅니다.",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: undefined },
+      },
+    },
+    name: {
+      description: "라디오 그룹의 이름을 나타냅니다.",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: undefined },
+      },
+    },
+    children: {
+      description: "라디오 그룹의 자식 요소를 나타냅니다.",
+      table: {
+        type: { summary: "RadioButton" },
+        defaultValue: {
+          summary: undefined,
+        },
+      },
+      type: {
+        name: "function",
+        required: true,
+      },
+    },
+    disabled: {
+      description: "라디오 그룹이 비활성화되어 있는지 여부를 나타냅니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    value: {
+      description: "외부에서 제어할 활성된 라디오 버튼의 값을 나타냅니다",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: undefined },
+      },
+    },
+    onChange: {
+      description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
+      table: {
+        type: { summary: "(event: ChangeEvent<HTMLInputElement>) => void" },
+        defaultValue: { summary: undefined },
+      },
+    },
+  },
 } satisfies Meta<typeof RadioGroup>;
 
 export default meta;
 
-const RadioGridDefault = () => {
-  return (
-    <RadioGroup defaultValue="1학년" name="defaultgrade">
+const Template: StoryFn<RadioGroupProps> = (args: RadioGroupProps) => (
+  <RadioGroup {...args} />
+);
+
+export const Default: StoryObj<RadioGroupProps> = Template.bind({});
+Default.args = {
+  defaultValue: "1학년",
+  name: "defaultgrade",
+  children: (
+    <>
       <RadioButton label="1학년" />
       <RadioButton label="2학년" />
       <RadioButton label="3학년" />
       <RadioButton disabled label="4학년" />
-    </RadioGroup>
-  );
+    </>
+  ),
 };
 
-const RadioGridControlled = () => {
+export const ReadOnly: StoryObj<RadioGroupProps> = Template.bind({});
+ReadOnly.args = {
+  disabled: true,
+  defaultValue: "2학년",
+  name: "readonlygrade",
+  children: (
+    <>
+      <RadioButton label="1학년" />
+      <RadioButton label="2학년" />
+      <RadioButton label="3학년" />
+      <RadioButton label="4학년" />
+    </>
+  ),
+};
+
+export const Controlled = () => {
   const [value, setState] = useState("1학년");
+
   return (
     <RadioGroup
       defaultValue="1학년"
@@ -38,12 +114,4 @@ const RadioGridControlled = () => {
       <RadioButton disabled label="4학년" />
     </RadioGroup>
   );
-};
-
-export const Default: StoryObj = {
-  render: () => <RadioGridDefault />,
-};
-
-export const Controlled: StoryObj = {
-  render: () => <RadioGridControlled />,
 };
