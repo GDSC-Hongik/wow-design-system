@@ -26,6 +26,7 @@ export default {
     Switch: "./src/components/Switch",
     RadioButton: "./src/components/RadioButton",
     RadioGroup: "./src/components/RadioGroup",
+    Switch: "./src/components/Switch",
   },
   output: [
     {
