@@ -96,6 +96,7 @@ const Switch = forwardRef(
             aria-disabled={isDisabled}
             aria-label="switch"
             className={inputStyle()}
+            disabled={isDisabled}
             type="checkbox"
             onClick={handleClick}
             onKeyDown={handleKeyDown}
@@ -129,7 +130,7 @@ const switchStyle = cva({
         _hover: { bgColor: "sub" },
         _pressed: { bgColor: "lightDisabled" },
       },
-      disabled: { bgColor: "lightDisabled" },
+      disabled: { bgColor: "lightDisabled", cursor: "default" },
     },
   },
   defaultVariants: {
