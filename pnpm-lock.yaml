@@ -195,9 +195,6 @@ importers:
       wowds-icons:
         specifier: workspace:^
         version: link:../../packages/wow-icons
-      wowds-tokens:
-        specifier: workspace:^
-        version: link:../../packages/wow-tokens
       wowds-ui:
         specifier: workspace:^
         version: link:../../packages/wow-ui
@@ -230,10 +227,6 @@ importers:
   packages/shared-config: {}
 
   packages/theme:
-    dependencies:
-      wowds-tokens:
-        specifier: workspace:^
-        version: link:../wow-tokens
     devDependencies:
       '@pandacss/dev':
         specifier: ^0.39.0
