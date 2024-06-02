@@ -1,9 +1,10 @@
 "use client";
 
 import { Flex } from "@styled-system/jsx";
-import type { ReactElement, ReactNode } from "react";
+import type { ReactElement } from "react";
 import { cloneElement, useMemo, useState } from "react";
 
+import type { SwitchProps } from "@/components/Switch";
 import { extractChildrenArray } from "@/utils/extractChildrenArray";
 
 const init = (value: boolean[], childrenArray: ReactElement[]): boolean[] => {
@@ -23,12 +24,12 @@ const init = (value: boolean[], childrenArray: ReactElement[]): boolean[] => {
 };
 
 /**
- * @param {ReactNode} children 렌더링할 자식 요소.
+ * @param {ReactElement<SwitchProps>[]} children 렌더링할 자식 요소.
  * @param {boolean[]} [value] 외부에서 제어할 활성 상태.
  * @param {(index: number) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
  */
 export interface SwitchGroupProps {
-  children: ReactNode;
+  children: ReactElement<SwitchProps>[];
   value?: boolean[];
   onChange?: (index: number) => void;
 }
@@ -56,7 +57,7 @@ const SwitchGroup = ({ children, value = [], onChange }: SwitchGroupProps) => {
   };
 
   return (
-    <Flex direction="column" display="inline-flex" gap={8}>
+    <Flex direction="column" display="inline-flex" gap="8px">
       {childrenArray.map((child, index) => {
         return cloneElement(child, {
           key: index,
