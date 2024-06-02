@@ -57,7 +57,7 @@ const SwitchGroup = ({ children, value = [], onChange }: SwitchGroupProps) => {
   };
 
   return (
-    <Flex direction="column" display="inline-flex" gap="8px">
+    <Flex direction="column" display="inline-flex" gap="xs">
       {childrenArray.map((child, index) => {
         return cloneElement(child, {
           key: index,

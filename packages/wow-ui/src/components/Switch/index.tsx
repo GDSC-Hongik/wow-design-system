@@ -83,7 +83,7 @@ const Switch = forwardRef(
     };
 
     return (
-      <Flex alignItems="center" gap="0.5rem">
+      <Flex alignItems="center" gap="xs">
         <styled.label
           className={switchStyle({
             type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
