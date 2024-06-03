@@ -2,7 +2,7 @@
   "name": "wow-design-system",
   "private": true,
   "scripts": {
-    "build": "turbo build && pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format",
+    "build": "pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format && turbo build",
     "tokens:build": "turbo run build --filter=wowds-tokens",
     "ui:build": "turbo run build --filter=wowds-ui",
     "icons:build": "turbo run build --filter=wowds-icons",
