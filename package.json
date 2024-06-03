@@ -2,7 +2,8 @@
   "name": "wow-design-system",
   "private": true,
   "scripts": {
-    "build": "pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format && turbo build",
+    "build": "turbo build",
+    "codegen:build": "pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format && pnpm build",
     "tokens:build": "turbo run build --filter=wowds-tokens",
     "ui:build": "turbo run build --filter=wowds-ui",
     "icons:build": "turbo run build --filter=wowds-icons",
@@ -16,6 +17,11 @@
     "wow-ui:codegen": "cd packages/wow-ui && pnpm panda codegen",
     "wow-docs:codegen": "cd apps/wow-docs && pnpm panda codegen",
     "styled-system:format": "prettier --write packages/wow-ui/** apps/wow-docs/**"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "pnpm codegen:build"
+    }
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
