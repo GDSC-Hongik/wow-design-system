@@ -16,7 +16,7 @@
     "prepare": "husky install",
     "wow-ui:codegen": "cd packages/wow-ui && pnpm panda codegen",
     "wow-docs:codegen": "cd apps/wow-docs && pnpm panda codegen",
-    "styled-system:format": "prettier --write packages/wow-ui/** apps/wow-docs/**"
+    "styled-system:format": "prettier --write packages/wow-ui/styled-system/** apps/wow-docs/styled-system/**"
   },
   "husky": {
     "hooks": {
