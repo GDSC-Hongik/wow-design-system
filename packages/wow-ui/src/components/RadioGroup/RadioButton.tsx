@@ -31,6 +31,9 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
       className={labelRecipe({
         state: disabled || group.disabled ? "disabled" : "default",
       })}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseUp}
+      onMouseUp={handleMouseUp}
     >
       <styled.input
         aria-checked={selected}
@@ -47,9 +50,6 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
           state: selected ? "active" : "inactive",
         })}
         onChange={group.onChange}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
       />
       <styled.span className={text}>{label}</styled.span>
     </styled.label>
