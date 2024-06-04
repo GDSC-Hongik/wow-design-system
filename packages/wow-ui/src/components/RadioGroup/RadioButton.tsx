@@ -71,7 +71,7 @@ const radioButtonRecipe = cva({
 
     width: 20,
     height: 20,
-    borderRadius: 9999,
+    borderRadius: "full",
     borderWidth: 1,
 
     display: "flex",
@@ -92,7 +92,7 @@ const radioButtonRecipe = cva({
             content: `""`,
             width: 10,
             height: 10,
-            borderRadius: 9999,
+            borderRadius: "full",
             background: "primary",
           },
         },
@@ -135,7 +135,7 @@ const labelRecipe = cva({
   base: {
     display: "flex",
     alignItems: "center",
-    gap: "0.5rem",
+    gap: "xs",
   },
   variants: {
     state: {
