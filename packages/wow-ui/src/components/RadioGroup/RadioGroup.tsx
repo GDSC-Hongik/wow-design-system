@@ -26,7 +26,7 @@ const RadioGroup = ({
   value,
   disabled,
 }: RadioGroupProps) => {
-  const [selected, setSelected] = useState(defaultValue);
+  const [selected, setSelected] = useState<string>(defaultValue);
 
   const contextValue = useMemo(
     () => ({
