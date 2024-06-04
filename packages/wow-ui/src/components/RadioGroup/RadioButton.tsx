@@ -68,8 +68,8 @@ const radioButtonStyle = cva({
   base: {
     appearance: "none",
 
-    width: 20,
-    height: 20,
+    width: "1.25rem",
+    height: "1.25rem",
     borderRadius: "full",
     borderWidth: 1,
 
@@ -89,8 +89,8 @@ const radioButtonStyle = cva({
           borderColor: "primary",
           _before: {
             content: `""`,
-            width: 10,
-            height: 10,
+            width: "0.625rem",
+            height: "0.625rem",
             borderRadius: "full",
             background: "primary",
           },

@@ -44,7 +44,7 @@ const RadioGroup = ({
   );
 
   return (
-    <Flex direction="column" gap="0.5rem" role="radiogroup" width="fit-content">
+    <Flex direction="column" gap="xs" role="radiogroup" width="fit-content">
       <RadioContext.Provider value={contextValue}>
         {children}
       </RadioContext.Provider>
