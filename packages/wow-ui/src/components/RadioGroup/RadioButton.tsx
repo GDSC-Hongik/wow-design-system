@@ -7,6 +7,13 @@ import { useContext, useState } from "react";
 
 import RadioContext from "@/components/RadioGroup/RadioContext";
 
+/**
+ * @description 라디오 버튼 컴포넌트의 속성을 정의합니다.
+ *
+ * @property {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
+ * @property {string} label - 라디오 버튼의 라벨.
+ */
+
 export interface RadioButtonProps {
   disabled?: boolean;
   label: string;
