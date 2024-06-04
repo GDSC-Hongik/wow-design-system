@@ -8,7 +8,6 @@ import RadioContext from "./RadioContext";
 
 export interface RadioGroupProps extends RadioContextProps {
   children: ReactNode;
-  name: string;
   defaultValue: string;
 }
 
