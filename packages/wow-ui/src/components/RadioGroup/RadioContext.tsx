@@ -11,14 +11,14 @@ import { createContext } from "react";
  */
 
 export interface RadioContextProps {
-  name: string | undefined;
-  value?: string | undefined;
+  name: string;
+  value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
 }
 
 const RadioContext = createContext<RadioContextProps>({
-  name: undefined,
+  name: "RadioGroupName",
   value: undefined,
   onChange: undefined,
   disabled: false,
