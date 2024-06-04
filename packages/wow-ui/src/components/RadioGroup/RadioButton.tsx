@@ -1,6 +1,5 @@
 "use client";
 
-import { css } from "@styled-system/css/css";
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
 import { useContext, useState } from "react";
@@ -37,7 +36,7 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
 
   return (
     <styled.label
-      className={labelRecipe({
+      className={labelStyle({
         state: disabled || group.disabled ? "disabled" : "default",
       })}
       onMouseDown={handleMouseDown}
@@ -55,17 +54,17 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
         name={group.name}
         type="radio"
         value={value}
-        className={radioButtonRecipe({
+        className={radioButtonStyle({
           state: selected ? "active" : "inactive",
         })}
         onChange={group.onChange}
       />
-      <styled.span className={text}>{label}</styled.span>
+      <styled.span textStyle="body2">{label}</styled.span>
     </styled.label>
   );
 };
 
-const radioButtonRecipe = cva({
+const radioButtonStyle = cva({
   base: {
     appearance: "none",
 
@@ -127,11 +126,7 @@ const radioButtonRecipe = cva({
   },
 });
 
-const text = css({
-  textStyle: "body2",
-});
-
-const labelRecipe = cva({
+const labelStyle = cva({
   base: {
     display: "flex",
     alignItems: "center",
