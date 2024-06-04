@@ -47,7 +47,7 @@ const meta = {
       },
     },
     value: {
-      description: "외부에서 제어할 활성된 라디오 버튼의 값을 나타냅니다",
+      description: "외부에서 제어할 활성된 라디오 버튼의 값을 나타냅니다.",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: undefined },
@@ -75,10 +75,10 @@ Default.args = {
   name: "defaultgrade",
   children: (
     <>
-      <RadioButton label="1학년" />
-      <RadioButton label="2학년" />
-      <RadioButton label="3학년" />
-      <RadioButton disabled label="4학년" />
+      <RadioButton label="1학년" value="1학년" />
+      <RadioButton label="2학년" value="2학년" />
+      <RadioButton label="3학년" value="3학년" />
+      <RadioButton disabled label="4학년" value="4학년" />
     </>
   ),
 };
@@ -90,10 +90,10 @@ ReadOnly.args = {
   name: "readonlygrade",
   children: (
     <>
-      <RadioButton label="1학년" />
-      <RadioButton label="2학년" />
-      <RadioButton label="3학년" />
-      <RadioButton label="4학년" />
+      <RadioButton label="1학년" value="1학년" />
+      <RadioButton label="2학년" value="2학년" />
+      <RadioButton label="3학년" value="3학년" />
+      <RadioButton label="4학년" value="4학년" />
     </>
   ),
 };
@@ -108,10 +108,10 @@ export const Controlled = () => {
       value={value}
       onChange={(e) => setState(e.target.value)}
     >
-      <RadioButton label="1학년" />
-      <RadioButton label="2학년" />
-      <RadioButton label="3학년" />
-      <RadioButton disabled label="4학년" />
+      <RadioButton label="1학년" value="1학년" />
+      <RadioButton label="2학년" value="2학년" />
+      <RadioButton label="3학년" value="3학년" />
+      <RadioButton disabled label="4학년" value="4학년" />
     </RadioGroup>
   );
 };

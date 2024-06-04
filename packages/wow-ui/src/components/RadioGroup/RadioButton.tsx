@@ -11,17 +11,19 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
  * @description 라디오 버튼 컴포넌트의 속성을 정의합니다.
  *
  * @property {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
+ * @property {string} value - 라디오 버튼의 값.
  * @property {string} label - 라디오 버튼의 라벨.
  */
 
 export interface RadioButtonProps {
   disabled?: boolean;
+  value: string;
   label: string;
 }
 
-const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
+const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
   const group = useContext(RadioContext);
-  const selected = group.value === label;
+  const selected = group.value === value;
 
   const [pressed, setPressed] = useState<boolean>(false);
 
@@ -52,7 +54,7 @@ const RadioButton = ({ disabled = false, label }: RadioButtonProps) => {
         disabled={(group.disabled && !selected) || disabled}
         name={group.name}
         type="radio"
-        value={label}
+        value={value}
         className={radioButtonRecipe({
           state: selected ? "active" : "inactive",
         })}
