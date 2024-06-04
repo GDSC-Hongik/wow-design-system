@@ -11,13 +11,13 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
  *
  * @property {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
  * @property {string} value - 라디오 버튼의 값.
- * @property {string} label - 라디오 버튼의 라벨.
+ * @property {string} [label] - 라디오 버튼의 라벨.
  */
 
 export interface RadioButtonProps {
   disabled?: boolean;
   value: string;
-  label: string;
+  label?: string;
 }
 
 const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
@@ -59,7 +59,7 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
         })}
         onChange={group.onChange}
       />
-      <styled.span textStyle="body2">{label}</styled.span>
+      {label && <styled.span textStyle="body2">{label}</styled.span>}
     </styled.label>
   );
 };
@@ -128,6 +128,7 @@ const radioButtonStyle = cva({
 
 const labelStyle = cva({
   base: {
+    width: "fit-content",
     display: "flex",
     alignItems: "center",
     gap: "xs",
