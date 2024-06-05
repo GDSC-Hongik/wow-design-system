@@ -49,7 +49,7 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
         aria-label={label}
         checked={selected}
         data-pressed={pressed}
-        data-readonly={group.disabled && selected}
+        data-readonly={(group.disabled || disabled) && selected}
         disabled={(group.disabled && !selected) || disabled}
         name={group.name}
         type="radio"
