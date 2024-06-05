@@ -63,7 +63,7 @@ const ChipLabel = ({
 const Chip: ChipComponent & { displayName?: string } = forwardRef(
   <T extends ElementType = "button">(
     {
-      as,
+      element,
       label,
       clickable,
       onKeyDown,
@@ -75,7 +75,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     }: ChipProps<T>,
     ref: PolymorphicRef<T>
   ) => {
-    const Component = as || "button";
+    const Component = element || "button";
     const [isChecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
@@ -91,7 +91,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       clickable ? setIsChecked((prev) => !prev) : null;
     };
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: any) => {
       if (!clickable || disabled) return;
       if (event.currentTarget === event.target) {
         event.preventDefault();
@@ -110,7 +110,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
           disabled: disabled,
         })}
         onClick={handleClick}
-        // onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown}
         {...rest.customStyle}
         aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
         data-selected={isChecked}
