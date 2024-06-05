@@ -19,20 +19,20 @@ type VariantType = "default" | "typing" | "typed" | "success" | "error";
 /**
  * @description 사용자가 텍스트를 입력할 수 있는 텍스트필드 컴포넌트입니다.
  *
- * @param {string} label 텍스트 필드의 라벨.
- * @param {string} [placeholder] 텍스트 필드의 플레이스홀더 텍스트.
- * @param {string} [defaultValue] 텍스트 필드의 기본 값.
+ * @param {string} label 텍스트필드의 라벨.
+ * @param {string} [placeholder] 텍스트필드의 플레이스홀더 텍스트.
+ * @param {string} [defaultValue] 텍스트필드의 기본 값.
  * @param {string} [value] 외부에서 제어할 활성 상태.
- * @param {number} [maxLength] 텍스트 필드의 최대 입력 길이.
- * @param {boolean} [error] 텍스트 필드의 오류 상태 여부.
- * @param {boolean} [success] 텍스트 필드의 성공 상태 여부.
- * @param {ReactNode} [helperText] 텍스트 필드 아래 추가적인 텍스트.
+ * @param {number} [maxLength] 텍스트필드의 최대 입력 길이.
+ * @param {boolean} [error] 텍스트필드의 오류 상태 여부.
+ * @param {boolean} [success] 텍스트필드의 성공 상태 여부.
+ * @param {ReactNode} [helperText] 텍스트필드 아래 추가적인 텍스트.
  * @param {(value: string) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
- * @param {() => void} [onBlur] 텍스트 필드가 포커스를 잃을 때 호출될 콜백 함수.
- * @param {() => void} [onFocus] 텍스트 필드가 포커스됐을 때 호출될 콜백 함수.
- * @param {TextareaHTMLAttributes<HTMLTextAreaElement>} [textareaProps] 텍스트 필드에 전달할 추가 textarea 속성.
- * @param {CSSProperties} [style] 텍스트 필드의 커스텀 스타일 속성.
- * @param {string} [className] 텍스트 필드에 전달하는 커스텀 클래스명.
+ * @param {() => void} [onBlur] 텍스트필드가 포커스를 잃을 때 호출될 콜백 함수.
+ * @param {() => void} [onFocus] 텍스트필드가 포커스됐을 때 호출될 콜백 함수.
+ * @param {TextareaHTMLAttributes<HTMLTextAreaElement>} [textareaProps] 텍스트필드에 전달할 추가 textarea 속성.
+ * @param {CSSProperties} [style] 텍스트필드의 커스텀 스타일 속성.
+ * @param {string} [className] 텍스트필드에 전달하는 커스텀 클래스명.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
