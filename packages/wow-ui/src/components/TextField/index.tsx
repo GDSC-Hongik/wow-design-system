@@ -98,7 +98,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
       setVariant("typing");
 
       if (maxLength && textareaValue.length > maxLength) {
-        e.target.value = textareaValue.slice(0, maxLength);
+        setValue(textareaValue.slice(0, maxLength));
       } else {
         setValue(textareaValue);
         onChange?.(textareaValue);
