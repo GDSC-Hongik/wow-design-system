@@ -24,15 +24,15 @@ type VariantType = "default" | "typing" | "typed" | "success" | "error";
  * @param {string} [defaultValue] 텍스트 필드의 기본 값.
  * @param {string} [value] 외부에서 제어할 활성 상태.
  * @param {number} [maxLength] 텍스트 필드의 최대 입력 길이.
- * @param {boolean} [error] 오류 상태 여부.
- * @param {boolean} [success] 성공 상태 여부.
+ * @param {boolean} [error] 텍스트 필드의 오류 상태 여부.
+ * @param {boolean} [success] 텍스트 필드의 성공 상태 여부.
  * @param {ReactNode} [helperText] 텍스트 필드 아래 추가적인 텍스트.
  * @param {(value: string) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
  * @param {() => void} [onBlur] 텍스트 필드가 포커스를 잃을 때 호출될 콜백 함수.
  * @param {() => void} [onFocus] 텍스트 필드가 포커스됐을 때 호출될 콜백 함수.
- * @param {TextareaHTMLAttributes<HTMLTextAreaElement>} [textareaProps] 추가 textarea 속성.
- * @param {CSSProperties} [style] 텍스트 필드의 커스텀 스타일.
- * @param {string} [className] 텍스트 필드에 전달하는 커스텀 클래스.
+ * @param {TextareaHTMLAttributes<HTMLTextAreaElement>} [textareaProps] 텍스트 필드에 전달할 추가 textarea 속성.
+ * @param {CSSProperties} [style] 텍스트 필드의 커스텀 스타일 속성.
+ * @param {string} [className] 텍스트 필드에 전달하는 커스텀 클래스명.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
@@ -80,7 +80,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const textareaElementRef = ref || textareaRef;
 
-    const [value, setValue] = useState(() => valueProp ?? defaultValue ?? "");
+    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
     const [variant, setVariant] = useState<VariantType>("default");
 
     useLayoutEffect(() => {
@@ -141,6 +141,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
           placeholder={placeholder}
           ref={textareaElementRef}
           rows={1}
+          value={value}
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
