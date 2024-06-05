@@ -1,7 +1,7 @@
 "use client";
 import { Flex } from "@styled-system/jsx";
 import type { ChangeEvent, ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import type { RadioContextProps } from "./RadioContext";
 import RadioContext from "./RadioContext";
@@ -28,19 +28,24 @@ const RadioGroup = ({
 }: RadioGroupProps) => {
   const [selected, setSelected] = useState<string>(defaultValue);
 
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setSelected(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
+    },
+    [setSelected, onChange]
+  );
+
   const contextValue = useMemo(
     () => ({
-      onChange(event: ChangeEvent<HTMLInputElement>) {
-        setSelected(event.target.value);
-        if (onChange) {
-          onChange(event);
-        }
-      },
+      handleChange,
       value: value ? value : selected,
       name,
       disabled,
     }),
-    [onChange, setSelected, value, selected, name, disabled]
+    [handleChange, value, selected, name, disabled]
   );
 
   return (
