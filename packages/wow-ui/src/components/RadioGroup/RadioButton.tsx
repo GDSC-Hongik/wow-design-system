@@ -2,6 +2,7 @@
 
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
+import type { CSSProperties, InputHTMLAttributes } from "react";
 import { useContext, useState } from "react";
 
 import RadioContext from "@/components/RadioGroup/RadioContext";
@@ -12,15 +13,27 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
  * @property {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
  * @property {string} value - 라디오 버튼의 값.
  * @property {string} [label] - 라디오 버튼의 라벨.
+ * @property {CSSProperties} [style] - 라디오 버튼의 커스텀 스타일.
+ * @property {string} [className] - 라디오 버튼에 전달하는 커스텀 클래스.
+ * @property {InputHTMLAttributes<HTMLInputElement>} [inputProps] - 라디오 버튼의 기본 input 요소에 전달할 추가 속성들.
  */
 
 export interface RadioButtonProps {
   disabled?: boolean;
   value: string;
   label?: string;
+  style?: CSSProperties;
+  className?: string;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
-const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
+const RadioButton = ({
+  disabled = false,
+  value,
+  label,
+  inputProps,
+  ...rest
+}: RadioButtonProps) => {
   const group = useContext(RadioContext);
   const selected = group.value === value;
 
@@ -42,6 +55,7 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseUp}
       onMouseUp={handleMouseUp}
+      {...rest}
     >
       <styled.input
         aria-checked={selected}
@@ -58,6 +72,7 @@ const RadioButton = ({ disabled = false, value, label }: RadioButtonProps) => {
           state: selected ? "active" : "inactive",
         })}
         onChange={group.onChange}
+        {...inputProps}
       />
       {label && <styled.span textStyle="body2">{label}</styled.span>}
     </styled.label>
