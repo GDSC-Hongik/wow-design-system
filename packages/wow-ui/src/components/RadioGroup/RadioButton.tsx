@@ -2,8 +2,8 @@
 
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
-import type { CSSProperties, InputHTMLAttributes } from "react";
-import { useContext, useState } from "react";
+import type { CSSProperties, InputHTMLAttributes, KeyboardEvent } from "react";
+import { useCallback, useContext, useState } from "react";
 
 import RadioContext from "@/components/RadioGroup/RadioContext";
 
@@ -39,19 +39,39 @@ const RadioButton = ({
 
   const [pressed, setPressed] = useState<boolean>(false);
 
-  const handleMouseDown = () => {
+  const handleMouseDown = useCallback(() => {
     if (!disabled && !group.disabled) setPressed(true);
-  };
+  }, [setPressed, disabled, group.disabled]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     if (!disabled && !group.disabled) setPressed(false);
-  };
+  }, [setPressed, disabled, group.disabled]);
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === " ") {
+        setPressed(true);
+      }
+    },
+    [setPressed]
+  );
+
+  const handleKeyUp = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === " ") {
+        setPressed(false);
+      }
+    },
+    [setPressed]
+  );
 
   return (
     <styled.label
       className={labelStyle({
         state: disabled || group.disabled ? "disabled" : "default",
       })}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseUp}
       onMouseUp={handleMouseUp}
