@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 interface CheckedStateProps {
   defaultChecked?: boolean;
   checked?: boolean;
+  disabled?: boolean;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -12,6 +13,7 @@ interface CheckedStateProps {
 const useCheckedState = ({
   defaultChecked = false,
   checked: checkedProp,
+  disabled,
   onChange,
   onClick,
   onKeyDown,
@@ -19,6 +21,16 @@ const useCheckedState = ({
   const [checked, setChecked] = useState<boolean>(() =>
     checkedProp !== undefined ? checkedProp : defaultChecked
   );
+
+  const [pressed, setPressed] = useState<boolean>(false);
+
+  const handleMouseDown = () => {
+    if (!disabled) setPressed(true);
+  };
+
+  const handleMouseUp = () => {
+    if (!disabled) setPressed(false);
+  };
 
   useEffect(() => {
     if (checkedProp !== undefined) {
@@ -31,10 +43,16 @@ const useCheckedState = ({
     onClick?.();
   };
 
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      setPressed(false);
+    }
+  };
+
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-
+      setPressed(true);
       onChange ? onChange() : setChecked((prev) => !prev);
       onKeyDown?.();
     }
@@ -42,8 +60,12 @@ const useCheckedState = ({
 
   return {
     checked,
+    pressed,
     handleClick,
     handleKeyDown,
+    handleMouseDown,
+    handleMouseUp,
+    handleKeyUp,
   };
 };
 

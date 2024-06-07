@@ -64,9 +64,18 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const id = inputProps?.id ?? "checkbox";
 
-    const { checked, handleClick, handleKeyDown } = useCheckedState({
+    const {
+      checked,
+      pressed,
+      handleClick,
+      handleKeyDown,
+      handleKeyUp,
+      handleMouseDown,
+      handleMouseUp,
+    } = useCheckedState({
       defaultChecked,
       checked: checkedProp,
+      disabled,
       onChange,
       onClick,
       onKeyDown,
@@ -83,27 +92,36 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         pointerEvents={disabled ? "none" : "auto"}
         width="fit-content"
         onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
         {...rest}
       >
-        <styled.span
-          className={checkboxStyle({
-            type: disabled ? "disabled" : checked ? "checked" : "default",
-          })}
-        >
+        <styled.span alignItems="center" display="flex" position="relative">
           <styled.input
             aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "checkbox"}
-            className={inputStyle()}
+            aria-pressed={pressed}
             id={id}
             ref={ref}
             tabIndex={0}
             type="checkbox"
-            onClick={handleClick}
+            className={checkboxStyle({
+              type: disabled ? "disabled" : checked ? "checked" : "default",
+            })}
             {...inputProps}
+            onClick={handleClick}
           />
           {checked && (
-            <CheckIcon stroke={disabled ? "darkDisabled" : "primary"} />
+            <styled.span
+              left="50%"
+              position="absolute"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            >
+              <CheckIcon stroke={disabled ? "darkDisabled" : "primary"} />
+            </styled.span>
           )}
         </styled.span>
         <styled.span color={checked ? "textBlack" : "sub"} textStyle="body1">
@@ -119,6 +137,7 @@ export default Checkbox;
 
 const checkboxStyle = cva({
   base: {
+    appearance: "none",
     width: "1.25rem",
     height: "1.25rem",
     borderRadius: "sm",
@@ -127,6 +146,7 @@ const checkboxStyle = cva({
     justifyContent: "center",
     alignItems: "center",
     outline: "none",
+    position: "relative",
   },
   variants: {
     type: {
@@ -153,15 +173,5 @@ const checkboxStyle = cva({
   },
   defaultVariants: {
     type: "default",
-  },
-});
-
-const inputStyle = cva({
-  base: {
-    opacity: 0,
-    width: 0,
-    height: 0,
-    overflow: "hidden",
-    position: "absolute",
   },
 });
