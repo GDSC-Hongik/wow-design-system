@@ -11,7 +11,7 @@
     "emitDeclarationOnly": true,
     "module": "ES2015",
     "moduleResolution": "Bundler",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "lib": ["es2022", "DOM", "DOM.Iterable"],
     "moduleDetection": "force",
     "noUncheckedIndexedAccess": true,
