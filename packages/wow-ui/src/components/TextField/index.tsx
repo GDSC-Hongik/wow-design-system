@@ -116,6 +116,9 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     };
 
     const handleFocus = () => {
+      if (variant !== "typing") {
+        setVariant("typing");
+      }
       onFocus?.();
     };
 
