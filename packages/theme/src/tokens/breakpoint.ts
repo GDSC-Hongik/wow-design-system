@@ -1,6 +1,8 @@
+import { breakpoint } from "wowds-tokens";
+
 export const breakpoints = {
-  xs: "360px",
-  s: "600px",
-  m: "900px",
-  l: "1280px",
+  xs: breakpoint.xs,
+  s: breakpoint.s,
+  m: breakpoint.m,
+  l: breakpoint.l,
 };
