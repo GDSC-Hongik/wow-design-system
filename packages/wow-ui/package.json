@@ -39,6 +39,11 @@
       "types": "./dist/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
+    },
+    "./TextField": {
+      "types": "./dist/TextField/index.d.ts",
+      "require": "./dist/TextField.cjs",
+      "import": "./dist/TextField.js"
     }
   },
   "keywords": [],
