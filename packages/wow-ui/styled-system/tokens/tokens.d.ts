@@ -71,16 +71,14 @@ export type Token =
   | "radii.full"
   | "borderWidths.button"
   | "borderWidths.arrow"
+  | "breakpoints.xs"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
-  | "breakpoints.xl"
-  | "breakpoints.2xl"
+  | "sizes.breakpoint-xs"
   | "sizes.breakpoint-sm"
   | "sizes.breakpoint-md"
   | "sizes.breakpoint-lg"
-  | "sizes.breakpoint-xl"
-  | "sizes.breakpoint-2xl"
   | "colors.primary"
   | "colors.success"
   | "colors.error"
@@ -273,14 +271,13 @@ export type RadiusToken = "sm" | "md" | "full";
 
 export type BorderWidthToken = "button" | "arrow";
 
-export type BreakpointToken = "sm" | "md" | "lg" | "xl" | "2xl";
+export type BreakpointToken = "xs" | "sm" | "md" | "lg";
 
 export type SizeToken =
+  | "breakpoint-xs"
   | "breakpoint-sm"
   | "breakpoint-md"
-  | "breakpoint-lg"
-  | "breakpoint-xl"
-  | "breakpoint-2xl";
+  | "breakpoint-lg";
 
 export type Tokens = {
   colors: ColorToken;
