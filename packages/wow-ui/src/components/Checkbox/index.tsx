@@ -87,7 +87,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         cursor={disabled ? "none" : "pointer"}
         display="flex"
         flexDirection={position === "vertical" ? "column-reverse" : "row"}
-        gap="xs"
+        gap={children ? "xs" : "0px"}
         htmlFor={id}
         pointerEvents={disabled ? "none" : "auto"}
         width="fit-content"
