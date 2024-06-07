@@ -93,8 +93,5 @@
   "bugs": {
     "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"
   },
-  "homepage": "https://github.com/GDSC-Hongik/wow-design-system#readme",
-  "dependencies": {
-    "wowds-icons": "workspace:^"
-  }
+  "homepage": "https://github.com/GDSC-Hongik/wow-design-system#readme"
 }
