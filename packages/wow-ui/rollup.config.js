@@ -21,6 +21,7 @@ export default {
   input: {
     Box: "./src/components/Box",
     Button: "./src/components/Button",
+    Checkbox: "./src/components/Checkbox",
     Switch: "./src/components/Switch",
     TextField: "./src/components/TextField",
   },

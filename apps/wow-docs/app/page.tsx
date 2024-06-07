@@ -1,5 +1,5 @@
 import { css } from "@styled-system/css/css";
-import { UpArrow } from "wowds-icons";
+import Switch from "wowds-ui/Switch";
 
 const Home = () => {
   return (
@@ -12,8 +12,8 @@ const Home = () => {
         })}
       >
         <p>docs</p>
-        <UpArrow />
       </main>
+      <Switch />
     </>
   );
 };
