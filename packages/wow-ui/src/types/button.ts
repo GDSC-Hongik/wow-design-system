@@ -1,6 +1,6 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ElementType } from "react";
 
-export type ButtonElementType = "button" | "div" | "span";
+export type ButtonElementType = Extract<ElementType, "button" | "div" | "span">;
 
 // 버튼의 주요한 HTML Attributes를 미리 정의한 ButtonProps 타입입니다. [https://www.w3schools.com/tags/tag_button.asp]
 

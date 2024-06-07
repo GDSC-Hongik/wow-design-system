@@ -1,14 +1,15 @@
 "use client";
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 
 import type {
+  ButtonElementType,
   PolymorphicComponentProps,
   PolymorphicRef,
   ToggleButtonProps,
-} from "@/types";
+} from "../../types";
 
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
@@ -30,13 +31,13 @@ export interface _ChipProps extends ToggleButtonProps {
   onDelete?: () => void;
 }
 
-export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
+export type ChipProps<C extends ButtonElementType> = PolymorphicComponentProps<
   C,
   _ChipProps
 >;
 
-type ChipComponent = <T extends ElementType = "button">(
-  props: ChipProps<T>
+type ChipComponent = <T extends ButtonElementType = "button">(
+  props: ChipProps<T> & { ref?: PolymorphicRef<T> }
 ) => ReactNode;
 
 const ChipLabel = ({
@@ -49,7 +50,7 @@ const ChipLabel = ({
   disabled: boolean;
 }) => {
   return (
-    <styled.span
+    <styled.div
       data-disabled={disabled}
       data-selected={isChecked}
       textStyle="label2"
@@ -58,14 +59,14 @@ const ChipLabel = ({
       })}
     >
       {label}
-    </styled.span>
+    </styled.div>
   );
 };
 
 const Chip: ChipComponent & { displayName?: string } = forwardRef(
-  <T extends ElementType = "button">(
+  <T extends ButtonElementType = "button">(
     {
-      element,
+      as,
       label,
       clickable,
       onKeyDown,
@@ -75,9 +76,9 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       disabled = false,
       ...rest
     }: ChipProps<T>,
-    ref: PolymorphicRef<T>
+    ref: any
   ) => {
-    const Component = element || "button";
+    const Component = as || "button";
     const [isChecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
@@ -106,16 +107,16 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
 
     return (
       <Component
+        aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
+        data-selected={isChecked}
         ref={ref}
+        style={rest.customStyle}
         className={chip({
           clickable: disabled ? false : clickable,
           disabled: disabled,
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        {...rest.customStyle}
-        aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
-        data-selected={isChecked}
       >
         <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
       </Component>
@@ -155,7 +156,8 @@ const chip = cva({
     minWidth: "3.5rem",
     height: "1.875rem",
     borderRadius: "1.25rem",
-    padding: "xs s",
+    paddingY: "xs",
+    paddingX: "sm",
   },
   variants: {
     clickable: {

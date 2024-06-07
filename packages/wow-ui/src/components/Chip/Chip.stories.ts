@@ -103,7 +103,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: "Chip",
-    as: "button",
+    element: "button",
+    clickable: true,
   },
 };
 
@@ -111,7 +112,7 @@ export const DivChip: Story = {
   args: {
     label: "Chip",
     clickable: false,
-    as: "div",
+    element: "div",
   },
 };
 export const DisabledChip: Story = {
@@ -119,7 +120,7 @@ export const DisabledChip: Story = {
     label: "Chip",
     clickable: true,
     disabled: true,
-    as: "button",
+    element: "button",
   },
 };
 
