@@ -58,7 +58,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "wowds-tokens": "workspace:^",
     "@chromatic-com/storybook": "^1.3.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-a11y": "^7.5.3",

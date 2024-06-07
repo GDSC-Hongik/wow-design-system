@@ -13,7 +13,7 @@ import type {
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
  *
- * @param {T} [as] 렌더링할 요소 또는 컴포넌트. 기본값은 button이며, Chip의 경우 input으로 사용될 수 있음
+ * @param {T} [element] 렌더링할 요소 또는 컴포넌트. 기본값은 button이며, Chip의 경우 input으로 사용될 수 있음
  * @param {boolean} [defaultChecked=false] 칩의 토글의 default 활성화 상태
  * @param {boolean} [isChecked=false] 외부에서 제어할 활성 상태.
  * @param {string} label 칩 버튼에 들어갈 텍스트
@@ -50,10 +50,12 @@ const ChipLabel = ({
 }) => {
   return (
     <styled.span
-      className={chipLabel({ disabled: disabled })}
       data-disabled={disabled}
       data-selected={isChecked}
       textStyle="label2"
+      className={chipLabel({
+        type: disabled ? "disabled" : isChecked ? "checked" : "unchecked",
+      })}
     >
       {label}
     </styled.span>
@@ -131,22 +133,18 @@ const chipLabel = cva({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    "&[data-selected=true]": {
-      color: "white",
-    },
-    "&[data-selected=false]": {
-      color: "mono.950",
-    },
   },
   variants: {
-    disabled: {
-      true: {
-        color: "darkDisabled",
-        "&[data-selected=false]": {
-          color: "darkDisabled",
-        },
+    type: {
+      checked: {
+        color: "white",
       },
-      false: {},
+      unchecked: {
+        color: "mono.950",
+      },
+      disabled: {
+        color: "darkDisabled",
+      },
     },
   },
 });
