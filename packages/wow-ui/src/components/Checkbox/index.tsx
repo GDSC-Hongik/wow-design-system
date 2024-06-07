@@ -7,7 +7,7 @@ import type {
   InputHTMLAttributes,
   PropsWithChildren,
 } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useId } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
 //FIXME: alias 경로로 설정하면 import 경로 인식하지 못하는 문제가 있어서 상대경로로 우선 해결
@@ -62,7 +62,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const id = inputProps?.id ?? "checkbox";
+    const defaultId = `checkbox-${useId()}`;
+    const id = inputProps?.id ?? defaultId;
 
     const {
       checked,
