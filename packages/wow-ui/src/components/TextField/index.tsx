@@ -273,7 +273,7 @@ const textareaStyle = cva({
     overflowY: "hidden",
     resize: "none",
     _placeholder: {
-      color: "sub",
+      color: "outline",
     },
     _focus: {
       outline: "none",
@@ -296,7 +296,7 @@ const textareaStyle = cva({
     type: {
       default: {
         borderColor: "outline",
-        color: "sub",
+        color: "outline",
       },
       typing: {
         borderColor: "primary",
