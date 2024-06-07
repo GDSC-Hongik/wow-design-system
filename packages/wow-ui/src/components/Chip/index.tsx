@@ -112,7 +112,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         {...rest.customStyle}
-        aria-label={`chip button ${isChecked ? "activated" : "inactivated"}`}
+        aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
         data-selected={isChecked}
       >
         <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
@@ -157,7 +157,7 @@ const chip = cva({
     minWidth: "3.5rem",
     height: "1.875rem",
     borderRadius: "1.25rem",
-    padding: "0.5rem 0.75rem",
+    padding: "xs s",
   },
   variants: {
     clickable: {

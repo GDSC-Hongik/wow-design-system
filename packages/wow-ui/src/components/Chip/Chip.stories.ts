@@ -10,23 +10,6 @@ const meta = {
     componentSubtitle: "칩 컴포넌트",
   },
   argTypes: {
-    as: {
-      control: {
-        type: "select",
-        options: ["button", "div", "span"],
-        labels: {
-          button: "button",
-          div: "div",
-          span: "span",
-        },
-      },
-      description:
-        "as는 렌더링할 요소 또는 컴포넌트를 나타냅니다. 기본값은 button입니다. 칩의 경우 div, span으로도 사용 가능합니다.",
-      table: {
-        defaultValue: { summary: "button" },
-        type: { summary: "React.ElementType" },
-      },
-    },
     disabled: {
       description: "disabled는 칩 버튼이 비활성화 상태인지 여부를 나타냅니다.",
       table: {
