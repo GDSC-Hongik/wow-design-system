@@ -1,24 +1,26 @@
-import type { RefObject } from "react";
+import { type RefObject, useEffect } from "react";
 
 export const useTextareaAutosize = (ref: RefObject<HTMLTextAreaElement>) => {
-  const textareaElement = ref.current;
-  if (!textareaElement) return;
+  useEffect(() => {
+    const textareaElement = ref.current;
+    if (!textareaElement) return;
 
-  const handleResize = () => {
-    textareaElement.style.height = "auto";
-    textareaElement.style.height = `${textareaElement.scrollHeight}px`;
-  };
+    const handleResize = () => {
+      textareaElement.style.height = "auto";
+      textareaElement.style.height = `${textareaElement.scrollHeight}px`;
+    };
 
-  const handleOverflow = () => {
-    textareaElement.style.overflowY =
-      textareaElement.scrollHeight > 120 ? "scroll" : "hidden";
-  };
+    const handleOverflow = () => {
+      textareaElement.style.overflowY =
+        textareaElement.scrollHeight > 120 ? "scroll" : "hidden";
+    };
 
-  textareaElement.addEventListener("input", handleResize);
-  textareaElement.addEventListener("input", handleOverflow);
+    textareaElement.addEventListener("input", handleResize);
+    textareaElement.addEventListener("input", handleOverflow);
 
-  return () => {
-    textareaElement.removeEventListener("input", handleResize);
-    textareaElement.removeEventListener("input", handleOverflow);
-  };
+    return () => {
+      textareaElement.removeEventListener("input", handleResize);
+      textareaElement.removeEventListener("input", handleOverflow);
+    };
+  }, [ref]);
 };
