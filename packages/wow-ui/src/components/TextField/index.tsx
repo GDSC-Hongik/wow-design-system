@@ -76,6 +76,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const textareaId = textareaProps?.id || id;
     const errorMessageId = `${textareaId}-error-message`;
     const helperTextId = `${textareaId}-helper-text`;
+    const descriptionId = error ? `${errorMessageId}` : `${helperTextId}`;
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const textareaElementRef = ref || textareaRef;
@@ -121,7 +122,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     return (
       <Flex className={containerStyle()} direction="column" gap="xs">
         <Flex alignItems="flex-end" justifyContent="space-between">
-          <Label textareaId={textareaId} variant={variant}>
+          <Label textareaId={descriptionId} variant={variant}>
             {label}
           </Label>
           {maxLength && (
@@ -134,9 +135,9 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
         </Flex>
         <styled.textarea
           {...textareaProps}
-          aria-describedby={error ? `${errorMessageId}` : `${helperTextId}`}
+          aria-describedby={descriptionId}
           className={textareaStyle({ type: variant })}
-          id={textareaId}
+          id={descriptionId}
           maxLength={maxLength}
           placeholder={placeholder}
           ref={textareaElementRef}
