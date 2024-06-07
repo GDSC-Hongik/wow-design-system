@@ -41,7 +41,10 @@ export default {
   plugins: [
     alias({
       entries: [
-        { find: "@", replacement: path.join(__dirname, "./src") },
+        {
+          find: "@",
+          replacement: path.join(__dirname, "./src"),
+        },
         {
           find: "@styled-system",
           replacement: path.join(__dirname, "./styled-system"),
