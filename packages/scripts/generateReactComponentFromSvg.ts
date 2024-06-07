@@ -42,6 +42,18 @@ const deleteUnusedComponentFiles = async (svgComponentMap: SvgComponentMap) => {
   );
 };
 
+const extractSvgAttributes = (svgContent: string) => {
+  const widthMatch = svgContent.match(/width="(\d+)"/g);
+  const heightMatch = svgContent.match(/height="(\d+)"/g);
+  const viewBoxMatch = svgContent.match(/viewBox="([^"]*)"/g);
+
+  return {
+    width: widthMatch ? widthMatch[0] : "width = 24",
+    height: heightMatch ? heightMatch[0] : "height = 24",
+    viewBox: viewBoxMatch ? viewBoxMatch[0] : "viewBox = 0 0 24 24",
+  };
+};
+
 const createComponentContent = (
   componentName: string,
   svgContent: string,
@@ -53,7 +65,8 @@ const createComponentContent = (
     (attr) => attr !== 'fill="none"'
   );
   const hasFill = fillAttributes.length;
-  const propsString = `{ className, width = 24, height = 24, viewBox = "0 0 24 24"${hasStroke || hasFill ? ` ${hasStroke ? ', stroke = "white"' : ""}${hasFill ? ', fill = "white"' : ""}` : ""}, ...rest }`;
+  const { width, height, viewBox } = extractSvgAttributes(svgContent);
+  const propsString = `{ className, ${width}, ${height}, ${viewBox}${hasStroke || hasFill ? ` ${hasStroke ? ', stroke = "white"' : ""}${hasFill ? ', fill = "white"' : ""}` : ""}, ...rest }`;
   const modifiedSvgContent = svgContent
     .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
     .replace(/width="(\d+)"/g, `width={width}`)

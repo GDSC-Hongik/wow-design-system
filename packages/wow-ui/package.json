@@ -21,22 +21,22 @@
   "exports": {
     "./styles.css": "./dist/styles.css",
     "./Box": {
-      "types": "./dist/Box/index.d.ts",
+      "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
     },
     "./Button": {
-      "types": "./dist/Button/index.d.ts",
+      "types": "./dist/components/Button/index.d.ts",
       "require": "./dist/Button.cjs",
       "import": "./dist/Button.js"
     },
-    "./Toggle": {
-      "types": "./dist/components/Toggle/index.d.ts",
-      "require": "./dist/Toggle.cjs",
-      "import": "./dist/Toggle.js"
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "require": "./dist/Checkbox.cjs",
+      "import": "./dist/Checkbox.js"
     },
     "./Switch": {
-      "types": "./dist/Switch/index.d.ts",
+      "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
     }
@@ -81,6 +81,9 @@
   "peerDependencies": {
     "next": "^14.1.1",
     "react": "^18.2.0"
+  },
+  "dependencies": {
+    "wowds-icons": "workspace:^"
   },
   "bugs": {
     "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"

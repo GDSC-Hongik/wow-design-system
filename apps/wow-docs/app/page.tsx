@@ -1,6 +1,7 @@
 import { css } from "@styled-system/css/css";
-import { UpArrow } from "wowds-icons";
 import Switch from "wowds-ui/Switch";
+
+import Checkbox from "../../../packages/wow-ui/src/components/Checkbox";
 
 const Home = () => {
   return (
@@ -13,9 +14,9 @@ const Home = () => {
         })}
       >
         <p>docs</p>
-        <UpArrow />
       </main>
       <Switch />
+      <Checkbox />
     </>
   );
 };

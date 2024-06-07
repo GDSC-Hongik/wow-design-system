@@ -239,73 +239,49 @@ const tokens = {
     value: "linear-gradient(to right, #FDE6B2, #FDDD99)",
     variable: "var(--gradients-yellow-gradient-light)",
   },
-  "spacing.spacing.4": {
+  "spacing.xxs": {
     value: "0.25rem",
-    variable: "var(--spacing-spacing-4)",
+    variable: "var(--spacing-xxs)",
   },
-  "spacing.spacing.8": {
+  "spacing.xs": {
     value: "0.5rem",
-    variable: "var(--spacing-spacing-8)",
+    variable: "var(--spacing-xs)",
   },
-  "spacing.spacing.12": {
+  "spacing.sm": {
     value: "0.75rem",
-    variable: "var(--spacing-spacing-12)",
+    variable: "var(--spacing-sm)",
   },
-  "spacing.spacing.16": {
+  "spacing.md": {
     value: "1rem",
-    variable: "var(--spacing-spacing-16)",
+    variable: "var(--spacing-md)",
   },
-  "spacing.spacing.20": {
+  "spacing.lg": {
     value: "1.25rem",
-    variable: "var(--spacing-spacing-20)",
+    variable: "var(--spacing-lg)",
   },
-  "spacing.spacing.24": {
+  "spacing.xl": {
     value: "1.5rem",
-    variable: "var(--spacing-spacing-24)",
+    variable: "var(--spacing-xl)",
   },
-  "spacing.spacing.32": {
-    value: "2rem",
-    variable: "var(--spacing-spacing-32)",
-  },
-  "spacing.spacing.36": {
-    value: "2.25rem",
-    variable: "var(--spacing-spacing-36)",
-  },
-  "spacing.spacing.40": {
-    value: "2.5rem",
-    variable: "var(--spacing-spacing-40)",
-  },
-  "radii.radius.4": {
+  "radii.sm": {
     value: "0.25rem",
-    variable: "var(--radii-radius-4)",
+    variable: "var(--radii-sm)",
   },
-  "radii.radius.8": {
+  "radii.md": {
     value: "0.5rem",
-    variable: "var(--radii-radius-8)",
+    variable: "var(--radii-md)",
   },
-  "radii.radius.12": {
-    value: "0.75rem",
-    variable: "var(--radii-radius-12)",
-  },
-  "radii.radius.full": {
+  "radii.full": {
     value: "2.5rem",
-    variable: "var(--radii-radius-full)",
+    variable: "var(--radii-full)",
   },
-  "borderWidths.stroke8": {
-    value: "0.8px",
-    variable: "var(--border-widths-stroke8)",
-  },
-  "borderWidths.stroke10": {
+  "borderWidths.button": {
     value: "1px",
-    variable: "var(--border-widths-stroke10)",
+    variable: "var(--border-widths-button)",
   },
-  "borderWidths.stroke12": {
+  "borderWidths.arrow": {
     value: "1.2px",
-    variable: "var(--border-widths-stroke12)",
-  },
-  "borderWidths.stroke20": {
-    value: "2px",
-    variable: "var(--border-widths-stroke20)",
+    variable: "var(--border-widths-arrow)",
   },
   "breakpoints.sm": {
     value: "640px",
@@ -439,41 +415,29 @@ const tokens = {
     value: "#000000",
     variable: "var(--colors-github)",
   },
-  "spacing.spacing.-4": {
-    value: "calc(var(--spacing-spacing-4) * -1)",
-    variable: "var(--spacing-spacing-4)",
+  "spacing.-xxs": {
+    value: "calc(var(--spacing-xxs) * -1)",
+    variable: "var(--spacing-xxs)",
   },
-  "spacing.spacing.-8": {
-    value: "calc(var(--spacing-spacing-8) * -1)",
-    variable: "var(--spacing-spacing-8)",
+  "spacing.-xs": {
+    value: "calc(var(--spacing-xs) * -1)",
+    variable: "var(--spacing-xs)",
   },
-  "spacing.spacing.-12": {
-    value: "calc(var(--spacing-spacing-12) * -1)",
-    variable: "var(--spacing-spacing-12)",
+  "spacing.-sm": {
+    value: "calc(var(--spacing-sm) * -1)",
+    variable: "var(--spacing-sm)",
   },
-  "spacing.spacing.-16": {
-    value: "calc(var(--spacing-spacing-16) * -1)",
-    variable: "var(--spacing-spacing-16)",
+  "spacing.-md": {
+    value: "calc(var(--spacing-md) * -1)",
+    variable: "var(--spacing-md)",
   },
-  "spacing.spacing.-20": {
-    value: "calc(var(--spacing-spacing-20) * -1)",
-    variable: "var(--spacing-spacing-20)",
+  "spacing.-lg": {
+    value: "calc(var(--spacing-lg) * -1)",
+    variable: "var(--spacing-lg)",
   },
-  "spacing.spacing.-24": {
-    value: "calc(var(--spacing-spacing-24) * -1)",
-    variable: "var(--spacing-spacing-24)",
-  },
-  "spacing.spacing.-32": {
-    value: "calc(var(--spacing-spacing-32) * -1)",
-    variable: "var(--spacing-spacing-32)",
-  },
-  "spacing.spacing.-36": {
-    value: "calc(var(--spacing-spacing-36) * -1)",
-    variable: "var(--spacing-spacing-36)",
-  },
-  "spacing.spacing.-40": {
-    value: "calc(var(--spacing-spacing-40) * -1)",
-    variable: "var(--spacing-spacing-40)",
+  "spacing.-xl": {
+    value: "calc(var(--spacing-xl) * -1)",
+    variable: "var(--spacing-xl)",
   },
   "colors.colorPalette.50": {
     value: "var(--colors-color-palette-50)",
