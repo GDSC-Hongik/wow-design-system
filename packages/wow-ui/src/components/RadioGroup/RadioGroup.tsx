@@ -40,7 +40,7 @@ const RadioGroup = ({
 
   const contextValue = useMemo(
     () => ({
-      handleChange,
+      onChange: handleChange,
       value: value ? value : selected,
       name,
       disabled,
