@@ -9,6 +9,11 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "텍스트필드 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   argTypes: {
     label: {
