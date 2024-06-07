@@ -210,11 +210,11 @@ const HelperText = ({
 
 const containerStyle = cva({
   base: {
-    "@media (min-width: 1280px)": {
+    lg: {
       minWidth: "19.75rem",
       maxWidth: "40.75rem",
     },
-    "@media (max-width: 430px)": {
+    smDown: {
       width: "100%",
     },
   },
