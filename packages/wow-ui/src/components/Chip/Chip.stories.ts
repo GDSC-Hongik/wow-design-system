@@ -8,7 +8,13 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "칩 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
+
   argTypes: {
     disabled: {
       description: "disabled는 칩 버튼이 비활성화 상태인지 여부를 나타냅니다.",

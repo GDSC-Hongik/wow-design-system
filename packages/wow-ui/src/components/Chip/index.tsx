@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 
 import type {
-  AsProps,
   ButtonElementType,
   PolymorphicComponentProps,
   PolymorphicRef,
