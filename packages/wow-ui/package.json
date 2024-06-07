@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -39,6 +39,11 @@
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
+    },
+    "./Chip": {
+      "types": "./dist/components/Chip/index.d.ts",
+      "require": "./dist/Chip.cjs",
+      "import": "./dist/Chip.js"
     }
   },
   "keywords": [],
