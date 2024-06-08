@@ -23,11 +23,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@styled-system/*": ["./styled-system/*"]
-    },
-    "plugins": [
-      { "transform": "typescript-transform-paths" },
-      { "transform": "typescript-transform-paths", "afterDeclarations": true }
-    ]
+    }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "styled-system"]

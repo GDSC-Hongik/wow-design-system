@@ -49,7 +49,7 @@
   "keywords": [],
   "license": "ISC",
   "scripts": {
-    "build": "pnpm generate:build-config && rm -rf dist && rollup -c --bundleConfigAsCjs && panda cssgen --outfile dist/styles.css",
+    "build": "pnpm generate:build-config && rm -rf dist && rollup -c --bundleConfigAsCjs && tsc-alias && panda cssgen --outfile dist/styles.css",
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
