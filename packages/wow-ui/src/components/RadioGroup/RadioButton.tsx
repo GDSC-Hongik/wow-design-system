@@ -3,7 +3,7 @@
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, InputHTMLAttributes, KeyboardEvent } from "react";
-import { useCallback, useContext, useState } from "react";
+import { forwardRef, useCallback, useContext, useState } from "react";
 
 import RadioContext from "@/components/RadioGroup/RadioContext";
 
@@ -16,6 +16,8 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
  * @property {CSSProperties} [style] - 라디오 버튼의 커스텀 스타일.
  * @property {string} [className] - 라디오 버튼에 전달하는 커스텀 클래스.
  * @property {InputHTMLAttributes<HTMLInputElement>} [inputProps] - 라디오 버튼의 기본 input 요소에 전달할 추가 속성들.
+ * @property {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
+ * @property {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 
 export interface RadioButtonProps {
@@ -27,77 +29,74 @@ export interface RadioButtonProps {
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
-const RadioButton = ({
-  disabled = false,
-  value,
-  label,
-  inputProps,
-  ...rest
-}: RadioButtonProps) => {
-  const group = useContext(RadioContext);
-  const selected = group.value === value;
+const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
+  ({ disabled = false, value, label, inputProps, ...rest }, ref) => {
+    const group = useContext(RadioContext);
+    const selected = group.value === value;
 
-  const [pressed, setPressed] = useState<boolean>(false);
+    const [pressed, setPressed] = useState<boolean>(false);
 
-  const handleMouseDown = useCallback(() => {
-    if (!disabled && !group.disabled) setPressed(true);
-  }, [setPressed, disabled, group.disabled]);
+    const handleMouseDown = useCallback(() => {
+      if (!disabled && !group.disabled) setPressed(true);
+    }, [setPressed, disabled, group.disabled]);
 
-  const handleMouseUp = useCallback(() => {
-    if (!disabled && !group.disabled) setPressed(false);
-  }, [setPressed, disabled, group.disabled]);
+    const handleMouseUp = useCallback(() => {
+      if (!disabled && !group.disabled) setPressed(false);
+    }, [setPressed, disabled, group.disabled]);
 
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === " ") {
-        setPressed(true);
-      }
-    },
-    [setPressed]
-  );
+    const handleKeyDown = useCallback(
+      (event: KeyboardEvent) => {
+        if (event.key === " ") {
+          setPressed(true);
+        }
+      },
+      [setPressed]
+    );
 
-  const handleKeyUp = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === " ") {
-        setPressed(false);
-      }
-    },
-    [setPressed]
-  );
+    const handleKeyUp = useCallback(
+      (event: KeyboardEvent) => {
+        if (event.key === " ") {
+          setPressed(false);
+        }
+      },
+      [setPressed]
+    );
 
-  return (
-    <styled.label
-      className={labelStyle({
-        state: disabled || group.disabled ? "disabled" : "default",
-      })}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      onMouseDown={handleMouseDown}
-      onMouseLeave={handleMouseUp}
-      onMouseUp={handleMouseUp}
-      {...rest}
-    >
-      <styled.input
-        aria-checked={selected}
-        aria-disabled={group.disabled || disabled}
-        aria-label={label}
-        checked={selected}
-        data-pressed={pressed}
-        data-readonly={(group.disabled || disabled) && selected}
-        disabled={(group.disabled && !selected) || disabled}
-        name={group.name}
-        type="radio"
-        value={value}
-        className={radioButtonStyle({
-          state: selected ? "active" : "inactive",
+    return (
+      <styled.label
+        className={labelStyle({
+          state: disabled || group.disabled ? "disabled" : "default",
         })}
-        onChange={group.onChange}
-        {...inputProps}
-      />
-      {label && <styled.span textStyle="body2">{label}</styled.span>}
-    </styled.label>
-  );
-};
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseUp}
+        onMouseUp={handleMouseUp}
+        {...rest}
+      >
+        <styled.input
+          aria-checked={selected}
+          aria-disabled={group.disabled || disabled}
+          aria-label={label}
+          checked={selected}
+          data-pressed={pressed}
+          data-readonly={(group.disabled || disabled) && selected}
+          disabled={(group.disabled && !selected) || disabled}
+          name={group.name}
+          ref={ref}
+          type="radio"
+          value={value}
+          className={radioButtonStyle({
+            state: selected ? "active" : "inactive",
+          })}
+          onChange={group.onChange}
+          {...inputProps}
+        />
+        {label && <styled.span textStyle="body2">{label}</styled.span>}
+      </styled.label>
+    );
+  }
+);
 
 const radioButtonStyle = cva({
   base: {
@@ -182,4 +181,5 @@ const labelStyle = cva({
   },
 });
 
+RadioButton.displayName = "RadioButton";
 export default RadioButton;
