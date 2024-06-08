@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import { RadioButton, RadioGroup } from "@/components/RadioGroup";
@@ -65,37 +65,35 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<RadioGroupProps> = (args: RadioGroupProps) => (
-  <RadioGroup {...args} />
-);
-
-export const Default: StoryObj<RadioGroupProps> = Template.bind({});
-Default.args = {
-  defaultValue: "1학년",
-  name: "defaultgrade",
-  children: (
-    <>
-      <RadioButton label="1학년" value="1학년" />
-      <RadioButton label="2학년" value="2학년" />
-      <RadioButton label="3학년" value="3학년" />
-      <RadioButton disabled label="4학년" value="4학년" />
-    </>
-  ),
+export const Default: StoryObj<RadioGroupProps> = {
+  args: {
+    defaultValue: "1학년",
+    name: "defaultgrade",
+    children: (
+      <>
+        <RadioButton label="1학년" value="1학년" />
+        <RadioButton label="2학년" value="2학년" />
+        <RadioButton label="3학년" value="3학년" />
+        <RadioButton disabled label="4학년" value="4학년" />
+      </>
+    ),
+  },
 };
 
-export const ReadOnly: StoryObj<RadioGroupProps> = Template.bind({});
-ReadOnly.args = {
-  disabled: true,
-  defaultValue: "2학년",
-  name: "readonlygrade",
-  children: (
-    <>
-      <RadioButton label="1학년" value="1학년" />
-      <RadioButton label="2학년" value="2학년" />
-      <RadioButton label="3학년" value="3학년" />
-      <RadioButton label="4학년" value="4학년" />
-    </>
-  ),
+export const ReadOnly: StoryObj<RadioGroupProps> = {
+  args: {
+    disabled: true,
+    defaultValue: "2학년",
+    name: "readonlygrade",
+    children: (
+      <>
+        <RadioButton label="1학년" value="1학년" />
+        <RadioButton label="2학년" value="2학년" />
+        <RadioButton label="3학년" value="3학년" />
+        <RadioButton label="4학년" value="4학년" />
+      </>
+    ),
+  },
 };
 
 export const Controlled = () => {
