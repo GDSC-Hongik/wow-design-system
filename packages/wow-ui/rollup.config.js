@@ -31,6 +31,8 @@ export default {
       dir: "dist",
       entryFileNames: "[name].js",
       preserveModules: true,
+      preserveModulesRoot: "src",
+      entryFileNames: "[name].js",
     },
     {
       format: "cjs",
