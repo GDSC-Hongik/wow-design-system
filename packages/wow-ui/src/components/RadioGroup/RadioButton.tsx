@@ -10,14 +10,14 @@ import RadioContext from "@/components/RadioGroup/RadioContext";
 /**
  * @description 라디오 버튼 컴포넌트의 속성을 정의합니다.
  *
- * @property {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
- * @property {string} value - 라디오 버튼의 값.
- * @property {string} [label] - 라디오 버튼의 라벨.
- * @property {CSSProperties} [style] - 라디오 버튼의 커스텀 스타일.
- * @property {string} [className] - 라디오 버튼에 전달하는 커스텀 클래스.
- * @property {InputHTMLAttributes<HTMLInputElement>} [inputProps] - 라디오 버튼의 기본 input 요소에 전달할 추가 속성들.
- * @property {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
- * @property {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
+ * @param {boolean} [disabled] - 라디오 버튼이 비활성화되어 있는지 여부.
+ * @param {string} value - 라디오 버튼의 값.
+ * @param {string} [label] - 라디오 버튼의 라벨.
+ * @param {CSSProperties} [style] - 라디오 버튼의 커스텀 스타일.
+ * @param {string} [className] - 라디오 버튼에 전달하는 커스텀 클래스.
+ * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] - 라디오 버튼의 기본 input 요소에 전달할 추가 속성들.
+ * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
+ * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 
 export interface RadioButtonProps {
