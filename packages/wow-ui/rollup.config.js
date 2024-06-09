@@ -29,7 +29,6 @@ export default {
     {
       format: "esm",
       dir: "dist",
-      entryFileNames: "[name].js",
       preserveModules: true,
       preserveModulesRoot: "src",
       entryFileNames: "[name].js",
