@@ -207,6 +207,62 @@ const tokens = {
     value: "#051108",
     variable: "var(--colors-green-950)",
   },
+  "colors.mono.50": {
+    value: "#F7F7F7",
+    variable: "var(--colors-mono-50)",
+  },
+  "colors.mono.100": {
+    value: "#F0F0F0",
+    variable: "var(--colors-mono-100)",
+  },
+  "colors.mono.150": {
+    value: "#E8E8E8",
+    variable: "var(--colors-mono-150)",
+  },
+  "colors.mono.200": {
+    value: "#E1E1E1",
+    variable: "var(--colors-mono-200)",
+  },
+  "colors.mono.300": {
+    value: "#D1D1D1",
+    variable: "var(--colors-mono-300)",
+  },
+  "colors.mono.400": {
+    value: "#C2C2C2",
+    variable: "var(--colors-mono-400)",
+  },
+  "colors.mono.500": {
+    value: "#B3B3B3",
+    variable: "var(--colors-mono-500)",
+  },
+  "colors.mono.600": {
+    value: "#8F8F8F",
+    variable: "var(--colors-mono-600)",
+  },
+  "colors.mono.700": {
+    value: "#6B6B6B",
+    variable: "var(--colors-mono-700)",
+  },
+  "colors.mono.800": {
+    value: "#484848",
+    variable: "var(--colors-mono-800)",
+  },
+  "colors.mono.900": {
+    value: "#242424",
+    variable: "var(--colors-mono-900)",
+  },
+  "colors.mono.950": {
+    value: "#121212",
+    variable: "var(--colors-mono-950)",
+  },
+  "colors.white": {
+    value: "#FFFFFF",
+    variable: "var(--colors-white)",
+  },
+  "colors.black": {
+    value: "#000000",
+    variable: "var(--colors-black)",
+  },
   "gradients.blueGradientDark": {
     value: "linear-gradient(to right, #368FF7, #205694)",
     variable: "var(--gradients-blue-gradient-dark)",

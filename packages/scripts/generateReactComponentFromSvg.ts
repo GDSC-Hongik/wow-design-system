@@ -2,7 +2,7 @@ import { existsSync, promises as fs } from "fs";
 import path from "path";
 
 const SVG_DIR = "../wow-icons/src/svg";
-const COMPONENT_DIR = "../wow-icons/src/react";
+const COMPONENT_DIR = "../wow-icons/src/component";
 
 type SvgComponentMap = { [key: string]: string };
 
@@ -42,6 +42,18 @@ const deleteUnusedComponentFiles = async (svgComponentMap: SvgComponentMap) => {
   );
 };
 
+const extractSvgAttributes = (svgContent: string) => {
+  const widthMatch = svgContent.match(/width="(\d+)"/g);
+  const heightMatch = svgContent.match(/height="(\d+)"/g);
+  const viewBoxMatch = svgContent.match(/viewBox="([^"]*)"/g);
+
+  return {
+    width: widthMatch ? widthMatch[0] : "width = 24",
+    height: heightMatch ? heightMatch[0] : "height = 24",
+    viewBox: viewBoxMatch ? viewBoxMatch[0] : "viewBox = 0 0 24 24",
+  };
+};
+
 const createComponentContent = (
   componentName: string,
   svgContent: string,
@@ -53,7 +65,8 @@ const createComponentContent = (
     (attr) => attr !== 'fill="none"'
   );
   const hasFill = fillAttributes.length;
-  const propsString = `{ className, width = 24, height = 24, viewBox = "0 0 24 24"${hasStroke || hasFill ? ` ${hasStroke ? ', stroke = "white"' : ""}${hasFill ? ', fill = "white"' : ""}` : ""}, ...rest }`;
+  const { width, height, viewBox } = extractSvgAttributes(svgContent);
+  const propsString = `{ className, ${width}, ${height}, ${viewBox}${hasStroke || hasFill ? ` ${hasStroke ? ', stroke = "white"' : ""}${hasFill ? ', fill = "white"' : ""}` : ""}, ...rest }`;
   const modifiedSvgContent = svgContent
     .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
     .replace(/width="(\d+)"/g, `width={width}`)
@@ -71,7 +84,7 @@ const createComponentContent = (
     import { forwardRef } from 'react';
     import { color } from "wowds-tokens";
     
-    import type { IconProps } from "../types/Icon.ts";
+    import type { IconProps } from "@/types/Icon.ts";
 
     const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
       (${propsString}, ref) => {
@@ -117,7 +130,7 @@ const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
 };
 
 const generateExportFile = async (components: string[]) => {
-  const EXPORT_FILE_PATH = "../wow-icons/src/react/index.ts";
+  const EXPORT_FILE_PATH = "../wow-icons/src/component/index.ts";
   const exportFileContent = components
     .map(
       (component) =>
