@@ -30,10 +30,7 @@ const RadioGroup = ({
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setSelected(event.target.value);
-      if (onChange) {
-        onChange(event);
-      }
+      onChange ? onChange(event) : setSelected(event.target.value);
     },
     [setSelected, onChange]
   );
