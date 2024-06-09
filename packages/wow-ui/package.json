@@ -51,7 +51,7 @@
       "import": "./dist/RadioButton.js"
     },
     "./RadioGroup": {
-      "types": "./dist/RadioGroup/index.d.ts",
+      "types": "./dist/components/RadioGroup/index.d.ts",
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     }
