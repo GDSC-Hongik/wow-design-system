@@ -6,14 +6,13 @@ import packageJSON from "../wow-ui/package.json";
 const COMPONENT_PATH = "./src/components";
 
 type ExportsKey = string;
-type ExportsValue =
-  | {
-      types: string;
-      require: string;
-      import: string;
-    }
-  | string;
+type ExportsValue = {
+  types: string;
+  require: string;
+  import: string;
+};
 type ExportsObject = { [key: ExportsKey]: ExportsValue };
+
 type EntryFileKey = string;
 type EntryFileValue = string;
 type EntryFileObject = { [key: EntryFileKey]: EntryFileValue };
@@ -29,12 +28,9 @@ const getFilteredComponentFiles = async (directoryPath: string) => {
   );
 };
 
-const createPaths = (
-  type: "entryFile" | "exports",
-  file: string
-): [EntryFileKey, EntryFileValue] | [ExportsKey, ExportsValue] => {
-  const componentDirName = file.split("/")[0]!;
-  const componentName = file.split("/")[1]?.slice(0, -4)!;
+const createPaths = (type: "entryFile" | "exports", file: string) => {
+  const componentDirName = file.split("/")[0] ?? "";
+  const componentName = file.split("/")[1]?.slice(0, -4) ?? "";
   const typesPath = file.endsWith("index.tsx")
     ? `./dist/components/${componentDirName}.tsx`
     : `./dist/components/${componentDirName}/${componentName}.tsx`;
@@ -50,12 +46,14 @@ const createPaths = (
   };
   const entryFileValue = componentPath;
 
-  return type === "entryFile" ? [key, entryFileValue] : [key, exportsValue];
+  return type === "entryFile"
+    ? { key, value: entryFileValue }
+    : { key, value: exportsValue };
 };
 
 const createExportsObject = async (files: string[]): Promise<ExportsObject> => {
   const exports = files.reduce((prev, file) => {
-    const [key, value] = createPaths("exports", file);
+    const { key, value } = createPaths("exports", file);
 
     return { ...prev, [key]: value };
   }, {});
@@ -72,17 +70,19 @@ const applyExportsToPackageJSON = async (exportsObj: ExportsObject) => {
   await fs.writeFile(PACKAGEJSON_PATH, JSON.stringify(packageJSON));
 };
 
-const generateRollupEntryFileObject = (files: string[]) => {
+const generateRollupEntryFileObject = (
+  files: string[]
+): { [key: EntryFileKey]: EntryFileValue } => {
   const entryFileObject = files
     .map((file) => {
-      const [key, value] = createPaths("entryFile", file);
+      const { key, value } = createPaths("entryFile", file);
 
-      return [key, value];
+      return { key, value };
     })
     .reduce(
-      (prev, [componentDirName, componentPath]) => ({
+      (prev, { key, value }) => ({
         ...prev,
-        [componentDirName as EntryFileKey]: componentPath,
+        [key]: value,
       }),
       {}
     );
