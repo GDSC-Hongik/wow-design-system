@@ -183,7 +183,8 @@ export const WithMaxLength: Story = {
 export const WithPlaceholder: Story = {
   args: {
     label: "Label",
-    placeholder: "Placeholder",
+    placeholder:
+      "PlaceholderPlaceholderPlaceholderPlaceholderPlaceholderPlaceholderPlaceholder",
   },
 };
 

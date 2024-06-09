@@ -89,8 +89,10 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
         setVariant("success");
       } else if (error) {
         setVariant("error");
+      } else if (defaultValue) {
+        setVariant("typed");
       }
-    }, [error, success]);
+    }, [defaultValue, error, success]);
 
     useTextareaAutosize(textareaElementRef as RefObject<HTMLTextAreaElement>);
 
