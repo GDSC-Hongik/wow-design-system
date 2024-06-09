@@ -44,6 +44,11 @@
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
       "import": "./dist/Chip.js"
+    },
+    "./Divider": {
+      "types": "./dist/components/Divider/index.d.ts",
+      "require": "./dist/Divider.cjs",
+      "import": "./dist/Divider.js"
     }
   },
   "keywords": [],

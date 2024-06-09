@@ -23,6 +23,7 @@ export default {
     Button: "./src/components/Button",
     Checkbox: "./src/components/Checkbox",
     Chip: "./src/components/Chip",
+    Divider: "./src/components/Divider",
     Switch: "./src/components/Switch",
   },
   output: [
