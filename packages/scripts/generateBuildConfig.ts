@@ -6,11 +6,13 @@ import packageJSON from "../wow-ui/package.json";
 const COMPONENT_PATH = "./src/components";
 
 type ExportsKey = string;
-type ExportsValue = {
-  types: string;
-  require: string;
-  import: string;
-};
+type ExportsValue =
+  | {
+      types: string;
+      require: string;
+      import: string;
+    }
+  | string;
 type ExportsObject = { [key: ExportsKey]: ExportsValue };
 
 type EntryFileKey = string;
@@ -31,41 +33,47 @@ const getFilteredComponentFiles = async (directoryPath: string) => {
 const createPaths = (type: "entryFile" | "exports", file: string) => {
   const componentDirName = file.split("/")[0] ?? "";
   const componentName = file.split("/")[1]?.slice(0, -4) ?? "";
-  const typesPath = file.endsWith("index.tsx")
-    ? `./dist/components/${componentDirName}.tsx`
-    : `./dist/components/${componentDirName}/${componentName}.tsx`;
-  const componentPath = file.endsWith("index.tsx")
-    ? `./dist/${componentDirName}.tsx`
-    : `./dist/${componentDirName}/${componentName}.tsx`;
+  const isComponent = file.endsWith("index.tsx");
 
-  const key = file.endsWith("index.tsx") ? componentDirName : componentName;
+  const typesPath = `./dist/components/${componentDirName}/${isComponent ? "index" : componentName}.d.ts`;
+  const importPath = `./dist/${isComponent ? componentDirName : componentName}.js`;
+  const requirePath = `./dist/${isComponent ? componentDirName : componentName}.cjs`;
+  const componentPath = `./src/components/${componentDirName}${isComponent ? "" : `/${componentName}`}`;
+
+  const entryFileKey = isComponent
+    ? `./${componentDirName}`
+    : `./${componentName}`;
+  const exportsKey = isComponent ? componentDirName : componentName;
   const exportsValue = {
     types: typesPath,
-    require: componentPath,
-    import: componentPath,
+    require: requirePath,
+    import: importPath,
   };
   const entryFileValue = componentPath;
 
   return type === "entryFile"
-    ? { key, value: entryFileValue }
-    : { key, value: exportsValue };
+    ? { key: exportsKey, value: entryFileValue }
+    : { key: entryFileKey, value: exportsValue };
 };
 
 const createExportsObject = async (files: string[]): Promise<ExportsObject> => {
-  const exports = files.reduce((prev, file) => {
-    const { key, value } = createPaths("exports", file);
+  const exports = files.reduce(
+    (prev, file) => {
+      const { key, value } = createPaths("exports", file);
 
-    return { ...prev, [key]: value };
-  }, {});
+      return { ...prev, [key]: value };
+    },
+    { "./styles.css": "./dist/styles.css" }
+  );
 
   return exports;
 };
 
-const applyExportsToPackageJSON = async (exportsObj: ExportsObject) => {
+const applyExportsToPackageJSON = async (exportsObject: ExportsObject) => {
   const PACKAGEJSON_PATH = "package.json";
 
-  packageJSON.exports = packageJSON.exports || {};
-  Object.assign(packageJSON.exports, exportsObj);
+  packageJSON.exports = Object.create(null);
+  Object.assign(packageJSON.exports, exportsObject);
 
   await fs.writeFile(PACKAGEJSON_PATH, JSON.stringify(packageJSON));
 };
@@ -90,7 +98,9 @@ const generateRollupEntryFileObject = (
   return entryFileObject;
 };
 
-const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
+const applyEntryFilesToRollupConfig = async (
+  entryFileObject: EntryFileObject
+) => {
   const ROLLUP_CONFIG_PATH = "rollup.config.js";
 
   const dirname = path.resolve();
@@ -99,7 +109,7 @@ const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
 
   rollupConfigContent = rollupConfigContent.replace(
     /input:\s*{[^}]*}/m,
-    `input: ${JSON.stringify(entryFileObj)}`
+    `input: ${JSON.stringify(entryFileObject)}`
   );
 
   await fs.writeFile(ROLLUP_CONFIG_PATH, rollupConfigContent);
