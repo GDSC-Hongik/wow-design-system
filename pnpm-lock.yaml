@@ -320,9 +320,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-      wowds-tokens:
-        specifier: workspace:^
-        version: link:../wow-tokens
 
 packages:
 

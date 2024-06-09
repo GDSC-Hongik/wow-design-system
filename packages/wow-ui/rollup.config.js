@@ -22,6 +22,7 @@ export default {
     Box: "./src/components/Box",
     Button: "./src/components/Button",
     Checkbox: "./src/components/Checkbox",
+    Chip: "./src/components/Chip",
     Switch: "./src/components/Switch",
     TextField: "./src/components/TextField",
   },

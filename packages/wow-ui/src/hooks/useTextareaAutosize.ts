@@ -1,12 +1,15 @@
 import { type RefObject, useEffect } from "react";
 
+const TEXTAREA_LINE_HEIGHT = 2.625;
+const MAX_TEXTAREA_HEIGHT = 120;
+
 export const useTextareaAutosize = (ref: RefObject<HTMLTextAreaElement>) => {
   useEffect(() => {
     const textareaElement = ref.current;
     if (!textareaElement) return;
 
     const placeholderLines = textareaElement.placeholder.split("\n").length;
-    const placeholderHeight = placeholderLines * 2.625;
+    const placeholderHeight = placeholderLines * TEXTAREA_LINE_HEIGHT;
 
     const setInitialHeight = () => {
       textareaElement.style.height = `${placeholderHeight}rem`;
@@ -19,7 +22,9 @@ export const useTextareaAutosize = (ref: RefObject<HTMLTextAreaElement>) => {
 
     const handleOverflow = () => {
       textareaElement.style.overflowY =
-        textareaElement.scrollHeight > 120 ? "scroll" : "hidden";
+        textareaElement.scrollHeight > MAX_TEXTAREA_HEIGHT
+          ? "scroll"
+          : "hidden";
     };
 
     setInitialHeight();
