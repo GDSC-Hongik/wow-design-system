@@ -48,9 +48,12 @@ const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
       (event: KeyboardEvent) => {
         if (event.key === " ") {
           setPressed(true);
+          if (!selected) {
+            group.value = value;
+          }
         }
       },
-      [setPressed]
+      [setPressed, group, value, selected]
     );
 
     const handleKeyUp = useCallback(
