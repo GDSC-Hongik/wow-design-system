@@ -112,7 +112,7 @@ const radioButtonStyle = cva({
     justifyContent: "center",
     cursor: "pointer",
 
-    background: "background",
+    background: "Background",
     borderColor: "darkDisabled",
   },
   variants: {
