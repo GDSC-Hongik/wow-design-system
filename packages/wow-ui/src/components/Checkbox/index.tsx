@@ -10,8 +10,8 @@ import type {
 import { forwardRef, useId } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
-//FIXME: alias 경로로 설정하면 import 경로 인식하지 못하는 문제가 있어서 상대경로로 우선 해결
-import { useCheckedState } from "../../hooks";
+import { useCheckedState } from "@/hooks";
+
 /**
  * @description 사용자가 선택하거나 선택 해제할 수 있는 체크박스 컴포넌트입니다.
  *

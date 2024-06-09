@@ -19,17 +19,17 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/react/index.d.ts",
+      "types": "./dist/component/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
   "scripts": {
-    "build": "pnpm generate:icons && rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly",
+    "build": "pnpm generate:icons && rm -rf dist && rollup -c --bundleConfigAsCjs && tsc-alias",
     "generate:icons": "tsx ../scripts/generateReactComponentFromSvg.ts && pnpm format && pnpm lint",
-    "lint": "eslint --fix ./src/react/**/*.tsx",
-    "format": "prettier --write ./src/react/**/*"
+    "lint": "eslint --fix ./src/component/**/*.tsx",
+    "format": "prettier --write ./src/component/**/*"
   },
   "keywords": [],
   "author": "gdsc-hongik",

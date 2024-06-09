@@ -22,14 +22,16 @@ export default {
     Box: "./src/components/Box",
     Button: "./src/components/Button",
     Checkbox: "./src/components/Checkbox",
+    Chip: "./src/components/Chip",
     Switch: "./src/components/Switch",
   },
   output: [
     {
       format: "esm",
       dir: "dist",
-      entryFileNames: "[name].js",
       preserveModules: true,
+      preserveModulesRoot: "src",
+      entryFileNames: "[name].js",
     },
     {
       format: "cjs",

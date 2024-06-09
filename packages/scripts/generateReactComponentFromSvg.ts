@@ -2,7 +2,7 @@ import { existsSync, promises as fs } from "fs";
 import path from "path";
 
 const SVG_DIR = "../wow-icons/src/svg";
-const COMPONENT_DIR = "../wow-icons/src/react";
+const COMPONENT_DIR = "../wow-icons/src/component";
 
 type SvgComponentMap = { [key: string]: string };
 
@@ -84,7 +84,7 @@ const createComponentContent = (
     import { forwardRef } from 'react';
     import { color } from "wowds-tokens";
     
-    import type { IconProps } from "../types/Icon.ts";
+    import type { IconProps } from "@/types/Icon.ts";
 
     const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
       (${propsString}, ref) => {
@@ -130,7 +130,7 @@ const generateComponentFiles = async (svgComponentMap: SvgComponentMap) => {
 };
 
 const generateExportFile = async (components: string[]) => {
-  const EXPORT_FILE_PATH = "../wow-icons/src/react/index.ts";
+  const EXPORT_FILE_PATH = "../wow-icons/src/component/index.ts";
   const exportFileContent = components
     .map(
       (component) =>
