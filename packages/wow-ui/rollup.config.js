@@ -19,11 +19,11 @@ process.env.BABEL_ENV = "production";
 
 export default {
   input: {
-    Box: "./src/components/Box",
-    Button: "./src/components/Button",
-    Checkbox: "./src/components/Checkbox",
-    Chip: "./src/components/Chip",
     Switch: "./src/components/Switch",
+    Chip: "./src/components/Chip",
+    Checkbox: "./src/components/Checkbox",
+    Button: "./src/components/Button",
+    Box: "./src/components/Box",
   },
   output: [
     {

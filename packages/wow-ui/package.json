@@ -20,21 +20,6 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
-    "./Box": {
-      "types": "./dist/components/Box/index.d.ts",
-      "require": "./dist/Box.cjs",
-      "import": "./dist/Box.js"
-    },
-    "./Button": {
-      "types": "./dist/components/Button/index.d.ts",
-      "require": "./dist/Button.cjs",
-      "import": "./dist/Button.js"
-    },
-    "./Checkbox": {
-      "types": "./dist/components/Checkbox/index.d.ts",
-      "require": "./dist/Checkbox.cjs",
-      "import": "./dist/Checkbox.js"
-    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
@@ -44,6 +29,21 @@
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
       "import": "./dist/Chip.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "require": "./dist/Checkbox.cjs",
+      "import": "./dist/Checkbox.js"
+    },
+    "./Button": {
+      "types": "./dist/components/Button/index.d.ts",
+      "require": "./dist/Button.cjs",
+      "import": "./dist/Button.js"
+    },
+    "./Box": {
+      "types": "./dist/components/Box/index.d.ts",
+      "require": "./dist/Box.cjs",
+      "import": "./dist/Box.js"
     }
   },
   "keywords": [],
