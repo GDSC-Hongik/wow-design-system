@@ -78,23 +78,19 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     });
 
     return (
-      <Flex
-        alignItems="center"
-        display="inline-flex"
-        gap="xs"
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        onMouseDown={handleMouseDown}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onMouseUp={handleMouseUp}
-      >
+      <Flex alignItems="center" display="inline-flex" gap="xs">
         <styled.label
           htmlFor={id}
           {...(pressed && { "data-pressed": true })}
           className={labelStyle({
             type: disabled ? "disabled" : checked ? "checked" : "unchecked",
           })}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onMouseDown={handleMouseDown}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={handleMouseUp}
         >
           <styled.input
             id={id}
