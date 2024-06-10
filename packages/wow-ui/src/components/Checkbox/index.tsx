@@ -18,15 +18,15 @@ import { useCheckedState } from "@/hooks";
  * @param {boolean} [defaultChecked=false] 체크박스가 처음에 활성화되어 있는지 여부.
  * @param {boolean} [disabled=false] 체크박스가 비활성화되어 있는지 여부.
  * @param {boolean} [checked] 외부에서 제어할 활성 상태.
- * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
- * @param {() => void} [onClick] 체크박스 클릭 시 동작할 이벤트.
- * @param {() => void} [onKeyDown] 체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
+ * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
+ * @param {() => void} [onClick] 체크박스 클릭 시 호출되는 함수.
+ * @param {() => void} [onKeyDown] 체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수.
  * @param {() => void} [onMouseEnter] 마우스가 체크박스 위로 진입할 때 호출되는 함수.
  * @param {() => void} [onMouseLeave] 마우스가 체크박스에서 벗어날 때 호출되는 함수.
  * @param {"vertical" | "horizontal"} [position="horizontal"] 체크박스와 텍스트의 배치를 설정. 'vertical' 또는 'horizontal' 값을 가집니다.
  * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 체크박스의 기본 input 요소에 전달할 추가 속성들.
- * @param {CSSProperties} [style] 체크박스의 커스텀 스타일을 설정합니다.
- * @param {string} [className] 체크박스에 전달하는 커스텀 클래스를 설정합니다.
+ * @param {CSSProperties} [style] 체크박스의 커스텀 스타일.
+ * @param {string} [className] 체크박스에 전달하는 커스텀 클래스.
  * @param {React.ReactNode} [children] 체크박스 오른쪽이나 위쪽에 들어갈 텍스트.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.

@@ -23,8 +23,7 @@ const meta = {
       },
     },
     disabled: {
-      description:
-        "disabled는 체크박스가 비활성화되어 있는지 여부를 나타냅니다.",
+      description: "체크박스가 비활성화되어 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -34,7 +33,7 @@ const meta = {
       },
     },
     checked: {
-      description: "checked는 외부에서 제어할 활성 상태를 나타냅니다.",
+      description: "외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
       },
@@ -53,7 +52,7 @@ const meta = {
       },
     },
     onChange: {
-      description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
+      description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
@@ -63,7 +62,7 @@ const meta = {
       },
     },
     onClick: {
-      description: "체크박스 클릭 시 동작할 이벤트입니다.",
+      description: "체크박스 클릭 시 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
@@ -74,7 +73,7 @@ const meta = {
     },
     onKeyDown: {
       description:
-        "체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
+        "체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
@@ -134,6 +133,15 @@ const meta = {
       },
       control: {
         type: "object",
+      },
+    },
+    className: {
+      description: "체크박스에 전달하는 커스텀 클래스를 설정합니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: {
+        type: "text",
       },
     },
   },
