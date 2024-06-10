@@ -1,5 +1,6 @@
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
+import Divider from "wowds-ui/Divider";
 import Switch from "wowds-ui/Switch";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Checkbox />
       <Chip label="Chip" />
       <Switch />
+      <Divider />
     </>
   );
 };
