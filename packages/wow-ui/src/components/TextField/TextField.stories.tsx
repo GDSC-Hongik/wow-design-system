@@ -19,15 +19,11 @@ const meta = {
     label: {
       description: "텍스트필드의 라벨입니다.",
       table: {
-        type: { summary: "string" },
+        type: { summary: "string", required: true },
         defaultValue: { summary: null },
       },
       control: {
         type: "text",
-      },
-      type: {
-        name: "string",
-        required: true,
       },
     },
     placeholder: {
@@ -96,18 +92,16 @@ const meta = {
         type: { summary: "ReactNode" },
         defaultValue: { summary: null },
       },
-      control: {
-        type: "text",
-      },
+      control: false,
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출될 콜백 함수입니다.",
       table: {
         type: { summary: "(value: string) => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onBlur: {
@@ -115,9 +109,9 @@ const meta = {
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onFocus: {
@@ -125,9 +119,9 @@ const meta = {
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     textareaProps: {
@@ -135,29 +129,25 @@ const meta = {
       table: {
         type: { summary: "TextareaHTMLAttributes<HTMLTextAreaElement>" },
         defaultValue: { summary: null },
-        control: {
-          type: "object",
-        },
       },
+      control: false,
     },
     style: {
       description: "텍스트필드의 커스텀 스타일 속성입니다.",
       table: {
         type: { summary: "CSSProperties" },
         defaultValue: { summary: null },
-        control: {
-          type: "object",
-        },
       },
+      control: false,
     },
     className: {
       description: "텍스트필드에 전달하는 커스텀 클래스명입니다.",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: null },
-        control: {
-          type: "text",
-        },
+      },
+      control: {
+        type: "text",
       },
     },
   },

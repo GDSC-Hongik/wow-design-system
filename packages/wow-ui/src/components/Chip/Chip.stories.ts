@@ -14,7 +14,6 @@ const meta = {
       },
     },
   },
-
   argTypes: {
     disabled: {
       description: "disabled는 칩 버튼이 비활성화 상태인지 여부를 나타냅니다.",
@@ -37,7 +36,6 @@ const meta = {
         type: "boolean",
       },
     },
-
     isChecked: {
       description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
@@ -61,11 +59,7 @@ const meta = {
     label: {
       description: "칩에 들어가게 될 텍스트입니다.",
       table: {
-        type: { summary: "string" },
-      },
-      type: {
-        name: "string",
-        required: true,
+        type: { summary: "string", required: true },
       },
       control: {
         type: "text",
@@ -75,18 +69,18 @@ const meta = {
       description: "칩 클릭 시 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onDelete: {
       description: "칩에 대한 필터를 제거하기 위한 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        control: {
-          type: "function",
-        },
+      },
+      control: {
+        type: "function",
       },
     },
     onKeyDown: {
@@ -94,10 +88,18 @@ const meta = {
         "칩이 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
       table: {
         type: { summary: "() => void" },
-        control: {
-          type: "function",
-        },
       },
+      control: {
+        type: "function",
+      },
+    },
+    style: {
+      description: "칩의 커스텀 스타일을 설정합니다.",
+      table: {
+        type: { summary: "CSSProperties" },
+        defaultValue: { summary: "{}" },
+      },
+      control: false,
     },
   },
 } satisfies Meta<typeof Chip>;
