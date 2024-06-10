@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { color } from "wowds-tokens";
 
-import type { IconProps } from "../types/Icon.ts";
+import type { IconProps } from "@/types/Icon.ts";
 
 const Check = forwardRef<SVGSVGElement, IconProps>(
   (

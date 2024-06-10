@@ -9,7 +9,7 @@ import type {
   PolymorphicComponentProps,
   PolymorphicRef,
   ToggleButtonProps,
-} from "../../types";
+} from "@/types";
 
 /**
  * @template T 렌더링할 요소 또는 컴포넌트 타입
