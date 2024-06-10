@@ -74,6 +74,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       isChecked: checkedProp = false,
       defaultChecked = false,
       disabled = false,
+      style,
       ...rest
     }: ChipProps<T>,
     ref: any
@@ -110,7 +111,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
         aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
         data-selected={isChecked}
         ref={ref}
-        style={rest.customStyle}
+        style={style}
         className={chip({
           clickable: disabled ? false : clickable,
           disabled: disabled,

@@ -180,56 +180,42 @@ export interface Conditions {
   _vertical: string;
   /** `@starting-style` */
   _starting: string;
-  /** `@media screen and (min-width: 40rem)` */
+  /** `@media screen and (min-width: 22.5rem)` */
+  xs: string;
+  /** `@media screen and (min-width: 22.5rem) and (max-width: 37.4975rem)` */
+  xsOnly: string;
+  /** `@media screen and (max-width: 22.4975rem)` */
+  xsDown: string;
+  /** `@media screen and (min-width: 37.5rem)` */
   sm: string;
-  /** `@media screen and (min-width: 40rem) and (max-width: 47.9975rem)` */
+  /** `@media screen and (min-width: 37.5rem) and (max-width: 56.2475rem)` */
   smOnly: string;
-  /** `@media screen and (max-width: 39.9975rem)` */
+  /** `@media screen and (max-width: 37.4975rem)` */
   smDown: string;
-  /** `@media screen and (min-width: 48rem)` */
+  /** `@media screen and (min-width: 56.25rem)` */
   md: string;
-  /** `@media screen and (min-width: 48rem) and (max-width: 63.9975rem)` */
+  /** `@media screen and (min-width: 56.25rem) and (max-width: 79.9975rem)` */
   mdOnly: string;
-  /** `@media screen and (max-width: 47.9975rem)` */
+  /** `@media screen and (max-width: 56.2475rem)` */
   mdDown: string;
-  /** `@media screen and (min-width: 64rem)` */
-  lg: string;
-  /** `@media screen and (min-width: 64rem) and (max-width: 79.9975rem)` */
-  lgOnly: string;
-  /** `@media screen and (max-width: 63.9975rem)` */
-  lgDown: string;
   /** `@media screen and (min-width: 80rem)` */
-  xl: string;
-  /** `@media screen and (min-width: 80rem) and (max-width: 95.9975rem)` */
-  xlOnly: string;
+  lg: string;
+  /** `@media screen and (min-width: 80rem)` */
+  lgOnly: string;
   /** `@media screen and (max-width: 79.9975rem)` */
-  xlDown: string;
-  /** `@media screen and (min-width: 96rem)` */
-  "2xl": string;
-  /** `@media screen and (min-width: 96rem)` */
-  "2xlOnly": string;
-  /** `@media screen and (max-width: 95.9975rem)` */
-  "2xlDown": string;
-  /** `@media screen and (min-width: 40rem) and (max-width: 47.9975rem)` */
+  lgDown: string;
+  /** `@media screen and (min-width: 22.5rem) and (max-width: 37.4975rem)` */
+  xsToSm: string;
+  /** `@media screen and (min-width: 22.5rem) and (max-width: 56.2475rem)` */
+  xsToMd: string;
+  /** `@media screen and (min-width: 22.5rem) and (max-width: 79.9975rem)` */
+  xsToLg: string;
+  /** `@media screen and (min-width: 37.5rem) and (max-width: 56.2475rem)` */
   smToMd: string;
-  /** `@media screen and (min-width: 40rem) and (max-width: 63.9975rem)` */
+  /** `@media screen and (min-width: 37.5rem) and (max-width: 79.9975rem)` */
   smToLg: string;
-  /** `@media screen and (min-width: 40rem) and (max-width: 79.9975rem)` */
-  smToXl: string;
-  /** `@media screen and (min-width: 40rem) and (max-width: 95.9975rem)` */
-  smTo2xl: string;
-  /** `@media screen and (min-width: 48rem) and (max-width: 63.9975rem)` */
+  /** `@media screen and (min-width: 56.25rem) and (max-width: 79.9975rem)` */
   mdToLg: string;
-  /** `@media screen and (min-width: 48rem) and (max-width: 79.9975rem)` */
-  mdToXl: string;
-  /** `@media screen and (min-width: 48rem) and (max-width: 95.9975rem)` */
-  mdTo2xl: string;
-  /** `@media screen and (min-width: 64rem) and (max-width: 79.9975rem)` */
-  lgToXl: string;
-  /** `@media screen and (min-width: 64rem) and (max-width: 95.9975rem)` */
-  lgTo2xl: string;
-  /** `@media screen and (min-width: 80rem) and (max-width: 95.9975rem)` */
-  xlTo2xl: string;
   /** `@container  (min-width: 20rem)` */
   "@/xs": string;
   /** `@container  (min-width: 24rem)` */

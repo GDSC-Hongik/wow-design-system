@@ -384,11 +384,11 @@ const tokens = {
     variable: "var(--colors-primary)",
   },
   "colors.success": {
-    value: "#34A853",
+    value: "#2A8642",
     variable: "var(--colors-success)",
   },
   "colors.error": {
-    value: "#EA4335",
+    value: "#BB362A",
     variable: "var(--colors-error)",
   },
   "colors.backgroundNormal": {
@@ -404,7 +404,7 @@ const tokens = {
     variable: "var(--colors-background-dimmer)",
   },
   "colors.sub": {
-    value: "#8F8F8F",
+    value: "#6B6B6B",
     variable: "var(--colors-sub)",
   },
   "colors.outline": {
