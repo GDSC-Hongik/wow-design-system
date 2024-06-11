@@ -1,5 +1,5 @@
 import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
-import { semanticTokens, textStyles, tokens } from "theme";
+import { semanticTokens, textStyles, tokens, breakpoints } from "theme";
 import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
 
 const globalCss = defineGlobalStyles({
@@ -32,5 +32,6 @@ export default defineConfig({
     tokens,
     textStyles,
     semanticTokens,
+    breakpoints,
   },
 });

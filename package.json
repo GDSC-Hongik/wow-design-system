@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "codegen:build": "pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format && pnpm build",
     "tokens:build": "turbo run build --filter=wowds-tokens",
     "ui:build": "turbo run build --filter=wowds-ui",
     "icons:build": "turbo run build --filter=wowds-icons",
@@ -12,7 +13,15 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prerelease": "pnpm changeset version",
     "release": "pnpm publish -r --no-git-checks",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "wow-ui:codegen": "cd packages/wow-ui && pnpm panda codegen",
+    "wow-docs:codegen": "cd apps/wow-docs && pnpm panda codegen",
+    "styled-system:format": "prettier --write packages/wow-ui/styled-system/** apps/wow-docs/styled-system/**"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "pnpm codegen:build"
+    }
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

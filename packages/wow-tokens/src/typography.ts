@@ -64,6 +64,7 @@ export const label2 = {
   fontSize: "0.875rem",
   lineHeight: "100%",
   fontWeight: 600,
+  letterSpacing: "-0.01rem",
 };
 
 export const label3 = {
