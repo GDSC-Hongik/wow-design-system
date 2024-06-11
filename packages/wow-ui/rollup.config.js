@@ -24,6 +24,9 @@ export default {
     Checkbox: "./src/components/Checkbox",
     Chip: "./src/components/Chip",
     Switch: "./src/components/Switch",
+    RadioButton: "./src/components/RadioButton",
+    RadioGroup: "./src/components/RadioGroup",
+    Switch: "./src/components/Switch",
     TextField: "./src/components/TextField",
   },
   output: [

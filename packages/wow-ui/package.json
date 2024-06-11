@@ -49,6 +49,16 @@
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
       "import": "./dist/Chip.js"
+    },
+    "./RadioButton": {
+      "types": "./dist/RadioButton/index.d.ts",
+      "require": "./dist/RadioButton.cjs",
+      "import": "./dist/RadioButton.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "require": "./dist/RadioGroup.cjs",
+      "import": "./dist/RadioGroup.js"
     }
   },
   "keywords": [],
