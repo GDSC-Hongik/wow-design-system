@@ -33,17 +33,17 @@ const getFilteredComponentFiles = async (directoryPath: string) => {
 const createPaths = (type: "entryFile" | "exports", file: string) => {
   const componentDirName = file.split("/")[0] ?? "";
   const componentName = file.split("/")[1]?.slice(0, -4) ?? "";
-  const isComponent = file.endsWith("index.tsx");
+  const defaultComponent = file.endsWith("index.tsx");
 
-  const typesPath = `./dist/components/${componentDirName}/${isComponent ? "index" : componentName}.d.ts`;
-  const importPath = `./dist/${isComponent ? componentDirName : componentName}.js`;
-  const requirePath = `./dist/${isComponent ? componentDirName : componentName}.cjs`;
-  const componentPath = `./src/components/${componentDirName}${isComponent ? "" : `/${componentName}`}`;
+  const typesPath = `./dist/components/${componentDirName}/${defaultComponent ? "index" : componentName}.d.ts`;
+  const importPath = `./dist/${defaultComponent ? componentDirName : componentName}.js`;
+  const requirePath = `./dist/${defaultComponent ? componentDirName : componentName}.cjs`;
+  const componentPath = `./src/components/${componentDirName}${defaultComponent ? "" : `/${componentName}`}`;
 
-  const entryFileKey = isComponent
+  const entryFileKey = defaultComponent
     ? `./${componentDirName}`
     : `./${componentName}`;
-  const exportsKey = isComponent ? componentDirName : componentName;
+  const exportsKey = defaultComponent ? componentDirName : componentName;
   const exportsValue = {
     types: typesPath,
     require: requirePath,
