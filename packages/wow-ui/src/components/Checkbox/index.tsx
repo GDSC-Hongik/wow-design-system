@@ -103,7 +103,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "checkbox"}
-            data-pressed={pressed}
+            {...(pressed && { "data-pressed": true })}
             id={id}
             ref={ref}
             tabIndex={0}
@@ -148,6 +148,7 @@ const checkboxStyle = cva({
     alignItems: "center",
     outline: "none",
     position: "relative",
+    cursor: "inherit",
   },
   variants: {
     type: {

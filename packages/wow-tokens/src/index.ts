@@ -1,3 +1,4 @@
+export * as breakpoint from "./breakpoint.ts";
 export * as color from "./color.ts";
 export * as radius from "./radius.ts";
 export * as space from "./space.ts";

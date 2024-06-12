@@ -19,7 +19,10 @@ process.env.BABEL_ENV = "production";
 
 export default {
   input: {
+    TextField: "./src/components/TextField",
     Switch: "./src/components/Switch",
+    RadioButton: "./src/components/RadioGroup/RadioButton",
+    RadioGroup: "./src/components/RadioGroup/RadioGroup",
     Chip: "./src/components/Chip",
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",

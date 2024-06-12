@@ -48,9 +48,7 @@ const meta = {
         type: { summary: "ReactNode" },
         defaultValue: { summary: null },
       },
-      control: {
-        type: "text",
-      },
+      control: false,
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
@@ -122,9 +120,7 @@ const meta = {
         type: { summary: "InputHTMLAttributes<HTMLInputElement>" },
         defaultValue: { summary: "{}" },
       },
-      control: {
-        type: "object",
-      },
+      control: false,
     },
     style: {
       description: "체크박스의 커스텀 스타일을 설정합니다.",
@@ -132,9 +128,7 @@ const meta = {
         type: { summary: "CSSProperties" },
         defaultValue: { summary: "{}" },
       },
-      control: {
-        type: "object",
-      },
+      control: false,
     },
   },
 } satisfies Meta<typeof Checkbox>;

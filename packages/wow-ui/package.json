@@ -20,10 +20,25 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
+    "./TextField": {
+      "types": "./dist/components/TextField/index.d.ts",
+      "require": "./dist/TextField.cjs",
+      "import": "./dist/TextField.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
+    },
+    "./RadioButton": {
+      "types": "./dist/components/RadioGroup/RadioButton.d.ts",
+      "require": "./dist/RadioButton.cjs",
+      "import": "./dist/RadioButton.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/RadioGroup.d.ts",
+      "require": "./dist/RadioGroup.cjs",
+      "import": "./dist/RadioGroup.js"
     },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
@@ -55,7 +70,8 @@
     "build-storybook": "storybook build",
     "generate:build-config": "tsx ../scripts/generateBuildConfig.ts && prettier --write ./rollup.config.js ./package.json",
     "test-storybook": "test-storybook --browsers firefox chromium webkit",
-    "test": "jest"
+    "test": "jest",
+    "create:story-file": "plop --plopfile ../codegen/plopfile.js"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
@@ -78,6 +94,7 @@
     "chromatic": "^11.3.0",
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.5.3",
     "typescript": "^5.3.3"

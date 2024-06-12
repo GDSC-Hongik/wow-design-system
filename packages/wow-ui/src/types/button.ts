@@ -33,7 +33,7 @@ export interface BasicButtonProps {
    * wow-ds에서 지정하고 있는 스타일을 제외하고 사용자가 React 스타일 객체를 이용하여 커스텀하게 스타일을 적용할 수 있도록 합니다.
    */
 
-  customStyle?: CSSProperties;
+  style?: CSSProperties;
 
   /**
    * 버튼이 클릭되었을때 호출되는 함수입니다.
