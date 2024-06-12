@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -98,6 +98,9 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.5.3",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "wowds-icons": "workspace:^"
   },
   "peerDependencies": {
     "next": "^14.1.1",
