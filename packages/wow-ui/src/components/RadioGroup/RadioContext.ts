@@ -11,7 +11,7 @@ import { createContext } from "react";
  */
 
 export interface RadioContextProps {
-  name: string;
+  name?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
