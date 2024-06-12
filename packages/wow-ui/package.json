@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -20,45 +20,45 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
-    "./Box": {
-      "types": "./dist/components/Box/index.d.ts",
-      "require": "./dist/Box.cjs",
-      "import": "./dist/Box.js"
-    },
-    "./Button": {
-      "types": "./dist/components/Button/index.d.ts",
-      "require": "./dist/Button.cjs",
-      "import": "./dist/Button.js"
-    },
-    "./Checkbox": {
-      "types": "./dist/components/Checkbox/index.d.ts",
-      "require": "./dist/Checkbox.cjs",
-      "import": "./dist/Checkbox.js"
+    "./TextField": {
+      "types": "./dist/components/TextField/index.d.ts",
+      "require": "./dist/TextField.cjs",
+      "import": "./dist/TextField.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
     },
-    "./TextField": {
-      "types": "./dist/components/TextField/index.d.ts",
-      "require": "./dist/TextField.cjs",
-      "import": "./dist/TextField.js"
+    "./RadioButton": {
+      "types": "./dist/components/RadioGroup/RadioButton.d.ts",
+      "require": "./dist/RadioButton.cjs",
+      "import": "./dist/RadioButton.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/RadioGroup.d.ts",
+      "require": "./dist/RadioGroup.cjs",
+      "import": "./dist/RadioGroup.js"
     },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
       "import": "./dist/Chip.js"
     },
-    "./RadioButton": {
-      "types": "./dist/RadioButton/index.d.ts",
-      "require": "./dist/RadioButton.cjs",
-      "import": "./dist/RadioButton.js"
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "require": "./dist/Checkbox.cjs",
+      "import": "./dist/Checkbox.js"
     },
-    "./RadioGroup": {
-      "types": "./dist/components/RadioGroup/index.d.ts",
-      "require": "./dist/RadioGroup.cjs",
-      "import": "./dist/RadioGroup.js"
+    "./Button": {
+      "types": "./dist/components/Button/index.d.ts",
+      "require": "./dist/Button.cjs",
+      "import": "./dist/Button.js"
+    },
+    "./Box": {
+      "types": "./dist/components/Box/index.d.ts",
+      "require": "./dist/Box.cjs",
+      "import": "./dist/Box.js"
     }
   },
   "keywords": [],
@@ -99,12 +99,12 @@
     "storybook": "^7.5.3",
     "typescript": "^5.3.3"
   },
+  "dependencies": {
+    "wowds-icons": "workspace:^"
+  },
   "peerDependencies": {
     "next": "^14.1.1",
     "react": "^18.2.0"
-  },
-  "dependencies": {
-    "wowds-icons": "workspace:^"
   },
   "bugs": {
     "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"
