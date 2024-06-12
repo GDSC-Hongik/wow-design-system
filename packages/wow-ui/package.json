@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -102,9 +102,6 @@
   "peerDependencies": {
     "next": "^14.1.1",
     "react": "^18.2.0"
-  },
-  "dependencies": {
-    "wowds-icons": "workspace:^"
   },
   "bugs": {
     "url": "https://github.com/GDSC-Hongik/wow-design-system/issues"
