@@ -31,9 +31,10 @@ const getFilteredComponentFiles = async (directoryPath: string) => {
 };
 
 const createPaths = (type: "entryFile" | "exports", file: string) => {
-  const componentDirName = file.split("/")[0] ?? "";
-  const componentName = file.split("/")[1]?.slice(0, -4) ?? "";
-  const defaultComponent = file.endsWith("index.tsx");
+  const parsedPath = path.parse(file);
+  const componentDirName = parsedPath.dir.split(path.sep)[0] ?? "";
+  const componentName = parsedPath.name;
+  const defaultComponent = componentName === "index";
 
   const typesPath = `./dist/components/${componentDirName}/${defaultComponent ? "index" : componentName}.d.ts`;
   const importPath = `./dist/${defaultComponent ? componentDirName : componentName}.js`;
