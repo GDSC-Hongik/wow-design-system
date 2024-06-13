@@ -12,8 +12,7 @@ const meta = {
   },
   argTypes: {
     defaultChecked: {
-      description:
-        "defaultChecked는 스위치가 처음에 활성화되어 있는지 여부를 나타냅니다.",
+      description: "스위치가 처음에 활성화되어 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -22,9 +21,8 @@ const meta = {
         type: "boolean",
       },
     },
-    isDisabled: {
-      description:
-        "isDisabled는 스위치가 비활성화되어 있는지 여부를 나타냅니다.",
+    disabled: {
+      description: "스위치가 비활성화되어 있는지 여부를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -33,8 +31,8 @@ const meta = {
         type: "boolean",
       },
     },
-    isChecked: {
-      description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
+    checked: {
+      description: "외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -54,7 +52,7 @@ const meta = {
       },
     },
     onChange: {
-      description: "외부 활성 상태가 변경될 때 호출될 콜백 함수를 나타냅니다.",
+      description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
@@ -64,7 +62,7 @@ const meta = {
       },
     },
     onClick: {
-      description: "스위치 클릭 시 동작할 이벤트입니다.",
+      description: "스위치를 클릭했을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
@@ -75,13 +73,59 @@ const meta = {
     },
     onKeyDown: {
       description:
-        "스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트입니다.",
+        "스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
         defaultValue: { summary: null },
       },
       control: {
         type: "function",
+      },
+    },
+    onMouseEnter: {
+      description: "마우스가 스위치 위로 진입할 때 호출되는 함수입니다.",
+      table: {
+        type: { summary: "() => void" },
+        defaultValue: { summary: null },
+        control: {
+          type: "function",
+        },
+      },
+    },
+    onMouseLeave: {
+      description: "마우스가 스위치에서 벗어날 때 호출되는 함수입니다.",
+      table: {
+        type: { summary: "() => void" },
+        defaultValue: { summary: null },
+        control: {
+          type: "function",
+        },
+      },
+    },
+    inputProps: {
+      description:
+        "스위치의 기본 input 요소에 전달할 추가 속성들을 나타냅니다.",
+      table: {
+        type: { summary: "InputHTMLAttributes<HTMLInputElement>" },
+        defaultValue: { summary: "{}" },
+      },
+      control: false,
+    },
+    style: {
+      description: "스위치의 커스텀 스타일을 설정합니다.",
+      table: {
+        type: { summary: "CSSProperties" },
+        defaultValue: { summary: "{}" },
+      },
+      control: false,
+    },
+    className: {
+      description: "스위치에 전달하는 커스텀 클래스를 설정합니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: {
+        type: "text",
       },
     },
   },
@@ -103,7 +147,7 @@ export const DefaultChecked: Story = {
 
 export const Disabled: Story = {
   args: {
-    isDisabled: true,
+    disabled: true,
   },
 };
 
@@ -114,13 +158,13 @@ export const WithText: Story = {
 };
 
 const ControlledSwitch = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
-    setIsChecked((prev) => !prev);
+    setChecked((prev) => !prev);
   };
 
-  return <Switch isChecked={isChecked} onChange={handleChange} />;
+  return <Switch checked={checked} onChange={handleChange} />;
 };
 
 export const ControlledState: Story = {

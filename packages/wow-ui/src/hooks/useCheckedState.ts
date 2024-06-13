@@ -18,11 +18,16 @@ const useCheckedState = ({
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
-  const [checked, setChecked] = useState<boolean>(() =>
-    checkedProp !== undefined ? checkedProp : defaultChecked
+  const [checked, setChecked] = useState<boolean>(
+    checkedProp ? checkedProp : defaultChecked
   );
-
   const [pressed, setPressed] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (checkedProp !== undefined) {
+      setChecked(checkedProp);
+    }
+  }, [checkedProp]);
 
   const handleMouseDown = () => {
     if (!disabled) setPressed(true);
@@ -31,12 +36,6 @@ const useCheckedState = ({
   const handleMouseUp = () => {
     if (!disabled) setPressed(false);
   };
-
-  useEffect(() => {
-    if (checkedProp !== undefined) {
-      setChecked(checkedProp);
-    }
-  }, [checkedProp]);
 
   const handleClick = () => {
     onChange ? onChange() : setChecked((prev) => !prev);
