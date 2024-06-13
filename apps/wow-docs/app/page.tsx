@@ -1,22 +1,19 @@
-import { css } from "@styled-system/css/css";
+import Checkbox from "wowds-ui/Checkbox";
+import Chip from "wowds-ui/Chip";
+import RadioButton from "wowds-ui/RadioButton";
+import RadioGroup from "wowds-ui/RadioGroup";
 import Switch from "wowds-ui/Switch";
-
-import Checkbox from "../../../packages/wow-ui/src/components/Checkbox";
 
 const Home = () => {
   return (
     <>
-      <main
-        className={css({
-          color: "textBlack",
-          textStyle: "h1",
-          bg: "backgroundAlternative",
-        })}
-      >
-        <p>docs</p>
-      </main>
-      <Switch />
       <Checkbox />
+      <Chip label="Chip" />
+      <Switch />
+      <RadioGroup defaultValue="1학년" name="학년">
+        <RadioButton label="1학년" value="1학년" />
+        <RadioButton label="2학년" value="2학년" />
+      </RadioGroup>
     </>
   );
 };

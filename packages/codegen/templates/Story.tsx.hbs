@@ -1,0 +1,58 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
+import {{pascalCase name}} from "@/components/{{pascalCase name}}";
+
+const meta = {
+  title: "UI/{{pascalCase name}}",
+  component: {{pascalCase name}},
+  tags: ["autodocs"],
+  parameters: {
+    // 컴포넌트 부제목 작성 ex. 버튼 컴포넌트
+    componentSubtitle: "",
+    // 색 대조 관련 웹 접근성 테스트 불가하게 하는 속성
+    // 필요 없으면 지우기
+    //a11y: {
+    //  config: {
+    //    rules: [{ id: "color-contrast", enabled: false }],
+    //  },
+    //},
+  },
+  argTypes: {
+    props1: {
+      description: "props1은 default 값이 있는 필수적인 속성입니다."",
+      table: {
+        // type, 필수가 아닐 경우 required 삭제
+        type: { summary: "string", required: true },
+        // defaultValue (Optional)
+        defaultValue: { summary: "기본 값" },
+      },
+      control: {
+        // Args Table에서 사용자가 조작할 수 있는 타입
+        // select일 경우 options를 배열로 제공
+        // 그 외 text, number, boolean, color, check, radio 등 존재
+        // control 불가능하게 하고 싶을 경우 객체가 아니라 false로 설정
+        // ex. control: false, 
+        // 참고 : https://storybook.js.org/docs/react/essentials/controls
+        type: "select",
+        options: ["option1", "option2"],
+      },
+    },
+  },
+  // decorators (Optional)
+  // 공통적으로 적용하고 싶은 컴포넌트 설정
+  decorators: [
+    (Story) => (
+      <>
+        {Story()}
+      </>
+    ),
+  ],
+} satisfies Meta<typeof {{pascalCase name}}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {},
+};
