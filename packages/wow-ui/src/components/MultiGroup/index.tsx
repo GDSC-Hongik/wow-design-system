@@ -10,7 +10,21 @@ export type VariantType = "checkbox" | "switch";
 type PositionType = "vertical" | "horizontal";
 
 /**
- * @description 여러 체크박스, 또는 스위치 컴포넌트를 하나의 그룹으로 묶는 컴포넌트입니다.
+ * @description 여러 체크박스 또는 스위치 컴포넌트를 하나의 그룹으로 묶는 컴포넌트입니다.
+ *
+ * @template T 체크박스 또는 스위치 타입.
+ *
+ * @param {T} variant 체크박스 또는 스위치 타입.
+ * @param {T extends "checkbox" ? PositionType : undefined} [position] 체크박스 그룹의 방향. (가로 또는 세로).
+ * @param {T extends "checkbox" ? number : undefined} [gap] 체크박스 사이의 간격.
+ * @param {ReactNode} children 그룹 내에 포함될 체크박스 또는 스위치 컴포넌트들.
+ * @param {string} [name] 그룹명.
+ * @param {string[]} [defaultValue] 기본으로 선택된 값들의 배열.
+ * @param {string[]} [checked] 외부에서 제어할 활성 상태.
+ * @param {(value: string) => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
+ * @param {boolean} [disabled] 그룹 내 모든 체크박스 또는 스위치가 비활성화되어 있는지 여부.
+ * @param {string} [className] 그룹에 전달하는 커스텀 클래스.
+ * @param {CSSProperties} [style] 그룹의 커스텀 스타일.
  */
 export interface MultiGroupProps<T extends VariantType> {
   variant: T;
