@@ -13,7 +13,8 @@ import useCheckedState from "@/hooks/useCheckedState";
  * @param {boolean} [defaultChecked=false] 스위치가 처음에 활성화되어 있는지 여부.
  * @param {boolean} [disabled=false] 스위치가 비활성화되어 있는지 여부.
  * @param {boolean} [checked] 외부에서 제어할 활성 상태.
- * @param {ReactNode} [text] 스위치 오른쪽에 들어갈 텍스트.
+ * @param {ReactNode} [label] 스위치 오른쪽에 들어갈 텍스트.
+ * @param {string} value 스위치 컴포넌트 값.
  * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
  * @param {() => void} [onClick] 스위치를 클릭했을 때 호출되는 함수.
  * @param {() => void} [onKeyDown] 스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수.
@@ -29,7 +30,8 @@ export interface SwitchProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
-  text?: ReactNode;
+  label?: ReactNode;
+  value: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -44,9 +46,10 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
       defaultChecked = false,
-      disabled = false,
+      disabled: disabledProp = false,
       checked: checkedProp,
-      text = "",
+      label = "",
+      value,
       onChange,
       onClick,
       onKeyDown,
@@ -63,6 +66,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const {
       checked,
       pressed,
+      disabled,
       handleClick,
       handleKeyDown,
       handleKeyUp,
@@ -71,7 +75,8 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     } = useCheckedState({
       defaultChecked,
       checked: checkedProp,
-      disabled,
+      disabled: disabledProp,
+      value,
       onChange,
       onClick,
       onKeyDown,
@@ -102,11 +107,12 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             aria-label={inputProps?.["aria-label"] ?? "switch"}
             className={inputStyle()}
             type="checkbox"
-            onClick={handleClick}
+            value={value}
+            onClick={() => handleClick(value)}
           />
           <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />
         </styled.label>
-        {!!text && <styled.span textStyle="body2">{text}</styled.span>}
+        {!!label && <styled.span textStyle="body2">{label}</styled.span>}
       </Flex>
     );
   }
