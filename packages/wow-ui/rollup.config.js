@@ -23,6 +23,7 @@ export default {
     Switch: "./src/components/Switch",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
+    MultiGroup: "./src/components/MultiGroup",
     Chip: "./src/components/Chip",
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",

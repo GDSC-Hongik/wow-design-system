@@ -40,6 +40,11 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./MultiGroup": {
+      "types": "./dist/components/MultiGroup/index.d.ts",
+      "require": "./dist/MultiGroup.cjs",
+      "import": "./dist/MultiGroup.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
