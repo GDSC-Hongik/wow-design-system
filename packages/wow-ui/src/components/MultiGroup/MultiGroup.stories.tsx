@@ -10,75 +10,122 @@ const meta = {
   component: MultiGroup,
   tags: ["autodocs"],
   parameters: {
-    // 컴포넌트 부제목 작성 ex. 버튼 컴포넌트
     componentSubtitle: "멀티 그룹 컴포넌트",
-    // 색 대조 관련 웹 접근성 테스트 불가하게 하는 속성
-    // 필요 없으면 지우기
-    //a11y: {
-    //  config: {
-    //    rules: [{ id: "color-contrast", enabled: false }],
-    //  },
-    //},
   },
-  // argTypes: {
-  //   props1: {
-  //     description: "props1은 default 값이 있는 필수적인 속성입니다.",
-  //     table: {
-  //       // type, 필수가 아닐 경우 required 삭제
-  //       type: { summary: "string", required: true },
-  //       // defaultValue (Optional)
-  //       defaultValue: { summary: "기본 값" },
-  //     },
-  //     control: {
-  //       // Args Table에서 사용자가 조작할 수 있는 타입
-  //       // select일 경우 options를 배열로 제공
-  //       // 그 외 text, number, boolean, color, check, radio 등 존재
-  //       // control 불가능하게 하고 싶을 경우 객체가 아니라 false로 설정
-  //       // ex. control: false,
-  //       // 참고 : https://storybook.js.org/docs/react/essentials/controls
-  //       type: "select",
-  //       options: ["option1", "option2"],
-  //     },
-  //   },
-  // },
-  // decorators (Optional)
-  // 공통적으로 적용하고 싶은 컴포넌트 설정
-  // decorators: [(Story) => <>{Story()}</>],
+  argTypes: {
+    variant: {
+      description:
+        "체크박스 또는 스위치 타입입니다. 'checkbox' 또는 'switch' 값을 가집니다.",
+      table: {
+        type: { summary: "checkbox | switch", required: true },
+        defaultValue: { summary: null },
+      },
+      control: "radio",
+      options: ["checkbox", "switch"],
+    },
+    position: {
+      description:
+        "체크박스 그룹의 방향입니다. 'vertical' 또는 'horizontal' 값을 가집니다.",
+      table: {
+        type: { summary: "vertical | horizontal" },
+        defaultValue: { summary: null },
+      },
+      control: "radio",
+      options: ["vertical", "horizontal"],
+      if: { arg: "variant", eq: "checkbox" },
+    },
+    gap: {
+      description: "체크박스 사이의 간격입니다.",
+      table: {
+        type: { summary: "number" },
+        defaultValue: { summary: null },
+      },
+      control: {
+        type: "number",
+      },
+      if: { arg: "variant", eq: "checkbox" },
+    },
+    children: {
+      description: "그룹 내에 포함될 체크박스 또는 스위치 컴포넌트들입니다.",
+      table: {
+        type: { summary: "ReactNode", required: true },
+        defaultValue: { summary: null },
+      },
+      control: false,
+    },
+    name: {
+      description: "그룹명입니다.",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: null },
+      },
+      control: {
+        type: "text",
+      },
+    },
+    defaultValue: {
+      description: "기본으로 선택된 값들의 배열입니다.",
+      table: {
+        type: { summary: "string[]" },
+        defaultValue: { summary: null },
+      },
+      control: {
+        type: "array",
+      },
+    },
+    checked: {
+      description: "외부에서 제어할 활성 상태입니다.",
+      table: {
+        type: { summary: "string[]" },
+        defaultValue: { summary: null },
+      },
+      control: {
+        type: "array",
+      },
+    },
+    onChange: {
+      description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
+      table: {
+        type: { summary: "(value: string) => void" },
+        defaultValue: { summary: null },
+      },
+      control: false,
+    },
+    disabled: {
+      description:
+        "그룹 내 모든 체크박스 또는 스위치가 비활성화되어 있는지 여부입니다.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: false },
+      },
+      control: {
+        type: "boolean",
+      },
+    },
+    className: {
+      description: "그룹에 전달하는 커스텀 클래스입니다.",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: null },
+      },
+      control: {
+        type: "text",
+      },
+    },
+    style: {
+      description: "그룹의 커스텀 스타일입니다.",
+      table: {
+        type: { summary: "CSSProperties" },
+        defaultValue: { summary: null },
+      },
+      control: false,
+    },
+  },
 } satisfies Meta<typeof MultiGroup>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-
-export const VerticalCheckboxMultiGroup: Story = {
-  render: () => (
-    <MultiGroup variant="checkbox">
-      <Checkbox value="checkbox1" />
-      <Checkbox value="checkbox2" />
-      <Checkbox value="checkbox3" />
-      <Checkbox value="checkbox4" />
-    </MultiGroup>
-  ),
-  args: {
-    children: <></>,
-    variant: "checkbox",
-  },
-};
-
-export const HorizontalCheckboxMultiGroup: Story = {
-  render: () => (
-    <MultiGroup position="horizontal" variant="checkbox">
-      <Checkbox value="checkbox1" />
-      <Checkbox value="checkbox2" />
-      <Checkbox value="checkbox3" />
-      <Checkbox value="checkbox4" />
-    </MultiGroup>
-  ),
-  args: {
-    children: <></>,
-    variant: "checkbox",
-  },
-};
 
 export const TextWithVerticalCheckboxMultiGroup: Story = {
   render: () => (
