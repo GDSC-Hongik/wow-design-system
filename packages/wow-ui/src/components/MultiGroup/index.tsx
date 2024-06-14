@@ -42,7 +42,7 @@ export interface MultiGroupProps<T extends VariantType> {
 
 const MultiGroup = <T extends VariantType>({
   position,
-  gap: gapProp,
+  gap,
   children,
   name,
   defaultValue,
@@ -89,7 +89,7 @@ const MultiGroup = <T extends VariantType>({
   return (
     <Flex
       direction={position === "horizontal" ? "row" : "column"}
-      gap={gapProp ? gapProp : "xs"}
+      gap={gap ? gap : "xs"}
       width="fit-content"
       {...rest}
     >
