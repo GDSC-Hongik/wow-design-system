@@ -22,27 +22,31 @@ const useCheckedState = ({
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
-  const group = useContext(MultiGroupContext);
-  const groupOnChange = group.onChange;
-  const groupChecked = group.checked?.includes(value);
-  const disabled = group.disabled || disabledProp || false;
+  const {
+    onChange: groupOnChange,
+    checked: groupCheckedValues,
+    disabled: groupDisabled,
+  } = useContext(MultiGroupContext);
+
+  const groupCheckedValue = groupCheckedValues?.includes(value);
+  const disabled = groupDisabled || disabledProp || false;
 
   const [checked, setChecked] = useState<boolean>(
-    groupChecked || checkedProp || defaultChecked
+    groupCheckedValue || checkedProp || defaultChecked
   );
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
-    if (groupChecked !== undefined) {
-      setChecked(groupChecked);
+    if (groupCheckedValue !== undefined) {
+      setChecked(groupCheckedValue);
     }
-  }, [groupChecked]);
+  }, [groupCheckedValue]);
 
   useEffect(() => {
-    if (groupChecked === undefined && checkedProp !== undefined) {
+    if (groupCheckedValue === undefined && checkedProp !== undefined) {
       setChecked(checkedProp);
     }
-  }, [checkedProp, groupChecked]);
+  }, [checkedProp, groupCheckedValue]);
 
   const toggleCheckedState = (value: string) => {
     if (disabled) return;
