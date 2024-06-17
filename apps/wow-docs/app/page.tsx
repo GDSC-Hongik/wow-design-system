@@ -21,7 +21,7 @@ const Home = () => {
         <Checkbox children="checkbox3" value="checkbox3" />
         <Checkbox children="checkbox4" value="checkbox4" />
       </MultiGroup>
-      <MultiGroup variant="checkbox">
+      <MultiGroup variant="switch">
         <Switch label="switch1" value="switch1" />
         <Switch label="switch2" value="switch2" />
         <Switch label="switch3" value="switch3" />
