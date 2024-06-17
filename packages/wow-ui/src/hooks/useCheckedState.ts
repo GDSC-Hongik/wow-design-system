@@ -31,20 +31,20 @@ const useCheckedState = ({
   const groupCheckedValue = groupCheckedValues?.includes(value);
   const disabled = groupDisabled || disabledProp || false;
 
-  const [checked, setChecked] = useState<boolean>(
+  const [checkedValue, setCheckedValue] = useState<boolean>(
     groupCheckedValue || checkedProp || defaultChecked
   );
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
     if (groupCheckedValue !== undefined) {
-      setChecked(groupCheckedValue);
+      setCheckedValue(groupCheckedValue);
     }
   }, [groupCheckedValue]);
 
   useEffect(() => {
     if (groupCheckedValue === undefined && checkedProp !== undefined) {
-      setChecked(checkedProp);
+      setCheckedValue(checkedProp);
     }
   }, [checkedProp, groupCheckedValue]);
 
@@ -56,7 +56,7 @@ const useCheckedState = ({
     } else if (onChange) {
       onChange();
     } else {
-      setChecked((prev) => !prev);
+      setCheckedValue((prev) => !prev);
     }
   };
 
@@ -89,7 +89,7 @@ const useCheckedState = ({
   };
 
   return {
-    checked,
+    checked: checkedValue,
     pressed,
     disabled,
     handleClick,
