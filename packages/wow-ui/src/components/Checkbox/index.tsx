@@ -36,7 +36,7 @@ export interface CheckboxProps extends PropsWithChildren {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
-  value: string;
+  value?: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -54,7 +54,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       defaultChecked = false,
       disabled: disabledProp = false,
       checked: checkedProp,
-      value,
+      value = "checkbox",
       onClick,
       onChange,
       children,

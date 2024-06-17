@@ -31,7 +31,7 @@ export interface SwitchProps {
   disabled?: boolean;
   checked?: boolean;
   label?: ReactNode;
-  value: string;
+  value?: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -49,7 +49,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       disabled: disabledProp = false,
       checked: checkedProp,
       label = "",
-      value,
+      value = "switch",
       onChange,
       onClick,
       onKeyDown,
