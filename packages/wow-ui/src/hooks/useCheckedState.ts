@@ -45,8 +45,10 @@ const useCheckedState = ({
   }, [checkedProp, groupChecked]);
 
   const toggleCheckedState = (value: string) => {
+    if (disabled) return;
+
     if (groupOnChange) {
-      if (!disabled) groupOnChange(value);
+      groupOnChange(value);
     } else if (onChange) {
       onChange();
     } else {
