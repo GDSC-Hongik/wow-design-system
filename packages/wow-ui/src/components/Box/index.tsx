@@ -2,10 +2,11 @@
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type { ColorToken } from "@styled-system/tokens";
-import type { CSSProperties, ReactNode } from "react";
+import { type CSSProperties, type ReactNode } from "react";
 import { RightArrow } from "wowds-icons";
 
 import Checkbox from "@/components/Checkbox";
+import { useCheckedState } from "@/hooks";
 
 export interface BoxProps {
   leftElement?: ReactNode;
@@ -14,6 +15,7 @@ export interface BoxProps {
   textColor?: ColorToken;
   subText?: string;
   subTextColor?: ColorToken;
+  checked?: boolean;
   status?: "default" | "success" | "error";
   onClick?: () => void;
   style?: CSSProperties;
@@ -45,8 +47,14 @@ const Box = ({
   status = "default",
   onClick,
   style,
+  checked: checkedProp,
   ...rest
 }: BoxProps) => {
+  const { handleClick, checked } = useCheckedState({
+    checked: checkedProp,
+    onClick,
+  });
+
   const getStrokeColor = (status: "default" | "success" | "error") => {
     switch (status) {
       case "default":
@@ -57,7 +65,7 @@ const Box = ({
         return "primary";
     }
   };
-  const handleClick = () => {
+  const handleArrowClick = () => {
     if (type === "arrow" && onClick) {
       onClick();
     }
@@ -71,15 +79,14 @@ const Box = ({
       id={`box-${text}`}
       justifyContent="space-between"
       style={{ ...style }}
-      onClick={handleClick}
+      onClick={handleArrowClick}
       {...rest}
     >
       <Flex alignItems="center" direction="row" gap="xs">
         {leftElement}
         <Flex direction="column" gap="xxs">
           <styled.span
-            color={textColor ? textColor : "red"}
-            fontWeight="600"
+            color={textColor ? textColor : "textBlack"}
             textStyle="h3"
           >
             {text}
@@ -94,7 +101,7 @@ const Box = ({
       </Flex>
       <button aria-label="box-rightElement" tabIndex={0}>
         {type === "checkbox" ? (
-          <Checkbox />
+          <Checkbox checked={checked} onClick={handleClick} />
         ) : type === "arrow" ? (
           <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
         ) : null}
