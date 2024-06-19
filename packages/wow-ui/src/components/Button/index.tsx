@@ -17,6 +17,9 @@ import type {
  *
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {string} label - 버튼의 라벨.
+ * @param {"lg" | "sm"} [size] - 버튼의 크기.
+ * @param {"solid" | "outline"} [variant] - 버튼의 종류.
+ * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
  * @param {CSSProperties} [style] - 버튼의 커스텀 스타일.
  * @param {string} [className] - 버튼에 전달하는 커스텀 클래스.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
@@ -149,21 +152,6 @@ const ButtonStyle = cva({
           color: "bluePressed",
         },
       },
-      // text: {
-      //   background: "none",
-      //   color: "sub",
-      //   _disabled: {
-      //     borderColor: "darkDisabled",
-      //     color: "darkDisabled",
-      //     cursor: "default",
-      //   },
-      //   _hover: {
-      //     color: "textBlack",
-      //   },
-      //   "&[data-pressed=true]": {
-      //     background: "monoBackgroundPressed",
-      //   },
-      // },
     },
   },
 });
