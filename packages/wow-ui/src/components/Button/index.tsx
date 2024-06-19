@@ -163,6 +163,7 @@ const ButtonStyle = cva({
       css: {
         borderColor: "outline",
         color: "textBlack",
+
         _hover: {
           borderColor: "textBlack",
           color: "textBlack",
@@ -170,6 +171,7 @@ const ButtonStyle = cva({
         _pressed: {
           borderColor: "outline",
           background: "monoBackgroundPressed",
+          color: "textBlack",
         },
       },
     },
