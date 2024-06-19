@@ -2,8 +2,19 @@
 
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
-import type { CSSProperties, KeyboardEvent } from "react";
+import type {
+  CSSProperties,
+  ElementType,
+  KeyboardEvent,
+  ReactNode,
+} from "react";
 import { forwardRef, useCallback, useState } from "react";
+
+import type {
+  PolymorphicComponentProps,
+  PolymorphicComponentPropsWithRef,
+  PolymorphicRef,
+} from "@/types";
 
 /**
  * @description 버튼 컴포넌트의 속성을 정의합니다.
@@ -16,7 +27,7 @@ import { forwardRef, useCallback, useState } from "react";
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 
-export interface ButtonProps {
+export interface CustomButtonProps {
   disabled?: boolean;
   label: string;
   size?: "large" | "small";
@@ -26,18 +37,30 @@ export interface ButtonProps {
   className?: string;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
+type ButtonProps<C extends ElementType> = PolymorphicComponentProps<
+  C,
+  CustomButtonProps
+>;
+
+type ButtonComponent = <C extends ElementType = "button">(
+  props: PolymorphicComponentPropsWithRef<C, ButtonProps<C>>
+) => ReactNode;
+
+const Button: ButtonComponent & { displayName?: string } = forwardRef(
+  <C extends ElementType = "button">(
     {
+      as,
       disabled = false,
       label,
       size = "large",
       variant = "solid",
       state = "default",
       ...rest
-    },
-    ref
+    }: ButtonProps<C>,
+    ref?: PolymorphicRef<C>
   ) => {
+    const Component = as || "button";
+
     const [pressed, setPressed] = useState<boolean>(false);
 
     const handleMouseDown = useCallback(() => {
@@ -67,7 +90,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <styled.button
+      <Component
         aria-disabled={disabled}
         data-pressed={pressed}
         disabled={disabled}
@@ -87,7 +110,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <styled.span textStyle={variant === "text" ? "label1" : "label1"}>
           {label}
         </styled.span>
-      </styled.button>
+      </Component>
     );
   }
 );
