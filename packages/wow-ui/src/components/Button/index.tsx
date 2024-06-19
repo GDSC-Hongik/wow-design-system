@@ -2,14 +2,10 @@
 
 import { cva } from "@styled-system/css/cva";
 import { styled } from "@styled-system/jsx";
-import type {
-  CSSProperties,
-  ElementType,
-  KeyboardEvent,
-  ReactNode,
-} from "react";
-import { forwardRef, useCallback, useState } from "react";
+import type { CSSProperties, ElementType, ReactNode } from "react";
+import { forwardRef } from "react";
 
+import useButton from "@/hooks/useButton";
 import type {
   PolymorphicComponentProps,
   PolymorphicComponentPropsWithRef,
@@ -30,9 +26,9 @@ import type {
 export interface CustomButtonProps {
   disabled?: boolean;
   label: string;
-  size?: "large" | "small";
-  variant?: "solid" | "outline" | "text";
-  state?: "default" | "success" | "error";
+  size?: "lg" | "sm";
+  variant?: "solid" | "outline";
+  onKeyDown?: () => void;
   style?: CSSProperties;
   className?: string;
 }
@@ -52,42 +48,22 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
       as,
       disabled = false,
       label,
-      size = "large",
+      size = "lg",
       variant = "solid",
-      state = "default",
+      onKeyDown,
       ...rest
     }: ButtonProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = as || "button";
 
-    const [pressed, setPressed] = useState<boolean>(false);
-
-    const handleMouseDown = useCallback(() => {
-      if (!disabled) setPressed(true);
-    }, [setPressed, disabled]);
-
-    const handleMouseUp = useCallback(() => {
-      if (!disabled) setPressed(false);
-    }, [setPressed, disabled]);
-
-    const handleKeyDown = useCallback(
-      (event: KeyboardEvent) => {
-        if (event.key === " " || event.key === "Enter") {
-          setPressed(true);
-        }
-      },
-      [setPressed]
-    );
-
-    const handleKeyUp = useCallback(
-      (event: KeyboardEvent) => {
-        if (event.key === " " || event.key === "Enter") {
-          setPressed(false);
-        }
-      },
-      [setPressed]
-    );
+    const {
+      pressed,
+      handleKeyDown,
+      handleKeyUp,
+      handleMouseDown,
+      handleMouseUp,
+    } = useButton({ disabled, onKeyDown });
 
     return (
       <Component
@@ -98,7 +74,6 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         className={ButtonStyle({
           size,
           variant,
-          state,
         })}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
@@ -107,7 +82,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         onMouseUp={handleMouseUp}
         {...rest}
       >
-        <styled.span textStyle={variant === "text" ? "label1" : "label1"}>
+        <styled.span textStyle={size === "lg" ? "label1" : "label2"}>
           {label}
         </styled.span>
       </Component>
@@ -125,13 +100,13 @@ const ButtonStyle = cva({
   },
   variants: {
     size: {
-      large: {
+      lg: {
         width: "100%",
         height: "3rem",
         padding: "1rem",
         borderRadius: "md",
       },
-      small: {
+      sm: {
         height: "2.375rem",
         padding: "1rem",
         borderRadius: "full",
@@ -174,32 +149,21 @@ const ButtonStyle = cva({
           color: "bluePressed",
         },
       },
-      text: {
-        background: "none",
-        color: "sub",
-        _disabled: {
-          borderColor: "darkDisabled",
-          color: "darkDisabled",
-          cursor: "default",
-        },
-        _hover: {
-          color: "textBlack",
-        },
-        "&[data-pressed=true]": {
-          background: "monoBackgroundPressed",
-        },
-      },
-    },
-    state: {
-      default: {},
-      success: {
-        borderColor: "success",
-        color: "success",
-      },
-      error: {
-        borderColor: "error",
-        color: "error",
-      },
+      // text: {
+      //   background: "none",
+      //   color: "sub",
+      //   _disabled: {
+      //     borderColor: "darkDisabled",
+      //     color: "darkDisabled",
+      //     cursor: "default",
+      //   },
+      //   _hover: {
+      //     color: "textBlack",
+      //   },
+      //   "&[data-pressed=true]": {
+      //     background: "monoBackgroundPressed",
+      //   },
+      // },
     },
   },
 });
