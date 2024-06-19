@@ -99,13 +99,13 @@ const Box = ({
           </styled.span>
         </Flex>
       </Flex>
-      <button aria-label="box-rightElement" tabIndex={0}>
+      <div>
         {type === "checkbox" ? (
           <Checkbox checked={checked} onClick={handleClick} />
         ) : type === "arrow" ? (
           <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
         ) : null}
-      </button>
+      </div>
     </Flex>
   );
 };
@@ -119,7 +119,7 @@ const containerStyle = cva({
     paddingBottom: "lg",
     borderRadius: "md",
     border: "1px solid",
-    xs: {
+    base: {
       width: "100%",
     },
     md: {

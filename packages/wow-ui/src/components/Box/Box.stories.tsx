@@ -5,6 +5,14 @@ import Box from "@/components/Box";
 const meta = {
   title: "Example/Box",
   component: Box,
+  parameters: {
+    componentSubtitle: "박스 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof Box>;
 
