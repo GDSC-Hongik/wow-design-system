@@ -70,7 +70,7 @@ export const mono900 = "#242424";
 export const mono950 = "#121212";
 
 export const white = "#FFFFFF";
-export const black = "#232021";
+export const black = "#000000";
 
 export const whiteOpacity20 = "rgba(255, 255, 255, 0.2)";
 

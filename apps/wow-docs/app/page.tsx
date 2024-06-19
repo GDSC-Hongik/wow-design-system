@@ -1,3 +1,4 @@
+import Box from "wowds-ui/Box";
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
 import RadioButton from "wowds-ui/RadioButton";
