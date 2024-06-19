@@ -71,7 +71,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
     return (
       <Component
         aria-disabled={disabled}
-        data-pressed={pressed}
+        aria-pressed={pressed}
         disabled={disabled}
         ref={ref}
         className={ButtonStyle({
@@ -125,9 +125,9 @@ const ButtonStyle = cva({
           cursor: "not-allowed",
         },
         _hover: {
-          "&:not(_disabled)": {},
+          shadow: "blue",
         },
-        "&[data-pressed=true]": {
+        _pressed: {
           background: "bluePressed",
         },
       },
@@ -145,12 +145,10 @@ const ButtonStyle = cva({
           cursor: "not-allowed",
         },
         _hover: {
-          "&:not(_disabled)": {
-            borderColor: "blueHover",
-            color: "blueHover",
-          },
+          borderColor: "blueHover",
+          color: "blueHover",
         },
-        "&[data-pressed=true]": {
+        _pressed: {
           borderColor: "bluePressed",
           background: "blueBackgroundPressed",
           color: "bluePressed",
@@ -158,6 +156,24 @@ const ButtonStyle = cva({
       },
     },
   },
+  compoundVariants: [
+    {
+      size: "sm",
+      variant: "outline",
+      css: {
+        borderColor: "outline",
+        color: "textBlack",
+        _hover: {
+          borderColor: "textBlack",
+          color: "textBlack",
+        },
+        _pressed: {
+          borderColor: "outline",
+          background: "monoBackgroundPressed",
+        },
+      },
+    },
+  ],
 });
 
 Button.displayName = "Button";
