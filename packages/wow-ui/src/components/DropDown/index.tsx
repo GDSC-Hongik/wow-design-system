@@ -2,48 +2,110 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type { PropsWithChildren, ReactElement, SetStateAction } from "react";
-import { Children, cloneElement, isValidElement, useState } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useEffect,
+  useRef,
+} from "react";
 import { DownArrow } from "wowds-icons";
 
-type SizeType = "large" | "small";
-export interface DropDownBaseProps extends PropsWithChildren {
-  size?: SizeType;
-}
+import { useClickOutside, useDropDownState } from "../../hooks";
 
-export interface LargeDropDownProps extends DropDownBaseProps {
-  label?: string;
-  placeholder?: string;
-  trigger?: never;
-}
-
-export interface SmallDropDownProps extends DropDownBaseProps {
-  size: "small";
-  trigger?: ReactElement;
+export interface DropDownWithTriggerProps extends PropsWithChildren {
+  trigger: ReactElement;
   label?: never;
   placeholder?: never;
 }
 
-export type DropDownProps = LargeDropDownProps | SmallDropDownProps;
+export interface DropDownWithoutTriggerProps extends PropsWithChildren {
+  trigger?: never;
+  label: string;
+  placeholder: string;
+}
+
+export type DropDownProps = (
+  | DropDownWithTriggerProps
+  | DropDownWithoutTriggerProps
+) & {
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+};
 
 export interface DropDownOptionProps extends PropsWithChildren {
+  focused?: boolean;
   value: string;
   onClick?: () => void;
 }
 
 const DropDown = ({
-  size = "large",
   children,
   trigger,
   label,
   placeholder,
+  value,
+  defaultValue,
+  onChange,
 }: DropDownProps) => {
-  const [selected, setSelected] = useState("");
-  const [open, setOpen] = useState(false);
+  const {
+    selected,
+    open,
+    setOpen,
+    focusedIndex,
+    setFocusedIndex,
+    handleSelect,
+    handleKeyDown,
+  } = useDropDownState({ value, defaultValue, children, onChange });
 
-  const handleSelect = (option: SetStateAction<string>) => {
-    setSelected(option);
-    setOpen(!open);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useClickOutside(dropdownRef, () => setOpen(false));
+
+  useEffect(() => {
+    if (open && focusedIndex !== null && optionsRef.current[focusedIndex]) {
+      optionsRef.current[focusedIndex]?.focus();
+    }
+  }, [open, focusedIndex]);
+
+  const DropDownContent = ({
+    children,
+    optionsRef,
+    focusedIndex,
+    setFocusedIndex,
+    handleSelect,
+  }: {
+    children: React.ReactNode;
+    optionsRef: React.RefObject<(HTMLDivElement | null)[]>;
+    focusedIndex: number | null;
+    setFocusedIndex: (index: number) => void;
+    handleSelect: (value: string) => void;
+  }) => {
+    return (
+      <>
+        {Children.toArray(children).map((child, index) => {
+          if (isValidElement(child) && child.type === DropDown.Item) {
+            return cloneElement(child as ReactElement, {
+              key: child.props.value,
+              ref: (el: HTMLDivElement) => {
+                if (optionsRef.current) optionsRef.current[index] = el;
+              },
+              onClick: () => {
+                child.props.onClick && child.props.onClick();
+                handleSelect(child.props.value);
+              },
+              onMouseEnter: () => setFocusedIndex(index),
+              focused: focusedIndex === index,
+            });
+          }
+          return child;
+        })}
+      </>
+    );
   };
 
   return (
@@ -51,13 +113,16 @@ const DropDown = ({
       cursor="pointer"
       direction="column"
       gap="xs"
-      width={size === "small" ? "fit-content" : "auto"}
+      ref={dropdownRef}
+      tabIndex={0}
+      width={trigger ? "fit-content" : "auto"}
+      onKeyDown={handleKeyDown}
     >
       {trigger &&
         cloneElement(trigger, {
           onClick: () => setOpen(!open),
         })}
-      {size === "large" && (
+      {!trigger && (
         <styled.span
           color={selected || open ? "textBlack" : "sub"}
           textStyle="label2"
@@ -65,17 +130,37 @@ const DropDown = ({
           {label}
         </styled.span>
       )}
-      <div
-        className={dropdownStyle({
-          type: open ? "focused" : selected ? "selected" : "default",
-        })}
-      >
-        {!trigger && (
-          <Flex justifyContent="space-between">
+      {trigger ? (
+        <>
+          {open && (
+            <Flex
+              direction="column"
+              gap="xs"
+              paddingTop="sm"
+              className={dropdownStyle({
+                type: open ? "focused" : selected ? "selected" : "default",
+              })}
+            >
+              <DropDownContent
+                children={children}
+                focusedIndex={focusedIndex}
+                handleSelect={handleSelect}
+                optionsRef={optionsRef}
+                setFocusedIndex={setFocusedIndex}
+              />
+            </Flex>
+          )}
+        </>
+      ) : (
+        <styled.div
+          className={dropdownStyle({
+            type: open ? "focused" : selected ? "selected" : "default",
+          })}
+        >
+          <Flex justifyContent="space-between" onClick={() => setOpen(!open)}>
             <styled.div
               color={selected && !open ? "textBlack" : "outline"}
               textStyle="body1"
-              onClick={() => handleSelect(selected)}
             >
               {selected ? selected : placeholder}
             </styled.div>
@@ -84,29 +169,19 @@ const DropDown = ({
               stroke={open ? "monoHover" : selected ? "sub" : "outline"}
             />
           </Flex>
-        )}
-        {open && (
-          <styled.div
-            display="flex"
-            flexDirection="column"
-            gap="xs"
-            paddingTop="sm"
-          >
-            {Children.toArray(children).map((child) => {
-              if (isValidElement(child) && child.type === DropDown.Option) {
-                return cloneElement(child as ReactElement, {
-                  key: child.props.value,
-                  onClick: () => {
-                    child.props.onClick && child.props.onClick();
-                    handleSelect(child.props.value);
-                  },
-                });
-              }
-              return child;
-            })}
-          </styled.div>
-        )}
-      </div>
+          {open && (
+            <Flex direction="column" gap="xs" paddingTop="sm">
+              <DropDownContent
+                children={children}
+                focusedIndex={focusedIndex}
+                handleSelect={handleSelect}
+                optionsRef={optionsRef}
+                setFocusedIndex={setFocusedIndex}
+              />
+            </Flex>
+          )}
+        </styled.div>
+      )}
     </Flex>
   );
 };
@@ -114,17 +189,25 @@ const DropDown = ({
 DropDown.displayName = "DropDown";
 export default DropDown;
 
-DropDown.Option = function ({ value, children, onClick }: DropDownOptionProps) {
+DropDown.Item = forwardRef<HTMLDivElement, DropDownOptionProps>(function Item(
+  { value, children, onClick, focused },
+  ref
+) {
   return (
     <styled.div
-      id={`dropdown-option-${value}`}
+      {...(focused && { border: "1px solid" })}
+      {...(focused && { borderColor: "primary" })}
+      id={`dropdown-item-${value}`}
+      outline="none"
+      ref={ref}
+      tabIndex={-1}
       textStyle="body1"
       onClick={onClick}
     >
       {children}
     </styled.div>
   );
-};
+});
 
 const iconStyle = cva({
   base: {
@@ -143,7 +226,6 @@ const iconStyle = cva({
 });
 const dropdownStyle = cva({
   base: {
-    maxWidth: "22.375rem",
     lg: {
       maxWidth: "22.375rem",
     },
@@ -162,6 +244,9 @@ const dropdownStyle = cva({
         borderColor: "outline",
         _hover: {
           borderColor: "sub",
+        },
+        _pressed: {
+          backgroundColor: "monoBackgroundPressed",
         },
       },
       focused: {
