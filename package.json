@@ -94,5 +94,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "resolutions": {
+    "braces": "3.0.3"
   }
 }
