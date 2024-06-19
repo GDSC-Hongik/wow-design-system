@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { color } from "wowds-tokens";
 
 import Box from "@/components/Box";
 
@@ -44,7 +43,6 @@ export const LongBox: Story = {
     text: "Q. 서류, 면접 전형이 있나요?",
     subText:
       "없습니다! 홍익대학교 학생이라면 누구나 본 사이트의 '지원하기'를 통해 가입할 수 있어요.",
-    subTextColor: `${color.textBlack}`,
   },
 };
 
@@ -60,7 +58,7 @@ export const LeftElementBox: Story = {
   args: {
     text: "GDSC Hongik Discord",
     subText: "디스코드 연동이 필요해요.",
-    textColor: `${color.discord}`,
+    textColor: "discord",
     status: "error",
     type: "arrow",
     leftElement: (
