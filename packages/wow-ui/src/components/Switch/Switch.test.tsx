@@ -76,7 +76,7 @@ describe("disabled", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
-    rendered = render(<Switch isDisabled />);
+    rendered = render(<Switch disabled />);
   });
 
   it("should render with attributes aria-disabled to be true", () => {
@@ -155,11 +155,11 @@ describe("external control and events", () => {
   });
 
   it("should toggle external checked state when onClick event fired", async () => {
-    let isChecked = false;
+    let checked = false;
     const handleChange = () => {
-      isChecked = !isChecked;
+      checked = !checked;
     };
-    const rendered = render(<Switch isChecked={isChecked} />);
+    const rendered = render(<Switch checked={checked} />);
     const switchComponent = rendered.getByRole("checkbox");
     switchComponent.onchange = handleChange;
 

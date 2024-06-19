@@ -2,107 +2,108 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type { ComponentPropsWithRef, KeyboardEvent, ReactNode } from "react";
-import { forwardRef, useEffect, useState } from "react";
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef, useId } from "react";
+
+import useCheckedState from "@/hooks/useCheckedState";
 
 /**
- * @template T 렌더링할 요소 또는 컴포넌트 타입
+ * @description on, off 두 가지 상태로 설정할 수 있는 스위치 컴포넌트입니다.
  *
  * @param {boolean} [defaultChecked=false] 스위치가 처음에 활성화되어 있는지 여부.
- * @param {boolean} [isDisabled=false] 스위치가 비활성화되어 있는지 여부.
- * @param {boolean} [isChecked=false] 외부에서 제어할 활성 상태.
- * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
- * @param {ReactNode} [text] 스위치 오른 쪽에 들어갈 텍스트.
- * @param {() => void} [onClick] 스위치 클릭 시 동작할 이벤트.
- * @param {() => void} [onKeyDown] 스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
+ * @param {boolean} [disabled=false] 스위치가 비활성화되어 있는지 여부.
+ * @param {boolean} [checked] 외부에서 제어할 활성 상태.
+ * @param {ReactNode} [text] 스위치 오른쪽에 들어갈 텍스트.
+ * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
+ * @param {() => void} [onClick] 스위치를 클릭했을 때 호출되는 함수.
+ * @param {() => void} [onKeyDown] 스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수.
+ * @param {() => void} [onMouseEnter] 마우스가 스위치 위로 진입할 때 호출되는 함수.
+ * @param {() => void} [onMouseLeave] 마우스가 스위치에서 벗어날 때 호출되는 함수.
+ * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 스위치의 기본 input 요소에 전달할 추가 속성들.
+ * @param {CSSProperties} [style] 스위치의 커스텀 스타일.
+ * @param {string} [className] 스위치에 전달하는 커스텀 클래스.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 export interface SwitchProps {
   defaultChecked?: boolean;
-  isDisabled?: boolean;
-  isChecked?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
   text?: ReactNode;
+  onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
-  onChange?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  style?: CSSProperties;
+  className?: string;
 }
 
-const SwitchIcon = ({
-  isDisabled,
-  isChecked,
-}: {
-  isDisabled: boolean;
-  isChecked: boolean;
-}) => {
-  return (
-    <span
-      className={switchIconStyle({
-        type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
-      })}
-    />
-  );
-};
-
-const Switch = forwardRef(
+const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
       defaultChecked = false,
-      isDisabled = false,
-      isChecked: isCheckedProp,
+      disabled = false,
+      checked: checkedProp,
       text = "",
+      onChange,
       onClick,
       onKeyDown,
-      onChange,
+      onMouseEnter,
+      onMouseLeave,
+      inputProps,
       ...rest
     }: SwitchProps,
-    ref: ComponentPropsWithRef<"input">["ref"]
+    ref
   ) => {
-    const [isChecked, setIsChecked] = useState(() =>
-      isCheckedProp ? isCheckedProp : defaultChecked
-    );
+    const defaultId = `switch-${useId()}`;
+    const id = inputProps?.id ?? defaultId;
 
-    useEffect(() => {
-      if (isCheckedProp !== undefined) {
-        setIsChecked(isCheckedProp);
-      }
-    }, [isCheckedProp]);
-
-    const handleClick = () => {
-      onChange ? onChange() : setIsChecked((prev) => !prev);
-      onClick?.();
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-
-        onChange ? onChange() : setIsChecked((prev) => !prev);
-        onKeyDown?.();
-      }
-    };
+    const {
+      checked,
+      pressed,
+      handleClick,
+      handleKeyDown,
+      handleKeyUp,
+      handleMouseUp,
+      handleMouseDown,
+    } = useCheckedState({
+      defaultChecked,
+      checked: checkedProp,
+      disabled,
+      onChange,
+      onClick,
+      onKeyDown,
+    });
 
     return (
-      <Flex alignItems="center" gap="0.5rem">
+      <Flex alignItems="center" display="inline-flex" gap="xs" {...rest}>
         <styled.label
-          htmlFor="switch"
-          className={switchStyle({
-            type: isDisabled ? "disabled" : isChecked ? "checked" : "unchecked",
+          htmlFor={id}
+          {...(pressed && { "data-pressed": true })}
+          className={labelStyle({
+            type: disabled ? "disabled" : checked ? "checked" : "unchecked",
           })}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onMouseDown={handleMouseDown}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={handleMouseUp}
         >
-          <input
-            id="switch"
-            ref={ref}
-            {...rest}
-            aria-checked={isChecked}
-            aria-disabled={isDisabled}
-            aria-label="switch"
+          <styled.input
+            aria-checked={checked}
+            aria-disabled={disabled}
+            aria-label={inputProps?.["aria-label"] ?? "switch"}
             className={inputStyle()}
+            id={id}
+            ref={ref}
             type="checkbox"
             onClick={handleClick}
-            onKeyDown={handleKeyDown}
+            {...inputProps}
           />
-          <SwitchIcon isChecked={isChecked} isDisabled={isDisabled} />
+          <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />
         </styled.label>
         {!!text && <styled.span textStyle="body2">{text}</styled.span>}
       </Flex>
@@ -110,7 +111,29 @@ const Switch = forwardRef(
   }
 );
 
-const switchStyle = cva({
+Switch.displayName = "Switch";
+export default Switch;
+
+const SwitchIcon = ({
+  disabled,
+  checked,
+  pressed,
+}: {
+  disabled: boolean;
+  checked: boolean;
+  pressed: boolean;
+}) => {
+  return (
+    <span
+      {...(pressed && { "data-pressed": true })}
+      className={switchIconStyle({
+        type: disabled ? "disabled" : checked ? "checked" : "unchecked",
+      })}
+    />
+  );
+};
+
+const labelStyle = cva({
   base: {
     width: "3.25rem !important",
     height: "1.75rem !important",
@@ -123,15 +146,32 @@ const switchStyle = cva({
     type: {
       checked: {
         bgColor: "primary",
-        _hover: { bgColor: "blueHover" },
-        _pressed: { bgColor: "bluePressed" },
+        _hover: {
+          bgColor: "blueHover",
+          _pressed: {
+            bgColor: "bluePressed",
+          },
+        },
+        _pressed: {
+          bgColor: "bluePressed",
+        },
       },
       unchecked: {
         bgColor: "outline",
-        _hover: { bgColor: "sub" },
-        _pressed: { bgColor: "lightDisabled" },
+        _hover: {
+          bgColor: "sub",
+          _pressed: {
+            bgColor: "bluePressed",
+          },
+        },
+        _pressed: {
+          bgColor: "bluePressed",
+        },
       },
-      disabled: { bgColor: "lightDisabled" },
+      disabled: {
+        bgColor: "lightDisabled",
+        cursor: "default",
+      },
     },
   },
   defaultVariants: {
@@ -146,6 +186,7 @@ const inputStyle = cva({
     height: 0,
     overflow: "hidden",
     position: "absolute",
+    cursor: "inherit",
   },
 });
 
@@ -163,6 +204,11 @@ const switchIconStyle = cva({
       checked: {
         left: "1.625rem",
         bg: "backgroundNormal",
+        _hover: {
+          _pressed: {
+            bg: "blueBackgroundPressed",
+          },
+        },
         _pressed: {
           bg: "blueBackgroundPressed",
         },
@@ -170,6 +216,11 @@ const switchIconStyle = cva({
       unchecked: {
         left: "0.125rem",
         bg: "backgroundNormal",
+        _hover: {
+          _pressed: {
+            bg: "monoBackgroundPressed",
+          },
+        },
         _pressed: {
           bg: "monoBackgroundPressed",
         },
@@ -183,7 +234,3 @@ const switchIconStyle = cva({
     type: "checked",
   },
 });
-
-Switch.displayName = "Switch";
-
-export default Switch;
