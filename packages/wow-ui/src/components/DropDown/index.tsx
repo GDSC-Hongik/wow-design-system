@@ -4,13 +4,27 @@ import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type { PropsWithChildren, ReactElement, SetStateAction } from "react";
 import { Children, cloneElement, isValidElement, useState } from "react";
+import { DownArrow } from "wowds-icons";
 
-export interface DropDownProps extends PropsWithChildren {
-  size?: "large" | "small";
-  trigger?: ReactElement;
+type SizeType = "large" | "small";
+export interface DropDownBaseProps extends PropsWithChildren {
+  size?: SizeType;
+}
+
+export interface LargeDropDownProps extends DropDownBaseProps {
   label?: string;
   placeholder?: string;
+  trigger?: never;
 }
+
+export interface SmallDropDownProps extends DropDownBaseProps {
+  size: "small";
+  trigger?: ReactElement;
+  label?: never;
+  placeholder?: never;
+}
+
+export type DropDownProps = LargeDropDownProps | SmallDropDownProps;
 
 export interface DropDownOptionProps extends PropsWithChildren {
   value: string;
@@ -25,11 +39,11 @@ const DropDown = ({
   placeholder,
 }: DropDownProps) => {
   const [selected, setSelected] = useState("");
-  const [showOptions, setShowOptions] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSelect = (option: SetStateAction<string>) => {
     setSelected(option);
-    setShowOptions(!showOptions);
+    setOpen(!open);
   };
 
   return (
@@ -41,11 +55,11 @@ const DropDown = ({
     >
       {trigger &&
         cloneElement(trigger, {
-          onClick: () => setShowOptions(!showOptions),
+          onClick: () => setOpen(!open),
         })}
       {size === "large" && (
         <styled.span
-          color={selected || showOptions ? "textBlack" : "sub"}
+          color={selected || open ? "textBlack" : "sub"}
           textStyle="label2"
         >
           {label}
@@ -53,19 +67,25 @@ const DropDown = ({
       )}
       <div
         className={dropdownStyle({
-          type: showOptions ? "focused" : selected ? "selected" : "default",
+          type: open ? "focused" : selected ? "selected" : "default",
         })}
       >
         {!trigger && (
-          <styled.div
-            color={selected && !showOptions ? "textBlack" : "outline"}
-            textStyle="body1"
-            onClick={() => handleSelect(selected)}
-          >
-            {selected ? selected : placeholder}
-          </styled.div>
+          <Flex justifyContent="space-between">
+            <styled.div
+              color={selected && !open ? "textBlack" : "outline"}
+              textStyle="body1"
+              onClick={() => handleSelect(selected)}
+            >
+              {selected ? selected : placeholder}
+            </styled.div>
+            <DownArrow
+              className={iconStyle({ type: open ? "up" : "down" })}
+              stroke={open ? "monoHover" : selected ? "sub" : "outline"}
+            />
+          </Flex>
         )}
-        {showOptions && (
+        {open && (
           <styled.div
             display="flex"
             flexDirection="column"
@@ -75,7 +95,11 @@ const DropDown = ({
             {Children.toArray(children).map((child) => {
               if (isValidElement(child) && child.type === DropDown.Option) {
                 return cloneElement(child as ReactElement, {
-                  onClick: () => handleSelect(child.props.value),
+                  key: child.props.value,
+                  onClick: () => {
+                    child.props.onClick && child.props.onClick();
+                    handleSelect(child.props.value);
+                  },
                 });
               }
               return child;
@@ -102,8 +126,24 @@ DropDown.Option = function ({ value, children, onClick }: DropDownOptionProps) {
   );
 };
 
+const iconStyle = cva({
+  base: {
+    transition: "transform 0.3s ease",
+  },
+  variants: {
+    type: {
+      up: {
+        transform: "rotate(180deg)",
+      },
+      down: {
+        transform: "rotate(0deg)",
+      },
+    },
+  },
+});
 const dropdownStyle = cva({
   base: {
+    maxWidth: "22.375rem",
     lg: {
       maxWidth: "22.375rem",
     },
@@ -115,9 +155,6 @@ const dropdownStyle = cva({
     borderRadius: "sm",
     borderColor: "outline",
     padding: "xs",
-    _hover: {
-      borderColor: "sub",
-    },
   },
   variants: {
     type: {
