@@ -78,7 +78,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     });
 
     return (
-      <Flex alignItems="center" display="inline-flex" gap="xs">
+      <Flex alignItems="center" display="inline-flex" gap="xs" {...rest}>
         <styled.label
           htmlFor={id}
           {...(pressed && { "data-pressed": true })}
@@ -102,7 +102,6 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             type="checkbox"
             onClick={handleClick}
             {...inputProps}
-            {...rest}
           />
           <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />
         </styled.label>
