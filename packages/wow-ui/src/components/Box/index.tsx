@@ -1,8 +1,9 @@
+"use client";
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
+import type { ColorToken } from "@styled-system/tokens";
 import type { CSSProperties, ReactNode } from "react";
 import { RightArrow } from "wowds-icons";
-import { color } from "wowds-tokens";
 
 import Checkbox from "@/components/Checkbox";
 
@@ -10,17 +11,19 @@ export interface BoxProps {
   leftElement?: ReactNode;
   type?: "text" | "checkbox" | "arrow";
   text: string;
-  textColor?: string;
+  textColor?: ColorToken;
   subText?: string;
-  subTextColor?: string;
+  subTextColor?: ColorToken;
   status?: "default" | "success" | "error";
   onClick?: () => void;
   style?: CSSProperties;
+  className?: string;
 }
 
 /**
  * @description 사용자에게 보여주어야 하는 정보를 담을 수 있는 Box 컴포넌트입니다.
  * @param {ReactNode} [leftElement] Box 컴포넌트의 왼쪽에 들어갈 수 있는 요소입니다. (아이콘, 이미지 등)
+ * @param {string} [className] 체크박스에 전달하는 커스텀 클래스를 설정합니다.
  * @param {string} [textColor] text의 색상을 변경할 수 있습니다.
  * @param {"text" | "checkbox" | "arrow"} [type] Box 컴포넌트의 타입을 설정합니다.
  * @param {string} text Box 컴포넌트에 메인으로 표기할 텍스트를 입력합니다.
@@ -44,59 +47,58 @@ const Box = ({
   style,
   ...rest
 }: BoxProps) => {
+  const getStrokeColor = (status: "default" | "success" | "error") => {
+    switch (status) {
+      case "default":
+        return "outline";
+      case "error":
+        return "error";
+      default:
+        return "primary";
+    }
+  };
+  const handleClick = () => {
+    if (type === "arrow" && onClick) {
+      onClick();
+    }
+  };
   return (
     <Flex
       alignItems="center"
-      className={containerStyle({ status: status })}
+      className={containerStyle({ status, type })}
       direction="row"
       gap="lg"
       id={`box-${text}`}
       justifyContent="space-between"
       style={{ ...style }}
+      onClick={handleClick}
       {...rest}
     >
       <Flex alignItems="center" direction="row" gap="xs">
         {leftElement}
         <Flex direction="column" gap="xxs">
           <styled.span
-            color="red"
+            color={textColor ? textColor : "red"}
             fontWeight="600"
             textStyle="h3"
-            style={{
-              color: textColor ? textColor : `${color.textBlack}`,
-            }}
           >
             {text}
           </styled.span>
           <styled.span
+            color={subTextColor ? subTextColor : "sub"}
             textStyle="body1"
-            style={{
-              color: subTextColor ? subTextColor : `${color.sub}`,
-            }}
           >
             {subText}
           </styled.span>
         </Flex>
       </Flex>
-      <div aria-label="box-rightElement" role="button" tabIndex={0}>
+      <button aria-label="box-rightElement" tabIndex={0}>
         {type === "checkbox" ? (
           <Checkbox />
         ) : type === "arrow" ? (
-          <RightArrow
-            height={20}
-            style={{ cursor: "pointer" }}
-            width={20}
-            stroke={
-              status === "default"
-                ? "outline"
-                : status === "error"
-                  ? "error"
-                  : "primary"
-            }
-            onClick={onClick}
-          />
+          <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
         ) : null}
-      </div>
+      </button>
     </Flex>
   );
 };
@@ -105,13 +107,18 @@ export default Box;
 
 const containerStyle = cva({
   base: {
-    width: "100%",
     paddingX: "xl",
     paddingTop: "xl",
     paddingBottom: "lg",
     borderRadius: "md",
     border: "1px solid",
-    maxWidth: "40.75rem",
+    xs: {
+      width: "100%",
+    },
+    md: {
+      maxWidth: "40.75rem",
+      minWidth: "19.75rem",
+    },
     backgroundColor: "white",
   },
   variants: {
@@ -124,6 +131,17 @@ const containerStyle = cva({
       },
       error: {
         borderColor: "error",
+      },
+    },
+    type: {
+      arrow: {
+        cursor: "pointer",
+      },
+      text: {
+        cursor: "default",
+      },
+      checkbox: {
+        cursor: "default",
       },
     },
   },

@@ -10,6 +10,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "@rollup/plugin-typescript";
 import { fileURLToPath } from "url";
 import preserveDirectives from "rollup-plugin-preserve-directives";
+import { visualizer } from "rollup-plugin-visualizer";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
 
@@ -76,6 +77,7 @@ export default {
     terser(),
     json(),
     preserveDirectives.default(),
+    visualizer(),
   ],
   onwarn: (warning) => {
     if (warning.code !== "MODULE_LEVEL_DIRECTIVE") {
