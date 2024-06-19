@@ -73,7 +73,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (event.key === " ") {
+        if (event.key === " " || event.key === "Enter") {
           setPressed(true);
         }
       },
@@ -82,7 +82,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
 
     const handleKeyUp = useCallback(
       (event: KeyboardEvent) => {
-        if (event.key === " ") {
+        if (event.key === " " || event.key === "Enter") {
           setPressed(false);
         }
       },
