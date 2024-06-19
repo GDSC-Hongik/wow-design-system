@@ -16,17 +16,51 @@ import { DownArrow } from "wowds-icons";
 import { useClickOutside, useDropDownState } from "../../hooks";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
+  /**
+   * @description 드롭다운을 열기 위한 외부 트리거 요소입니다.
+   * @type {ReactElement}
+   */
   trigger: ReactElement;
+  /**
+   * @description 트리거를 사용할 경우, 레이블은 사용할 수 없습니다.
+   * @type {never}
+   */
   label?: never;
+  /**
+   * @description 트리거를 사용할 경우, 플레이스홀더는 사용할 수 없습니다.
+   * @type {never}
+   */
   placeholder?: never;
 }
 
 export interface DropDownWithoutTriggerProps extends PropsWithChildren {
-  trigger?: never;
+  /**
+   * @description 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
+   * @type {string}
+   */
   label: string;
+  /**
+   * @description 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
+   * @type {string}
+   */
   placeholder: string;
+  /**
+   * @description 외부 트리거를 사용하지 않는 경우, 트리거 요소는 사용할 수 없습니다.
+   * @type {never}
+   */
+  trigger?: never;
 }
 
+/**
+ * @description 사용자가 외부 트리거 컴포넌트 나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
+ *
+ * @param {ReactElement} [trigger] 드롭다운을 열기 위한 외부 트리거 요소입니다.
+ * @param {string} [label] 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
+ * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
+ * @param {string} [defaultValue] 초기 선택된 값을 나타냅니다.
+ * @param {string} [value] 현재 선택된 값을 나타냅니다.
+ * @param {(value: string) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
+ */
 export type DropDownProps = (
   | DropDownWithTriggerProps
   | DropDownWithoutTriggerProps
@@ -36,6 +70,13 @@ export type DropDownProps = (
   onChange?: (value: string) => void;
 };
 
+/**
+ * @description 드롭다운 옵션의 props입니다.
+ *
+ * @param {boolean} [focused] 옵션이 포커스된 상태인지 여부를 나타냅니다.
+ * @param {string} value 옵션의 값입니다.
+ * @param {() => void} [onClick] 옵션이 클릭되었을 때 호출되는 함수입니다.
+ */
 export interface DropDownOptionProps extends PropsWithChildren {
   focused?: boolean;
   value: string;
@@ -86,9 +127,9 @@ const DropDown = ({
     handleSelect: (value: string) => void;
   }) => {
     return (
-      <>
+      <styled.div className={dropdowncontentStyle()}>
         {Children.toArray(children).map((child, index) => {
-          if (isValidElement(child) && child.type === DropDown.Item) {
+          if (isValidElement(child) && child.type === DropDown.Option) {
             return cloneElement(child as ReactElement, {
               key: child.props.value,
               ref: (el: HTMLDivElement) => {
@@ -104,7 +145,7 @@ const DropDown = ({
           }
           return child;
         })}
-      </>
+      </styled.div>
     );
   };
 
@@ -189,25 +230,24 @@ const DropDown = ({
 DropDown.displayName = "DropDown";
 export default DropDown;
 
-DropDown.Item = forwardRef<HTMLDivElement, DropDownOptionProps>(function Item(
-  { value, children, onClick, focused },
-  ref
-) {
-  return (
-    <styled.div
-      {...(focused && { border: "1px solid" })}
-      {...(focused && { borderColor: "primary" })}
-      id={`dropdown-item-${value}`}
-      outline="none"
-      ref={ref}
-      tabIndex={-1}
-      textStyle="body1"
-      onClick={onClick}
-    >
-      {children}
-    </styled.div>
-  );
-});
+DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
+  function Option({ value, children, onClick, focused }, ref) {
+    return (
+      <styled.div
+        {...(focused && { border: "1px solid" })}
+        {...(focused && { borderColor: "primary" })}
+        id={`dropdown-option-${value}`}
+        outline="none"
+        ref={ref}
+        tabIndex={-1}
+        textStyle="body1"
+        onClick={onClick}
+      >
+        {children}
+      </styled.div>
+    );
+  }
+);
 
 const iconStyle = cva({
   base: {
@@ -259,5 +299,25 @@ const dropdownStyle = cva({
   },
   defaultVariants: {
     type: "default",
+  },
+});
+
+const dropdowncontentStyle = cva({
+  base: {
+    maxHeight: "140px",
+    overflow: "auto",
+    _scrollbar: {
+      width: "2px",
+    },
+    _scrollbarThumb: {
+      width: "2px",
+      height: "65px",
+      borderRadius: "sm",
+      backgroundColor: "outline",
+    },
+    _scrollbarTrack: {
+      marginTop: "2px",
+      marginBottom: "2px",
+    },
   },
 });
