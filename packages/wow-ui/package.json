@@ -40,6 +40,11 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./DropDown": {
+      "types": "./dist/components/DropDown/index.d.ts",
+      "require": "./dist/DropDown.cjs",
+      "import": "./dist/DropDown.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
