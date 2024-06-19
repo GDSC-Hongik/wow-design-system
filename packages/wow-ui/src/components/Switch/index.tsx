@@ -93,16 +93,16 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           onMouseUp={handleMouseUp}
         >
           <styled.input
-            id={id}
-            ref={ref}
-            {...rest}
-            {...inputProps}
             aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "switch"}
             className={inputStyle()}
+            id={id}
+            ref={ref}
             type="checkbox"
             onClick={handleClick}
+            {...inputProps}
+            {...rest}
           />
           <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />
         </styled.label>
