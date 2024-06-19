@@ -171,7 +171,7 @@ const labelStyle = cva({
       },
       disabled: {
         bgColor: "lightDisabled",
-        cursor: "none",
+        cursor: "default",
       },
     },
   },
