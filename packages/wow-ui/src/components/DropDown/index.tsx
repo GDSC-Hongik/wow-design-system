@@ -12,8 +12,7 @@ import {
 } from "react";
 import { DownArrow } from "wowds-icons";
 
-import { useClickOutside, useDropDownState } from "../../hooks";
-import useFlattenChildren from "../../hooks/useFlattenChildren";
+import { useClickOutside, useDropDownState, useFlattenChildren } from "@/hooks";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
