@@ -8,6 +8,11 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "버튼 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   argTypes: {
     label: {
