@@ -1,16 +1,16 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 
 const TOKEN_DIR = "../wow-tokens/src/color.ts";
 const outputFile = "../theme/src/config/colorTokenList.ts";
 
 const extractTokenName = async (filePath: string): Promise<string[]> => {
   try {
-    const data = await fs.promises.readFile(filePath, "utf-8");
+    const data = await fs.readFile(filePath, "utf-8");
     const regex = /export const (\w+) =/g;
     const matches = data.match(regex);
 
     if (!matches) {
-      throw new Error("찾는 토큰이 파일에 존재하지 않습니다.");
+      throw new Error("Token file does not found");
     }
 
     const tokenNames = matches.map((match) => {
@@ -29,8 +29,8 @@ const extractTokenName = async (filePath: string): Promise<string[]> => {
 };
 
 const generateColorTokenFiles = async (tokenNames: string[]) => {
-  const returnValue = `export const colorTokenList = ${JSON.stringify(tokenNames, null, 2)}`;
-  await fs.promises.writeFile(outputFile, returnValue, "utf-8");
+  const colorTokenContent = `export const colorTokenList = ${JSON.stringify(tokenNames, null, 2)}`;
+  await fs.writeFile(outputFile, colorTokenContent, "utf-8");
 };
 
 (async () => {

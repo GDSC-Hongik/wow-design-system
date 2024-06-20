@@ -146,9 +146,7 @@ const containerStyle = cva({
     paddingBottom: "lg",
     borderRadius: "md",
     border: "1px solid",
-    base: {
-      width: "100%",
-    },
+    width: "100%",
     md: {
       maxWidth: "40.75rem",
       minWidth: "19.75rem",
