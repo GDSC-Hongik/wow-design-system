@@ -1,10 +1,10 @@
-import type { KeyboardEvent, ReactElement } from "react";
-import { Children, isValidElement, useEffect, useState } from "react";
+import type { KeyboardEvent, ReactElement, ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 interface DropDownStateProps {
   value?: string;
   defaultValue?: string;
-  children: React.ReactNode;
+  children: ReactNode[];
   onChange?: (value: string) => void;
 }
 
@@ -24,17 +24,6 @@ const useDropDownState = ({
     }
   }, [value]);
 
-  useEffect(() => {
-    if (open) {
-      const selectedIndex = Children.toArray(children).findIndex(
-        (child) => isValidElement(child) && child.props.value === selected
-      );
-      setFocusedIndex(selectedIndex !== -1 ? selectedIndex : null);
-    } else {
-      setFocusedIndex(null);
-    }
-  }, [open, children, selected]);
-
   const handleSelect = (option: string) => {
     if (value === undefined) {
       setSelected(option);
@@ -44,45 +33,37 @@ const useDropDownState = ({
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (!open) {
-      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-        setOpen(true);
-        event.preventDefault();
-      }
-      return;
-    }
+    if (open) {
+      switch (event.key) {
+        case "ArrowDown":
+          setFocusedIndex((prevIndex) => {
+            const nextIndex =
+              prevIndex === null ? 0 : (prevIndex + 1) % children.length;
+            return nextIndex;
+          });
+          event.preventDefault();
+          break;
+        case "ArrowUp":
+          setFocusedIndex((prevIndex) => {
+            const nextIndex =
+              prevIndex === null
+                ? children.length - 1
+                : (prevIndex - 1 + children.length) % children.length;
 
-    switch (event.key) {
-      case "ArrowDown":
-        setFocusedIndex((prevIndex) => {
-          const nextIndex =
-            prevIndex === null ? 0 : (prevIndex + 1) % Children.count(children);
-          return nextIndex;
-        });
-        event.preventDefault();
-        break;
-      case "ArrowUp":
-        setFocusedIndex((prevIndex) => {
-          const nextIndex =
-            prevIndex === null
-              ? Children.count(children) - 1
-              : (prevIndex - 1 + Children.count(children)) %
-                Children.count(children);
-          return nextIndex;
-        });
-        event.preventDefault();
-        break;
-      case "Enter":
-        if (focusedIndex !== null) {
-          const child = Children.toArray(children)[
-            focusedIndex
-          ] as ReactElement;
-          handleSelect(child.props.value);
-        }
-        event.preventDefault();
-        break;
-      default:
-        break;
+            return nextIndex;
+          });
+          event.preventDefault();
+          break;
+        case "Enter":
+          if (focusedIndex !== null) {
+            const child = children[focusedIndex] as ReactElement;
+            handleSelect(child.props.value);
+          }
+          event.preventDefault();
+          break;
+        default:
+          break;
+      }
     }
   };
 

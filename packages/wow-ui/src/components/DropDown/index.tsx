@@ -2,9 +2,8 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type { PropsWithChildren, ReactElement } from "react";
+import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 import {
-  Children,
   cloneElement,
   forwardRef,
   isValidElement,
@@ -14,6 +13,7 @@ import {
 import { DownArrow } from "wowds-icons";
 
 import { useClickOutside, useDropDownState } from "../../hooks";
+import useFlattenChildren from "../../hooks/useFlattenChildren";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
@@ -38,12 +38,12 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
    * @description 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
    * @type {string}
    */
-  label: string;
+  label?: string;
   /**
    * @description 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
    * @type {string}
    */
-  placeholder: string;
+  placeholder?: string;
   /**
    * @description 외부 트리거를 사용하지 않는 경우, 트리거 요소는 사용할 수 없습니다.
    * @type {never}
@@ -77,10 +77,11 @@ export type DropDownProps = (
  * @param {string} value 옵션의 값입니다.
  * @param {() => void} [onClick] 옵션이 클릭되었을 때 호출되는 함수입니다.
  */
-export interface DropDownOptionProps extends PropsWithChildren {
+export interface DropDownOptionProps {
   focused?: boolean;
   value: string;
   onClick?: () => void;
+  text: ReactNode;
 }
 
 const DropDown = ({
@@ -92,6 +93,7 @@ const DropDown = ({
   defaultValue,
   onChange,
 }: DropDownProps) => {
+  const flattenedChildren = useFlattenChildren(children);
   const {
     selected,
     open,
@@ -100,7 +102,12 @@ const DropDown = ({
     setFocusedIndex,
     handleSelect,
     handleKeyDown,
-  } = useDropDownState({ value, defaultValue, children, onChange });
+  } = useDropDownState({
+    value,
+    defaultValue,
+    children: flattenedChildren,
+    onChange,
+  });
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -114,21 +121,24 @@ const DropDown = ({
   }, [open, focusedIndex]);
 
   const DropDownContent = ({
-    children,
     optionsRef,
     focusedIndex,
     setFocusedIndex,
     handleSelect,
   }: {
-    children: React.ReactNode;
     optionsRef: React.RefObject<(HTMLDivElement | null)[]>;
     focusedIndex: number | null;
     setFocusedIndex: (index: number) => void;
     handleSelect: (value: string) => void;
   }) => {
     return (
-      <styled.div className={dropdowncontentStyle()}>
-        {Children.toArray(children).map((child, index) => {
+      <Flex
+        className={dropdowncontentStyle()}
+        direction="column"
+        gap="xs"
+        paddingTop="sm"
+      >
+        {flattenedChildren.map((child, index) => {
           if (isValidElement(child) && child.type === DropDown.Option) {
             return cloneElement(child as ReactElement, {
               key: child.props.value,
@@ -145,7 +155,7 @@ const DropDown = ({
           }
           return child;
         })}
-      </styled.div>
+      </Flex>
     );
   };
 
@@ -174,22 +184,18 @@ const DropDown = ({
       {trigger ? (
         <>
           {open && (
-            <Flex
-              direction="column"
-              gap="xs"
-              paddingTop="sm"
+            <styled.div
               className={dropdownStyle({
                 type: open ? "focused" : selected ? "selected" : "default",
               })}
             >
               <DropDownContent
-                children={children}
                 focusedIndex={focusedIndex}
                 handleSelect={handleSelect}
                 optionsRef={optionsRef}
                 setFocusedIndex={setFocusedIndex}
               />
-            </Flex>
+            </styled.div>
           )}
         </>
       ) : (
@@ -211,15 +217,12 @@ const DropDown = ({
             />
           </Flex>
           {open && (
-            <Flex direction="column" gap="xs" paddingTop="sm">
-              <DropDownContent
-                children={children}
-                focusedIndex={focusedIndex}
-                handleSelect={handleSelect}
-                optionsRef={optionsRef}
-                setFocusedIndex={setFocusedIndex}
-              />
-            </Flex>
+            <DropDownContent
+              focusedIndex={focusedIndex}
+              handleSelect={handleSelect}
+              optionsRef={optionsRef}
+              setFocusedIndex={setFocusedIndex}
+            />
           )}
         </styled.div>
       )}
@@ -231,7 +234,7 @@ DropDown.displayName = "DropDown";
 export default DropDown;
 
 DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
-  function Option({ value, children, onClick, focused }, ref) {
+  function Option({ value, onClick, focused, text }, ref) {
     return (
       <styled.div
         {...(focused && { border: "1px solid" })}
@@ -243,7 +246,7 @@ DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
         textStyle="body1"
         onClick={onClick}
       >
-        {children}
+        {text}
       </styled.div>
     );
   }
@@ -251,7 +254,7 @@ DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
 
 const iconStyle = cva({
   base: {
-    transition: "transform 0.3s ease",
+    transition: "transform 1s ease",
   },
   variants: {
     type: {
@@ -276,7 +279,8 @@ const dropdownStyle = cva({
     border: "1px solid",
     borderRadius: "sm",
     borderColor: "outline",
-    padding: "xs",
+    paddingY: "xs",
+    paddingX: "sm",
   },
   variants: {
     type: {
