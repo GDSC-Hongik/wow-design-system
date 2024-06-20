@@ -18,6 +18,7 @@ export interface BoxProps {
   checked?: boolean;
   status?: "default" | "success" | "error";
   onClick?: () => void;
+  onChange?: () => void;
   style?: CSSProperties;
   className?: string;
 }
