@@ -132,6 +132,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    type: "text",
     text: "Text",
     subText: "Subtext",
   },
@@ -142,6 +143,9 @@ export const CheckBox: Story = {
     text: "Text",
     subText: "Subtext",
     type: "checkbox",
+    onChange: () => {
+      console.log("체크");
+    },
   },
 };
 
@@ -169,6 +173,9 @@ export const SuccessBox: Story = {
     text: "Text",
     subText: "Subtext",
     type: "checkbox",
+    onChange: () => {
+      console.log("체크");
+    },
   },
 };
 
@@ -179,6 +186,9 @@ export const LeftElementBox: Story = {
     textColor: "discord",
     status: "error",
     type: "arrow",
+    onClick: () => {
+      console.log("클릭");
+    },
     leftElement: (
       <img
         alt="discord"
@@ -202,7 +212,7 @@ const ControlledBox = () => {
       subText="checkBox controlled by checked"
       text="CheckBox Test"
       type="checkbox"
-      onClick={handleChange}
+      onChange={handleChange}
     />
   );
 };

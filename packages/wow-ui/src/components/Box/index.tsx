@@ -2,26 +2,49 @@
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type { ColorToken } from "@styled-system/tokens";
-import { type CSSProperties, type ReactNode } from "react";
 import { RightArrow } from "wowds-icons";
 
 import Checkbox from "@/components/Checkbox";
 import { useCheckedState } from "@/hooks";
 
-export interface BoxProps {
-  leftElement?: ReactNode;
-  type?: "text" | "checkbox" | "arrow";
+interface BaseBoxProps {
+  leftElement?: React.ReactNode;
   text: string;
   textColor?: ColorToken;
   subText?: string;
   subTextColor?: ColorToken;
-  checked?: boolean;
   status?: "default" | "success" | "error";
-  onClick?: () => void;
-  onChange?: () => void;
-  style?: CSSProperties;
+  style?: React.CSSProperties;
   className?: string;
 }
+export interface ArrowBoxProps extends BaseBoxProps {
+  type?: "arrow";
+  onClick: () => void;
+  onChange?: never;
+  checked?: never;
+}
+
+export interface CheckboxBoxProps extends BaseBoxProps {
+  type?: "checkbox";
+  onChange: () => void;
+  checked?: boolean;
+  onClick?: never;
+}
+
+export interface TextBoxProps extends BaseBoxProps {
+  type?: "text";
+  onClick?: never;
+  onChange?: never;
+  checked?: never;
+}
+
+type BoxType = "arrow" | "checkbox" | "text";
+
+type BoxProps<T extends BoxType> = T extends "arrow"
+  ? ArrowBoxProps
+  : T extends "checkbox"
+    ? CheckboxBoxProps
+    : TextBoxProps;
 
 /**
  * @description 사용자에게 보여주어야 하는 정보를 담을 수 있는 Box 컴포넌트입니다.
@@ -33,12 +56,14 @@ export interface BoxProps {
  * @param {string} [subText] Box 컴포넌트에 작성할 추가 정보를 입력합니다.
  * @param {string} [subTextColor] subtext의 색상을 변경할 수 있습니다.
  * @param {"default" | "success" | "error"} [status] Box 컴포넌트를 통해 사용자의 상태를 반환합니다.
- * @param {() => void} [onClick] Box 컴포넌트의 타입이 "checkbox"와 "arrow"일때 수행할 onClick 함수를 입력합니다.
- * @throws {onClick} onClick 함수는 "text" type에서 사용할 수 없습니다.
+ * @param {() => void} [onClick] Box 컴포넌트의 타입이 "arrow"일때 수행할 onClick 함수를 입력합니다.
+ * @param {() => void} [onChange] Box 컴포넌트의 타입이 "checkbox"일때 수행할 onChange 함수를 입력합니다.
+ * @throws {onClick} onClick 함수는 "text", "checkbox" type에서 사용할 수 없습니다.
+ * @throws {onChange} onChange 함수는 "text", "arrow" type에서 사용할 수 없습니다.
  * @param {CSSProperties} [style] Box 컴포넌트에 적용할 수 있는 custom style
  */
 
-const Box = ({
+const Box = <T extends BoxType>({
   leftElement,
   type = "text",
   text,
@@ -47,13 +72,14 @@ const Box = ({
   subTextColor,
   status = "default",
   onClick,
+  onChange,
   style,
   checked: checkedProp,
   ...rest
-}: BoxProps) => {
+}: BoxProps<T>) => {
   const { handleClick, checked } = useCheckedState({
     checked: checkedProp,
-    onClick,
+    onChange,
   });
 
   const getStrokeColor = (status: "default" | "success" | "error") => {
