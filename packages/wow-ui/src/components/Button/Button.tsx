@@ -110,8 +110,7 @@ const ButtonStyle = cva({
         borderRadius: "md",
       },
       sm: {
-        height: "2.375rem",
-        padding: "1rem",
+        padding: "0.75rem 1.25rem",
         borderRadius: "full",
       },
     },
