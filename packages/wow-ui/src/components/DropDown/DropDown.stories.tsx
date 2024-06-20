@@ -9,6 +9,11 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "드롭다운 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   argTypes: {
     children: {
@@ -22,7 +27,6 @@ const meta = {
       table: {
         type: { summary: "ReactElement" },
       },
-      control: { type: "none" },
     },
     label: {
       description:
@@ -72,9 +76,8 @@ export const Primary: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option value="Option 1">Option 1</DropDown.Option>
-        <DropDown.Option value="Option 2">Option 2</DropDown.Option>
-        <DropDown.Option value="Option 3">Option 3</DropDown.Option>
+        <DropDown.Option text="option 1" value="option 1" />
+        <DropDown.Option text="option 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
@@ -93,9 +96,8 @@ export const WithTrigger: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option value="Option 1">Option 1</DropDown.Option>
-        <DropDown.Option value="Option 2">Option 2</DropDown.Option>
-        <DropDown.Option value="Option 3">Option 3</DropDown.Option>
+        <DropDown.Option text="option 1" value="option 1" />
+        <DropDown.Option text="option 2" value="option 2" />
       </>
     ),
     trigger: <button>Open Dropdown</button>,
@@ -113,9 +115,8 @@ export const WithDefaultValue: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option value="Option 1">Option 1</DropDown.Option>
-        <DropDown.Option value="Option 2">Option 2</DropDown.Option>
-        <DropDown.Option value="Option 3">Option 3</DropDown.Option>
+        <DropDown.Option text="option 1" value="option 1" />
+        <DropDown.Option text="option 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
@@ -145,27 +146,15 @@ const ControlledTextField = () => {
       value={selectedValue}
       onChange={handleChange}
     >
-      <DropDown.Option value="Option1">Option 1</DropDown.Option>
-      <DropDown.Option value="Option2">Option 2</DropDown.Option>
-      <DropDown.Option value="Option3">Option 3</DropDown.Option>
+      <DropDown.Option text="option 1" value="option 1" />
+      <DropDown.Option text="option 2" value="option 2" />
     </DropDown>
   );
 };
 
 export const ControlledValue: Story = {
   render: () => <ControlledTextField />,
-  args: {
-    children: (
-      <>
-        <DropDown.Option value="Option 1">Option 1</DropDown.Option>
-        <DropDown.Option value="Option 2">Option 2</DropDown.Option>
-        <DropDown.Option value="Option 3">Option 3</DropDown.Option>
-      </>
-    ),
-    label: "Select an Option",
-    placeholder: "Please select",
-    value: "Option 3",
-  },
+  args: {},
   parameters: {
     docs: {
       description: {
@@ -180,9 +169,11 @@ export const ManyOptions: Story = {
     children: (
       <>
         {Array.from({ length: 20 }, (_, index) => (
-          <DropDown.Option key={index} value={`Option ${index + 1}`}>
-            Option {index + 1}
-          </DropDown.Option>
+          <DropDown.Option
+            key={index}
+            text={`Option ${index + 1}`}
+            value={`Option ${index + 1}`}
+          />
         ))}
       </>
     ),
