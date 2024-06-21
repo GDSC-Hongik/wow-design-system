@@ -7,7 +7,12 @@ import { RightArrow } from "wowds-icons";
 import Checkbox from "@/components/Checkbox";
 import { useCheckedState } from "@/hooks";
 
-interface BaseBoxProps {
+type BoxType = "arrow" | "checkbox" | "text";
+interface BoxProps<T extends BoxType> {
+  type?: T;
+  onClick?: T extends "arrow" ? () => void : never;
+  onChange?: T extends "checkbox" ? () => void : never;
+  checked?: T extends "checkbox" ? boolean : never;
   leftElement?: React.ReactNode;
   text: string;
   textColor?: ColorToken;
@@ -17,34 +22,6 @@ interface BaseBoxProps {
   style?: React.CSSProperties;
   className?: string;
 }
-export interface ArrowBoxProps extends BaseBoxProps {
-  type?: "arrow";
-  onClick: () => void;
-  onChange?: never;
-  checked?: never;
-}
-
-export interface CheckboxBoxProps extends BaseBoxProps {
-  type?: "checkbox";
-  onChange: () => void;
-  checked?: boolean;
-  onClick?: never;
-}
-
-export interface TextBoxProps extends BaseBoxProps {
-  type?: "text";
-  onClick?: never;
-  onChange?: never;
-  checked?: never;
-}
-
-type BoxType = "arrow" | "checkbox" | "text";
-
-type BoxProps<T extends BoxType> = T extends "arrow"
-  ? ArrowBoxProps
-  : T extends "checkbox"
-    ? CheckboxBoxProps
-    : TextBoxProps;
 
 /**
  * @description 사용자에게 보여주어야 하는 정보를 담을 수 있는 Box 컴포넌트입니다.
@@ -63,9 +40,9 @@ type BoxProps<T extends BoxType> = T extends "arrow"
  * @param {CSSProperties} [style] Box 컴포넌트에 적용할 수 있는 custom style
  */
 
-const Box = <T extends BoxType>({
+const Box = <T extends BoxType = "text">({
   leftElement,
-  type = "text",
+  type,
   text,
   textColor,
   subText,
