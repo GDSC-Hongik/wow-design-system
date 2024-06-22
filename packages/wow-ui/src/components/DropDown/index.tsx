@@ -181,6 +181,7 @@ const DropDown = ({
       cursor="pointer"
       direction="column"
       gap="xs"
+      position="relative"
       ref={dropdownRef}
       tabIndex={0}
       width={trigger ? "fit-content" : "auto"}
@@ -317,6 +318,10 @@ const dropdownStyle = cva({
 
 const dropdowncontentStyle = cva({
   base: {
+    position: "absolute",
+    top: "calc(100% + 0.5rem)",
+    left: 0,
+    zIndex: "10",
     maxHeight: "18.75rem",
     lg: {
       maxWidth: "22.375rem",
