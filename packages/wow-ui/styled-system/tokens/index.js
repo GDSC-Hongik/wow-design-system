@@ -404,7 +404,7 @@ const tokens = {
     variable: "var(--colors-outline)",
   },
   "colors.textBlack": {
-    value: "#121212",
+    value: "#000000",
     variable: "var(--colors-text-black)",
   },
   "colors.textWhite": {
