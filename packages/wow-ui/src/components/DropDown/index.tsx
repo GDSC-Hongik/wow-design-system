@@ -219,6 +219,10 @@ const DropDown = ({
             <DownArrow
               className={iconStyle({ type: open ? "up" : "down" })}
               stroke={open ? "primary" : selected ? "sub" : "outline"}
+              tabIndex={0}
+              onKeyDown={(e: React.KeyboardEvent) => {
+                if (e.key === "Enter") setOpen(!open);
+              }}
             />
           </Flex>
         </>
