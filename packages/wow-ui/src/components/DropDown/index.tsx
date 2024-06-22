@@ -153,7 +153,7 @@ const DropDown = ({
     handleSelect: (value: string) => void;
   }) => {
     return (
-      <Flex className={dropdowncontentStyle()} direction="column">
+      <Flex className={dropdownContentStyle()} direction="column">
         {flattenedChildren.map((child, index) => {
           if (isValidElement(child) && child.type === DropDown.Option) {
             return cloneElement(child as ReactElement, {
@@ -316,12 +316,12 @@ const dropdownStyle = cva({
   },
 });
 
-const dropdowncontentStyle = cva({
+const dropdownContentStyle = cva({
   base: {
     position: "absolute",
     top: "calc(100% + 0.5rem)",
     left: 0,
-    zIndex: "10",
+    zIndex: "dropdown",
     maxHeight: "18.75rem",
     lg: {
       maxWidth: "22.375rem",
