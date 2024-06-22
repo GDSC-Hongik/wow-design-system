@@ -24,7 +24,7 @@ const meta = {
       },
       control: false,
     },
-    type: {
+    boxVariantType: {
       description: "박스의 타입을 설정합니다.",
       mapping: ["text", "checkbox", "arrow"],
       options: ["text", "checkbox", "arrow"],
@@ -41,7 +41,7 @@ const meta = {
       description: "박스에 메인으로 표기할 텍스트를 입력합니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
+        defaultValue: { summary: "" },
       },
       control: {
         type: "text",
@@ -59,7 +59,7 @@ const meta = {
       description: "박스에 서브로 표기할 텍스트를 입력합니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
+        defaultValue: { summary: "" },
       },
       control: {
         type: "text",
@@ -84,7 +84,7 @@ const meta = {
       },
     },
     status: {
-      description: "박스의 상태를 설정합니다..",
+      description: "박스의 상태를 설정합니다.",
       mapping: ["default", "success", "error"],
       options: ["default", "success", "error"],
       control: {
@@ -97,13 +97,15 @@ const meta = {
       },
     },
     onClick: {
-      description: "체크박스를 클릭했을 때 호출되는 함수입니다.",
+      description: "arrow 타입의 박스를 클릭했을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
+    },
+    onChange: {
+      description: "checkbox 타입의 박스를 클릭했을 대 호출하는 함수입니다.",
+      table: {
+        type: { summary: "() => void" },
       },
     },
     style: {
@@ -132,7 +134,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: "text",
+    boxVariantType: "text",
     text: "Text",
     subText: "Subtext",
   },
@@ -142,7 +144,7 @@ export const CheckBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    type: "checkbox",
+    boxVariantType: "checkbox",
     onChange: () => {
       console.log("체크");
     },
@@ -153,7 +155,7 @@ export const ArrowBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    type: "arrow",
+    boxVariantType: "arrow",
     onClick: () => {
       console.log("클릭 이벤트 발생");
     },
@@ -172,7 +174,7 @@ export const SuccessBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    type: "checkbox",
+    boxVariantType: "checkbox",
     onChange: () => {
       console.log("체크");
     },
@@ -185,7 +187,7 @@ export const LeftElementBox: Story = {
     subText: "디스코드 연동이 필요해요.",
     textColor: "discord",
     status: "error",
-    type: "arrow",
+    boxVariantType: "arrow",
     onClick: () => {
       console.log("클릭");
     },
@@ -208,10 +210,10 @@ const ControlledBox = () => {
 
   return (
     <Box
+      boxVariantType="checkbox"
       checked={checked}
       subText="checkBox controlled by checked"
       text="CheckBox Test"
-      type="checkbox"
       onChange={handleChange}
     />
   );
