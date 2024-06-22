@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 
+import { isMobile } from "@/utils";
+
 const useClickOutside = (
   ref: React.RefObject<HTMLElement>,
   handler: () => void
 ) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         handler();
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    const eventType = isMobile() ? "touchstart" : "mousedown";
+
+    document.addEventListener(eventType, handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener(eventType, handleClickOutside);
     };
   }, [ref, handler]);
 };
