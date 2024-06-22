@@ -2,7 +2,12 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type { PropsWithChildren, ReactElement, ReactNode } from "react";
+import type {
+  CSSProperties,
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+} from "react";
 import {
   cloneElement,
   forwardRef,
@@ -12,7 +17,11 @@ import {
 } from "react";
 import { DownArrow } from "wowds-icons";
 
-import { useClickOutside, useDropDownState, useFlattenChildren } from "@/hooks";
+import {
+  useClickOutside,
+  useDropDownState,
+  useFlattenChildren,
+} from "../../hooks";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
@@ -59,6 +68,8 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
  * @param {string} [defaultValue] 초기 선택된 값을 나타냅니다.
  * @param {string} [value] 현재 선택된 값을 나타냅니다.
  * @param {(value: string) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
+ * @param {CSSProperties} [style] 드롭다운의 커스텀 스타일.
+ * @param {string} [className] 드롭다운에 전달하는 커스텀 클래스.
  */
 export type DropDownProps = (
   | DropDownWithTriggerProps
@@ -67,17 +78,22 @@ export type DropDownProps = (
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  style?: CSSProperties;
+  className?: string;
 };
 
 /**
  * @description 드롭다운 옵션의 props입니다.
  *
  * @param {boolean} [focused] 옵션이 포커스된 상태인지 여부를 나타냅니다.
+ * @param {boolean} [selected] 옵션이 선택된 상태인지 여부를 나타냅니다.
  * @param {string} value 옵션의 값입니다.
  * @param {() => void} [onClick] 옵션이 클릭되었을 때 호출되는 함수입니다.
+ * @param {React.ReactNode} [text] 드롭다운 옵션에 들어갈 텍스트.
  */
 export interface DropDownOptionProps {
   focused?: boolean;
+  selected?: boolean;
   value: string;
   onClick?: () => void;
   text: ReactNode;
@@ -91,6 +107,7 @@ const DropDown = ({
   value,
   defaultValue,
   onChange,
+  ...rest
 }: DropDownProps) => {
   const flattenedChildren = useFlattenChildren(children);
   const {
@@ -114,6 +131,11 @@ const DropDown = ({
   useClickOutside(dropdownRef, () => setOpen(false));
 
   useEffect(() => {
+    setFocusedIndex(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  useEffect(() => {
     if (open && focusedIndex !== null && optionsRef.current[focusedIndex]) {
       optionsRef.current[focusedIndex]?.focus();
     }
@@ -131,12 +153,7 @@ const DropDown = ({
     handleSelect: (value: string) => void;
   }) => {
     return (
-      <Flex
-        className={dropdowncontentStyle()}
-        direction="column"
-        gap="xs"
-        paddingTop="sm"
-      >
+      <Flex className={dropdowncontentStyle()} direction="column">
         {flattenedChildren.map((child, index) => {
           if (isValidElement(child) && child.type === DropDown.Option) {
             return cloneElement(child as ReactElement, {
@@ -150,6 +167,7 @@ const DropDown = ({
               },
               onMouseEnter: () => setFocusedIndex(index),
               focused: focusedIndex === index,
+              selected: selected === child.props.value,
             });
           }
           return child;
@@ -167,63 +185,51 @@ const DropDown = ({
       tabIndex={0}
       width={trigger ? "fit-content" : "auto"}
       onKeyDown={handleKeyDown}
+      {...rest}
     >
-      {trigger &&
-        cloneElement(trigger, {
-          onClick: () => setOpen(!open),
-        })}
-      {!trigger && (
-        <styled.span
-          color={selected || open ? "textBlack" : "sub"}
-          textStyle="label2"
-        >
-          {label}
-        </styled.span>
-      )}
       {trigger ? (
         <>
-          {open && (
-            <styled.div
-              className={dropdownStyle({
-                type: open ? "focused" : selected ? "selected" : "default",
-              })}
-            >
-              <DropDownContent
-                focusedIndex={focusedIndex}
-                handleSelect={handleSelect}
-                optionsRef={optionsRef}
-                setFocusedIndex={setFocusedIndex}
-              />
-            </styled.div>
-          )}
+          {cloneElement(trigger, {
+            onClick: () => setOpen(!open),
+          })}
         </>
       ) : (
-        <styled.div
-          className={dropdownStyle({
-            type: open ? "focused" : selected ? "selected" : "default",
-          })}
-        >
-          <Flex justifyContent="space-between" onClick={() => setOpen(!open)}>
+        <>
+          <styled.span
+            color={open ? "primary" : selected ? "textBlack" : "sub"}
+            textStyle="label2"
+          >
+            {label}
+          </styled.span>
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            className={dropdownStyle({
+              type: open ? "focused" : selected ? "selected" : "default",
+            })}
+            onClick={() => setOpen(!open)}
+          >
             <styled.div
-              color={selected && !open ? "textBlack" : "outline"}
-              textStyle="body1"
+              className={placeholderStyle({
+                type: open ? "focused" : selected ? "selected" : "default",
+              })}
             >
               {selected ? selected : placeholder}
             </styled.div>
             <DownArrow
               className={iconStyle({ type: open ? "up" : "down" })}
-              stroke={open ? "monoHover" : selected ? "sub" : "outline"}
+              stroke={open ? "primary" : selected ? "sub" : "outline"}
             />
           </Flex>
-          {open && (
-            <DropDownContent
-              focusedIndex={focusedIndex}
-              handleSelect={handleSelect}
-              optionsRef={optionsRef}
-              setFocusedIndex={setFocusedIndex}
-            />
-          )}
-        </styled.div>
+        </>
+      )}
+      {open && (
+        <DropDownContent
+          focusedIndex={focusedIndex}
+          handleSelect={handleSelect}
+          optionsRef={optionsRef}
+          setFocusedIndex={setFocusedIndex}
+        />
       )}
     </Flex>
   );
@@ -233,16 +239,15 @@ DropDown.displayName = "DropDown";
 export default DropDown;
 
 DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
-  function Option({ value, onClick, focused, text }, ref) {
+  function Option({ value, onClick, focused, text, selected }, ref) {
     return (
       <styled.div
-        {...(focused && { border: "1px solid" })}
-        {...(focused && { borderColor: "primary" })}
         id={`dropdown-option-${value}`}
-        outline="none"
         ref={ref}
         tabIndex={-1}
-        textStyle="body1"
+        className={optionStyle({
+          type: selected ? "selected" : focused ? "focused" : "default",
+        })}
         onClick={onClick}
       >
         {text}
@@ -294,6 +299,7 @@ const dropdownStyle = cva({
       },
       focused: {
         borderColor: "primary",
+        color: "primary",
       },
       selected: {
         borderColor: "sub",
@@ -307,7 +313,17 @@ const dropdownStyle = cva({
 
 const dropdowncontentStyle = cva({
   base: {
-    maxHeight: "140px",
+    maxHeight: "18.75rem",
+    lg: {
+      maxWidth: "22.375rem",
+    },
+    smDown: {
+      width: "100%",
+    },
+    backgroundColor: "backgroundNormal",
+    border: "1px solid",
+    borderRadius: "sm",
+    borderColor: "outline",
     overflow: "auto",
     _scrollbar: {
       width: "2px",
@@ -321,6 +337,54 @@ const dropdowncontentStyle = cva({
     _scrollbarTrack: {
       marginTop: "2px",
       marginBottom: "2px",
+    },
+  },
+});
+
+const placeholderStyle = cva({
+  base: {
+    textStyle: "body1",
+  },
+  variants: {
+    type: {
+      default: {
+        color: "outline",
+        _hover: {
+          color: "sub",
+        },
+      },
+      focused: {
+        color: "primary",
+      },
+      selected: {
+        color: "textBlack",
+      },
+    },
+  },
+});
+
+const optionStyle = cva({
+  base: {
+    outline: "none",
+    textStyle: "body1",
+    paddingX: "sm",
+    paddingY: "xs",
+  },
+  variants: {
+    type: {
+      default: {
+        color: "sub",
+        _hover: {
+          color: "blueHover",
+        },
+      },
+      focused: {
+        color: "blueHover",
+      },
+      selected: {
+        color: "textBlack",
+        backgroundColor: "blueBackgroundPressed",
+      },
     },
   },
 });
