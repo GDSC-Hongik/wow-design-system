@@ -17,11 +17,7 @@ import {
 } from "react";
 import { DownArrow } from "wowds-icons";
 
-import {
-  useClickOutside,
-  useDropDownState,
-  useFlattenChildren,
-} from "../../hooks";
+import { useClickOutside, useDropDownState, useFlattenChildren } from "@/hooks";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
@@ -144,12 +140,10 @@ const DropDown = ({
   const DropDownContent = ({
     optionsRef,
     focusedIndex,
-    setFocusedIndex,
     handleSelect,
   }: {
     optionsRef: React.RefObject<(HTMLDivElement | null)[]>;
     focusedIndex: number | null;
-    setFocusedIndex: (index: number) => void;
     handleSelect: (value: string) => void;
   }) => {
     return (
@@ -165,7 +159,6 @@ const DropDown = ({
                 child.props.onClick && child.props.onClick();
                 handleSelect(child.props.value);
               },
-              onMouseEnter: () => setFocusedIndex(index),
               focused: focusedIndex === index,
               selected: selected === child.props.value,
             });
@@ -233,7 +226,6 @@ const DropDown = ({
           focusedIndex={focusedIndex}
           handleSelect={handleSelect}
           optionsRef={optionsRef}
-          setFocusedIndex={setFocusedIndex}
         />
       )}
     </Flex>
