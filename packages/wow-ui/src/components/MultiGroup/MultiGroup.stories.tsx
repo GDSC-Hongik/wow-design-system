@@ -25,7 +25,7 @@ const meta = {
     },
     position: {
       description:
-        "체크박스 그룹의 방향입니다. 'vertical' 또는 'horizontal' 값을 가집니다.",
+        "체크박스 그룹의 방향입니다. 'vertical' 또는 'horizontal' 값을 가집니다. variant가 switch인 경우 사용할 수 없습니다.",
       table: {
         type: { summary: "vertical | horizontal" },
         defaultValue: { summary: null },
@@ -35,7 +35,8 @@ const meta = {
       if: { arg: "variant", eq: "checkbox" },
     },
     gap: {
-      description: "체크박스 사이의 간격입니다.",
+      description:
+        "체크박스 사이의 간격입니다. variant가 switch인 경우 사용할 수 없습니다.",
       table: {
         type: { summary: "number" },
         defaultValue: { summary: null },

@@ -16,7 +16,9 @@ type PositionType = "vertical" | "horizontal";
  *
  * @param {T} variant 체크박스 또는 스위치 타입.
  * @param {T extends "checkbox" ? PositionType : undefined} [position] 체크박스 그룹의 방향. (가로 또는 세로).
+ * @throws {Error} position은 variant가 "switch"인 경우 사용할 수 없습니다.
  * @param {T extends "checkbox" ? number : undefined} [gap] 체크박스 사이의 간격.
+ * @throws {Error} gap은 variant가 "switch"인 경우 사용할 수 없습니다.
  * @param {ReactNode} children 그룹 내에 포함될 체크박스 또는 스위치 컴포넌트들.
  * @param {string} [name] 그룹명.
  * @param {string[]} [defaultValue] 기본으로 선택된 값들의 배열.
