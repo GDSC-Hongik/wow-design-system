@@ -8,9 +8,10 @@ import type {
   ReactElement,
   ReactNode,
 } from "react";
-import { cloneElement, forwardRef, isValidElement, useRef } from "react";
+import { cloneElement, isValidElement, useRef } from "react";
 import { DownArrow } from "wowds-icons";
 
+import DropDownOption from "@/components/DropDown/DropDownOption";
 import { useClickOutside, useDropDownState, useFlattenChildren } from "@/hooks";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
@@ -71,23 +72,6 @@ export type DropDownProps = (
   style?: CSSProperties;
   className?: string;
 };
-
-/**
- * @description 드롭다운 옵션의 props입니다.
- *
- * @param {boolean} [focused] 옵션이 포커스된 상태인지 여부를 나타냅니다.
- * @param {boolean} [selected] 옵션이 선택된 상태인지 여부를 나타냅니다.
- * @param {string} value 옵션의 값입니다.
- * @param {() => void} [onClick] 옵션이 클릭되었을 때 호출되는 함수입니다.
- * @param {React.ReactNode} [text] 드롭다운 옵션에 들어갈 텍스트.
- */
-export interface DropDownOptionProps {
-  focused?: boolean;
-  selected?: boolean;
-  value: string;
-  onClick?: () => void;
-  text: ReactNode;
-}
 
 const DropDown = ({
   children,
@@ -182,7 +166,7 @@ const DropDown = ({
   const renderOptions = () => (
     <Flex className={dropdownContentStyle()} direction="column">
       {flattenedChildren.map((child, index) => {
-        if (isValidElement(child) && child.type === DropDown.Option) {
+        if (isValidElement(child) && child.type === DropDownOption) {
           return cloneElement(child as ReactElement, {
             key: child.props.value,
             ref: setOptionRef(index),
@@ -216,24 +200,6 @@ const DropDown = ({
 
 DropDown.displayName = "DropDown";
 export default DropDown;
-
-DropDown.Option = forwardRef<HTMLDivElement, DropDownOptionProps>(
-  function Option({ value, onClick, focused, text, selected }, ref) {
-    return (
-      <styled.div
-        id={`dropdown-option-${value}`}
-        ref={ref}
-        tabIndex={-1}
-        className={optionStyle({
-          type: selected ? "selected" : focused ? "focused" : "default",
-        })}
-        onClick={onClick}
-      >
-        {text}
-      </styled.div>
-    );
-  }
-);
 
 const iconStyle = cva({
   base: {
@@ -341,32 +307,6 @@ const placeholderStyle = cva({
       },
       selected: {
         color: "textBlack",
-      },
-    },
-  },
-});
-
-const optionStyle = cva({
-  base: {
-    outline: "none",
-    textStyle: "body1",
-    paddingX: "sm",
-    paddingY: "xs",
-  },
-  variants: {
-    type: {
-      default: {
-        color: "sub",
-        _hover: {
-          color: "blueHover",
-        },
-      },
-      focused: {
-        color: "blueHover",
-      },
-      selected: {
-        color: "textBlack",
-        backgroundColor: "blueBackgroundPressed",
       },
     },
   },

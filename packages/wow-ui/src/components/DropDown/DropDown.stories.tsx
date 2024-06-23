@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import DropDown from "@/components/DropDown";
+import DropDownOption from "@/components/DropDown/DropDownOption";
 
 const meta = {
   title: "UI/DropDown",
@@ -17,7 +18,7 @@ const meta = {
   },
   argTypes: {
     children: {
-      description: "DropDown.Option 들을 children 컴포넌트로 받습니다.",
+      description: "DropDownOption 들을 children 컴포넌트로 받습니다.",
       table: {
         type: { summary: "ReactNode" },
       },
@@ -78,8 +79,8 @@ export const Primary: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option text="option 1" value="option 1" />
-        <DropDown.Option text="option 2" value="option 2" />
+        <DropDownOption text="option 1" value="option 1" />
+        <DropDownOption text="option 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
@@ -98,8 +99,8 @@ export const WithTrigger: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option text="option 1" value="option 1" />
-        <DropDown.Option text="option 2" value="option 2" />
+        <DropDownOption text="option 1" value="option 1" />
+        <DropDownOption text="option 2" value="option 2" />
       </>
     ),
     trigger: <button>Open Dropdown</button>,
@@ -117,8 +118,8 @@ export const WithDefaultValue: Story = {
   args: {
     children: (
       <>
-        <DropDown.Option text="option 1" value="option 1" />
-        <DropDown.Option text="option 2" value="option 2" />
+        <DropDownOption text="option 1" value="option 1" />
+        <DropDownOption text="option 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
@@ -148,8 +149,8 @@ const ControlledTextField = () => {
       value={selectedValue}
       onChange={handleChange}
     >
-      <DropDown.Option text="option 1" value="option 1" />
-      <DropDown.Option text="option 2" value="option 2" />
+      <DropDownOption text="option 1" value="option 1" />
+      <DropDownOption text="option 2" value="option 2" />
     </DropDown>
   );
 };
@@ -171,7 +172,7 @@ export const ManyOptions: Story = {
     children: (
       <>
         {Array.from({ length: 20 }, (_, index) => (
-          <DropDown.Option
+          <DropDownOption
             key={index}
             text={`Option ${index + 1}`}
             value={`Option ${index + 1}`}
