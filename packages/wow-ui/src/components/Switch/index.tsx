@@ -98,8 +98,6 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           onMouseUp={handleMouseUp}
         >
           <styled.input
-            id={id}
-            ref={ref}        
             aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "switch"}
