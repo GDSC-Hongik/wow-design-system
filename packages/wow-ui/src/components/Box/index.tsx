@@ -10,7 +10,7 @@ import { useCheckedState } from "@/hooks";
 type BoxVariantType = "arrow" | "checkbox" | "text";
 
 export interface BoxProps<T extends BoxVariantType> {
-  boxVariantType?: T;
+  variant?: T;
   onClick?: T extends "arrow" ? () => void : never;
   onChange?: T extends "checkbox" ? () => void : never;
   checked?: T extends "checkbox" ? boolean : never;
@@ -30,7 +30,7 @@ export interface BoxProps<T extends BoxVariantType> {
  * @param {boolean} [checked] Box 컴포넌트의 타입이 "checkbox"일때 전달할 수 있는 체크박스의 상태입니다.
  * @param {string} [className] 체크박스에 전달하는 커스텀 클래스를 설정합니다.
  * @param {string} [textColor] text의 색상을 변경할 수 있습니다.
- * @param {"text" | "checkbox" | "arrow"} [boxVariantType] Box 컴포넌트의 타입을 설정합니다.
+ * @param {"text" | "checkbox" | "arrow"} [variant] Box 컴포넌트의 타입을 설정합니다.
  * @param {string} text Box 컴포넌트에 메인으로 표기할 텍스트를 입력합니다.
  * @param {string} [subText] Box 컴포넌트에 작성할 추가 정보를 입력합니다.
  * @param {string} [subTextColor] subtext의 색상을 변경할 수 있습니다.
@@ -42,7 +42,7 @@ export interface BoxProps<T extends BoxVariantType> {
 
 const Box = <T extends BoxVariantType = "text">({
   leftElement,
-  boxVariantType,
+  variant,
   text,
   textColor,
   subText,
@@ -70,14 +70,14 @@ const Box = <T extends BoxVariantType = "text">({
     }
   };
   const handleArrowClick = () => {
-    if (boxVariantType === "arrow" && onClick) {
+    if (variant === "arrow" && onClick) {
       onClick();
     }
   };
   return (
     <Flex
       alignItems="center"
-      className={containerStyle({ status, boxVariantType })}
+      className={containerStyle({ status, variant })}
       direction="row"
       gap="lg"
       id={`box-${text}`}
@@ -103,9 +103,9 @@ const Box = <T extends BoxVariantType = "text">({
         </Flex>
       </Flex>
       <div>
-        {boxVariantType === "checkbox" ? (
+        {variant === "checkbox" ? (
           <Checkbox checked={checked} onClick={handleClick} />
-        ) : boxVariantType === "arrow" ? (
+        ) : variant === "arrow" ? (
           <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
         ) : null}
       </div>
@@ -141,7 +141,7 @@ const containerStyle = cva({
         borderColor: "error",
       },
     },
-    boxVariantType: {
+    variant: {
       arrow: {
         cursor: "pointer",
       },

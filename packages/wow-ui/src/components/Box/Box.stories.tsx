@@ -24,7 +24,7 @@ const meta = {
       },
       control: false,
     },
-    boxVariantType: {
+    variant: {
       description: "박스의 타입을 설정합니다.",
       mapping: ["text", "checkbox", "arrow"],
       options: ["text", "checkbox", "arrow"],
@@ -134,7 +134,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    boxVariantType: "text",
+    variant: "text",
     text: "Text",
     subText: "Subtext",
   },
@@ -144,7 +144,7 @@ export const CheckBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    boxVariantType: "checkbox",
+    variant: "checkbox",
     onChange: () => {
       console.log("체크");
     },
@@ -155,7 +155,7 @@ export const ArrowBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    boxVariantType: "arrow",
+    variant: "arrow",
     onClick: () => {
       console.log("클릭 이벤트 발생");
     },
@@ -174,7 +174,7 @@ export const SuccessBox: Story = {
   args: {
     text: "Text",
     subText: "Subtext",
-    boxVariantType: "checkbox",
+    variant: "checkbox",
     onChange: () => {
       console.log("체크");
     },
@@ -187,7 +187,7 @@ export const LeftElementBox: Story = {
     subText: "디스코드 연동이 필요해요.",
     textColor: "discord",
     status: "error",
-    boxVariantType: "arrow",
+    variant: "arrow",
     onClick: () => {
       console.log("클릭");
     },
@@ -210,10 +210,10 @@ const ControlledBox = () => {
 
   return (
     <Box
-      boxVariantType="checkbox"
       checked={checked}
       subText="checkBox controlled by checked"
       text="CheckBox Test"
+      variant="checkbox"
       onChange={handleChange}
     />
   );
