@@ -26,7 +26,8 @@
     }
   },
   "scripts": {
-    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly"
+    "build": "pnpm generate:staticCSS && rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly",
+    "generate:staticCSS": "tsx ../scripts/generateTokenList.ts"
   },
   "keywords": [],
   "author": "gdsc-hongik",
