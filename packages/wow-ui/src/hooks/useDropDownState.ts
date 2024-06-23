@@ -33,37 +33,26 @@ const useDropDownState = ({
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (open) {
-      switch (event.key) {
-        case "ArrowDown":
-          setFocusedIndex((prevIndex) => {
-            const nextIndex =
-              prevIndex === null ? 0 : (prevIndex + 1) % children.length;
-            return nextIndex;
-          });
-          event.preventDefault();
-          break;
-        case "ArrowUp":
-          setFocusedIndex((prevIndex) => {
-            const nextIndex =
-              prevIndex === null
-                ? children.length - 1
-                : (prevIndex - 1 + children.length) % children.length;
+    if (!open) return;
 
-            return nextIndex;
-          });
-          event.preventDefault();
-          break;
-        case "Enter":
-          if (focusedIndex !== null) {
-            const child = children[focusedIndex] as ReactElement;
-            handleSelect(child.props.value);
-          }
-          event.preventDefault();
-          break;
-        default:
-          break;
-      }
+    const { key } = event;
+
+    if (key === "ArrowDown") {
+      setFocusedIndex((prevIndex) =>
+        prevIndex === null ? 0 : (prevIndex + 1) % children.length
+      );
+      event.preventDefault();
+    } else if (key === "ArrowUp") {
+      setFocusedIndex((prevIndex) =>
+        prevIndex === null
+          ? children.length - 1
+          : (prevIndex - 1 + children.length) % children.length
+      );
+      event.preventDefault();
+    } else if (key === "Enter" && focusedIndex !== null) {
+      const child = children[focusedIndex] as ReactElement;
+      handleSelect(child.props.value);
+      event.preventDefault();
     }
   };
 

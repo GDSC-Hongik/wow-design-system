@@ -8,13 +8,7 @@ import type {
   ReactElement,
   ReactNode,
 } from "react";
-import {
-  cloneElement,
-  forwardRef,
-  isValidElement,
-  useEffect,
-  useRef,
-} from "react";
+import { cloneElement, forwardRef, isValidElement, useRef } from "react";
 import { DownArrow } from "wowds-icons";
 
 import { useClickOutside, useDropDownState, useFlattenChildren } from "@/hooks";
@@ -40,9 +34,9 @@ export interface DropDownWithTriggerProps extends PropsWithChildren {
 export interface DropDownWithoutTriggerProps extends PropsWithChildren {
   /**
    * @description 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
-   * @type {string}
+   * @type {ReactNode}
    */
-  label?: string;
+  label?: ReactNode;
   /**
    * @description 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
    * @type {string}
@@ -126,48 +120,81 @@ const DropDown = ({
 
   useClickOutside(dropdownRef, () => setOpen(false));
 
-  useEffect(() => {
-    setFocusedIndex(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-
-  useEffect(() => {
-    if (open && focusedIndex !== null && optionsRef.current[focusedIndex]) {
-      optionsRef.current[focusedIndex]?.focus();
-    }
-  }, [open, focusedIndex]);
-
-  const DropDownContent = ({
-    optionsRef,
-    focusedIndex,
-    handleSelect,
-  }: {
-    optionsRef: React.RefObject<(HTMLDivElement | null)[]>;
-    focusedIndex: number | null;
-    handleSelect: (value: string) => void;
-  }) => {
-    return (
-      <Flex className={dropdownContentStyle()} direction="column">
-        {flattenedChildren.map((child, index) => {
-          if (isValidElement(child) && child.type === DropDown.Option) {
-            return cloneElement(child as ReactElement, {
-              key: child.props.value,
-              ref: (el: HTMLDivElement) => {
-                if (optionsRef.current) optionsRef.current[index] = el;
-              },
-              onClick: () => {
-                child.props.onClick && child.props.onClick();
-                handleSelect(child.props.value);
-              },
-              focused: focusedIndex === index,
-              selected: selected === child.props.value,
-            });
-          }
-          return child;
-        })}
-      </Flex>
-    );
+  const toggleDropdown = () => {
+    setOpen((prevOpen) => {
+      if (!prevOpen) setFocusedIndex(null);
+      return !prevOpen;
+    });
   };
+
+  const handleOptionClick = (value: string, onClick?: () => void) => () => {
+    if (onClick) onClick();
+    handleSelect(value);
+  };
+
+  const setOptionRef = (index: number) => (el: HTMLDivElement | null) => {
+    optionsRef.current[index] = el;
+  };
+
+  const renderTrigger = (trigger: ReactElement) => (
+    <>
+      {cloneElement(trigger, {
+        onClick: toggleDropdown,
+      })}
+    </>
+  );
+
+  const renderLabel = () => (
+    <>
+      <styled.span
+        color={open ? "primary" : selected ? "textBlack" : "sub"}
+        textStyle="label2"
+      >
+        {label}
+      </styled.span>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        className={dropdownStyle({
+          type: open ? "focused" : selected ? "selected" : "default",
+        })}
+        onClick={toggleDropdown}
+      >
+        <styled.div
+          className={placeholderStyle({
+            type: open ? "focused" : selected ? "selected" : "default",
+          })}
+        >
+          {selected ? selected : placeholder}
+        </styled.div>
+        <DownArrow
+          className={iconStyle({ type: open ? "up" : "down" })}
+          stroke={open ? "primary" : selected ? "sub" : "outline"}
+          tabIndex={0}
+          onKeyDown={(e: React.KeyboardEvent) => {
+            if (e.key === "Enter") toggleDropdown();
+          }}
+        />
+      </Flex>
+    </>
+  );
+
+  const renderOptions = () => (
+    <Flex className={dropdownContentStyle()} direction="column">
+      {flattenedChildren.map((child, index) => {
+        if (isValidElement(child) && child.type === DropDown.Option) {
+          return cloneElement(child as ReactElement, {
+            key: child.props.value,
+            ref: setOptionRef(index),
+            onClick: handleOptionClick(child.props.value, child.props.onClick),
+            focused: focusedIndex === index,
+            selected: selected === child.props.value,
+          });
+        }
+        return child;
+      })}
+    </Flex>
+  );
 
   return (
     <Flex
@@ -181,53 +208,8 @@ const DropDown = ({
       onKeyDown={handleKeyDown}
       {...rest}
     >
-      {trigger ? (
-        <>
-          {cloneElement(trigger, {
-            onClick: () => setOpen(!open),
-          })}
-        </>
-      ) : (
-        <>
-          <styled.span
-            color={open ? "primary" : selected ? "textBlack" : "sub"}
-            textStyle="label2"
-          >
-            {label}
-          </styled.span>
-          <Flex
-            alignItems="center"
-            justifyContent="space-between"
-            className={dropdownStyle({
-              type: open ? "focused" : selected ? "selected" : "default",
-            })}
-            onClick={() => setOpen(!open)}
-          >
-            <styled.div
-              className={placeholderStyle({
-                type: open ? "focused" : selected ? "selected" : "default",
-              })}
-            >
-              {selected ? selected : placeholder}
-            </styled.div>
-            <DownArrow
-              className={iconStyle({ type: open ? "up" : "down" })}
-              stroke={open ? "primary" : selected ? "sub" : "outline"}
-              tabIndex={0}
-              onKeyDown={(e: React.KeyboardEvent) => {
-                if (e.key === "Enter") setOpen(!open);
-              }}
-            />
-          </Flex>
-        </>
-      )}
-      {open && (
-        <DropDownContent
-          focusedIndex={focusedIndex}
-          handleSelect={handleSelect}
-          optionsRef={optionsRef}
-        />
-      )}
+      {trigger ? renderTrigger(trigger) : renderLabel()}
+      {open && renderOptions()}
     </Flex>
   );
 };

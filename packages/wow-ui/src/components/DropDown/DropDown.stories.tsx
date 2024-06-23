@@ -21,18 +21,20 @@ const meta = {
       table: {
         type: { summary: "ReactNode" },
       },
+      control: false,
     },
     trigger: {
       description: "드롭다운을 열기 위한 외부 트리거 요소입니다.",
       table: {
         type: { summary: "ReactElement" },
       },
+      control: false,
     },
     label: {
       description:
         "외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.",
       table: {
-        type: { summary: "string" },
+        type: { summary: "ReactNode" },
       },
       control: { type: "text" },
     },
