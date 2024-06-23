@@ -1,11 +1,6 @@
 {
   "name": "codegen",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "devDependencies": {
     "plop": "^4.0.1"
   }

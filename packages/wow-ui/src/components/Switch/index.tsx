@@ -83,7 +83,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     });
 
     return (
-      <Flex alignItems="center" display="inline-flex" gap="xs">
+      <Flex alignItems="center" display="inline-flex" gap="xs" {...rest}>
         <styled.label
           htmlFor={id}
           {...(pressed && { "data-pressed": true })}
@@ -99,16 +99,17 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         >
           <styled.input
             id={id}
-            ref={ref}
-            {...rest}
-            {...inputProps}
+            ref={ref}        
             aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "switch"}
             className={inputStyle()}
+            id={id}
+            ref={ref}
             type="checkbox"
             value={value}
             onClick={() => handleClick(value)}
+            {...inputProps}
           />
           <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />
         </styled.label>
@@ -177,7 +178,7 @@ const labelStyle = cva({
       },
       disabled: {
         bgColor: "lightDisabled",
-        cursor: "none",
+        cursor: "default",
       },
     },
   },
