@@ -54,7 +54,7 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
  * @description 사용자가 외부 트리거 컴포넌트 나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
  *
  * @param {ReactElement} [trigger] 드롭다운을 열기 위한 외부 트리거 요소입니다.
- * @param {string} [label] 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
+ * @param {ReactNode} [label] 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
  * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
  * @param {string} [defaultValue] 초기 선택된 값을 나타냅니다.
  * @param {string} [value] 현재 선택된 값을 나타냅니다.
