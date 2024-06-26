@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Flex, styled } from "@styled-system/jsx";
 import { useState } from "react";
 
 import Box from "@/components/Box";
@@ -26,8 +27,8 @@ const meta = {
     },
     variant: {
       description: "박스의 타입을 설정합니다.",
-      mapping: ["text", "checkbox", "arrow"],
-      options: ["text", "checkbox", "arrow"],
+      mapping: ["text", "checkbox", "arrow", "warn"],
+      options: ["text", "checkbox", "arrow", "warn"],
       control: {
         type: "select",
         labels: {
@@ -40,8 +41,8 @@ const meta = {
     text: {
       description: "박스에 메인으로 표기할 텍스트를 입력합니다.",
       table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "" },
+        type: { summary: "ReactNode" },
+        defaultValue: { summary: "{}" },
       },
       control: {
         type: "text",
@@ -197,6 +198,48 @@ export const LeftElementBox: Story = {
         src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-round-color-icon.svg"
         width={50}
       />
+    ),
+  },
+};
+
+export const WarnBox: Story = {
+  args: {
+    text: "2024년 1학기 1차 정회원 지원 중이에요.",
+    subText: "정회원 가입 조건을 완료해주세요.",
+    status: "error",
+    variant: "warn",
+  },
+};
+
+export const TextReactElementBox: Story = {
+  args: {
+    text: (
+      <Flex direction="column" gap="sm">
+        <Flex align="center" direction="row" gap="xs">
+          <styled.span color="GrayText" textStyle="h3">
+            학번
+          </styled.span>
+          <styled.span color="textBlack">C000000</styled.span>
+        </Flex>
+        <Flex align="center" direction="row" gap="xs">
+          <styled.span color="GrayText" textStyle="h3">
+            학과
+          </styled.span>
+          <styled.span color="textBlack">컴퓨터공학과</styled.span>
+        </Flex>
+        <Flex align="center" direction="row" gap="xs">
+          <styled.span color="GrayText" textStyle="h3">
+            전화번호
+          </styled.span>
+          <styled.span color="textBlack">01000000000</styled.span>
+        </Flex>
+        <Flex align="center" direction="row" gap="xs">
+          <styled.span color="GrayText" textStyle="h3">
+            이메일
+          </styled.span>
+          <styled.span color="textBlack">000@GMAIL.COM</styled.span>
+        </Flex>
+      </Flex>
     ),
   },
 };
