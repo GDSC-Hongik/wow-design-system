@@ -1,10 +1,13 @@
 import type { KeyboardEvent } from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import MultiGroupContext from "@/components/MultiGroup/MultiGroupContext";
 
 interface CheckedStateProps {
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;
+  value: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -13,21 +16,49 @@ interface CheckedStateProps {
 const useCheckedState = ({
   defaultChecked = false,
   checked: checkedProp,
-  disabled,
+  disabled: disabledProp,
+  value,
   onChange,
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
-  const [checked, setChecked] = useState<boolean>(
-    checkedProp ? checkedProp : defaultChecked
+  const {
+    onChange: groupOnChange,
+    checked: groupCheckedValues,
+    disabled: groupDisabled,
+  } = useContext(MultiGroupContext);
+
+  const groupCheckedValue = groupCheckedValues?.includes(value);
+  const disabled = groupDisabled || disabledProp || false;
+
+  const [checkedValue, setCheckedValue] = useState<boolean>(
+    groupCheckedValue || checkedProp || defaultChecked
   );
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
-    if (checkedProp !== undefined) {
-      setChecked(checkedProp);
+    if (groupCheckedValue !== undefined) {
+      setCheckedValue(groupCheckedValue);
     }
-  }, [checkedProp]);
+  }, [groupCheckedValue]);
+
+  useEffect(() => {
+    if (groupCheckedValue === undefined && checkedProp !== undefined) {
+      setCheckedValue(checkedProp);
+    }
+  }, [checkedProp, groupCheckedValue]);
+
+  const toggleCheckedState = (value: string) => {
+    if (disabled) return;
+
+    if (groupOnChange) {
+      groupOnChange(value);
+    } else if (onChange) {
+      onChange();
+    } else {
+      setCheckedValue((prev) => !prev);
+    }
+  };
 
   const handleMouseDown = () => {
     if (!disabled) setPressed(true);
@@ -37,8 +68,8 @@ const useCheckedState = ({
     if (!disabled) setPressed(false);
   };
 
-  const handleClick = () => {
-    onChange ? onChange() : setChecked((prev) => !prev);
+  const handleClick = (value: string) => {
+    toggleCheckedState(value);
     onClick?.();
   };
 
@@ -52,14 +83,15 @@ const useCheckedState = ({
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       setPressed(true);
-      onChange ? onChange() : setChecked((prev) => !prev);
+      toggleCheckedState(value);
       onKeyDown?.();
     }
   };
 
   return {
-    checked,
+    checked: checkedValue,
     pressed,
+    disabled,
     handleClick,
     handleKeyDown,
     handleMouseDown,

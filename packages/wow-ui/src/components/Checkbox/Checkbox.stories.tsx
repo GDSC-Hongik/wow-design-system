@@ -148,18 +148,21 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     defaultChecked: false,
+    value: "checkbox",
   },
 };
 
 export const Checked: Story = {
   args: {
     defaultChecked: true,
+    value: "checkbox",
   },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
+    value: "checkbox",
   },
 };
 
@@ -168,6 +171,7 @@ export const Vertical: Story = {
     checked: true,
     children: "string",
     position: "vertical",
+    value: "checkbox",
   },
 };
 
@@ -176,6 +180,7 @@ export const Horizontal: Story = {
     checked: true,
     children: "string",
     position: "horizontal",
+    value: "checkbox",
   },
 };
 
@@ -186,9 +191,14 @@ const ControlledCheckBox = () => {
     setIsChecked((prev) => !prev);
   };
 
-  return <Checkbox checked={isChecked} onChange={handleChange} />;
+  return (
+    <Checkbox checked={isChecked} value="checkbox" onChange={handleChange} />
+  );
 };
 
 export const ControlledState: Story = {
   render: () => <ControlledCheckBox />,
+  args: {
+    value: "checkbox",
+  },
 };
