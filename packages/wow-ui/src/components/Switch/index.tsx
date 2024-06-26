@@ -5,7 +5,7 @@ import { Flex, styled } from "@styled-system/jsx";
 import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
 import { forwardRef, useId } from "react";
 
-import useCheckedState from "@/hooks/useCheckedState";
+import { useGroupCheckedState } from "@/hooks";
 
 /**
  * @description on, off 두 가지 상태로 설정할 수 있는 스위치 컴포넌트입니다.
@@ -72,7 +72,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       handleKeyUp,
       handleMouseUp,
       handleMouseDown,
-    } = useCheckedState({
+    } = useGroupCheckedState({
       defaultChecked,
       checked: checkedProp,
       disabled: disabledProp,

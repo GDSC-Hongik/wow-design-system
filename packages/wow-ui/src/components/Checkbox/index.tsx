@@ -10,7 +10,7 @@ import type {
 import { forwardRef, useId } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
-import { useCheckedState } from "@/hooks";
+import { useGroupCheckedState } from "@/hooks";
 
 /**
  * @description 사용자가 선택하거나 선택 해제할 수 있는 체크박스 컴포넌트입니다.
@@ -77,7 +77,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       handleKeyUp,
       handleMouseDown,
       handleMouseUp,
-    } = useCheckedState({
+    } = useGroupCheckedState({
       defaultChecked,
       checked: checkedProp,
       disabled: disabledProp,
@@ -86,7 +86,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onClick,
       onKeyDown,
     });
-
     return (
       <styled.label
         alignItems="center"

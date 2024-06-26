@@ -1,5 +1,7 @@
 import type { KeyboardEvent } from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import MultiGroupContext from "@/components/MultiGroup/MultiGroupContext";
 
 interface CheckedStateProps {
   defaultChecked?: boolean;
@@ -11,25 +13,46 @@ interface CheckedStateProps {
   onKeyDown?: () => void;
 }
 
-const useCheckedState = ({
+const useGroupCheckedState = ({
   defaultChecked = false,
   checked: checkedProp,
   disabled: disabledProp,
+  value,
+  onChange,
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
-  const disabled = disabledProp || false;
+  const {
+    onChange: groupOnChange,
+    checked: groupCheckedValues,
+    disabled: groupDisabled,
+  } = useContext(MultiGroupContext);
+
+  const groupCheckedValue = groupCheckedValues?.includes(value);
+  const disabled = groupDisabled || disabledProp || false;
 
   const [checkedValue, setCheckedValue] = useState<boolean>(
-    checkedProp || defaultChecked
+    groupCheckedValue || defaultChecked
   );
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
-    if (checkedProp) {
-      setCheckedValue(checkedProp);
+    if (groupCheckedValue !== undefined) {
+      setCheckedValue(groupCheckedValue);
     }
-  }, [checkedProp]);
+  }, [groupCheckedValue]);
+
+  const toggleCheckedState = (value: string) => {
+    if (disabled) return;
+
+    if (groupOnChange) {
+      groupOnChange(value);
+    } else if (onChange) {
+      onChange();
+    } else {
+      setCheckedValue((prev) => !prev);
+    }
+  };
 
   const handleMouseDown = () => {
     if (!disabled) setPressed(true);
@@ -39,7 +62,8 @@ const useCheckedState = ({
     if (!disabled) setPressed(false);
   };
 
-  const handleClick = () => {
+  const handleClick = (value: string) => {
+    toggleCheckedState(value);
     onClick?.();
   };
 
@@ -53,6 +77,7 @@ const useCheckedState = ({
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       setPressed(true);
+      toggleCheckedState(value);
       onKeyDown?.();
     }
   };
@@ -69,4 +94,4 @@ const useCheckedState = ({
   };
 };
 
-export default useCheckedState;
+export default useGroupCheckedState;

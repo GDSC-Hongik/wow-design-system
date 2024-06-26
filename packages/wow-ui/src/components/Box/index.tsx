@@ -56,6 +56,7 @@ const Box = <T extends BoxVariantType = "text">({
   const { handleClick, checked } = useCheckedState({
     checked: checkedProp,
     onChange,
+    value: "checked",
   });
 
   const getStrokeColor = (status: "default" | "success" | "error") => {
