@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
 import MultiGroup from "wowds-ui/MultiGroup";
@@ -16,7 +17,7 @@ const Home = () => {
         <RadioButton label="2학년" value="2학년" />
       </RadioGroup>
       <MultiGroup variant="checkbox">
-        <Checkbox children="checkbox1" value="checkbox1" />
+        <Checkbox children="checkbox1" disabled={true} value="checkbox1" />
         <Checkbox children="checkbox2" value="checkbox2" />
         <Checkbox children="checkbox3" value="checkbox3" />
         <Checkbox children="checkbox4" value="checkbox4" />

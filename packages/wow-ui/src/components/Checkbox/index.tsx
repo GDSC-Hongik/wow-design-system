@@ -86,6 +86,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onClick,
       onKeyDown,
     });
+    console.log(checked);
     return (
       <styled.label
         alignItems="center"
