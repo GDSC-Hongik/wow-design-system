@@ -104,6 +104,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@playwright/test": "^1.45.0",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {
