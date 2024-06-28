@@ -1,6 +1,8 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 
+import { calcPercent } from "@/utils/calcPercent";
+
 const ProgressBarCircle = ({
   maxStep,
   circleNumber,
@@ -10,10 +12,6 @@ const ProgressBarCircle = ({
   circleNumber: number;
   currentStep: number;
 }) => {
-  const calcPercent = (maxValue: number, value: number) => {
-    return (value / (maxValue - 1)) * 100;
-  };
-
   const checkCurrentCircleStatus = (
     circleNumber: number,
     currentStep: number

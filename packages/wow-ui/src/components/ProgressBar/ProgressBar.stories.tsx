@@ -14,20 +14,33 @@ const meta = {
       description: "프로그래스 바의 현재 스텝을 나타냅니다.",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: "" },
       },
       control: {
         type: "number",
+      },
+    },
+    labels: {
+      description: "프로그래스 바 하단에 나타낼 라벨의 배열을 나타냅니다.",
+      table: {
+        type: { summary: "LabelType[]" },
       },
     },
     maxStep: {
       description: "프로그래스 바가 가질 수 있는 최대 스텝을 나타냅니다.",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: "" },
       },
       control: {
         type: "number",
+      },
+    },
+    width: {
+      description: "프로그래스 바의 너비를 지정합니다.",
+      table: {
+        type: { summary: "number" },
+      },
+      control: {
+        type: "text",
       },
     },
   },
@@ -48,10 +61,10 @@ export const ProgressBarWithMarkers: Story = {
   args: {
     step: 1,
     maxStep: 3,
-    markers: [
-      { value: 0, label: "Label" },
-      { value: 1, label: "Label" },
-      { value: 2, label: "Label" },
+    labels: [
+      { value: 1, text: "Label" },
+      { value: 2, text: "Label" },
+      { value: 3, text: "Label" },
     ],
   },
 };

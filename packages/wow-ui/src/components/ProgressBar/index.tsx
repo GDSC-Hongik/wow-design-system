@@ -1,16 +1,22 @@
 import { styled } from "@styled-system/jsx";
 
 import ProgressBarCircle from "@/components/ProgressBar/ProgressBarCircle";
-import type { MarkerType } from "@/components/ProgressBar/ProgressBarMarker";
-import ProgressBarMarker from "@/components/ProgressBar/ProgressBarMarker";
+import type { LabelType } from "@/components/ProgressBar/ProgressBarLabel";
+import ProgressBarLabel from "@/components/ProgressBar/ProgressBarLabel";
 
 export interface ProgressBarProps {
   step: number;
   maxStep?: number;
-  markers?: MarkerType[];
+  labels?: LabelType[];
+  width?: number;
 }
 
-const ProgressBar = ({ step, maxStep = 3, markers }: ProgressBarProps) => {
+const ProgressBar = ({
+  step,
+  maxStep = 3,
+  labels,
+  width,
+}: ProgressBarProps) => {
   const fillProgressBar = (maxValue: number, value: number) => {
     const ratio = (value - 1) / (maxValue - 1);
     return ratio > 1 ? "100%" : `${ratio * 100}%`;
@@ -21,15 +27,16 @@ const ProgressBar = ({ step, maxStep = 3, markers }: ProgressBarProps) => {
   return (
     <div
       aria-valuemax={maxStep}
-      aria-valuemin={0}
+      aria-valuemin={1}
       aria-valuetext={String(step)}
       role="progressbar"
     >
       <styled.div
         backgroundColor="outline"
         height="1.2px"
+        minWidth="17.375rem"
         position="relative"
-        width="17.375rem"
+        style={{ width: width && width > 278 ? `${width}px` : "17.375rem" }}
       >
         <styled.div
           backgroundColor="primary"
@@ -45,14 +52,18 @@ const ProgressBar = ({ step, maxStep = 3, markers }: ProgressBarProps) => {
             />
           ))}
         </styled.div>
-        {markers && (
+        {labels && (
           <styled.div
             pointerEvents="none"
             position="relative"
             userSelect="none"
           >
-            {markers.map((marker) => (
-              <ProgressBarMarker marker={marker} maxStep={maxStep} />
+            {labels.map((label) => (
+              <ProgressBarLabel
+                currentStep={step}
+                label={label}
+                maxStep={maxStep}
+              />
             ))}
           </styled.div>
         )}
