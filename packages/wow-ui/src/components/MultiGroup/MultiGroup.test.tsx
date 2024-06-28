@@ -10,9 +10,9 @@ describe("multi group with checkbox", () => {
   it("should render checkbox components with children", () => {
     render(
       <MultiGroup variant="checkbox">
-        <Checkbox children="checkbox1" value="checkbox1" />
-        <Checkbox disabled children="checkbox2" value="checkbox2" />
-        <Checkbox children="checkbox3" value="checkbox3" />
+        <Checkbox label="checkbox1" value="checkbox1" />
+        <Checkbox disabled label="checkbox2" value="checkbox2" />
+        <Checkbox label="checkbox3" value="checkbox3" />
       </MultiGroup>
     );
     const checkbox1 = screen.getByText("checkbox1");
@@ -27,9 +27,9 @@ describe("multi group with checkbox", () => {
   it("should render checkbox components with its own state", () => {
     const rendered = render(
       <MultiGroup variant="checkbox">
-        <Checkbox children="checkbox1" value="checkbox1" />
-        <Checkbox disabled children="checkbox2" value="checkbox2" />
-        <Checkbox children="checkbox3" value="checkbox3" />
+        <Checkbox label="checkbox1" value="checkbox1" />
+        <Checkbox disabled label="checkbox2" value="checkbox2" />
+        <Checkbox label="checkbox3" value="checkbox3" />
       </MultiGroup>
     );
     const checkboxes = rendered.getAllByRole("checkbox");
