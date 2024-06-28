@@ -45,6 +45,16 @@
       "require": "./dist/MultiGroup.cjs",
       "import": "./dist/MultiGroup.js"
     },
+    "./DropDownOption": {
+      "types": "./dist/components/DropDown/DropDownOption.d.ts",
+      "require": "./dist/DropDownOption.cjs",
+      "import": "./dist/DropDownOption.js"
+    },
+    "./DropDown": {
+      "types": "./dist/components/DropDown/index.d.ts",
+      "require": "./dist/DropDown.cjs",
+      "import": "./dist/DropDown.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
@@ -101,7 +111,8 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "playwright": "1.45.0"
   },
   "dependencies": {
     "wowds-icons": "workspace:^"
