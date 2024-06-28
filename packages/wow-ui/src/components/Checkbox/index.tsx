@@ -18,6 +18,7 @@ import { useCheckedState } from "@/hooks";
  * @param {boolean} [defaultChecked=false] 체크박스가 처음에 활성화되어 있는지 여부.
  * @param {boolean} [disabled=false] 체크박스가 비활성화되어 있는지 여부.
  * @param {boolean} [checked] 외부에서 제어할 활성 상태.
+ * @param {string} value 체크박스 값.
  * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
  * @param {() => void} [onClick] 체크박스 클릭 시 호출되는 함수.
  * @param {() => void} [onKeyDown] 체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수.
@@ -35,6 +36,7 @@ export interface CheckboxProps extends PropsWithChildren {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
+  value?: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -50,8 +52,9 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       defaultChecked = false,
-      disabled = false,
+      disabled: disabledProp = false,
       checked: checkedProp,
+      value = "checkbox",
       onClick,
       onChange,
       children,
@@ -68,6 +71,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const {
       checked,
       pressed,
+      disabled,
       handleClick,
       handleKeyDown,
       handleKeyUp,
@@ -76,7 +80,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     } = useCheckedState({
       defaultChecked,
       checked: checkedProp,
-      disabled,
+      disabled: disabledProp,
+      value,
       onChange,
       onClick,
       onKeyDown,
@@ -112,7 +117,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               type: disabled ? "disabled" : checked ? "checked" : "default",
             })}
             {...inputProps}
-            onClick={handleClick}
+            value={value}
+            onClick={() => handleClick(value)}
           />
           {checked && (
             <styled.span

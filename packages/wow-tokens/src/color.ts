@@ -99,7 +99,7 @@ export const backgroundDimmer = blackOpacity80;
 
 export const sub = mono700;
 export const outline = mono400;
-export const textBlack = black;
+export const textBlack = mono950;
 export const textWhite = white;
 
 export const darkDisabled = mono400;

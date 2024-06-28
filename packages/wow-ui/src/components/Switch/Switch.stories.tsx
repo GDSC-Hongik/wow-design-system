@@ -41,14 +41,14 @@ const meta = {
         type: "boolean",
       },
     },
-    text: {
+    label: {
       description: "스위치 오른쪽에 들어갈 텍스트입니다.",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: null },
       },
       control: {
-        type: "text",
+        type: "label",
       },
     },
     onChange: {
@@ -136,24 +136,29 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    value: "switch",
+  },
 };
 
 export const DefaultChecked: Story = {
   args: {
     defaultChecked: true,
+    value: "switch",
   },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
+    value: "switch",
   },
 };
 
 export const WithText: Story = {
   args: {
-    text: "Text",
+    label: "Label",
+    value: "switch",
   },
 };
 
@@ -164,9 +169,12 @@ const ControlledSwitch = () => {
     setChecked((prev) => !prev);
   };
 
-  return <Switch checked={checked} onChange={handleChange} />;
+  return <Switch checked={checked} value="switch" onChange={handleChange} />;
 };
 
 export const ControlledState: Story = {
   render: () => <ControlledSwitch />,
+  args: {
+    value: "switch",
+  },
 };

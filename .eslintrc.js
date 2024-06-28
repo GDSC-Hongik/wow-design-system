@@ -17,7 +17,6 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
-    "eslint-config-turbo",
   ],
   plugins: [
     "@typescript-eslint/eslint-plugin",
