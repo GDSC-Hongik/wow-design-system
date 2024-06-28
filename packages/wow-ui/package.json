@@ -40,6 +40,16 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./ProgressBarCircle": {
+      "types": "./dist/components/ProgressBar/ProgressBarCircle.d.ts",
+      "require": "./dist/ProgressBarCircle.cjs",
+      "import": "./dist/ProgressBarCircle.js"
+    },
+    "./ProgressBarMarker": {
+      "types": "./dist/components/ProgressBar/ProgressBarMarker.d.ts",
+      "require": "./dist/ProgressBarMarker.cjs",
+      "import": "./dist/ProgressBarMarker.js"
+    },
     "./ProgressBar": {
       "types": "./dist/components/ProgressBar/index.d.ts",
       "require": "./dist/ProgressBar.cjs",
