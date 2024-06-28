@@ -111,7 +111,8 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "playwright": "1.45.0"
   },
   "dependencies": {
     "wowds-icons": "workspace:^"
