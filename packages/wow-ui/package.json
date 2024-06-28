@@ -45,10 +45,10 @@
       "require": "./dist/ProgressBarCircle.cjs",
       "import": "./dist/ProgressBarCircle.js"
     },
-    "./ProgressBarMarker": {
-      "types": "./dist/components/ProgressBar/ProgressBarMarker.d.ts",
-      "require": "./dist/ProgressBarMarker.cjs",
-      "import": "./dist/ProgressBarMarker.js"
+    "./ProgressBarLabel": {
+      "types": "./dist/components/ProgressBar/ProgressBarLabel.d.ts",
+      "require": "./dist/ProgressBarLabel.cjs",
+      "import": "./dist/ProgressBarLabel.js"
     },
     "./ProgressBar": {
       "types": "./dist/components/ProgressBar/index.d.ts",
@@ -116,7 +116,8 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@playwright/test": "^1.45.0"
   },
   "dependencies": {
     "wowds-icons": "workspace:^"
