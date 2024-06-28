@@ -39,7 +39,7 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Install Playwright
-        run: pnpm dlx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
         working-directory: packages/wow-ui
 
       - name: Build Packages
