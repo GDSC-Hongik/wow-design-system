@@ -40,6 +40,11 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./MultiGroup": {
+      "types": "./dist/components/MultiGroup/index.d.ts",
+      "require": "./dist/MultiGroup.cjs",
+      "import": "./dist/MultiGroup.js"
+    },
     "./DropDownOption": {
       "types": "./dist/components/DropDown/DropDownOption.d.ts",
       "require": "./dist/DropDownOption.cjs",
@@ -49,11 +54,6 @@
       "types": "./dist/components/DropDown/index.d.ts",
       "require": "./dist/DropDown.cjs",
       "import": "./dist/DropDown.js"
-    },
-    "./MultiGroup": {
-      "types": "./dist/components/MultiGroup/index.d.ts",
-      "require": "./dist/MultiGroup.cjs",
-      "import": "./dist/MultiGroup.js"
     },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
