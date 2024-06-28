@@ -26,6 +26,7 @@ const ProgressBar = ({
 
   return (
     <div
+      aria-label="progressbar"
       aria-valuemax={maxStep}
       aria-valuemin={1}
       aria-valuetext={String(step)}

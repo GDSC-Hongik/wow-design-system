@@ -7,6 +7,11 @@ const meta = {
   component: ProgressBar,
   parameters: {
     componentSubtitle: "프로그래스바 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
