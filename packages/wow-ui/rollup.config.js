@@ -25,6 +25,8 @@ export default {
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
     MultiGroup: "./src/components/MultiGroup",
+    DropDownOption: "./src/components/DropDown/DropDownOption",
+    DropDown: "./src/components/DropDown",
     Chip: "./src/components/Chip",
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",

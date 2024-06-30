@@ -153,9 +153,6 @@ importers:
       rollup:
         specifier: ^4.17.2
         version: 4.17.2
-      rollup-jest:
-        specifier: ^3.1.0
-        version: 3.1.0(rollup@4.17.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
         version: 2.2.4(rollup@4.17.2)
@@ -316,7 +313,7 @@ importers:
         version: 18.2.19
       axe-playwright:
         specifier: ^2.0.1
-        version: 2.0.1(playwright@1.44.0)
+        version: 2.0.1(playwright@1.45.0)
       chromatic:
         specifier: ^11.3.0
         version: 11.3.0
@@ -326,6 +323,9 @@ importers:
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.3.3)
+      playwright:
+        specifier: 1.45.0
+        version: 1.45.0
       plop:
         specifier: ^4.0.1
         version: 4.0.1
@@ -4750,7 +4750,7 @@ packages:
       jest-serializer-html: 7.1.0
       jest-watch-typeahead: 2.2.2(jest@29.7.0)
       nyc: 15.1.0
-      playwright: 1.44.0
+      playwright: 1.45.0
     transitivePeerDependencies:
       - '@swc/helpers'
       - '@types/node'
@@ -6392,7 +6392,7 @@ packages:
       rimraf: 3.0.2
     dev: true
 
-  /axe-playwright@2.0.1(playwright@1.44.0):
+  /axe-playwright@2.0.1(playwright@1.45.0):
     resolution: {integrity: sha512-MHjNjGARulF9XzqSfspmNjw+tpBz4x9o1VlTuLWEUW9fqzhn+xWa1qEpuOIQPbsRWQiLfooDjQAunLeE0PM5AQ==}
     peerDependencies:
       playwright: '>1.0.0'
@@ -6402,7 +6402,7 @@ packages:
       axe-html-reporter: 2.2.3(axe-core@4.7.0)
       junit-report-builder: 3.2.1
       picocolors: 1.0.0
-      playwright: 1.44.0
+      playwright: 1.45.0
     dev: true
 
   /axios@1.6.8:
@@ -7316,10 +7316,6 @@ packages:
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
-    dev: true
-
-  /concat-merge@1.1.0:
-    resolution: {integrity: sha512-WKaN/K6uoH2fCYtoqobuKS1F6oSTS0V5K1YVodqQxnW3I4RmPspPiObFeCDOITJJ/p1+EAYBFOgQE+qtICZtPg==}
     dev: true
 
   /confbox@0.1.7:
@@ -12938,14 +12934,14 @@ packages:
     resolution: {integrity: sha512-lZmHlFQ0VYSpAs43dRq1/nJ9G/6SiTI7VPqidld9TDefL9tX87bTKExWZZUF5PeRyqtXqd8fQi2qmfIedkwsNQ==}
     engines: {node: '>=18'}
     hasBin: true
-    dev: false
+    dev: true
 
-  /playwright@1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
-    engines: {node: '>=16'}
+  /playwright@1.45.0:
+    resolution: {integrity: sha512-4z3ac3plDfYzGB6r0Q3LF8POPR20Z8D0aXcxbJvmfMgSSq1hkcgvFRXJk9rUq5H/MJ0Ktal869hhOdI/zUTeLA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright-core: 1.44.0
+      playwright-core: 1.45.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -13903,16 +13899,6 @@ packages:
     dependencies:
       hash-base: 3.1.0
       inherits: 2.0.4
-    dev: true
-
-  /rollup-jest@3.1.0(rollup@4.17.2):
-    resolution: {integrity: sha512-6jEupvSFyalbNRv/Gp24ptWlpy7KQnwPnLr2Q1EoH7ZP+R/DpyDVPwKBfkJRnYdeM467O9HZaj8ahUEyY1Tflw==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      rollup: ^2.3.0 || ^3
-    dependencies:
-      concat-merge: 1.1.0
-      rollup: 4.17.2
     dev: true
 
   /rollup-plugin-peer-deps-external@2.2.4(rollup@4.17.2):

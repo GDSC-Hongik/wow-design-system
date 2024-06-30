@@ -4,6 +4,7 @@ import type { CssProperties } from "./system-types";
 import type { Tokens } from "../tokens/index";
 
 export interface UtilityValues {
+  zIndex: Tokens["zIndex"];
   top: Tokens["spacing"];
   left: Tokens["spacing"];
   insetInline: Tokens["spacing"];
