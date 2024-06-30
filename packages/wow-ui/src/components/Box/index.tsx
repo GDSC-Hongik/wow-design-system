@@ -2,12 +2,12 @@
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import type { ColorToken } from "@styled-system/tokens";
-import { RightArrow } from "wowds-icons";
+import { RightArrow, Warn } from "wowds-icons";
 
 import Checkbox from "@/components/Checkbox";
-import { useCheckedState } from "@/hooks";
+import useCheckedState from "@/hooks/useCheckedState";
 
-type BoxVariantType = "arrow" | "checkbox" | "text";
+type BoxVariantType = "arrow" | "checkbox" | "text" | "warn";
 
 export interface BoxProps<T extends BoxVariantType> {
   variant?: T;
@@ -15,7 +15,7 @@ export interface BoxProps<T extends BoxVariantType> {
   onChange?: T extends "checkbox" ? () => void : never;
   checked?: T extends "checkbox" ? boolean : never;
   leftElement?: React.ReactNode;
-  text: string;
+  text: React.ReactNode;
   textColor?: ColorToken;
   subText?: string;
   subTextColor?: ColorToken;
@@ -31,7 +31,7 @@ export interface BoxProps<T extends BoxVariantType> {
  * @param {string} [className] 체크박스에 전달하는 커스텀 클래스를 설정합니다.
  * @param {string} [textColor] text의 색상을 변경할 수 있습니다.
  * @param {"text" | "checkbox" | "arrow"} [variant] Box 컴포넌트의 타입을 설정합니다.
- * @param {string} text Box 컴포넌트에 메인으로 표기할 텍스트를 입력합니다.
+ * @param {ReactNode} text Box 컴포넌트에 메인으로 표기할 텍스트를 입력합니다.
  * @param {string} [subText] Box 컴포넌트에 작성할 추가 정보를 입력합니다.
  * @param {string} [subTextColor] subtext의 색상을 변경할 수 있습니다.
  * @param {"default" | "success" | "error"} [status] Box 컴포넌트를 통해 사용자의 상태를 반환합니다.
@@ -50,13 +50,13 @@ const Box = <T extends BoxVariantType = "text">({
   status = "default",
   onClick,
   onChange,
-  style,
   checked: checkedProp,
   ...rest
 }: BoxProps<T>) => {
   const { handleClick, checked } = useCheckedState({
     checked: checkedProp,
     onChange,
+    value: "checked",
   });
 
   const getStrokeColor = (status: "default" | "success" | "error") => {
@@ -74,6 +74,7 @@ const Box = <T extends BoxVariantType = "text">({
       onClick();
     }
   };
+
   return (
     <Flex
       alignItems="center"
@@ -90,7 +91,7 @@ const Box = <T extends BoxVariantType = "text">({
         <Flex direction="column" gap="xxs">
           <styled.span
             color={textColor ? textColor : "textBlack"}
-            textStyle="h3"
+            {...(typeof text === "string" && { textStyle: "h3" })}
           >
             {text}
           </styled.span>
@@ -103,11 +104,20 @@ const Box = <T extends BoxVariantType = "text">({
         </Flex>
       </Flex>
       <div>
-        {variant === "checkbox" ? (
+        {variant === "checkbox" && (
           <Checkbox checked={checked} onClick={handleClick} />
-        ) : variant === "arrow" ? (
+        )}
+        {variant === "arrow" && (
           <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
-        ) : null}
+        )}
+        {variant === "warn" && (
+          <Warn
+            fill={getStrokeColor(status)}
+            height={24}
+            stroke={getStrokeColor(status)}
+            width={24}
+          />
+        )}
       </div>
     </Flex>
   );
@@ -149,6 +159,9 @@ const containerStyle = cva({
         cursor: "default",
       },
       checkbox: {
+        cursor: "default",
+      },
+      warn: {
         cursor: "default",
       },
     },
