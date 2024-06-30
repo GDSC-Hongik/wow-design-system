@@ -80,7 +80,7 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
         {...rest}
       >
         <styled.span
-          style={{ textDecoration: "underline" }}
+          textDecoration="underline"
           textStyle={size === "lg" ? "label1" : "label2"}
         >
           {label}
