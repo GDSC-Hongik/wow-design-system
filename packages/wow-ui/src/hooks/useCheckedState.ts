@@ -15,6 +15,7 @@ const useCheckedState = ({
   defaultChecked = false,
   checked: checkedProp,
   disabled: disabledProp,
+  onChange,
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
@@ -26,10 +27,20 @@ const useCheckedState = ({
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
-    if (checkedProp) {
+    if (checkedProp !== undefined) {
       setCheckedValue(checkedProp);
     }
   }, [checkedProp]);
+
+  const toggleCheckedState = () => {
+    if (disabled) return;
+
+    if (onChange) {
+      onChange();
+    } else {
+      setCheckedValue((prev) => !prev);
+    }
+  };
 
   const handleMouseDown = () => {
     if (!disabled) setPressed(true);
@@ -40,6 +51,7 @@ const useCheckedState = ({
   };
 
   const handleClick = () => {
+    toggleCheckedState();
     onClick?.();
   };
 
@@ -53,6 +65,7 @@ const useCheckedState = ({
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       setPressed(true);
+      toggleCheckedState();
       onKeyDown?.();
     }
   };

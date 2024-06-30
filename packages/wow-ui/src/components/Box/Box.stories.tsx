@@ -42,7 +42,6 @@ const meta = {
       description: "박스에 메인으로 표기할 텍스트를 입력합니다.",
       table: {
         type: { summary: "ReactNode" },
-        defaultValue: { summary: "{}" },
       },
       control: {
         type: "text",

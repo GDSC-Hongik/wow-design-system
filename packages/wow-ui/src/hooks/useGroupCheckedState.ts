@@ -37,10 +37,10 @@ const useGroupCheckedState = ({
   const [pressed, setPressed] = useState<boolean>(false);
 
   useEffect(() => {
-    if (checkedProp) {
+    if (groupCheckedValue === undefined && checkedProp !== undefined) {
       setCheckedValue(checkedProp);
     }
-  }, [checkedProp]);
+  }, [checkedProp, groupCheckedValue]);
 
   useEffect(() => {
     if (groupCheckedValue !== undefined) {

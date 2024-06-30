@@ -5,7 +5,7 @@ import type { ColorToken } from "@styled-system/tokens";
 import { RightArrow, Warn } from "wowds-icons";
 
 import Checkbox from "@/components/Checkbox";
-import { useCheckedState } from "@/hooks";
+import useCheckedState from "@/hooks/useCheckedState";
 
 type BoxVariantType = "arrow" | "checkbox" | "text" | "warn";
 
@@ -75,24 +75,6 @@ const Box = <T extends BoxVariantType = "text">({
     }
   };
 
-  const renderRightElement = (variant: BoxVariantType | undefined) => {
-    if (variant === "checkbox") {
-      return <Checkbox checked={checked} onClick={handleClick} />;
-    } else if (variant === "arrow") {
-      return (
-        <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
-      );
-    } else if (variant === "warn") {
-      return (
-        <Warn
-          fill={getStrokeColor(status)}
-          height={24}
-          stroke={getStrokeColor(status)}
-          width={24}
-        />
-      );
-    } else return null;
-  };
   return (
     <Flex
       alignItems="center"
@@ -109,7 +91,7 @@ const Box = <T extends BoxVariantType = "text">({
         <Flex direction="column" gap="xxs">
           <styled.span
             color={textColor ? textColor : "textBlack"}
-            textStyle={typeof text === "string" ? "h3" : undefined}
+            {...(typeof text === "string" && { textStyle: "h3" })}
           >
             {text}
           </styled.span>
@@ -121,7 +103,22 @@ const Box = <T extends BoxVariantType = "text">({
           </styled.span>
         </Flex>
       </Flex>
-      <div>{renderRightElement(variant)}</div>
+      <div>
+        {variant === "checkbox" && (
+          <Checkbox checked={checked} onClick={handleClick} />
+        )}
+        {variant === "arrow" && (
+          <RightArrow height={20} stroke={getStrokeColor(status)} width={20} />
+        )}
+        {variant === "warn" && (
+          <Warn
+            fill={getStrokeColor(status)}
+            height={24}
+            stroke={getStrokeColor(status)}
+            width={24}
+          />
+        )}
+      </div>
     </Flex>
   );
 };
