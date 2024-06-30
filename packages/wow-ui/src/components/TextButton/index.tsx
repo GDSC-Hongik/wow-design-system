@@ -74,9 +74,9 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
         ref={ref}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
-        onMouseDown={handleClickDown}
         onMouseLeave={handleClickUp}
-        onMouseUp={handleClickUp}
+        onPointerDown={handleClickDown}
+        onPointerUp={handleClickUp}
         {...rest}
       >
         <styled.span
