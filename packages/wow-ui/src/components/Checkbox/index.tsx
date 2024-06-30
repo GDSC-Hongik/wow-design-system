@@ -2,11 +2,7 @@
 
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
-import type {
-  CSSProperties,
-  InputHTMLAttributes,
-  PropsWithChildren,
-} from "react";
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
 import { forwardRef, useId } from "react";
 import { Check as CheckIcon } from "wowds-icons";
 
@@ -19,6 +15,7 @@ import useGroupCheckedState from "@/hooks/useGroupCheckedState";
  * @param {boolean} [disabled=false] 체크박스가 비활성화되어 있는지 여부.
  * @param {boolean} [checked] 외부에서 제어할 활성 상태.
  * @param {string} value 체크박스 값.
+ * @param {ReactNode} [label] 체크박스 오른쪽이나 위쪽에 들어갈 텍스트.
  * @param {() => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수.
  * @param {() => void} [onClick] 체크박스 클릭 시 호출되는 함수.
  * @param {() => void} [onKeyDown] 체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수.
@@ -28,15 +25,15 @@ import useGroupCheckedState from "@/hooks/useGroupCheckedState";
  * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 체크박스의 기본 input 요소에 전달할 추가 속성들.
  * @param {CSSProperties} [style] 체크박스의 커스텀 스타일.
  * @param {string} [className] 체크박스에 전달하는 커스텀 클래스.
- * @param {React.ReactNode} [children] 체크박스 오른쪽이나 위쪽에 들어갈 텍스트.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
-export interface CheckboxProps extends PropsWithChildren {
+export interface CheckboxProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   checked?: boolean;
   value?: string;
+  label?: ReactNode;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -57,7 +54,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       value = "checkbox",
       onClick,
       onChange,
-      children,
+      label,
       position = "horizontal",
       inputProps,
       onKeyDown,
@@ -92,7 +89,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         cursor={disabled ? "none" : "pointer"}
         display="flex"
         flexDirection={position === "vertical" ? "column-reverse" : "row"}
-        gap={children ? "xs" : "0px"}
+        gap={label ? "xs" : "0px"}
         htmlFor={id}
         pointerEvents={disabled ? "none" : "auto"}
         width="fit-content"
@@ -131,7 +128,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           )}
         </styled.span>
         <styled.span color={checked ? "textBlack" : "sub"} textStyle="body1">
-          {children}
+          {label}
         </styled.span>
       </styled.label>
     );

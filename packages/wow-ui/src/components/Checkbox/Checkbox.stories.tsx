@@ -41,11 +41,10 @@ const meta = {
         type: "boolean",
       },
     },
-    children: {
+    label: {
       description: "체크박스 오른쪽이나 위쪽에 들어갈 텍스트입니다.",
       table: {
         type: { summary: "ReactNode" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -53,7 +52,6 @@ const meta = {
       description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
         control: {
           type: "function",
         },
@@ -63,10 +61,6 @@ const meta = {
       description: "체크박스 클릭 시 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
       },
     },
     onKeyDown: {
@@ -74,30 +68,18 @@ const meta = {
         "체크박스에 포커스 됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
       },
     },
     onMouseEnter: {
       description: "마우스가 체크박스 위로 진입할 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-      },
-      control: {
-        type: "function",
       },
     },
     onMouseLeave: {
       description: "마우스가 체크박스에서 벗어날 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-      },
-      control: {
-        type: "function",
       },
     },
     position: {
@@ -169,7 +151,7 @@ export const Disabled: Story = {
 export const Vertical: Story = {
   args: {
     checked: true,
-    children: "string",
+    label: "string",
     position: "vertical",
     value: "checkbox",
   },
@@ -178,7 +160,7 @@ export const Vertical: Story = {
 export const Horizontal: Story = {
   args: {
     checked: true,
-    children: "string",
+    label: "string",
     position: "horizontal",
     value: "checkbox",
   },
