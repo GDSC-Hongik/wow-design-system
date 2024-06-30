@@ -24,8 +24,6 @@ export default {
     Switch: "./src/components/Switch",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
-    ProgressBarCircle: "./src/components/ProgressBar/ProgressBarCircle",
-    ProgressBarLabel: "./src/components/ProgressBar/ProgressBarLabel",
     ProgressBar: "./src/components/ProgressBar",
     MultiGroup: "./src/components/MultiGroup",
     Chip: "./src/components/Chip",
