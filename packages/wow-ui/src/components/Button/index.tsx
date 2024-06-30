@@ -105,6 +105,7 @@ const ButtonStyle = cva({
     size: {
       lg: {
         width: "100%",
+        maxWidth: { lgOnly: 316 },
         height: "3rem",
         padding: "1rem",
         borderRadius: "md",
