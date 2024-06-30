@@ -46,7 +46,7 @@ export default {
       entryFileNames: "[name].cjs",
     },
   ],
-  external: ["react/jsx-runtime", /@babel\/runtime/],
+  external: ["react/jsx-runtime"],
   plugins: [
     alias({
       entries: [
