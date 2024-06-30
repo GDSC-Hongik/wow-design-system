@@ -101,27 +101,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: "버튼",
+    children: "버튼",
   },
 };
 
 export const LargeSolid: Story = {
   args: {
-    label: "버튼",
+    children: "버튼",
     variant: "solid",
   },
 };
 
 export const LargeOutline: Story = {
   args: {
-    label: "버튼",
+    children: "버튼",
     variant: "outline",
   },
 };
 
 export const SmallSolid: Story = {
   args: {
-    label: "버튼",
+    children: "버튼",
     size: "sm",
     variant: "solid",
   },
@@ -129,7 +129,7 @@ export const SmallSolid: Story = {
 
 export const SmallOutline: Story = {
   args: {
-    label: "버튼",
+    children: "버튼",
     size: "sm",
     variant: "outline",
   },
