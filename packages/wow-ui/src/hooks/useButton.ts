@@ -11,11 +11,11 @@ interface UseButtonProps {
 const useButton = ({ disabled = false, onKeyDown }: UseButtonProps) => {
   const [pressed, setPressed] = useState<boolean>(false);
 
-  const handleMouseDown = useCallback(() => {
+  const handleClickDown = useCallback(() => {
     if (!disabled) setPressed(true);
   }, [setPressed, disabled]);
 
-  const handleMouseUp = useCallback(() => {
+  const handleClickUp = useCallback(() => {
     if (!disabled) setPressed(false);
   }, [setPressed, disabled]);
 
@@ -42,8 +42,8 @@ const useButton = ({ disabled = false, onKeyDown }: UseButtonProps) => {
     pressed,
     handleKeyDown,
     handleKeyUp,
-    handleMouseDown,
-    handleMouseUp,
+    handleClickDown,
+    handleClickUp,
   };
 };
 

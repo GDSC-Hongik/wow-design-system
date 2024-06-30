@@ -61,8 +61,8 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
       pressed,
       handleKeyDown,
       handleKeyUp,
-      handleMouseDown,
-      handleMouseUp,
+      handleClickDown,
+      handleClickUp,
     } = useButton({ disabled, onKeyDown });
 
     return (
@@ -74,9 +74,9 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
         ref={ref}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
+        onMouseDown={handleClickDown}
+        onMouseLeave={handleClickUp}
+        onMouseUp={handleClickUp}
         {...rest}
       >
         <styled.span

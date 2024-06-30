@@ -64,8 +64,8 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
       pressed,
       handleKeyDown,
       handleKeyUp,
-      handleMouseDown,
-      handleMouseUp,
+      handleClickDown,
+      handleClickUp,
     } = useButton({ disabled, onKeyDown });
 
     return (
@@ -80,9 +80,9 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         })}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
+        onMouseDown={handleClickDown}
+        onMouseLeave={handleClickUp}
+        onMouseUp={handleClickUp}
         {...rest}
       >
         <styled.span textStyle={size === "lg" ? "label1" : "label2"}>
