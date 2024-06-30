@@ -25,6 +25,11 @@
       "require": "./dist/TextField.cjs",
       "import": "./dist/TextField.js"
     },
+    "./TextButton": {
+      "types": "./dist/components/TextButton/index.d.ts",
+      "require": "./dist/TextButton.cjs",
+      "import": "./dist/TextButton.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
