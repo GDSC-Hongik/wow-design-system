@@ -339,6 +339,10 @@ const tokens = {
     value: "1.2px",
     variable: "var(--border-widths-arrow)",
   },
+  "zIndex.dropdown": {
+    value: 10,
+    variable: "var(--z-index-dropdown)",
+  },
   "breakpoints.sm": {
     value: "640px",
     variable: "var(--breakpoints-sm)",

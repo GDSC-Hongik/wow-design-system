@@ -4,3 +4,4 @@ export * as radius from "./radius.ts";
 export * as space from "./space.ts";
 export * as stroke from "./stroke.ts";
 export * as typography from "./typography.ts";
+export * as zIndex from "./zIndex.ts";

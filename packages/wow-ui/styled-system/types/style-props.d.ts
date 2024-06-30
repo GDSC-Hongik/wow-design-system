@@ -7168,7 +7168,9 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/z-index
    */
-  zIndex?: ConditionalValue<CssProperties["zIndex"] | AnyString>;
+  zIndex?: ConditionalValue<
+    UtilityValues["zIndex"] | CssVars | CssProperties["zIndex"] | AnyString
+  >;
   /**
    * The non-standard **`zoom`** CSS property can be used to control the magnification level of an element. `transform: scale()` should be used instead of this property, if possible. However, unlike CSS Transforms, `zoom` affects the layout size of the element.
    *
