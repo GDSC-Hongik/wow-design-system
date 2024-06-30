@@ -5,7 +5,7 @@ import { Flex, styled } from "@styled-system/jsx";
 import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
 import { forwardRef, useId } from "react";
 
-import { useGroupCheckedState } from "@/hooks";
+import useGroupCheckedState from "@/hooks/useGroupCheckedState";
 
 /**
  * @description on, off 두 가지 상태로 설정할 수 있는 스위치 컴포넌트입니다.
