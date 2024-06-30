@@ -19,7 +19,11 @@ import type {
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
  * @param {"solid" | "outline"} [variant] - 버튼의 종류.
- * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 눌렀을 때 동작할 이벤트.
+ * @param {() => void} [onKeyUp] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트.
+ * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
+ * @param {() => void} [onMouseLeave] - 버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트.
+ * @param {() => void} [onPointerDown] - 버튼에 포커스 된 상태에서 마우스 또는 터치로 누르고 있는 동안 동작할 이벤트.
+ * @param {() => void} [onPointerUp] - 버튼에 포커스 된 상태에서 마우스 또는 터치를 뗐을 때 동작할 이벤트.
  * @param {CSSProperties} [style] - 버튼의 커스텀 스타일.
  * @param {string} [className] - 버튼에 전달하는 커스텀 클래스.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
@@ -31,7 +35,11 @@ export interface CustomButtonProps {
   disabled?: boolean;
   size?: "lg" | "sm";
   variant?: "solid" | "outline";
+  onKeyUp?: () => void;
   onKeyDown?: () => void;
+  onMouseLeave?: () => void;
+  onPointerDown?: () => void;
+  onPointerUp?: () => void;
   style?: CSSProperties;
   className?: string;
 }
@@ -53,7 +61,11 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
       disabled = false,
       size = "lg",
       variant = "solid",
+      onKeyUp,
       onKeyDown,
+      onMouseLeave,
+      onPointerDown,
+      onPointerUp,
       ...rest
     }: ButtonProps<C>,
     ref?: PolymorphicRef<C>
@@ -64,9 +76,17 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
       pressed,
       handleKeyDown,
       handleKeyUp,
-      handleClickDown,
-      handleClickUp,
-    } = useButton({ disabled, onKeyDown });
+      handlePointerDown,
+      handlePointerUp,
+      handleMouseLeave,
+    } = useButton({
+      disabled,
+      onMouseLeave,
+      onKeyUp,
+      onKeyDown,
+      onPointerDown,
+      onPointerUp,
+    });
 
     return (
       <Component
@@ -80,9 +100,9 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         })}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
-        onMouseLeave={handleClickUp}
-        onPointerDown={handleClickDown}
-        onPointerUp={handleClickUp}
+        onMouseLeave={handleMouseLeave}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
         {...rest}
       >
         <styled.span
