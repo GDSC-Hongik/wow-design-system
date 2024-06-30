@@ -29,6 +29,7 @@ const meta = {
       table: {
         type: { summary: "LabelType[]" },
       },
+      control: false,
     },
     maxStep: {
       description: "프로그래스 바가 가질 수 있는 최대 스텝을 나타냅니다.",
@@ -67,9 +68,9 @@ export const ProgressBarWithMarkers: Story = {
     step: 1,
     maxStep: 3,
     labels: [
-      { value: 1, text: "Label" },
-      { value: 2, text: "Label" },
-      { value: 3, text: "Label" },
+      { value: 1, label: "Label" },
+      { value: 2, label: "Label" },
+      { value: 3, label: "Label" },
     ],
   },
 };
