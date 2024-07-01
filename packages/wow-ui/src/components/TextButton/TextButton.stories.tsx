@@ -117,26 +117,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: "Button",
+    text: "Button",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: "Button",
+    text: "Button",
     disabled: true,
   },
 };
 
 export const Large: Story = {
   args: {
-    label: "Button",
+    text: "Button",
   },
 };
 
 export const Small: Story = {
   args: {
-    label: "Button",
+    text: "Button",
     size: "sm",
   },
 };
