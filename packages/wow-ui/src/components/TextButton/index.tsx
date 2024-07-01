@@ -15,7 +15,7 @@ import type {
 /**
  * @description 텍스트 버튼 컴포넌트의 속성을 정의합니다.
  *
- * @param {string} label - 텍스트 버튼의 라벨.
+ * @param {string} text - 텍스트 버튼의 라벨.
  * @param {boolean} [disabled] - 텍스트 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 텍스트 버튼의 크기.
  * @param {() => void} [onKeyDown] - 텍스트 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
@@ -29,7 +29,7 @@ import type {
  */
 
 export interface CustomButtonProps {
-  label: string;
+  text: string;
   disabled?: boolean;
   size?: "lg" | "sm";
   onKeyUp?: () => void;
@@ -54,7 +54,7 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
   <C extends ElementType = "button">(
     {
       as,
-      label,
+      text,
       disabled = false,
       size = "lg",
       onKeyUp,
@@ -102,7 +102,7 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
           textDecoration="underline"
           textStyle={size === "lg" ? "label1" : "label2"}
         >
-          {label}
+          {text}
         </styled.span>
       </Component>
     );
