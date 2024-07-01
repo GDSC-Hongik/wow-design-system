@@ -24,6 +24,7 @@ export default {
     Switch: "./src/components/Switch",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
+    ProgressBar: "./src/components/ProgressBar",
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",

@@ -40,6 +40,11 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./ProgressBar": {
+      "types": "./dist/components/ProgressBar/index.d.ts",
+      "require": "./dist/ProgressBar.cjs",
+      "import": "./dist/ProgressBar.js"
+    },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",
       "require": "./dist/MultiGroup.cjs",
