@@ -21,6 +21,7 @@ process.env.BABEL_ENV = "production";
 export default {
   input: {
     TextField: "./src/components/TextField",
+    TextButton: "./src/components/TextButton",
     Switch: "./src/components/Switch",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
@@ -46,7 +47,7 @@ export default {
       entryFileNames: "[name].cjs",
     },
   ],
-  external: ["react/jsx-runtime", /@babel\/runtime/],
+  external: ["react/jsx-runtime"],
   plugins: [
     alias({
       entries: [

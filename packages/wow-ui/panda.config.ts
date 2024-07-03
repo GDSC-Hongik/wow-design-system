@@ -44,4 +44,7 @@ export default defineConfig({
     semanticTokens,
     breakpoints,
   },
+  conditions: {
+    hover: "&[aria-pressed=false]:not(:disabled):hover",
+  },
 });

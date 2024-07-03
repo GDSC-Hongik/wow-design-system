@@ -22,10 +22,10 @@ const Home = () => {
         <DropDownOption text="option 1" value="option 2" />
       </DropDown>
       <MultiGroup variant="checkbox">
-        <Checkbox children="checkbox1" value="checkbox1" />
-        <Checkbox children="checkbox2" value="checkbox2" />
-        <Checkbox children="checkbox3" value="checkbox3" />
-        <Checkbox children="checkbox4" value="checkbox4" />
+        <Checkbox label="checkbox1" value="checkbox1" />
+        <Checkbox label="checkbox2" value="checkbox2" />
+        <Checkbox label="checkbox3" value="checkbox3" />
+        <Checkbox label="checkbox4" value="checkbox4" />
       </MultiGroup>
       <MultiGroup variant="switch">
         <Switch label="switch1" value="switch1" />
