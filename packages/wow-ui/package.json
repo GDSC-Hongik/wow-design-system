@@ -30,6 +30,11 @@
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
     },
+    "./Stepper": {
+      "types": "./dist/components/Stepper/index.d.ts",
+      "require": "./dist/Stepper.cjs",
+      "import": "./dist/Stepper.js"
+    },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
       "require": "./dist/RadioButton.cjs",
@@ -39,11 +44,6 @@
       "types": "./dist/components/RadioGroup/RadioGroup.d.ts",
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
-    },
-    "./ProgressBar": {
-      "types": "./dist/components/ProgressBar/index.d.ts",
-      "require": "./dist/ProgressBar.cjs",
-      "import": "./dist/ProgressBar.js"
     },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",

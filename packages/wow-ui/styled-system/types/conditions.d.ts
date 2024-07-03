@@ -2,7 +2,7 @@
 import type { AnySelector, Selectors } from "./selectors";
 
 export interface Conditions {
-  /** `&:is(:hover, [data-hover])` */
+  /** `&[aria-pressed=false]:not(:disabled):hover` */
   _hover: string;
   /** `&:is(:focus, [data-focus])` */
   _focus: string;

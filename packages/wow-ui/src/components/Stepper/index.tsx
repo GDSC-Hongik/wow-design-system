@@ -1,10 +1,11 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
+import { useCallback, useMemo } from "react";
 
 import { calcPercent } from "@/utils/calcPercent";
 
-export interface ProgressBarProps {
+export interface StepperProps {
   step: number;
   maxStep?: number;
   labels?: LabelType[];
@@ -16,18 +17,22 @@ export type LabelType = {
   label: ReactNode;
 };
 
-const ProgressBar = ({
-  step,
-  maxStep = 3,
-  labels,
-  width,
-}: ProgressBarProps) => {
-  const fillProgressBar = (maxValue: number, value: number) => {
-    const ratio = (value - 1) / (maxValue - 1);
-    return ratio > 1 ? "100%" : `${ratio * 100}%`;
-  };
+const checkStepperStatus = (number: number, step: number) => {
+  if (step === number) return "currentStep";
+  if (step > number) return "checkedStep";
+  return "default";
+};
 
-  const circleNumbers = Array.from({ length: maxStep }, (_, i) => i + 1);
+const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
+  const fillProgressBar = useCallback((maxStep: number, step: number) => {
+    const ratio = (step - 1) / (maxStep - 1);
+    return ratio > 1 ? "100%" : `${ratio * 100}%`;
+  }, []);
+
+  const circleNumbers = useMemo(
+    () => Array.from({ length: maxStep }, (_, i) => i + 1),
+    [maxStep]
+  );
 
   return (
     <div
@@ -51,7 +56,7 @@ const ProgressBar = ({
         />
         <styled.ul position="relative" width="100%">
           {circleNumbers.map((circleNumber) => (
-            <ProgressBarCircle
+            <StepperCircle
               circleNumber={circleNumber}
               currentStep={step}
               key={`circle-${circleNumber}`}
@@ -60,29 +65,25 @@ const ProgressBar = ({
           ))}
         </styled.ul>
         {labels && (
-          <styled.div
-            pointerEvents="none"
-            position="relative"
-            userSelect="none"
-          >
+          <styled.ul pointerEvents="none" position="relative" userSelect="none">
             {labels.map((label) => (
-              <ProgressBarLabel
+              <StepperLabel
                 currentStep={step}
                 key={`label-${label.value}`}
                 labelObject={label}
                 maxStep={maxStep}
               />
             ))}
-          </styled.div>
+          </styled.ul>
         )}
       </styled.div>
     </div>
   );
 };
 
-export default ProgressBar;
+export default Stepper;
 
-const ProgressBarCircle = ({
+const StepperCircle = ({
   maxStep,
   circleNumber,
   currentStep,
@@ -91,19 +92,10 @@ const ProgressBarCircle = ({
   circleNumber: number;
   currentStep: number;
 }) => {
-  const checkCurrentCircleStatus = (
-    circleNumber: number,
-    currentStep: number
-  ) => {
-    if (currentStep === circleNumber) return "currentStep";
-    else if (currentStep > circleNumber) return "checkedStep";
-    else return "default";
-  };
-
   return (
     <styled.li
-      className={progressBarCircleStyle({
-        status: checkCurrentCircleStatus(circleNumber, currentStep),
+      className={stepperCircleStyle({
+        status: checkStepperStatus(circleNumber, currentStep),
       })}
       style={{
         left: `${calcPercent(maxStep, circleNumber - 1)}%`,
@@ -115,7 +107,7 @@ const ProgressBarCircle = ({
   );
 };
 
-const progressBarCircleStyle = cva({
+const stepperCircleStyle = cva({
   base: {
     textStyle: "label2",
     alignItems: "center",
@@ -151,7 +143,7 @@ const progressBarCircleStyle = cva({
   },
 });
 
-const ProgressBarLabel = ({
+const StepperLabel = ({
   labelObject,
   maxStep,
   currentStep,
@@ -162,17 +154,8 @@ const ProgressBarLabel = ({
 }) => {
   const { value, label } = labelObject;
 
-  const checkCurrentMarkerStatus = (
-    markerValue: number,
-    currentStep: number
-  ) => {
-    if (currentStep === markerValue) return "currentStep";
-    else if (currentStep > markerValue) return "checkedStep";
-    else return "default";
-  };
-
   return (
-    <styled.div
+    <styled.li
       marginTop="14px"
       pointerEvents="none"
       position="absolute"
@@ -182,17 +165,17 @@ const ProgressBarLabel = ({
       }}
     >
       <styled.span
-        className={progressBarLabelStyle({
-          status: checkCurrentMarkerStatus(value, currentStep),
+        className={stepperLabelStyle({
+          status: checkStepperStatus(value, currentStep),
         })}
       >
         {label}
       </styled.span>
-    </styled.div>
+    </styled.li>
   );
 };
 
-const progressBarLabelStyle = cva({
+const stepperLabelStyle = cva({
   base: {
     textStyle: "label2",
   },

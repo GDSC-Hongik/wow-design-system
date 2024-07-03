@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ProgressBar from "@/components/ProgressBar";
+import Stepper from "@/components/Stepper";
 
 const meta = {
-  title: "UI/ProgressBar",
-  component: ProgressBar,
+  title: "UI/Stepper",
+  component: Stepper,
   parameters: {
-    componentSubtitle: "프로그래스바 컴포넌트",
+    componentSubtitle: "스텝퍼 컴포넌트",
     a11y: {
       config: {
         rules: [{ id: "color-contrast", enabled: false }],
@@ -50,7 +50,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof ProgressBar>;
+} satisfies Meta<typeof Stepper>;
 
 export default meta;
 
