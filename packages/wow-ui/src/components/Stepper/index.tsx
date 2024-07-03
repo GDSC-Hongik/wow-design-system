@@ -23,6 +23,13 @@ const checkStepperStatus = (number: number, step: number) => {
   return "default";
 };
 
+/**
+ * @param {number} step Stepper의 현재 스텝
+ * @param {number} [maxStep] Stepper가 가질 수 있는 최대 스텝
+ * @param {LabelType[]} [labels] Stepper에 하단에 입력할 라벨의 배열
+ * @param {number} width Stepper의 가로 길이를 자유롭게 정할 수 있어요. 단, 278px 이상이어야 합니다.
+ */
+
 const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
   const fillProgressBar = useCallback((maxStep: number, step: number) => {
     const ratio = (step - 1) / (maxStep - 1);
