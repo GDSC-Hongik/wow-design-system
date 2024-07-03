@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -24,6 +24,11 @@
       "types": "./dist/components/TextField/index.d.ts",
       "require": "./dist/TextField.cjs",
       "import": "./dist/TextField.js"
+    },
+    "./TextButton": {
+      "types": "./dist/components/TextButton/index.d.ts",
+      "require": "./dist/TextButton.cjs",
+      "import": "./dist/TextButton.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
