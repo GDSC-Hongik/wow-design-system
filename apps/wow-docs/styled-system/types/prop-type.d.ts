@@ -459,6 +459,7 @@ export interface UtilityValues {
   textDecorationColor: Tokens["colors"];
   textEmphasisColor: Tokens["colors"];
   textIndent: Tokens["spacing"];
+  textShadow: Tokens["shadows"];
   textShadowColor: Tokens["colors"];
   textWrap: "wrap" | "balance" | "nowrap";
   truncate: boolean;
@@ -522,6 +523,7 @@ export interface UtilityValues {
   borderBottomColor: Tokens["colors"];
   borderBlockEndColor: Tokens["colors"];
   borderBlockStartColor: Tokens["colors"];
+  boxShadow: Tokens["shadows"];
   boxShadowColor: Tokens["colors"];
   filter: "auto";
   backdropFilter: "auto";

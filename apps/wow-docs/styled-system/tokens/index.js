@@ -343,6 +343,14 @@ const tokens = {
     value: 10,
     variable: "var(--z-index-dropdown)",
   },
+  "shadows.blue": {
+    value: "0px 4px 8px 0px rgba(16, 43, 74, 0.2)",
+    variable: "var(--shadows-blue)",
+  },
+  "shadows.mono": {
+    value: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+    variable: "var(--shadows-mono)",
+  },
   "breakpoints.sm": {
     value: "640px",
     variable: "var(--breakpoints-sm)",
