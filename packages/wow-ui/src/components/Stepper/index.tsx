@@ -47,6 +47,7 @@ const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
       aria-valuemax={maxStep}
       aria-valuemin={1}
       aria-valuetext={String(step)}
+      role="progressbar"
     >
       <styled.div
         backgroundColor="outline"
