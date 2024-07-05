@@ -63,7 +63,7 @@ export const Default: Story = {
   },
 };
 
-export const ProgressBarWithMarkers: Story = {
+export const StepperWithMarkers: Story = {
   args: {
     step: 1,
     maxStep: 3,

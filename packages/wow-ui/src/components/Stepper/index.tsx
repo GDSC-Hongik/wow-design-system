@@ -31,7 +31,7 @@ const checkStepperStatus = (number: number, step: number) => {
  */
 
 const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
-  const fillProgressBar = useCallback((maxStep: number, step: number) => {
+  const fillStepper = useCallback((maxStep: number, step: number) => {
     const ratio = (step - 1) / (maxStep - 1);
     return ratio > 1 ? "100%" : `${ratio * 100}%`;
   }, []);
@@ -43,7 +43,7 @@ const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
 
   return (
     <div
-      aria-label="progressbar"
+      aria-label="stepper"
       aria-valuemax={maxStep}
       aria-valuemin={1}
       aria-valuetext={String(step)}
@@ -59,7 +59,7 @@ const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
         <styled.div
           backgroundColor="primary"
           height="1.2px"
-          style={{ width: fillProgressBar(maxStep, step) }}
+          style={{ width: fillStepper(maxStep, step) }}
         />
         <styled.ul position="relative" width="100%">
           {circleNumbers.map((circleNumber) => (
