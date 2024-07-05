@@ -1976,12 +1976,7 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/box-shadow
    */
-  boxShadow?: ConditionalValue<
-    | UtilityValues["boxShadow"]
-    | CssVars
-    | CssProperties["boxShadow"]
-    | AnyString
-  >;
+  boxShadow?: ConditionalValue<CssProperties["boxShadow"] | AnyString>;
   /**
    * The **`box-sizing`** CSS property sets how the total width and height of an element is calculated.
    *
@@ -6577,12 +6572,7 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/text-shadow
    */
-  textShadow?: ConditionalValue<
-    | UtilityValues["textShadow"]
-    | CssVars
-    | CssProperties["textShadow"]
-    | AnyString
-  >;
+  textShadow?: ConditionalValue<CssProperties["textShadow"] | AnyString>;
   /**
    * The **`text-size-adjust`** CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.
    *
@@ -8645,12 +8635,7 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/box-shadow
    */
-  shadow?: ConditionalValue<
-    | UtilityValues["boxShadow"]
-    | CssVars
-    | CssProperties["boxShadow"]
-    | AnyString
-  >;
+  shadow?: ConditionalValue<CssProperties["boxShadow"] | AnyString>;
   shadowColor?: ConditionalValue<
     UtilityValues["boxShadowColor"] | CssVars | AnyString
   >;

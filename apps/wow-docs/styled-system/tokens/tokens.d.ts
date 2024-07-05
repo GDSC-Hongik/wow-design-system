@@ -86,8 +86,6 @@ export type Token =
   | "borderWidths.button"
   | "borderWidths.arrow"
   | "zIndex.dropdown"
-  | "shadows.blue"
-  | "shadows.mono"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
@@ -309,8 +307,6 @@ export type BorderWidthToken = "button" | "arrow";
 
 export type ZIndexToken = "dropdown";
 
-export type ShadowToken = "blue" | "mono";
-
 export type BreakpointToken = "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type SizeToken =
@@ -327,7 +323,6 @@ export type Tokens = {
   radii: RadiusToken;
   borderWidths: BorderWidthToken;
   zIndex: ZIndexToken;
-  shadows: ShadowToken;
   breakpoints: BreakpointToken;
   sizes: SizeToken;
 } & { [token: string]: never };
