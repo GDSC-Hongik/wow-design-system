@@ -23,6 +23,7 @@ export default {
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
     Switch: "./src/components/Switch",
+    Stepper: "./src/components/Stepper",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
     MultiGroup: "./src/components/MultiGroup",

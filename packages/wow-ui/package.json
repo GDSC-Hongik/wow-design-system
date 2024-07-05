@@ -35,6 +35,11 @@
       "require": "./dist/Switch.cjs",
       "import": "./dist/Switch.js"
     },
+    "./Stepper": {
+      "types": "./dist/components/Stepper/index.d.ts",
+      "require": "./dist/Stepper.cjs",
+      "import": "./dist/Stepper.js"
+    },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
       "require": "./dist/RadioButton.cjs",
