@@ -277,6 +277,7 @@ const textareaStyle = cva({
     maxHeight: "7.5rem",
     overflowY: "hidden",
     resize: "none",
+    backgroundColor: "backgroundNormal",
     _placeholder: {
       color: "outline",
     },
