@@ -187,6 +187,7 @@ const DropDown = ({
       cursor="pointer"
       direction="column"
       gap="xs"
+      outline="none"
       position="relative"
       ref={dropdownRef}
       tabIndex={0}
