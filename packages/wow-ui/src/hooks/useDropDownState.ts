@@ -1,11 +1,14 @@
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface DropDownStateProps {
   value?: string;
   defaultValue?: string;
   children: ReactNode[];
-  onChange?: (value: string) => void;
+  onChange?: (value: {
+    selectedValue: string;
+    selectedText: ReactNode;
+  }) => void;
 }
 
 const useDropDownState = ({
@@ -14,22 +17,38 @@ const useDropDownState = ({
   children,
   onChange,
 }: DropDownStateProps) => {
-  const [selected, setSelected] = useState(defaultValue || "");
+  const options = useMemo(() => {
+    const opts: { [key: string]: ReactNode } = {};
+    children.forEach((child) => {
+      const element = child as ReactElement;
+      opts[element.props.value] = element.props.text;
+    });
+    return opts;
+  }, [children]);
+
+  const [selectedValue, setSelectedValue] = useState(defaultValue || "");
+  const [selectedText, setSelectedText] = useState(
+    defaultValue ? options[defaultValue] : ""
+  );
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (value !== undefined) {
-      setSelected(value);
+      setSelectedValue(value);
+      setSelectedText(options[value]);
     }
-  }, [value]);
+  }, [options, value]);
 
   const handleSelect = (option: string) => {
     if (value === undefined) {
-      setSelected(option);
+      setSelectedValue(option);
+      setSelectedText(options[option]);
     }
     setOpen(false);
-    onChange && onChange(option);
+    if (onChange) {
+      onChange({ selectedValue: option, selectedText: options[option] });
+    }
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -57,7 +76,8 @@ const useDropDownState = ({
   };
 
   return {
-    selected,
+    selectedValue,
+    selectedText,
     open,
     setOpen,
     focusedIndex,

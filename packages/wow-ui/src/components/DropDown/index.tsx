@@ -70,7 +70,10 @@ export type DropDownProps = (
 ) & {
   value?: string;
   defaultValue?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: {
+    selectedValue: string;
+    selectedText: ReactNode;
+  }) => void;
   style?: CSSProperties;
   className?: string;
 };
@@ -87,7 +90,8 @@ const DropDown = ({
 }: DropDownProps) => {
   const flattenedChildren = useFlattenChildren(children);
   const {
-    selected,
+    selectedValue,
+    selectedText,
     open,
     setOpen,
     focusedIndex,
@@ -133,7 +137,7 @@ const DropDown = ({
   const renderLabel = () => (
     <>
       <styled.span
-        color={open ? "primary" : selected ? "textBlack" : "sub"}
+        color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
         textStyle="label2"
       >
         {label}
@@ -142,20 +146,20 @@ const DropDown = ({
         alignItems="center"
         justifyContent="space-between"
         className={dropdownStyle({
-          type: open ? "focused" : selected ? "selected" : "default",
+          type: open ? "focused" : selectedValue ? "selected" : "default",
         })}
         onClick={toggleDropdown}
       >
         <styled.div
           className={placeholderStyle({
-            type: open ? "focused" : selected ? "selected" : "default",
+            type: open ? "focused" : selectedValue ? "selected" : "default",
           })}
         >
-          {selected ? selected : placeholder}
+          {selectedText ? selectedText : placeholder}
         </styled.div>
         <DownArrow
           className={iconStyle({ type: open ? "up" : "down" })}
-          stroke={open ? "primary" : selected ? "sub" : "outline"}
+          stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
           tabIndex={0}
           onKeyDown={(e: React.KeyboardEvent) => {
             if (e.key === "Enter") toggleDropdown();
@@ -174,7 +178,7 @@ const DropDown = ({
             ref: setOptionRef(index),
             onClick: handleOptionClick(child.props.value, child.props.onClick),
             focused: focusedIndex === index,
-            selected: selected === child.props.value,
+            selected: selectedValue === child.props.value,
           });
         }
         return child;

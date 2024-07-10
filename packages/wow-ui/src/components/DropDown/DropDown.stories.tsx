@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 
 import DropDown from "@/components/DropDown";
@@ -138,8 +139,11 @@ export const WithDefaultValue: Story = {
 const ControlledTextField = () => {
   const [selectedValue, setSelectedValue] = useState("");
 
-  const handleChange = (value: string) => {
-    setSelectedValue(value);
+  const handleChange = (value: {
+    selectedValue: string;
+    selectedText: ReactNode;
+  }) => {
+    setSelectedValue(value.selectedValue);
   };
 
   return (
@@ -149,8 +153,8 @@ const ControlledTextField = () => {
       value={selectedValue}
       onChange={handleChange}
     >
-      <DropDownOption text="option 1" value="option 1" />
-      <DropDownOption text="option 2" value="option 2" />
+      <DropDownOption text="옵션 1" value="option 1" />
+      <DropDownOption text="옵션 2" value="option 2" />
     </DropDown>
   );
 };
