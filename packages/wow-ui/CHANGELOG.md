@@ -1,5 +1,13 @@
 # wowds-ui
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [fa5c83f]
+- Updated dependencies [fa5c83f]
+  - wowds-icons@0.1.0
+
 ## 0.1.2
 
 ### Patch Changes
