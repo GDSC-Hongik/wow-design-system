@@ -392,7 +392,7 @@ const tokens = {
     variable: "var(--colors-success)",
   },
   "colors.error": {
-    value: "#BB362A",
+    value: "#EA4335",
     variable: "var(--colors-error)",
   },
   "colors.backgroundNormal": {
