@@ -65,7 +65,10 @@ const meta = {
     onChange: {
       description: "값이 변경될 때 호출되는 함수입니다.",
       table: {
-        type: { summary: "(value: string) => void" },
+        type: {
+          summary:
+            "(value: {selectedValue: string; selectedText: ReactNode;}) => void",
+        },
       },
       action: "changed",
     },
@@ -80,8 +83,8 @@ export const Primary: Story = {
   args: {
     children: (
       <>
-        <DropDownOption text="option 1" value="option 1" />
-        <DropDownOption text="option 2" value="option 2" />
+        <DropDownOption text="옵션 1" value="option 1" />
+        <DropDownOption text="옵션 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
