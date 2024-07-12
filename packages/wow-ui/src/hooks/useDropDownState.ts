@@ -1,5 +1,5 @@
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { isValidElement, useEffect, useMemo, useState } from "react";
 
 interface DropDownStateProps {
   value?: string;
@@ -20,8 +20,9 @@ const useDropDownState = ({
   const options = useMemo(() => {
     const opts: { [key: string]: ReactNode } = {};
     children.forEach((child) => {
-      const element = child as ReactElement;
-      opts[element.props.value] = element.props.text;
+      if (isValidElement(child)) {
+        opts[child.props.value] = child.props.text;
+      }
     });
     return opts;
   }, [children]);
