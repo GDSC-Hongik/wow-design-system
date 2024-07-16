@@ -3,13 +3,13 @@ import { color } from "wowds-tokens";
 
 import type { IconProps } from "@/types/Icon.ts";
 
-const RightArrow = forwardRef<SVGSVGElement, IconProps>(
+const Search = forwardRef<SVGSVGElement, IconProps>(
   (
     {
       className,
-      width = "20",
-      height = "21",
-      viewBox = "0 0 20 21",
+      width = "24",
+      height = "24",
+      viewBox = "0 0 24 24",
       stroke = "white",
       ...rest
     },
@@ -17,7 +17,7 @@ const RightArrow = forwardRef<SVGSVGElement, IconProps>(
   ) => {
     return (
       <svg
-        aria-label="right-arrow icon"
+        aria-label="search icon"
         className={className}
         fill="none"
         height={height}
@@ -28,7 +28,12 @@ const RightArrow = forwardRef<SVGSVGElement, IconProps>(
         {...rest}
       >
         <path
-          d="M10 4.5L15 10.5L10 16.5"
+          d="M18 10C18 13.866 14.866 17 11 17C7.13401 17 4 13.866 4 10C4 6.13401 7.13401 3 11 3C14.866 3 18 6.13401 18 10Z"
+          stroke={color[stroke]}
+          strokeWidth="1.4"
+        />
+        <path
+          d="M15 16L19 21.5"
           stroke={color[stroke]}
           strokeLinejoin="bevel"
           strokeWidth="1.4"
@@ -38,5 +43,5 @@ const RightArrow = forwardRef<SVGSVGElement, IconProps>(
   }
 );
 
-RightArrow.displayName = "RightArrow";
-export default RightArrow;
+Search.displayName = "Search";
+export default Search;
