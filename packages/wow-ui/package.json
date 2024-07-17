@@ -40,6 +40,11 @@
       "require": "./dist/Stepper.cjs",
       "import": "./dist/Stepper.js"
     },
+    "./SearchBar": {
+      "types": "./dist/components/SearchBar/index.d.ts",
+      "require": "./dist/SearchBar.cjs",
+      "import": "./dist/SearchBar.js"
+    },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
       "require": "./dist/RadioButton.cjs",

@@ -24,6 +24,7 @@ export default {
     TextButton: "./src/components/TextButton",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",
+    SearchBar: "./src/components/SearchBar",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
     MultiGroup: "./src/components/MultiGroup",

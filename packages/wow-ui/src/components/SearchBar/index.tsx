@@ -10,7 +10,6 @@ import type {
 } from "react";
 import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
 import { Search as SearchIcon } from "wowds-icons";
-// import InputBase from "../../components/SearchBar/InputBase";
 
 type VariantType = "default" | "typing" | "typed" | "disabled";
 
@@ -21,6 +20,7 @@ type VariantType = "default" | "typing" | "typed" | "disabled";
  * @param {string} [defaultValue] 서치바의 기본 값.
  * @param {string} [value] 외부에서 제어할 활성 상태.
  * @param {number} [maxLength] 서치바의 최대 입력 길이.
+ * @param {boolean} [disabled] 서치바의 비활성 여부.
  * @param {(value: string) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
  * @param {() => void} [onBlur] 서치바가 포커스를 잃을 때 호출될 콜백 함수.
  * @param {() => void} [onFocus] 서치바가 포커스됐을 때 호출될 콜백 함수.
@@ -35,13 +35,13 @@ export interface SearchBarProps {
   defaultValue?: string;
   value?: string;
   maxLength?: number;
+  disabled?: boolean;
   onChange?: (value: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
   style?: CSSProperties;
   className?: string;
-  disabled?: boolean;
 }
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
@@ -61,10 +61,10 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     ref
   ) => {
     const id = useId();
-    const textareaId = inputProps?.id || id;
+    const inputId = inputProps?.id || id;
 
-    const textareaRef = useRef<HTMLInputElement>(null);
-    const textareaElementRef = ref || textareaRef;
+    const inputRef = useRef<HTMLInputElement>(null);
+    const inputElementRef = ref || inputRef;
 
     const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
     const [variant, setVariant] = useState<VariantType>("default");
@@ -120,43 +120,26 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         />
         <styled.input
           {...inputProps}
-          aria-describedby={textareaId}
+          aria-disabled={disabled}
           aria-label={inputProps?.["aria-label"] ?? "searchbar"}
           className={inputStyle()}
-          id={textareaId}
+          disabled={disabled}
+          id={inputId}
           maxLength={maxLength}
           placeholder={placeholder}
-          ref={textareaElementRef}
+          ref={inputElementRef}
           value={value}
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
           {...rest}
         />
-        {/* <InputBase
-          {...inputProps}
-          className={inputStyle({ type: variant })}
-          id={textareaId}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          ref={textareaElementRef}
-          rows={1}
-          setValue={setValue}
-          value={value}
-          onBlur={handleBlur}
-          onChange={onChange}
-          onFocus={handleFocus}
-          onValueChange={() => {
-            setVariant("typing");
-          }}
-          {...rest}
-        /> */}
       </Flex>
     );
   }
 );
 
-SearchBar.displayName = "TextField";
+SearchBar.displayName = "SearchBar";
 export default SearchBar;
 
 const containerStyle = cva({
@@ -200,7 +183,7 @@ const containerStyle = cva({
       disabled: {
         backgroundColor: "backgroundAlternative",
         borderColor: "sub",
-        cursor: "not-allowed",
+        cursor: "none",
       },
     },
   },
@@ -210,7 +193,10 @@ const inputStyle = cva({
   base: {
     width: "100%",
     overflowY: "hidden",
-    resize: "none",
+    cursor: "inherit",
     outline: "none",
+    _disabled: {
+      pointerEvents: "none",
+    },
   },
 });
