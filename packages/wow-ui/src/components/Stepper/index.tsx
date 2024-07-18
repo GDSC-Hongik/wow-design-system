@@ -126,6 +126,7 @@ const stepperCircleStyle = cva({
     position: "absolute",
     width: "1.5rem",
     borderWidth: "1px",
+    borderStyle: "solid",
     transform: "translateX(-50%)",
   },
   variants: {
@@ -169,6 +170,8 @@ const StepperLabel = ({
       transform="translateX(-50%)"
       style={{
         left: `${calcPercent(maxStep, value - 1)}%`,
+        bottom: "-35px",
+        whiteSpace: "nowrap",
       }}
     >
       <styled.span

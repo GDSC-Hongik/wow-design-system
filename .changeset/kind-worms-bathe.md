@@ -2,4 +2,5 @@
 "wowds-ui": patch
 ---
 
-- DropDown 의 value,text 에 대해서 제어할 수 있도록 수정하고 선택된 옵션값에 text 가 나타나도록 수정합니다.
+- Stepper의 CSS 에러를 개선합니다. (마지막 글자 잘림 현상 및 border Style 적용 안됨 이슈 해결)
+- Textfield의 border Style이 적용 안되는 이슈를 해결합니다.
