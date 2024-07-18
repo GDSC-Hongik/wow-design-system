@@ -108,9 +108,11 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
 
     return (
       <Component
-        aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
-        data-selected={isChecked}
+        aria-checked={isChecked}
+        aria-disabled={disabled}
+        aria-label={`chip-${label}`}
         ref={ref}
+        role={clickable ? "checkbox" : "contentinfo"}
         style={style}
         className={chip({
           clickable: disabled ? false : clickable,
