@@ -60,7 +60,7 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
  * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
  * @param {string} [defaultValue] 초기 선택된 값을 나타냅니다.
  * @param {string} [value] 현재 선택된 값을 나타냅니다.
- * @param {(value: string) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
+ * @param {(value: {selectedValue: string; selectedText: ReactNode;}) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
  * @param {CSSProperties} [style] 드롭다운의 커스텀 스타일.
  * @param {string} [className] 드롭다운에 전달하는 커스텀 클래스.
  */
@@ -70,7 +70,10 @@ export type DropDownProps = (
 ) & {
   value?: string;
   defaultValue?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: {
+    selectedValue: string;
+    selectedText: ReactNode;
+  }) => void;
   style?: CSSProperties;
   className?: string;
 };
@@ -87,7 +90,8 @@ const DropDown = ({
 }: DropDownProps) => {
   const flattenedChildren = useFlattenChildren(children);
   const {
-    selected,
+    selectedValue,
+    selectedText,
     open,
     setOpen,
     focusedIndex,
@@ -133,7 +137,7 @@ const DropDown = ({
   const renderLabel = () => (
     <>
       <styled.span
-        color={open ? "primary" : selected ? "textBlack" : "sub"}
+        color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
         textStyle="label2"
       >
         {label}
@@ -142,20 +146,20 @@ const DropDown = ({
         alignItems="center"
         justifyContent="space-between"
         className={dropdownStyle({
-          type: open ? "focused" : selected ? "selected" : "default",
+          type: open ? "focused" : selectedValue ? "selected" : "default",
         })}
         onClick={toggleDropdown}
       >
         <styled.div
           className={placeholderStyle({
-            type: open ? "focused" : selected ? "selected" : "default",
+            type: open ? "focused" : selectedValue ? "selected" : "default",
           })}
         >
-          {selected ? selected : placeholder}
+          {selectedText ? selectedText : placeholder}
         </styled.div>
         <DownArrow
           className={iconStyle({ type: open ? "up" : "down" })}
-          stroke={open ? "primary" : selected ? "sub" : "outline"}
+          stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
           tabIndex={0}
           onKeyDown={(e: React.KeyboardEvent) => {
             if (e.key === "Enter") toggleDropdown();
@@ -174,7 +178,7 @@ const DropDown = ({
             ref: setOptionRef(index),
             onClick: handleOptionClick(child.props.value, child.props.onClick),
             focused: focusedIndex === index,
-            selected: selected === child.props.value,
+            selected: selectedValue === child.props.value,
           });
         }
         return child;
