@@ -105,7 +105,10 @@ describe("external control and events", () => {
     const chipComponent = renderChip.getByRole("checkbox");
     const onKeyDownHandler = jest.fn();
     chipComponent.onkeydown = onKeyDownHandler;
+
     await user.type(chipComponent, "{enter}");
+    expect(onKeyDownHandler).toHaveBeenCalled();
+    await user.type(chipComponent, "{space}");
     expect(onKeyDownHandler).toHaveBeenCalled();
   });
 

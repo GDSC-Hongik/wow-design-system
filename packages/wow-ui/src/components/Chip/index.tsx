@@ -75,7 +75,6 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       defaultChecked = false,
       disabled = false,
       style,
-      ...rest
     }: ChipProps<T>,
     ref: any
   ) => {
