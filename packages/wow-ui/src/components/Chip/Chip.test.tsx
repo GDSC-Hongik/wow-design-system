@@ -1,5 +1,5 @@
 import { render, type RenderResult, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 //테스트는 서술적이고, 읽기 쉽고, 이해하기 쉬운 테스트 코드를 만들어야 한다.
 // 사용자의 행위를 기반으로 테스트 시나리오를 정의해야 한다.주어진 상황에 대해 결과를 검증해야.
