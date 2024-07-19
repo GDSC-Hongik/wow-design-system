@@ -2,16 +2,14 @@
 
 import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type {
-  ChangeEvent,
-  CSSProperties,
-  FocusEvent,
-  InputHTMLAttributes,
-} from "react";
-import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
+import type { CSSProperties, InputHTMLAttributes } from "react";
+import { forwardRef, useId, useLayoutEffect, useRef } from "react";
 import { Search as SearchIcon } from "wowds-icons";
 
-type VariantType = "default" | "typing" | "typed" | "disabled";
+import type { BaseVariantType } from "@/hooks/useFormControl";
+import { useFormControl } from "@/hooks/useFormControl";
+
+type CustomVariantType = BaseVariantType | "disabled";
 
 /**
  * @description 사용자가 검색할 텍스트를 입력하는 서치바 컴포넌트입니다.
@@ -66,58 +64,32 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const inputElementRef = ref || inputRef;
 
-    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
-    const [variant, setVariant] = useState<VariantType>("default");
+    const {
+      value,
+      variant,
+      setVariant,
+      handleChange,
+      handleBlur,
+      handleFocus,
+    } = useFormControl<CustomVariantType>({
+      defaultValue,
+      value: valueProp,
+      maxLength,
+      disabled,
+      onChange,
+      onBlur,
+      onFocus,
+    });
 
     useLayoutEffect(() => {
       if (disabled) {
         setVariant("disabled");
-      } else if (defaultValue) {
-        setVariant("typed");
-      } else {
-        setVariant("default");
       }
-    }, [defaultValue, disabled]);
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const textareaValue = e.target.value;
-      setVariant("typing");
-
-      if (maxLength && textareaValue.length > maxLength) {
-        setValue(textareaValue.slice(0, maxLength));
-      } else {
-        setValue(textareaValue);
-        onChange?.(textareaValue);
-      }
-    };
-
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value;
-
-      setVariant(inputValue ? "typed" : "default");
-      onBlur?.();
-    };
-
-    const handleFocus = () => {
-      if (variant !== "typing") {
-        setVariant("typing");
-      }
-      onFocus?.();
-    };
+    }, [disabled, setVariant]);
 
     return (
       <Flex className={containerStyle({ type: variant })} gap="xs">
-        <SearchIcon
-          stroke={
-            variant === "default"
-              ? "outline"
-              : variant === "typing"
-                ? "primary"
-                : variant === "typed"
-                  ? "sub"
-                  : "outline"
-          }
-        />
+        <SearchIcon stroke={getStrokeColor(variant)} />
         <styled.input
           {...inputProps}
           aria-disabled={disabled}
@@ -142,6 +114,21 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 SearchBar.displayName = "SearchBar";
 export default SearchBar;
 
+const getStrokeColor = (variant: CustomVariantType) => {
+  if (variant === "default") {
+    return "outline";
+  }
+  if (variant === "typing") {
+    return "primary";
+  }
+  if (variant === "typed") {
+    return "sub";
+  }
+  if (variant === "disabled") {
+    return "outline";
+  }
+};
+
 const containerStyle = cva({
   base: {
     lg: {
@@ -153,6 +140,7 @@ const containerStyle = cva({
     },
     borderRadius: "sm",
     borderWidth: "button",
+    borderStyle: "solid",
     paddingX: "sm",
     paddingY: "xs",
     textStyle: "body1",
@@ -182,8 +170,12 @@ const containerStyle = cva({
       },
       disabled: {
         backgroundColor: "backgroundAlternative",
-        borderColor: "sub",
-        cursor: "none",
+        borderColor: "outline",
+        cursor: "not-allowed",
+        _placeholder: {
+          color: "outline",
+        },
+        color: "outline",
       },
     },
   },
