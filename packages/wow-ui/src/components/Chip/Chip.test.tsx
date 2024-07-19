@@ -1,13 +1,8 @@
 import { render, type RenderResult, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
-//테스트는 서술적이고, 읽기 쉽고, 이해하기 쉬운 테스트 코드를 만들어야 한다.
-// 사용자의 행위를 기반으로 테스트 시나리오를 정의해야 한다.주어진 상황에 대해 결과를 검증해야.
-//개발자가 이해하기 쉽도록 Given-When-Then 시나리오로 진행하자 (환경세팅, 상호작용, 결과)
 import Chip from "@/components/Chip";
 
-// 랜더링 시 문구가 잘 노출되는가?
-// 사용자가 버튼을 클릭하며 상호작용 하였을 때, 변경된 문구가 노출되는가?
 describe("Chip rendering Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
