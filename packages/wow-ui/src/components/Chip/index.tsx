@@ -78,7 +78,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     }: ChipProps<T>,
     ref: any
   ) => {
-    const Component = as || "button";
+    const Component = (as || "button") as React.ElementType;
     const [isChecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
