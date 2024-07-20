@@ -60,25 +60,25 @@ describe("Chip toggle Test", () => {
   });
 });
 
-// describe("Chip disabled Test", () => {
-//   let renderChip: RenderResult;
-//   beforeEach(() => {
-//     renderChip = render(<Chip disabled={true} label="Chip" />);
-//   });
+describe("Chip disabled Test", () => {
+  let renderChip: RenderResult;
+  beforeEach(() => {
+    renderChip = render(<Chip disabled={true} label="Chip" />);
+  });
 
-//   it("should render with attributes aria-disabled to be true", () => {
-//     const chipComponent = renderChip.getByRole("contentinfo");
+  it("should render with attributes aria-disabled to be true", () => {
+    const chipComponent = renderChip.getByRole("contentinfo");
 
-//     expect(chipComponent).toHaveAttribute("aria-disabled", "true");
-//   });
+    expect(chipComponent).toHaveAttribute("aria-disabled", "true");
+  });
 
-//   it("should not allow focusing", () => {
-//     const chipComponent = renderChip.getByRole("contentinfo");
-//     userEvent.click(chipComponent);
+  it("should not allow focusing", () => {
+    const chipComponent = renderChip.getByRole("contentinfo");
+    userEvent.click(chipComponent);
 
-//     expect(chipComponent).not.toHaveFocus();
-//   });
-// });
+    expect(chipComponent).not.toHaveFocus();
+  });
+});
 
 describe("external control and events", () => {
   let renderChip: RenderResult;
