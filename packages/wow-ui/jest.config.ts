@@ -2,7 +2,12 @@ import { Config } from "jest";
 import jestConfig from "shared-config/jest.config";
 
 const config: Config = {
-  ...jestConfig,
+  // ...jestConfig,
+  preset: "ts-jest",
+  setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
+  verbose: true,
+  collectCoverage: true,
+  restoreMocks: true,
   testEnvironment: "jsdom",
   transform: {
     "^.+\\.jsx?$": "babel-jest",
@@ -13,10 +18,7 @@ const config: Config = {
       },
     ],
   },
-  testMatch: [
-    "<rootDir>/src/**/*.test.(js|jsx|ts|tsx)",
-    "<rootDir>/app/**/*.test.(js|jsx|ts|tsx)",
-  ],
+  testMatch: ["<rootDir>/src/**/*.test.(js|jsx|ts|tsx)"],
   testPathIgnorePatterns: [
     "<rootDir>/styled-system/",
     "<rootDir>/node-modules/",
