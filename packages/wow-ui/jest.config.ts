@@ -9,7 +9,7 @@ const config: Config = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: "./tsconfig.json",
+        tsconfig: "tsconfig.json",
       },
     ],
   },
@@ -18,12 +18,12 @@ const config: Config = {
   verbose: true,
   collectCoverage: true,
   restoreMocks: true,
-  testMatch: ["./src/**/*.test.(js|jsx|ts|tsx)"],
-  testPathIgnorePatterns: ["./styled-system/", "./node-modules/"],
-  coveragePathIgnorePatterns: ["./styled-system/", "./node-modules/"],
+  testMatch: ["src/**/*.test.(js|jsx|ts|tsx)"],
+  testPathIgnorePatterns: ["styled-system/", "node-modules/"],
+  coveragePathIgnorePatterns: ["styled-system/", "node-modules/"],
   moduleNameMapper: {
-    "^@/(.*)$": "./src/$1",
-    "^@styled-system(.*)$": "./styled-system/$1",
+    "^@/(.*)$": "src/$1",
+    "^@styled-system(.*)$": "styled-system/$1",
   },
   testEnvironment: "jsdom",
 };
