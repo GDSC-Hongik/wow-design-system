@@ -9,11 +9,6 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "스위치 컴포넌트",
-    a11y: {
-      config: {
-        rules: [{ id: "color-contrast", enabled: false }],
-      },
-    },
   },
   argTypes: {
     defaultChecked: {
