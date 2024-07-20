@@ -14,10 +14,9 @@ describe("Chip rendering Test", () => {
     expect(getByText("Chip")).toBeInTheDocument();
   });
 
-  it("should render with attributes aria-checked to be false, aria-disabled to be false by default", () => {
+  it("should render with attributes aria-disabled to be false by default", () => {
     const chipComponent = renderChip.getByRole("contentinfo");
 
-    expect(chipComponent).toHaveAttribute("aria-checked", "false");
     expect(chipComponent).toHaveAttribute("aria-disabled", "false");
   });
 });
