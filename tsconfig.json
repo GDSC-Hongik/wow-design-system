@@ -7,14 +7,24 @@
     "esModuleInterop": true,
     "incremental": false,
     "isolatedModules": true,
+    "jsx": "react-jsx",
+    "outDir": "dist",
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+    "module": "ES2015",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
     "lib": ["es2022", "DOM", "DOM.Iterable"],
-    "module": "NodeNext",
     "moduleDetection": "force",
-    "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "types": ["@testing-library/jest-dom"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@styled-system/*": ["./styled-system/*"]
+    }
   }
 }
