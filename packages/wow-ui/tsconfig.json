@@ -25,6 +25,6 @@
       "@styled-system/*": ["./styled-system/*"]
     }
   },
-  "include": ["src", "**/*.ts", "**/*.tsx"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "src/jest.config.ts"],
   "exclude": ["node_modules", "dist", "styled-system"]
 }
