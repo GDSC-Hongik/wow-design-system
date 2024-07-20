@@ -9,9 +9,25 @@ const config: Config = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: "<rootDir>/tsconfig.json", // packages/wow-ui/tsconfig.json을 가리키게 함
+        tsconfig: "<rootDir>/tsconfig.json",
       },
     ],
+  },
+  testMatch: [
+    "<rootDir>/src/**/*.test.(js|jsx|ts|tsx)",
+    "<rootDir>/app/**/*.test.(js|jsx|ts|tsx)",
+  ],
+  testPathIgnorePatterns: [
+    "<rootDir>/styled-system/",
+    "<rootDir>/node-modules/",
+  ],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/styled-system/",
+    "<rootDir>/node-modules/",
+  ],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@styled-system(.*)$": "<rootDir>/styled-system/$1",
   },
 };
 
