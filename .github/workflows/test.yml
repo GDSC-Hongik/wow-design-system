@@ -38,10 +38,6 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: packages/wow-ui
 
-      - name: Install TypeScript
-        run: pnpm add typescript@^5.3.3
-        working-directory: packages/wow-ui
-
       - name: Build Packages
         run: pnpm build
 
