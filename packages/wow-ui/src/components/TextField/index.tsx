@@ -14,7 +14,7 @@ import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
 
 import { useTextareaAutosize } from "@/hooks/useTextareaAutosize";
 
-type VariantType = "default" | "typing" | "typed" | "success" | "error";
+type TypingVariantType = "default" | "typing" | "typed";
 
 /**
  * @description 사용자가 텍스트를 입력할 수 있는 텍스트필드 컴포넌트입니다.
@@ -82,23 +82,20 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const textareaElementRef = ref || textareaRef;
 
     const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
-    const [variant, setVariant] = useState<VariantType>("default");
+    const [typingVariant, setTypingVariant] =
+      useState<TypingVariantType>("default");
 
     useLayoutEffect(() => {
-      if (success) {
-        setVariant("success");
-      } else if (error) {
-        setVariant("error");
-      } else if (defaultValue) {
-        setVariant("typed");
+      if (defaultValue) {
+        setTypingVariant("typed");
       }
-    }, [defaultValue, error, success]);
+    }, [defaultValue]);
 
     useTextareaAutosize(textareaElementRef as RefObject<HTMLTextAreaElement>);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       const textareaValue = e.target.value;
-      setVariant("typing");
+      setTypingVariant("typing");
 
       if (maxLength && textareaValue.length > maxLength) {
         setValue(textareaValue.slice(0, maxLength));
@@ -111,18 +108,18 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
       const inputValue = e.target.value;
 
-      if (variant !== "success" && variant !== "error") {
-        setVariant(inputValue ? "typed" : "default");
-      }
+      setTypingVariant(inputValue ? "typed" : "default");
       onBlur?.();
     };
 
     const handleFocus = () => {
-      if (variant !== "typing") {
-        setVariant("typing");
+      if (typingVariant !== "typing") {
+        setTypingVariant("typing");
       }
       onFocus?.();
     };
+
+    const variant = error ? "error" : success ? "success" : typingVariant;
 
     return (
       <Flex className={containerStyle()} direction="column" gap="xs">
@@ -141,13 +138,15 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
         <styled.textarea
           {...textareaProps}
           aria-describedby={descriptionId}
-          className={textareaStyle({ type: variant })}
           id={descriptionId}
           maxLength={maxLength}
           placeholder={placeholder}
           ref={textareaElementRef}
           rows={1}
           value={value}
+          className={textareaStyle({
+            type: variant,
+          })}
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -167,7 +166,7 @@ const Label = ({
   children,
   textareaId,
 }: {
-  variant: VariantType;
+  variant: TypingVariantType | "error" | "success";
   children: string;
   textareaId: string;
 }) => (
@@ -186,7 +185,7 @@ const TextLength = ({
   maxLength,
   length,
 }: {
-  variant: VariantType;
+  variant: TypingVariantType | "error" | "success";
   maxLength: number;
   length: number;
 }) => (
@@ -199,7 +198,7 @@ const HelperText = ({
   variant,
   children,
 }: {
-  variant: VariantType;
+  variant: TypingVariantType | "error" | "success";
   children: ReactNode;
 }) => (
   <styled.span
