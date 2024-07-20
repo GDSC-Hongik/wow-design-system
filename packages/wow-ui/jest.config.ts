@@ -1,10 +1,12 @@
 import { Config } from "jest";
+import "@testing-library/jest-dom";
+
 import jestConfig from "shared-config/jest.config";
 
 const config: Config = {
   // ...jestConfig,
   preset: "ts-jest",
-  setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
+  // setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
   verbose: true,
   collectCoverage: true,
   restoreMocks: true,
