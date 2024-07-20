@@ -6,7 +6,7 @@ import Chip from "@/components/Chip";
 describe("Chip rendering Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip label="Chip" />);
+    renderChip = render(<Chip as="div" label="Chip" />);
   });
 
   it("should render Chip", () => {
@@ -15,38 +15,38 @@ describe("Chip rendering Test", () => {
   });
 
   it("should render with attributes aria-checked to be false, aria-disabled to be false by default", () => {
-    const switchComponent = renderChip.getByRole("contentinfo");
+    const chipComponent = renderChip.getByRole("contentinfo");
 
-    expect(switchComponent).toHaveAttribute("aria-checked", "false");
-    expect(switchComponent).toHaveAttribute("aria-disabled", "false");
+    expect(chipComponent).toHaveAttribute("aria-checked", "false");
+    expect(chipComponent).toHaveAttribute("aria-disabled", "false");
   });
 });
 
 describe("Chip toggle Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip clickable={true} label="Chip" />);
+    renderChip = render(<Chip as="button" clickable={true} label="Chip" />);
   });
 
   it("should toggle state when onClick event is fired", async () => {
-    const ChipComponent = renderChip.getByRole("checkbox");
+    const chipComponent = renderChip.getByRole("checkbox");
     const user = userEvent.setup();
 
-    await user.click(ChipComponent);
-    expect(ChipComponent).toHaveAttribute("aria-checked", "true");
-    await user.click(ChipComponent);
-    expect(ChipComponent).toHaveAttribute("aria-checked", "false");
+    await user.click(chipComponent);
+    expect(chipComponent).toHaveAttribute("aria-checked", "true");
+    await user.click(chipComponent);
+    expect(chipComponent).toHaveAttribute("aria-checked", "false");
   });
 
   it("should toggle state when Enter key is pressed", async () => {
-    const switchComponent = renderChip.getByRole("checkbox");
-    userEvent.type(switchComponent, "{enter}");
+    const chipComponent = renderChip.getByRole("checkbox");
+    userEvent.type(chipComponent, "{enter}");
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(chipComponent).toHaveAttribute("aria-checked", "true");
     });
-    userEvent.type(switchComponent, "{enter}");
+    userEvent.type(chipComponent, "{enter}");
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "false");
+      expect(chipComponent).toHaveAttribute("aria-checked", "false");
     });
   });
 
@@ -63,7 +63,7 @@ describe("Chip toggle Test", () => {
 describe("Chip disabled Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip disabled label="Chip" />);
+    renderChip = render(<Chip disabled as="div" label="Chip" />);
   });
 
   it("should render with attributes aria-disabled to be true", () => {
@@ -95,7 +95,7 @@ describe("external control and events", () => {
   });
 
   it("should fire external onKeyDown event", async () => {
-    renderChip = render(<Chip clickable label="Chip" />);
+    renderChip = render(<Chip clickable as="button" label="Chip" />);
     const user = userEvent.setup();
     const chipComponent = renderChip.getByRole("checkbox");
     const onKeyDownHandler = jest.fn();
@@ -113,7 +113,7 @@ describe("external control and events", () => {
     const handleChange = () => {
       checked = !checked;
     };
-    const rendered = render(<Chip clickable label="Chip" />);
+    const rendered = render(<Chip clickable as="button" label="Chip" />);
     const chipComponent = rendered.getByRole("checkbox");
     chipComponent.onchange = handleChange;
 
