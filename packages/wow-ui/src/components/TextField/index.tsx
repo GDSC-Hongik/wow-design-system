@@ -15,6 +15,7 @@ import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
 import { useTextareaAutosize } from "@/hooks/useTextareaAutosize";
 
 type TypingVariantType = "default" | "typing" | "typed";
+type VariantType = TypingVariantType | "success" | "error";
 
 /**
  * @description 사용자가 텍스트를 입력할 수 있는 텍스트필드 컴포넌트입니다.
@@ -165,7 +166,7 @@ const Label = ({
   children,
   textareaId,
 }: {
-  variant: TypingVariantType | "error" | "success";
+  variant: VariantType;
   children: string;
   textareaId: string;
 }) => (
@@ -184,7 +185,7 @@ const TextLength = ({
   maxLength,
   length,
 }: {
-  variant: TypingVariantType | "error" | "success";
+  variant: VariantType;
   maxLength: number;
   length: number;
 }) => (
@@ -197,7 +198,7 @@ const HelperText = ({
   variant,
   children,
 }: {
-  variant: TypingVariantType | "error" | "success";
+  variant: VariantType;
   children: ReactNode;
 }) => (
   <styled.span
