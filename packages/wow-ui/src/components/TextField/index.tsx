@@ -72,18 +72,19 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     },
     ref
   ) => {
+    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
+    const [typingVariant, setTypingVariant] =
+      useState<TypingVariantType>("default");
+
     const id = useId();
     const textareaId = textareaProps?.id || id;
     const errorMessageId = `${textareaId}-error-message`;
     const helperTextId = `${textareaId}-helper-text`;
     const descriptionId = error ? `${errorMessageId}` : `${helperTextId}`;
+    const variant = error ? "error" : success ? "success" : typingVariant;
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const textareaElementRef = ref || textareaRef;
-
-    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
-    const [typingVariant, setTypingVariant] =
-      useState<TypingVariantType>("default");
 
     useLayoutEffect(() => {
       if (defaultValue) {
@@ -118,8 +119,6 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
       }
       onFocus?.();
     };
-
-    const variant = error ? "error" : success ? "success" : typingVariant;
 
     return (
       <Flex className={containerStyle()} direction="column" gap="xs">
