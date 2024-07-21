@@ -274,6 +274,7 @@ const textareaStyle = cva({
   base: {
     borderRadius: "sm",
     borderWidth: "button",
+    borderStyle: "solid",
     paddingX: "sm",
     paddingY: "xs",
     textStyle: "body1",

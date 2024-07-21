@@ -26,6 +26,7 @@ const useDropDownState = ({
     });
     return opts;
   }, [children]);
+
   const [selectedValue, setSelectedValue] = useState(defaultValue || "");
   const [selectedText, setSelectedText] = useState(
     defaultValue ? options[defaultValue] : ""
@@ -62,7 +63,7 @@ const useDropDownState = ({
         const currentIndex = values.indexOf(prevValue ?? "");
         const nextIndex =
           currentIndex === -1 ? 0 : (currentIndex + 1) % values.length;
-        return values[nextIndex];
+        return values[nextIndex] ?? "";
       });
       event.preventDefault();
     } else if (key === "ArrowUp") {
@@ -72,7 +73,7 @@ const useDropDownState = ({
           currentIndex === -1
             ? values.length - 1
             : (currentIndex - 1 + values.length) % values.length;
-        return values[nextIndex];
+        return values[nextIndex] ?? "";
       });
       event.preventDefault();
     } else if (key === "Enter" && focusedValue !== null) {

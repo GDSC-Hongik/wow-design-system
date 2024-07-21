@@ -60,7 +60,7 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
  * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
  * @param {string} [defaultValue] 초기 선택된 값을 나타냅니다.
  * @param {string} [value] 현재 선택된 값을 나타냅니다.
- * @param {(value: string) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
+ * @param {(value: {selectedValue: string; selectedText: ReactNode;}) => void} [onChange] 값이 변경될 때 호출되는 함수입니다.
  * @param {CSSProperties} [style] 드롭다운의 커스텀 스타일.
  * @param {string} [className] 드롭다운에 전달하는 커스텀 클래스.
  */
