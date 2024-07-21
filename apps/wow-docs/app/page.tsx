@@ -18,8 +18,8 @@ const Home = () => {
         <RadioButton label="2학년" value="2학년" />
       </RadioGroup>
       <DropDown placeholder="목록을 입력하세요">
-        <DropDownOption text="option 1" value="option 1" />
-        <DropDownOption text="option 1" value="option 2" />
+        <DropDownOption text="옵 1" value="option 1" />
+        <DropDownOption text="옵 2" value="option 2" />
       </DropDown>
       <MultiGroup variant="checkbox">
         <Checkbox label="checkbox1" value="checkbox1" />
