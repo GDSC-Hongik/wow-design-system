@@ -146,9 +146,11 @@ const DropDown = ({
         aria-controls={dropdownId}
         aria-expanded={open}
         aria-haspopup={true}
+        cursor="pointer"
         display="flex"
         id={`${dropdownId}-trigger`}
         justifyContent="space-between"
+        outline="none"
         className={dropdownStyle({
           type: open ? "focused" : selectedValue ? "selected" : "default",
         })}
@@ -174,7 +176,12 @@ const DropDown = ({
   );
 
   const renderOptions = () => (
-    <Flex className={dropdownContentStyle()} direction="column">
+    <Flex
+      direction="column"
+      className={dropdownContentStyle({
+        type: trigger ? "custom" : "default",
+      })}
+    >
       {children}
     </Flex>
   );
@@ -292,6 +299,15 @@ const dropdownContentStyle = cva({
       marginBottom: "2px",
     },
   },
+  variants: {
+    type: {
+      custom: {
+        width: "100%",
+      },
+      default: {},
+    },
+  },
+  defaultVariants: { type: "default" },
 });
 
 const placeholderStyle = cva({
