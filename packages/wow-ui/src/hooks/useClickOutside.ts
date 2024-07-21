@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { isMobile } from "../utils";
+import { isMobile } from "@/utils";
 
 const useClickOutside = (
   ref: React.RefObject<HTMLElement>,

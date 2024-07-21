@@ -3,7 +3,7 @@ import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 
-import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
+import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
 
 /**
  * @description 드롭다운 옵션의 props입니다.
