@@ -141,11 +141,12 @@ const DropDown = ({
       >
         {label}
       </styled.span>
-      <Flex
+      <styled.button
         alignItems="center"
         aria-controls={dropdownId}
         aria-expanded={open}
         aria-haspopup={true}
+        display="flex"
         id={`${dropdownId}-trigger`}
         justifyContent="space-between"
         className={dropdownStyle({
@@ -168,7 +169,7 @@ const DropDown = ({
             if (e.key === "Enter") toggleDropdown();
           }}
         />
-      </Flex>
+      </styled.button>
     </>
   );
 

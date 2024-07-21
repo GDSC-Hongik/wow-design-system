@@ -12,8 +12,7 @@ import type {
 } from "react";
 import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
 
-import InputBase from "../../base/InputBase";
-import { useTextareaAutosize } from "../../hooks/useTextareaAutosize";
+import { useTextareaAutosize } from "@/hooks/useTextareaAutosize";
 
 type VariantType = "default" | "typing" | "typed" | "success" | "error";
 
