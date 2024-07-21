@@ -8,7 +8,7 @@ import type {
   ReactElement,
   ReactNode,
 } from "react";
-import { cloneElement, useRef } from "react";
+import { cloneElement, useId, useRef } from "react";
 import { DownArrow } from "wowds-icons";
 
 import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
@@ -53,8 +53,9 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
 }
 
 /**
- * @description 사용자가 외부 트리거 컴포넌트 나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
+ * @description 사용자가 외부 트리거 컴포넌트나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
  *
+ * @param {string} [id] 드롭다운 id 입니다.
  * @param {ReactElement} [trigger] 드롭다운을 열기 위한 외부 트리거 요소입니다.
  * @param {ReactNode} [label] 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
  * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
@@ -68,6 +69,7 @@ export type DropDownProps = (
   | DropDownWithTriggerProps
   | DropDownWithoutTriggerProps
 ) & {
+  id?: string;
   value?: string;
   defaultValue?: string;
   onChange?: (value: {
@@ -79,6 +81,7 @@ export type DropDownProps = (
 };
 
 const DropDown = ({
+  id,
   children,
   trigger,
   label,
@@ -96,28 +99,41 @@ const DropDown = ({
     onChange,
   });
 
-  const { selectedValue, selectedText, open, setFocusedValue, setOpen } =
-    dropdownState;
+  const {
+    selectedValue,
+    selectedText,
+    open,
+    setFocusedValue,
+    setOpen,
+    handleKeyDown,
+  } = dropdownState;
+
+  const defaultId = useId();
+  const dropdownId = id ?? `dropdown-${defaultId}`;
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef, () => setOpen(false));
 
   const toggleDropdown = () => {
-    dropdownState.setOpen((prevOpen) => {
+    setOpen((prevOpen) => {
       if (!prevOpen) setFocusedValue(null);
       return !prevOpen;
     });
   };
 
-  const renderTrigger = (trigger: ReactElement) => (
+  const renderCustomTrigger = (trigger: ReactElement) => (
     <>
       {cloneElement(trigger, {
         onClick: toggleDropdown,
+        "aria-expanded": open,
+        "aria-haspopup": "true",
+        id: `${dropdownId}-trigger`,
+        "aria-controls": `${dropdownId}`,
       })}
     </>
   );
 
-  const renderLabel = () => (
+  const renderDefaultTrigger = () => (
     <>
       <styled.span
         color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
@@ -127,6 +143,10 @@ const DropDown = ({
       </styled.span>
       <Flex
         alignItems="center"
+        aria-controls={dropdownId}
+        aria-expanded={open}
+        aria-haspopup={true}
+        id={`${dropdownId}-trigger`}
         justifyContent="space-between"
         className={dropdownStyle({
           type: open ? "focused" : selectedValue ? "selected" : "default",
@@ -161,19 +181,21 @@ const DropDown = ({
   return (
     <DropDownContext.Provider value={dropdownState}>
       <Flex
+        aria-labelledby={`${dropdownId}-trigger`}
         cursor="pointer"
         direction="column"
         gap="xs"
+        id={dropdownId}
         outline="none"
         position="relative"
         ref={dropdownRef}
         tabIndex={0}
         width={trigger ? "fit-content" : "auto"}
-        onKeyDown={dropdownState.handleKeyDown}
+        onKeyDown={handleKeyDown}
         {...rest}
       >
-        {trigger ? renderTrigger(trigger) : renderLabel()}
-        {dropdownState.open && renderOptions()}
+        {trigger ? renderCustomTrigger(trigger) : renderDefaultTrigger()}
+        {open && renderOptions()}
       </Flex>
     </DropDownContext.Provider>
   );
