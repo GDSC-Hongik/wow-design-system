@@ -3,6 +3,8 @@ import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 
+import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
+
 /**
  * @description 드롭다운 옵션의 props입니다.
  *
@@ -21,16 +23,26 @@ export interface DropDownOptionProps {
 }
 
 const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
-  function Option({ value, onClick, focused, text, selected }, ref) {
+  function Option({ value, onClick, text }, ref) {
+    const { focusedValue, selectedValue, handleSelect } = useDropDownContext();
+    const isSelected = selectedValue === value;
+    const isFocused = focusedValue !== null && focusedValue === value;
+
+    const handleOptionClick = (value: string, onClick?: () => void) => {
+      if (onClick) onClick();
+      handleSelect(value);
+    };
     return (
       <styled.div
         id={`dropdown-option-${value}`}
         ref={ref}
         tabIndex={-1}
         className={optionStyle({
-          type: selected ? "selected" : focused ? "focused" : "default",
+          type: isSelected ? "selected" : isFocused ? "focused" : "default",
         })}
-        onClick={onClick}
+        onClick={() => {
+          handleOptionClick(value, onClick);
+        }}
       >
         {text}
       </styled.div>

@@ -12,7 +12,8 @@ import type {
 } from "react";
 import { forwardRef, useId, useLayoutEffect, useRef, useState } from "react";
 
-import { useTextareaAutosize } from "@/hooks/useTextareaAutosize";
+import InputBase from "../../base/InputBase";
+import { useTextareaAutosize } from "../../hooks/useTextareaAutosize";
 
 type VariantType = "default" | "typing" | "typed" | "success" | "error";
 
@@ -78,11 +79,13 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const helperTextId = `${textareaId}-helper-text`;
     const descriptionId = error ? `${errorMessageId}` : `${helperTextId}`;
 
+    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
+    const [variant, setVariant] = useState<VariantType>("default");
+
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const textareaElementRef = ref || textareaRef;
 
-    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
-    const [variant, setVariant] = useState<VariantType>("default");
+    useTextareaAutosize(textareaElementRef as RefObject<HTMLTextAreaElement>);
 
     useLayoutEffect(() => {
       if (success) {
@@ -147,6 +150,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
           placeholder={placeholder}
           ref={textareaElementRef}
           rows={1}
+          //setValue={setValue}
           value={value}
           onBlur={handleBlur}
           onChange={handleChange}

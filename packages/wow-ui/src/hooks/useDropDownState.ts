@@ -1,11 +1,14 @@
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { isValidElement, useEffect, useMemo, useState } from "react";
 
 interface DropDownStateProps {
   value?: string;
   defaultValue?: string;
   children: ReactNode[];
-  onChange?: (value: string) => void;
+  onChange?: (value: {
+    selectedValue: string;
+    selectedText: ReactNode;
+  }) => void;
 }
 
 const useDropDownState = ({
@@ -14,54 +17,76 @@ const useDropDownState = ({
   children,
   onChange,
 }: DropDownStateProps) => {
-  const [selected, setSelected] = useState(defaultValue || "");
+  const options = useMemo(() => {
+    const opts: { [key: string]: ReactNode } = {};
+    children.forEach((child) => {
+      if (isValidElement(child)) {
+        opts[child.props.value] = child.props.text;
+      }
+    });
+    return opts;
+  }, [children]);
+  const [selectedValue, setSelectedValue] = useState(defaultValue || "");
+  const [selectedText, setSelectedText] = useState(
+    defaultValue ? options[defaultValue] : ""
+  );
   const [open, setOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const [focusedValue, setFocusedValue] = useState<string | null>(null);
 
   useEffect(() => {
     if (value !== undefined) {
-      setSelected(value);
+      setSelectedValue(value);
+      setSelectedText(options[value]);
     }
-  }, [value]);
+  }, [options, value]);
 
   const handleSelect = (option: string) => {
     if (value === undefined) {
-      setSelected(option);
+      setSelectedValue(option);
+      setSelectedText(options[option]);
     }
     setOpen(false);
-    onChange && onChange(option);
+    if (onChange) {
+      onChange({ selectedValue: option, selectedText: options[option] });
+    }
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (!open) return;
 
     const { key } = event;
+    const values = Object.keys(options);
 
     if (key === "ArrowDown") {
-      setFocusedIndex((prevIndex) =>
-        prevIndex === null ? 0 : (prevIndex + 1) % children.length
-      );
+      setFocusedValue((prevValue) => {
+        const currentIndex = values.indexOf(prevValue ?? "");
+        const nextIndex =
+          currentIndex === -1 ? 0 : (currentIndex + 1) % values.length;
+        return values[nextIndex];
+      });
       event.preventDefault();
     } else if (key === "ArrowUp") {
-      setFocusedIndex((prevIndex) =>
-        prevIndex === null
-          ? children.length - 1
-          : (prevIndex - 1 + children.length) % children.length
-      );
+      setFocusedValue((prevValue) => {
+        const currentIndex = values.indexOf(prevValue ?? "");
+        const nextIndex =
+          currentIndex === -1
+            ? values.length - 1
+            : (currentIndex - 1 + values.length) % values.length;
+        return values[nextIndex];
+      });
       event.preventDefault();
-    } else if (key === "Enter" && focusedIndex !== null) {
-      const child = children[focusedIndex] as ReactElement;
-      handleSelect(child.props.value);
+    } else if (key === "Enter" && focusedValue !== null) {
+      handleSelect(focusedValue);
       event.preventDefault();
     }
   };
-
   return {
-    selected,
+    selectedValue,
+    selectedText,
     open,
     setOpen,
-    focusedIndex,
-    setFocusedIndex,
+    focusedValue,
+    setFocusedValue,
     handleSelect,
     handleKeyDown,
   };
