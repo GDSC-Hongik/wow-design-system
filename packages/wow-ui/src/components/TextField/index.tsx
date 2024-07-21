@@ -78,13 +78,11 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     const helperTextId = `${textareaId}-helper-text`;
     const descriptionId = error ? `${errorMessageId}` : `${helperTextId}`;
 
-    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
-    const [variant, setVariant] = useState<VariantType>("default");
-
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const textareaElementRef = ref || textareaRef;
 
-    useTextareaAutosize(textareaElementRef as RefObject<HTMLTextAreaElement>);
+    const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
+    const [variant, setVariant] = useState<VariantType>("default");
 
     useLayoutEffect(() => {
       if (success) {
@@ -149,7 +147,6 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
           placeholder={placeholder}
           ref={textareaElementRef}
           rows={1}
-          //setValue={setValue}
           value={value}
           onBlur={handleBlur}
           onChange={handleChange}
