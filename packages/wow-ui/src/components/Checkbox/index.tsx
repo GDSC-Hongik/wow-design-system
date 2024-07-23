@@ -105,7 +105,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "checkbox"}
             {...(pressed && { "data-pressed": true })}
-            checked={checked}
             id={id}
             ref={ref}
             role="checkbox"
