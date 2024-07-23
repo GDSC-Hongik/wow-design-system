@@ -9,12 +9,12 @@ export interface DividerProps {
 }
 
 /**
- * @template T 렌더링할 요소 또는 컴포넌트 타입
+ * @description 디바이더 컴포넌트의 속성을 정의합니다.
  *
- * @param {CSSProperties} [style] 커스텀 스타일을 설정합니다.
+ * @param {"light" | "dark"} [type] 디바이더의 테마 모드를 설정합니다.
+ * @param {CSSProperties} [style] 디바이더의 커스텀 스타일을 설정합니다.
  * @param {string} [className] 디바이더에 전달하는 커스텀 클래스를 설정합니다.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
- * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  */
 
 const Divider = ({ type = "light", ...rest }: DividerProps) => {
