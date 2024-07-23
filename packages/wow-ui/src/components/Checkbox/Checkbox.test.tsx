@@ -7,7 +7,7 @@ import Checkbox from "./index";
 
 describe("Checkbox component", () => {
   const renderCheckbox = (props: Partial<CheckboxProps> = {}): RenderResult => {
-    return render(<Checkbox {...props}>Text</Checkbox>);
+    return render(<Checkbox value="checkbox" {...props} label="checkbox" />);
   };
 
   test("toggles checked state when clicked", async () => {

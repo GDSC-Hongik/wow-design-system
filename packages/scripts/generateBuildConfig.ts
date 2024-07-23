@@ -3,58 +3,105 @@ import path from "path";
 
 import packageJSON from "../wow-ui/package.json";
 
-type ExportItem =
+const COMPONENT_PATH = "./src/components";
+
+type ExportsKey = string;
+type ExportsValue =
   | {
       types: string;
       require: string;
       import: string;
     }
   | string;
-type ExportObject = { [key: string]: ExportItem };
-type EntryFileObject = { [key: string]: string };
+type ExportsObject = { [key: ExportsKey]: ExportsValue };
 
-const COMPONENT_PATH = "./src/components";
+type EntryFileKey = string;
+type EntryFileValue = string;
+type EntryFileObject = { [key: EntryFileKey]: EntryFileValue };
 
-const generateExports = (files: string[]) => {
-  const exportsObj: ExportObject = {
-    "./styles.css": "./dist/styles.css",
-  };
+const getFilteredComponentFiles = async (directoryPath: string) => {
+  const files = await fs.readdir(directoryPath, { recursive: true });
 
-  for (const file of files) {
-    const filePath = `./${file}`;
-    const distPath = `./dist/${file}`;
-    const typePath = `./dist/components/${file}`;
-
-    exportsObj[filePath] = {
-      types: `${typePath}/index.d.ts`,
-      require: `${distPath}.cjs`,
-      import: `${distPath}.js`,
-    };
-  }
-
-  return exportsObj;
+  return files.filter(
+    (file) =>
+      file.endsWith(".tsx") &&
+      !file.includes("test") &&
+      !file.includes("stories")
+  );
 };
 
-const applyExportsToPackageJSON = async (exportsObj: ExportObject) => {
+const createPaths = (type: "entryFile" | "exports", file: string) => {
+  const parsedPath = path.parse(file);
+  const componentDirName = parsedPath.dir.split(path.sep)[0] ?? "";
+  const componentName = parsedPath.name;
+  const defaultComponent = componentName === "index";
+
+  const typesPath = `./dist/components/${componentDirName}/${defaultComponent ? "index" : componentName}.d.ts`;
+  const importPath = `./dist/${defaultComponent ? componentDirName : componentName}.js`;
+  const requirePath = `./dist/${defaultComponent ? componentDirName : componentName}.cjs`;
+  const componentPath = `./src/components/${componentDirName}${defaultComponent ? "" : `/${componentName}`}`;
+
+  const entryFileKey = defaultComponent
+    ? `./${componentDirName}`
+    : `./${componentName}`;
+  const exportsKey = defaultComponent ? componentDirName : componentName;
+  const exportsValue = {
+    types: typesPath,
+    require: requirePath,
+    import: importPath,
+  };
+  const entryFileValue = componentPath;
+
+  return type === "entryFile"
+    ? { key: exportsKey, value: entryFileValue }
+    : { key: entryFileKey, value: exportsValue };
+};
+
+const createExportsObject = async (files: string[]): Promise<ExportsObject> => {
+  const exports = files.reduce(
+    (prev, file) => {
+      const { key, value } = createPaths("exports", file);
+
+      return { ...prev, [key]: value };
+    },
+    { "./styles.css": "./dist/styles.css" }
+  );
+
+  return exports;
+};
+
+const applyExportsToPackageJSON = async (exportsObject: ExportsObject) => {
   const PACKAGEJSON_PATH = "package.json";
 
-  packageJSON.exports = packageJSON.exports || {};
-  Object.assign(packageJSON.exports, exportsObj);
+  packageJSON.exports = Object.create(null);
+  Object.assign(packageJSON.exports, exportsObject);
 
   await fs.writeFile(PACKAGEJSON_PATH, JSON.stringify(packageJSON));
 };
 
-const generateRollupEntryFiles = (files: string[]) => {
-  const entryFileObj: EntryFileObject = {};
+const generateRollupEntryFileObject = (
+  files: string[]
+): { [key: EntryFileKey]: EntryFileValue } => {
+  const entryFileObject = files
+    .map((file) => {
+      const { key, value } = createPaths("entryFile", file);
 
-  for (const file of files) {
-    entryFileObj[file] = `${COMPONENT_PATH}/${file}`;
-  }
+      return { key, value };
+    })
+    .reduce(
+      (prev, { key, value }) => ({
+        ...prev,
+        [key]: value,
+      }),
+      {}
+    );
 
-  return entryFileObj;
+  return entryFileObject;
 };
 
-const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
+const applyEntryFilesToRollupConfig = async (
+  entryFileObject: EntryFileObject
+) => {
   const ROLLUP_CONFIG_PATH = "rollup.config.js";
 
   const dirname = path.resolve();
@@ -63,7 +110,7 @@ const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
 
   rollupConfigContent = rollupConfigContent.replace(
     /input:\s*{[^}]*}/m,
-    `input: ${JSON.stringify(entryFileObj)}`
+    `input: ${JSON.stringify(entryFileObject)}`
   );
 
   await fs.writeFile(ROLLUP_CONFIG_PATH, rollupConfigContent);
@@ -71,11 +118,10 @@ const applyEntryFilesToRollupConfig = async (entryFileObj: EntryFileObject) => {
 
 (async () => {
   const directoryPath = COMPONENT_PATH;
-  const files = await fs.readdir(directoryPath);
+  const filteredComponentFiles = await getFilteredComponentFiles(directoryPath);
+  const exportsObject = await createExportsObject(filteredComponentFiles);
+  await applyExportsToPackageJSON(exportsObject);
 
-  const exportsObj = generateExports(files);
-  await applyExportsToPackageJSON(exportsObj);
-
-  const entryFileObj = generateRollupEntryFiles(files);
-  applyEntryFilesToRollupConfig(entryFileObj);
+  const entryFileObject = generateRollupEntryFileObject(filteredComponentFiles);
+  applyEntryFilesToRollupConfig(entryFileObject);
 })();

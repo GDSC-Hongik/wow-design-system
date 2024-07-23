@@ -1,5 +1,6 @@
 import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
-import { semanticTokens, textStyles, tokens } from "theme";
+import { semanticTokens, textStyles, tokens, breakpoints } from "theme";
+import { colorTokenList } from "theme/config";
 import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
 
 const globalCss = defineGlobalStyles({
@@ -10,6 +11,15 @@ const globalCss = defineGlobalStyles({
 });
 
 export default defineConfig({
+  staticCss: {
+    css: [
+      {
+        properties: {
+          color: colorTokenList,
+        },
+      },
+    ],
+  },
   globalCss,
   preflight: true,
   minify: true,
@@ -32,5 +42,9 @@ export default defineConfig({
     tokens,
     textStyles,
     semanticTokens,
+    breakpoints,
+  },
+  conditions: {
+    hover: "&[aria-pressed=false]:not(:disabled):hover",
   },
 });

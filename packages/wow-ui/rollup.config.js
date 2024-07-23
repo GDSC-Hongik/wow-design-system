@@ -10,6 +10,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import typescript from "@rollup/plugin-typescript";
 import { fileURLToPath } from "url";
 import preserveDirectives from "rollup-plugin-preserve-directives";
+import { visualizer } from "rollup-plugin-visualizer";
 
 const extensions = [".tsx", ".ts", ".js", ".jsx"];
 
@@ -19,12 +20,20 @@ process.env.BABEL_ENV = "production";
 
 export default {
   input: {
-    Box: "./src/components/Box",
-    Button: "./src/components/Button",
-    Checkbox: "./src/components/Checkbox",
-    Chip: "./src/components/Chip",
-    Divider: "./src/components/Divider",
+    TextField: "./src/components/TextField",
+    TextButton: "./src/components/TextButton",
     Switch: "./src/components/Switch",
+    Stepper: "./src/components/Stepper",
+    RadioButton: "./src/components/RadioGroup/RadioButton",
+    RadioGroup: "./src/components/RadioGroup/RadioGroup",
+    MultiGroup: "./src/components/MultiGroup",
+    DropDownOption: "./src/components/DropDown/DropDownOption",
+    DropDown: "./src/components/DropDown",
+    Divider: "./src/components/Divider",
+    Chip: "./src/components/Chip",
+    Checkbox: "./src/components/Checkbox",
+    Button: "./src/components/Button",
+    Box: "./src/components/Box",
   },
   output: [
     {
@@ -40,7 +49,7 @@ export default {
       entryFileNames: "[name].cjs",
     },
   ],
-  external: ["react/jsx-runtime", /@babel\/runtime/],
+  external: ["react/jsx-runtime"],
   plugins: [
     alias({
       entries: [
@@ -74,6 +83,7 @@ export default {
     terser(),
     json(),
     preserveDirectives.default(),
+    visualizer(),
   ],
   onwarn: (warning) => {
     if (warning.code !== "MODULE_LEVEL_DIRECTIVE") {

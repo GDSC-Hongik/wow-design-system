@@ -1,0 +1,8 @@
+{
+  "name": "codegen",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "plop": "^4.0.1"
+  }
+}

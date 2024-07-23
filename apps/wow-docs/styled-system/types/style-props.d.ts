@@ -1976,7 +1976,12 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/box-shadow
    */
-  boxShadow?: ConditionalValue<CssProperties["boxShadow"] | AnyString>;
+  boxShadow?: ConditionalValue<
+    | UtilityValues["boxShadow"]
+    | CssVars
+    | CssProperties["boxShadow"]
+    | AnyString
+  >;
   /**
    * The **`box-sizing`** CSS property sets how the total width and height of an element is calculated.
    *
@@ -6572,7 +6577,12 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/text-shadow
    */
-  textShadow?: ConditionalValue<CssProperties["textShadow"] | AnyString>;
+  textShadow?: ConditionalValue<
+    | UtilityValues["textShadow"]
+    | CssVars
+    | CssProperties["textShadow"]
+    | AnyString
+  >;
   /**
    * The **`text-size-adjust`** CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.
    *
@@ -7168,7 +7178,9 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/z-index
    */
-  zIndex?: ConditionalValue<CssProperties["zIndex"] | AnyString>;
+  zIndex?: ConditionalValue<
+    UtilityValues["zIndex"] | CssVars | CssProperties["zIndex"] | AnyString
+  >;
   /**
    * The non-standard **`zoom`** CSS property can be used to control the magnification level of an element. `transform: scale()` should be used instead of this property, if possible. However, unlike CSS Transforms, `zoom` affects the layout size of the element.
    *
@@ -8633,7 +8645,12 @@ export interface SystemProperties {
    *
    * @see https://developer.mozilla.org/docs/Web/CSS/box-shadow
    */
-  shadow?: ConditionalValue<CssProperties["boxShadow"] | AnyString>;
+  shadow?: ConditionalValue<
+    | UtilityValues["boxShadow"]
+    | CssVars
+    | CssProperties["boxShadow"]
+    | AnyString
+  >;
   shadowColor?: ConditionalValue<
     UtilityValues["boxShadowColor"] | CssVars | AnyString
   >;

@@ -5,6 +5,7 @@ interface CheckedStateProps {
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;
+  value: string;
   onChange?: () => void;
   onClick?: () => void;
   onKeyDown?: () => void;
@@ -13,16 +14,33 @@ interface CheckedStateProps {
 const useCheckedState = ({
   defaultChecked = false,
   checked: checkedProp,
-  disabled,
+  disabled: disabledProp,
   onChange,
   onClick,
   onKeyDown,
 }: CheckedStateProps) => {
-  const [checked, setChecked] = useState<boolean>(() =>
-    checkedProp !== undefined ? checkedProp : defaultChecked
-  );
+  const disabled = disabledProp || false;
 
+  const [checkedValue, setCheckedValue] = useState<boolean>(
+    checkedProp || defaultChecked
+  );
   const [pressed, setPressed] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (checkedProp !== undefined) {
+      setCheckedValue(checkedProp);
+    }
+  }, [checkedProp]);
+
+  const toggleCheckedState = () => {
+    if (disabled) return;
+
+    if (onChange) {
+      onChange();
+    } else {
+      setCheckedValue((prev) => !prev);
+    }
+  };
 
   const handleMouseDown = () => {
     if (!disabled) setPressed(true);
@@ -32,14 +50,8 @@ const useCheckedState = ({
     if (!disabled) setPressed(false);
   };
 
-  useEffect(() => {
-    if (checkedProp !== undefined) {
-      setChecked(checkedProp);
-    }
-  }, [checkedProp]);
-
   const handleClick = () => {
-    onChange ? onChange() : setChecked((prev) => !prev);
+    toggleCheckedState();
     onClick?.();
   };
 
@@ -53,14 +65,15 @@ const useCheckedState = ({
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       setPressed(true);
-      onChange ? onChange() : setChecked((prev) => !prev);
+      toggleCheckedState();
       onKeyDown?.();
     }
   };
 
   return {
-    checked,
+    checked: checkedValue,
     pressed,
+    disabled,
     handleClick,
     handleKeyDown,
     handleMouseDown,

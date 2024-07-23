@@ -339,6 +339,18 @@ const tokens = {
     value: "1.2px",
     variable: "var(--border-widths-arrow)",
   },
+  "zIndex.dropdown": {
+    value: 10,
+    variable: "var(--z-index-dropdown)",
+  },
+  "shadows.blue": {
+    value: "0px 4px 8px 0px rgba(16, 43, 74, 0.2)",
+    variable: "var(--shadows-blue)",
+  },
+  "shadows.mono": {
+    value: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+    variable: "var(--shadows-mono)",
+  },
   "breakpoints.sm": {
     value: "640px",
     variable: "var(--breakpoints-sm)",
@@ -384,11 +396,11 @@ const tokens = {
     variable: "var(--colors-primary)",
   },
   "colors.success": {
-    value: "#34A853",
+    value: "#2A8642",
     variable: "var(--colors-success)",
   },
   "colors.error": {
-    value: "#EA4335",
+    value: "#BB362A",
     variable: "var(--colors-error)",
   },
   "colors.backgroundNormal": {
@@ -404,7 +416,7 @@ const tokens = {
     variable: "var(--colors-background-dimmer)",
   },
   "colors.sub": {
-    value: "#8F8F8F",
+    value: "#6B6B6B",
     variable: "var(--colors-sub)",
   },
   "colors.outline": {
@@ -412,7 +424,7 @@ const tokens = {
     variable: "var(--colors-outline)",
   },
   "colors.textBlack": {
-    value: "#000000",
+    value: "#121212",
     variable: "var(--colors-text-black)",
   },
   "colors.textWhite": {

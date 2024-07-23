@@ -90,16 +90,16 @@ export const blackOpacity80 = "rgba(0, 0, 0, 0.8)";
 
 // 시맨틱 토큰
 export const primary = blue500;
-export const success = green500;
-export const error = red500;
+export const success = green600;
+export const error = red600;
 
 export const backgroundNormal = white;
 export const backgroundAlternative = mono50;
 export const backgroundDimmer = blackOpacity80;
 
-export const sub = mono600;
+export const sub = mono700;
 export const outline = mono400;
-export const textBlack = black;
+export const textBlack = mono950;
 export const textWhite = white;
 
 export const darkDisabled = mono400;

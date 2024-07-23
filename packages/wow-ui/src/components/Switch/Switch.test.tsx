@@ -7,7 +7,7 @@ describe("toggle", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
-    rendered = render(<Switch text="Text" />);
+    rendered = render(<Switch label="Label" value="switch" />);
   });
 
   it("should render with attributes aria-checked to be false, aria-disabled to be false by default", () => {
@@ -17,8 +17,8 @@ describe("toggle", () => {
     expect(switchComponent).toHaveAttribute("aria-disabled", "false");
   });
 
-  it("should render text", () => {
-    expect(rendered.getByText("Text")).toBeInTheDocument();
+  it("should render label", () => {
+    expect(rendered.getByText("Label")).toBeInTheDocument();
   });
 
   it("should toggle state when onClick event is fired", async () => {
@@ -61,7 +61,7 @@ describe("when defaultChecked is true", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
-    rendered = render(<Switch defaultChecked />);
+    rendered = render(<Switch defaultChecked value="switch" />);
   });
 
   it("should render with attributes aria-checked to be true, aria-disabled to be false", () => {
@@ -76,7 +76,7 @@ describe("disabled", () => {
   let rendered: RenderResult;
 
   beforeEach(() => {
-    rendered = render(<Switch isDisabled />);
+    rendered = render(<Switch disabled value="switch" />);
   });
 
   it("should render with attributes aria-disabled to be true", () => {
@@ -129,7 +129,7 @@ describe("external control and events", () => {
   let rendered: RenderResult;
 
   it("should fire external onClick event", async () => {
-    rendered = render(<Switch />);
+    rendered = render(<Switch value="switch" />);
     const switchComponent = rendered.getByRole("checkbox");
     const onClickHandler = jest.fn();
     switchComponent.onclick = onClickHandler;
@@ -142,7 +142,7 @@ describe("external control and events", () => {
   });
 
   it("should fire external onKeyDown event", async () => {
-    rendered = render(<Switch />);
+    rendered = render(<Switch value="switch" />);
     const switchComponent = rendered.getByRole("checkbox");
     const onKeyDownHandler = jest.fn();
     switchComponent.onkeydown = onKeyDownHandler;
@@ -155,11 +155,11 @@ describe("external control and events", () => {
   });
 
   it("should toggle external checked state when onClick event fired", async () => {
-    let isChecked = false;
+    let checked = false;
     const handleChange = () => {
-      isChecked = !isChecked;
+      checked = !checked;
     };
-    const rendered = render(<Switch isChecked={isChecked} />);
+    const rendered = render(<Switch checked={checked} value="switch" />);
     const switchComponent = rendered.getByRole("checkbox");
     switchComponent.onchange = handleChange;
 
