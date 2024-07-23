@@ -19,13 +19,12 @@ export interface DividerProps {
 
 const Divider = ({ type = "light", ...rest }: DividerProps) => {
   return (
-    <styled.div {...rest}>
-      <styled.div
-        className={dividerStyle({
-          type,
-        })}
-      />
-    </styled.div>
+    <styled.div
+      className={dividerStyle({
+        type,
+      })}
+      {...rest}
+    />
   );
 };
 
