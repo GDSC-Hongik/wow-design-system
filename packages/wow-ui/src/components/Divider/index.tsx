@@ -22,7 +22,7 @@ const Divider = ({ type = "light", ...rest }: DividerProps) => {
     <styled.div {...rest}>
       <styled.div
         className={dividerStyle({
-          type: type,
+          type,
         })}
       />
     </styled.div>
