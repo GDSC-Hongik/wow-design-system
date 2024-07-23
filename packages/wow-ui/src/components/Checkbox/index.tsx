@@ -83,6 +83,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onClick,
       onKeyDown,
     });
+
     return (
       <styled.label
         alignItems="center"
@@ -101,9 +102,9 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <styled.span alignItems="center" display="flex" position="relative">
           <styled.input
-            aria-checked={checked}
             aria-disabled={disabled}
             aria-label={inputProps?.["aria-label"] ?? "checkbox"}
+            checked={checked}
             {...(pressed && { "data-pressed": true })}
             id={id}
             ref={ref}
