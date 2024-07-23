@@ -1,4 +1,3 @@
-/* eslint-disable storybook/story-exports */
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Divider from "@/components/Divider";
@@ -28,9 +27,14 @@ const meta = {
         type: { summary: "CSSProperties" },
         defaultValue: { summary: "{}" },
       },
-      control: {
-        type: "object",
+      control: false,
+    },
+    className: {
+      description: "디바이더에 전달하는 커스텀 클래스를 설정합니다.",
+      table: {
+        type: { summary: "string" },
       },
+      control: false,
     },
   },
 } satisfies Meta<typeof Divider>;
@@ -39,7 +43,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Light: Story = {
   args: {},
 };
 
