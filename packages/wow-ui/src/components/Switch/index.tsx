@@ -104,7 +104,6 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             className={inputStyle()}
             id={id}
             ref={ref}
-            role="switch"
             type="checkbox"
             value={value}
             onClick={() => handleClick(value)}
