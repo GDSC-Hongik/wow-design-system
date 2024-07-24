@@ -71,10 +71,8 @@ export function useFormControl<VariantType>({
     onFocus?.();
   };
 
-  const value = isControlled ? valueProp : internalValue;
-
   return {
-    value,
+    value: isControlled ? valueProp : internalValue,
     variant,
     setVariant,
     handleChange,
