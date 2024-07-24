@@ -79,19 +79,19 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     ref: any
   ) => {
     const Component = (as || "button") as React.ElementType;
-    const [ischecked, setischecked] = useState(() =>
+    const [ischecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
     useEffect(() => {
       if (checkedProp !== undefined) {
-        setischecked(checkedProp);
+        setIsChecked(checkedProp);
       }
     }, [checkedProp]);
 
     const handleClick = () => {
       if (disabled) return;
       onClick?.();
-      clickable ? setischecked((prev: boolean) => !prev) : null;
+      clickable ? setIsChecked((prev: boolean) => !prev) : null;
     };
 
     const handleKeyDown = (event: any) => {
@@ -99,7 +99,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       if (event.currentTarget === event.target) {
         event.preventDefault();
         if (event.key === "Enter" || event.key === " ") {
-          setischecked((prev: boolean) => !prev);
+          setIsChecked((prev: boolean) => !prev);
           onKeyDown?.();
         }
       }
