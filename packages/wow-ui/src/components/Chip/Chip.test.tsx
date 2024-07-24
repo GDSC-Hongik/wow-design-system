@@ -15,7 +15,7 @@ describe("Chip rendering Test", () => {
   });
 
   it("should render with attributes aria-disabled to be false by default", () => {
-    const chipComponent = renderChip.getByRole("contentinfo");
+    const chipComponent = renderChip.container.querySelector("div");
 
     expect(chipComponent).toHaveAttribute("aria-disabled", "false");
   });
@@ -62,18 +62,18 @@ describe("Chip toggle Test", () => {
 describe("Chip disabled Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip disabled={true} label="Chip" />);
+    renderChip = render(<Chip as="div" disabled={true} label="Chip" />);
   });
 
   it("should render with attributes aria-disabled to be true", () => {
-    const chipComponent = renderChip.getByRole("contentinfo");
+    const chipComponent = renderChip.container.querySelector("div");
 
     expect(chipComponent).toHaveAttribute("aria-disabled", "true");
   });
 
   it("should not allow focusing", () => {
-    const chipComponent = renderChip.getByRole("contentinfo");
-    userEvent.click(chipComponent);
+    const chipComponent = renderChip.container.querySelector("div");
+    userEvent.click(chipComponent!!);
 
     expect(chipComponent).not.toHaveFocus();
   });
