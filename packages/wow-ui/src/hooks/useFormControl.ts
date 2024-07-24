@@ -27,15 +27,16 @@ export function useFormControl<VariantType>({
   const [variant, setVariant] = useState<VariantType | BaseVariantType>(
     "default"
   );
-  const isControlled = useRef<boolean>(valueProp !== undefined);
+  const isControlled = useRef<boolean>(valueProp !== undefined).current;
 
   useLayoutEffect(() => {
-    if (defaultValue) {
+    const hasDefaultValue = isControlled ? valueProp : defaultValue;
+    if (hasDefaultValue) {
       setVariant("typed");
     } else {
       setVariant("default");
     }
-  }, [defaultValue]);
+  }, [defaultValue, isControlled, valueProp]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -43,13 +44,13 @@ export function useFormControl<VariantType>({
 
     if (maxLength && inputValue.length > maxLength) {
       const slicedValue = inputValue.slice(0, maxLength);
-      if (!isControlled.current) {
+      if (!isControlled) {
         setInternalValue(slicedValue);
       } else {
         onChange?.(slicedValue);
       }
     } else {
-      if (!isControlled.current) {
+      if (!isControlled) {
         setInternalValue(inputValue);
       }
       onChange?.(inputValue);
@@ -70,7 +71,7 @@ export function useFormControl<VariantType>({
     onFocus?.();
   };
 
-  const value = isControlled.current ? valueProp : internalValue;
+  const value = isControlled ? valueProp : internalValue;
 
   return {
     value,
