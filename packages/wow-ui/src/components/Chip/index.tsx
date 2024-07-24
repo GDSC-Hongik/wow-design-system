@@ -91,7 +91,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     const handleClick = () => {
       if (disabled) return;
       onClick?.();
-      clickable ? setIsChecked((prev: boolean) => !prev) : null;
+      clickable ? setIsChecked((prev) => !prev) : null;
     };
 
     const handleKeyDown = (event: any) => {
@@ -99,7 +99,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       if (event.currentTarget === event.target) {
         event.preventDefault();
         if (event.key === "Enter" || event.key === " ") {
-          setIsChecked((prev: boolean) => !prev);
+          setIsChecked((prev) => !prev);
           onKeyDown?.();
         }
       }
