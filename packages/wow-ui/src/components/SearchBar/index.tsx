@@ -22,7 +22,7 @@ type CustomVariantType = BaseVariantType | "disabled";
  * @param {(value: string) => void} [onChange] 외부 활성 상태가 변경될 때 호출될 콜백 함수.
  * @param {() => void} [onBlur] 서치바가 포커스를 잃을 때 호출될 콜백 함수.
  * @param {() => void} [onFocus] 서치바가 포커스됐을 때 호출될 콜백 함수.
- * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 서치바에 전달할 추가 textarea 속성.
+ * @param {InputHTMLAttributes<HTMLInputElement>} [inputProps] 서치바에 전달할 추가 input 속성.
  * @param {CSSProperties} [style] 서치바의 커스텀 스타일 속성.
  * @param {string} [className] 서치바에 전달하는 커스텀 클래스명.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
@@ -88,7 +88,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     }, [disabled, setVariant]);
 
     return (
-      <Flex className={containerStyle({ type: variant })} gap="xs">
+      <Flex className={containerStyle({ type: variant })} gap="xs" {...rest}>
         <SearchIcon stroke={getStrokeColor(variant)} />
         <styled.input
           {...inputProps}
@@ -104,7 +104,6 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
-          {...rest}
         />
       </Flex>
     );

@@ -1,5 +1,5 @@
 import type { ChangeEvent, FocusEvent } from "react";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 export type BaseVariantType = "default" | "typing" | "typed";
 
@@ -23,10 +23,11 @@ export function useFormControl<VariantType>({
   onBlur,
   onFocus,
 }: FormControlProps<VariantType>) {
-  const [value, setValue] = useState(valueProp ?? defaultValue ?? "");
+  const [internalValue, setInternalValue] = useState(defaultValue ?? "");
   const [variant, setVariant] = useState<VariantType | BaseVariantType>(
     "default"
   );
+  const isControlled = useRef<boolean>(valueProp !== undefined);
 
   useLayoutEffect(() => {
     if (defaultValue) {
@@ -41,9 +42,16 @@ export function useFormControl<VariantType>({
     if (!disabled) setVariant("typing");
 
     if (maxLength && inputValue.length > maxLength) {
-      setValue(inputValue.slice(0, maxLength));
+      const slicedValue = inputValue.slice(0, maxLength);
+      if (!isControlled.current) {
+        setInternalValue(slicedValue);
+      } else {
+        onChange?.(slicedValue);
+      }
     } else {
-      setValue(inputValue);
+      if (!isControlled.current) {
+        setInternalValue(inputValue);
+      }
       onChange?.(inputValue);
     }
   };
@@ -61,6 +69,8 @@ export function useFormControl<VariantType>({
     }
     onFocus?.();
   };
+
+  const value = isControlled.current ? valueProp : internalValue;
 
   return {
     value,
