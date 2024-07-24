@@ -1,4 +1,5 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { useState } from "react";
 
 import SearchBar from "@/components/SearchBar";
@@ -33,7 +34,7 @@ describe("SearchBar component", () => {
       "검색어를 입력하세요"
     ) as HTMLInputElement;
 
-    fireEvent.change(searchBar, { target: { value: "12345678910" } });
+    userEvent.type(searchBar, "12345678910");
 
     await waitFor(() => {
       expect(searchBar.value).toHaveLength(5);
@@ -46,7 +47,7 @@ describe("SearchBar component", () => {
     );
     const searchBar = getByPlaceholderText("검색어를 입력하세요");
 
-    fireEvent.change(searchBar, { target: { value: "12345" } });
+    userEvent.type(searchBar, "12345");
 
     await waitFor(() => {
       expect(searchBar).toHaveStyle("borderColor: primary");
@@ -60,8 +61,8 @@ describe("SearchBar component", () => {
     );
     const searchBar = getByPlaceholderText("검색어를 입력하세요");
 
-    fireEvent.change(searchBar, { target: { value: "12345" } });
-    fireEvent.blur(searchBar);
+    userEvent.type(searchBar, "12345");
+    userEvent.tab();
 
     await waitFor(() => {
       expect(searchBar).toHaveStyle("borderColor: sub");
@@ -86,7 +87,7 @@ describe("SearchBar component", () => {
     );
     const searchBar = getByPlaceholderText("검색어를 입력하세요");
 
-    fireEvent.focus(searchBar);
+    userEvent.click(searchBar);
 
     expect(handleFocus).toHaveBeenCalledTimes(1);
   });
@@ -98,11 +99,12 @@ describe("SearchBar component", () => {
     );
     const searchBar = getByPlaceholderText("검색어를 입력하세요");
 
-    fireEvent.click(searchBar);
-    fireEvent.blur(searchBar);
+    userEvent.click(searchBar);
+    userEvent.tab();
 
     expect(handleBlur).toHaveBeenCalledTimes(1);
   });
+
   it("should have appropriate aria attributes", () => {
     const { getByPlaceholderText } = render(
       <SearchBar
@@ -137,7 +139,7 @@ describe("external control and events", () => {
 
     expect(searchBar).toHaveValue("initial value");
 
-    fireEvent.change(searchBar, { target: { value: "updated value" } });
+    userEvent.type(searchBar, "updated value");
 
     expect(searchBar).toHaveValue("updated value");
   });
