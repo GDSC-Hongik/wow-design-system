@@ -62,7 +62,7 @@ describe("Chip toggle Test", () => {
 describe("Chip disabled Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip as="div" disabled={true} label="Chip" />);
+    renderChip = render(<Chip disabled={true} label="Chip" />);
   });
 
   it("should render with attributes aria-disabled to be true", () => {
