@@ -66,13 +66,13 @@ describe("Chip disabled Test", () => {
   });
 
   it("should render with attributes aria-disabled to be true", () => {
-    const chipComponent = renderChip.container.querySelector("div");
+    const chipComponent = renderChip.container.querySelector("button");
 
     expect(chipComponent).toHaveAttribute("aria-disabled", "true");
   });
 
   it("should not allow focusing", () => {
-    const chipComponent = renderChip.container.querySelector("div");
+    const chipComponent = renderChip.container.querySelector("button");
     userEvent.click(chipComponent!!);
 
     expect(chipComponent).not.toHaveFocus();
