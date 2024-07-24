@@ -29,6 +29,7 @@ export default {
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",
+    Divider: "./src/components/Divider",
     Chip: "./src/components/Chip",
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",

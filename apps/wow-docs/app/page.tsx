@@ -1,5 +1,6 @@
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
+import Divider from "wowds-ui/Divider";
 import DropDown from "wowds-ui/DropDown";
 import DropDownOption from "wowds-ui/DropDownOption";
 import MultiGroup from "wowds-ui/MultiGroup";
@@ -12,6 +13,8 @@ const Home = () => {
     <>
       <Checkbox value="checkbox" />
       <Chip label="Chip" />
+      <Switch />
+      <Divider />
       <Switch value="switch" />
       <RadioGroup defaultValue="1학년" name="학년">
         <RadioButton label="1학년" value="1학년" />

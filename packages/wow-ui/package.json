@@ -65,6 +65,11 @@
       "require": "./dist/DropDown.cjs",
       "import": "./dist/DropDown.js"
     },
+    "./Divider": {
+      "types": "./dist/components/Divider/index.d.ts",
+      "require": "./dist/Divider.cjs",
+      "import": "./dist/Divider.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
