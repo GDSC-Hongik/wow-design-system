@@ -59,7 +59,7 @@ const meta = {
     label: {
       description: "칩에 들어가게 될 텍스트입니다.",
       table: {
-        type: { summary: "string", required: true },
+        type: { summary: "string" },
       },
       control: {
         type: "text",
@@ -70,18 +70,14 @@ const meta = {
       table: {
         type: { summary: "() => void" },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onDelete: {
       description: "칩에 대한 필터를 제거하기 위한 함수입니다.",
       table: {
         type: { summary: "() => void" },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onKeyDown: {
       description:
@@ -89,9 +85,7 @@ const meta = {
       table: {
         type: { summary: "() => void" },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     style: {
       description: "칩의 커스텀 스타일을 설정합니다.",
