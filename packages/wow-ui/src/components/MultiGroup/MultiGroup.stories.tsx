@@ -17,8 +17,8 @@ const meta = {
       description:
         "체크박스 또는 스위치 타입입니다. 'checkbox' 또는 'switch' 값을 가집니다.",
       table: {
-        type: { summary: "checkbox | switch", required: true },
-        defaultValue: { summary: null },
+        type: { summary: "checkbox | switch" },
+        defaultValue: { summary: "checkbox" },
       },
       control: "radio",
       options: ["checkbox", "switch"],
@@ -28,7 +28,7 @@ const meta = {
         "체크박스 그룹의 방향입니다. 'vertical' 또는 'horizontal' 값을 가집니다. variant가 switch인 경우 사용할 수 없습니다.",
       table: {
         type: { summary: "vertical | horizontal" },
-        defaultValue: { summary: null },
+        defaultValue: { summary: "vertical" },
       },
       control: "radio",
       options: ["vertical", "horizontal"],
@@ -39,7 +39,6 @@ const meta = {
         "체크박스 사이의 간격입니다. variant가 switch인 경우 사용할 수 없습니다.",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "number",
@@ -49,8 +48,7 @@ const meta = {
     children: {
       description: "그룹 내에 포함될 체크박스 또는 스위치 컴포넌트들입니다.",
       table: {
-        type: { summary: "ReactNode", required: true },
-        defaultValue: { summary: null },
+        type: { summary: "ReactNode" },
       },
       control: false,
     },
@@ -58,7 +56,7 @@ const meta = {
       description: "그룹명입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
+        defaultValue: { summary: "MultiGroup" },
       },
       control: {
         type: "text",
@@ -68,27 +66,24 @@ const meta = {
       description: "기본으로 선택된 값들의 배열입니다.",
       table: {
         type: { summary: "string[]" },
-        defaultValue: { summary: null },
       },
       control: {
-        type: "array",
+        type: "object",
       },
     },
     checked: {
       description: "외부에서 제어할 활성 상태입니다.",
       table: {
         type: { summary: "string[]" },
-        defaultValue: { summary: null },
       },
       control: {
-        type: "array",
+        type: "object",
       },
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
         type: { summary: "(value: string) => void" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -97,7 +92,7 @@ const meta = {
         "그룹 내 모든 체크박스 또는 스위치가 비활성화되어 있는지 여부입니다.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
       control: {
         type: "boolean",
@@ -107,7 +102,6 @@ const meta = {
       description: "그룹에 전달하는 커스텀 클래스입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "text",
@@ -117,7 +111,6 @@ const meta = {
       description: "그룹의 커스텀 스타일입니다.",
       table: {
         type: { summary: "CSSProperties" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -131,10 +124,10 @@ type Story = StoryObj<typeof meta>;
 export const TextWithVerticalCheckboxMultiGroup: Story = {
   render: () => (
     <MultiGroup variant="checkbox">
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   ),
   args: {
@@ -146,10 +139,10 @@ export const TextWithVerticalCheckboxMultiGroup: Story = {
 export const TextWithHorizontalCheckboxMultiGroup: Story = {
   render: () => (
     <MultiGroup position="horizontal" variant="checkbox">
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   ),
   args: {
@@ -161,10 +154,10 @@ export const TextWithHorizontalCheckboxMultiGroup: Story = {
 export const TextWithHorizontalWithGapCheckboxMultiGroup: Story = {
   render: () => (
     <MultiGroup gap={20} position="horizontal" variant="checkbox">
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   ),
   args: {
@@ -176,10 +169,10 @@ export const TextWithHorizontalWithGapCheckboxMultiGroup: Story = {
 export const DisabledCheckboxMultiGroup = {
   render: () => (
     <MultiGroup disabled gap={20} position="horizontal" variant="checkbox">
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   ),
   args: {
@@ -196,10 +189,10 @@ export const WithDefaultValueCheckboxMultiGroup = {
       position="horizontal"
       variant="checkbox"
     >
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   ),
   args: {
@@ -221,10 +214,10 @@ const ControlledCheckboxState = () => {
 
   return (
     <MultiGroup checked={checked} variant="switch" onChange={handleChange}>
-      <Checkbox children="checkbox1" value="checkbox1" />
-      <Checkbox children="checkbox2" value="checkbox2" />
-      <Checkbox children="checkbox3" value="checkbox3" />
-      <Checkbox children="checkbox4" value="checkbox4" />
+      <Checkbox label="checkbox1" value="checkbox1" />
+      <Checkbox label="checkbox2" value="checkbox2" />
+      <Checkbox label="checkbox3" value="checkbox3" />
+      <Checkbox label="checkbox4" value="checkbox4" />
     </MultiGroup>
   );
 };
