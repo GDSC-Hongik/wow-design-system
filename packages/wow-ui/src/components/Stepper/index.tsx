@@ -30,7 +30,7 @@ const checkStepperStatus = (number: number, step: number) => {
  * @param {number} width Stepper의 가로 길이를 자유롭게 정할 수 있어요. 단, 278px 이상이어야 합니다.
  */
 
-const Stepper = ({ step, maxStep = 3, labels, width }: StepperProps) => {
+const Stepper = ({ step = 1, maxStep = 3, labels, width }: StepperProps) => {
   const fillStepper = useCallback((maxStep: number, step: number) => {
     const ratio = (step - 1) / (maxStep - 1);
     return ratio > 1 ? "100%" : `${ratio * 100}%`;

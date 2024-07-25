@@ -83,6 +83,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onClick,
       onKeyDown,
     });
+
     return (
       <styled.label
         alignItems="center"
@@ -107,6 +108,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             {...(pressed && { "data-pressed": true })}
             id={id}
             ref={ref}
+            role="checkbox"
             tabIndex={0}
             type="checkbox"
             className={checkboxStyle({
