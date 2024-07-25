@@ -131,6 +131,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "lottie-react": "^2.4.0",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {
