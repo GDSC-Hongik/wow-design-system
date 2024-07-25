@@ -36,7 +36,7 @@ const meta = {
         type: "boolean",
       },
     },
-    isChecked: {
+    ischecked: {
       description: "isChecked는 외부에서 제어할 활성 상태를 나타냅니다.",
       table: {
         type: { summary: "boolean" },
