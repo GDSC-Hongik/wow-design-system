@@ -86,21 +86,23 @@ const Box = <T extends BoxVariantType = "text">({
       onClick={handleArrowClick}
       {...rest}
     >
-      <Flex alignItems="center" direction="row" gap="xs">
+      <Flex alignItems="center" direction="row" gap="xs" width="100%">
         {leftElement}
-        <Flex direction="column" gap="xxs">
-          <styled.span
+        <Flex direction="column" gap="xxs" width="100%">
+          <styled.div
             color={textColor ? textColor : "textBlack"}
+            width="100%"
             {...(typeof text === "string" && { textStyle: "h3" })}
           >
             {text}
-          </styled.span>
-          <styled.span
+          </styled.div>
+          <styled.div
             color={subTextColor ? subTextColor : "sub"}
             textStyle="body1"
+            width="100%"
           >
             {subText}
-          </styled.span>
+          </styled.div>
         </Flex>
       </Flex>
       <div>
