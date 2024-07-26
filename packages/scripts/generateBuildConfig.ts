@@ -19,14 +19,23 @@ type EntryFileKey = string;
 type EntryFileValue = string;
 type EntryFileObject = { [key: EntryFileKey]: EntryFileValue };
 
+// 제외할 컴포넌트 목록
+const excludedComponents = [
+  "DropDownTrigger",
+  "DropDownWrapper",
+  "CollectionContext",
+];
+
 const getFilteredComponentFiles = async (directoryPath: string) => {
   const files = await fs.readdir(directoryPath, { recursive: true });
 
+  console.log(directoryPath, files);
   return files.filter(
     (file) =>
       file.endsWith(".tsx") &&
       !file.includes("test") &&
-      !file.includes("stories")
+      !file.includes("stories") &&
+      !excludedComponents.some((excluded) => file.includes(excluded))
   );
 };
 

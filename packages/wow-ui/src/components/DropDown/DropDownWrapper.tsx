@@ -1,13 +1,10 @@
-import { cva } from "@styled-system/css";
 import { Flex } from "@styled-system/jsx";
-import { type CSSProperties, type PropsWithChildren, useRef } from "react";
+import { type PropsWithChildren, useRef } from "react";
 
-import type { DropDownProps } from "../../components/DropDown";
-import useClickOutside from "../../hooks/useClickOutside";
-import {
-  useCollection,
-  useCollectionContext,
-} from "./context/CollectionContext";
+import type { DropDownProps } from "@/components/DropDown";
+import useClickOutside from "@/hooks/useClickOutside";
+
+import { useCollection } from "./context/CollectionContext";
 import { useDropDownContext } from "./context/DropDownContext";
 
 interface DropDownWrapperProps extends PropsWithChildren {
@@ -26,7 +23,6 @@ export const DropDownWrapper = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef, () => setOpen(false));
-  console.log("DropDownWrapper", itemMap);
 
   const updateFocusedValue = (direction: number) => {
     const values = Array.from(itemMap.keys());

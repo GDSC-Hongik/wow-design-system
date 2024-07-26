@@ -8,13 +8,12 @@ import type {
   ReactElement,
   ReactNode,
 } from "react";
-import { useId, useRef } from "react";
+import { useId } from "react";
 
-import { DropDownContext } from "../../components/DropDown/context/DropDownContext";
-import DropDownTrigger from "../../components/DropDown/DropDownTrigger";
-import useClickOutside from "../../hooks/useClickOutside";
-import useDropDownState from "../../hooks/useDropDownState";
-import useFlattenChildren from "../../hooks/useFlattenChildren";
+import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
+import DropDownTrigger from "@/components/DropDown/DropDownTrigger";
+import useDropDownState from "@/hooks/useDropDownState";
+
 import { CollectionProvider } from "./context/CollectionContext";
 import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {

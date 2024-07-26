@@ -5,23 +5,18 @@ import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { forwardRef, useEffect } from "react";
 
-import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
-import {
-  useCollection,
-  useCollectionContext,
-} from "./context/CollectionContext";
+import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
+
+import { useCollection } from "./context/CollectionContext";
+
 /**
- * @description 드롭다운 옵션의 props입니다.
+ * @description DropDown의 옵션을 나타내는 DropDownOption 컴포넌트입니다.
  *
- * @param {boolean} [focused] 옵션이 포커스된 상태인지 여부를 나타냅니다.
- * @param {boolean} [selected] 옵션이 선택된 상태인지 여부를 나타냅니다.
  * @param {string} value 옵션의 값입니다.
  * @param {() => void} [onClick] 옵션이 클릭되었을 때 호출되는 함수입니다.
  * @param {React.ReactNode} [text] 드롭다운 옵션에 들어갈 텍스트.
  */
 export interface DropDownOptionProps {
-  focused?: boolean;
-  selected?: boolean;
   value: string;
   onClick?: () => void;
   text: ReactNode;

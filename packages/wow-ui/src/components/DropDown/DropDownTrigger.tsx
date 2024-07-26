@@ -1,15 +1,13 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
-import type { KeyboardEvent, ReactElement } from "react";
-import React, { cloneElement } from "react";
+import type { KeyboardEvent } from "react";
+import { cloneElement } from "react";
 import { DownArrow } from "wowds-icons";
 
-import type { DropDownProps } from "../../components/DropDown";
-import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
-import {
-  useCollection,
-  useCollectionContext,
-} from "./context/CollectionContext";
+import type { DropDownProps } from "@/components/DropDown";
+import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
+
+import { useCollection } from "./context/CollectionContext";
 interface DropDownTriggerProps {
   placeholder?: DropDownProps["placeholder"];
   label?: DropDownProps["label"];
