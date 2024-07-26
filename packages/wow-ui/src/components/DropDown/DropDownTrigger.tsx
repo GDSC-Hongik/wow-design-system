@@ -1,15 +1,19 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
-import type { ReactElement } from "react";
+import type { KeyboardEvent, ReactElement } from "react";
 import React, { cloneElement } from "react";
 import { DownArrow } from "wowds-icons";
 
+import type { DropDownProps } from "../../components/DropDown";
 import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
-
+import {
+  useCollection,
+  useCollectionContext,
+} from "./context/CollectionContext";
 interface DropDownTriggerProps {
-  placeholder?: string;
-  label?: React.ReactNode;
-  trigger?: ReactElement;
+  placeholder?: DropDownProps["placeholder"];
+  label?: DropDownProps["label"];
+  trigger?: DropDownProps["trigger"];
   dropdownId: string;
 }
 
@@ -19,8 +23,12 @@ const DropDownTrigger = ({
   trigger,
   dropdownId,
 }: DropDownTriggerProps) => {
-  const { open, selectedValue, selectedText, setOpen, setFocusedValue } =
+  const { open, selectedValue, setOpen, setFocusedValue } =
     useDropDownContext();
+
+  const itemMap = useCollection();
+  const selectedText = itemMap.get(selectedValue)?.text;
+
   const toggleDropdown = () => {
     setOpen((prevOpen) => {
       if (!prevOpen) setFocusedValue(null);
@@ -70,13 +78,13 @@ const DropDownTrigger = ({
             type: open ? "focused" : selectedValue ? "selected" : "default",
           })}
         >
-          {selectedText ? selectedText : placeholder}
+          {selectedValue ? selectedText : placeholder}
         </styled.div>
         <DownArrow
           className={iconStyle({ type: open ? "up" : "down" })}
           stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
           tabIndex={0}
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={(e: KeyboardEvent) => {
             if (e.key === "Enter") toggleDropdown();
           }}
         />

@@ -3,10 +3,13 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
-
+import {
+  useCollection,
+  useCollectionContext,
+} from "./context/CollectionContext";
 /**
  * @description 드롭다운 옵션의 props입니다.
  *
@@ -32,8 +35,15 @@ const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
 
     const handleOptionClick = (value: string, onClick?: () => void) => {
       if (onClick) onClick();
-      handleSelect(value);
+      handleSelect(value, text);
     };
+
+    const itemMap = useCollection();
+
+    useEffect(() => {
+      itemMap.set(value, { text });
+    }, [itemMap, value, text]);
+
     return (
       <styled.div
         id={`dropdown-option-${value}`}

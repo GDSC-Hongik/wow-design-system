@@ -15,7 +15,8 @@ import DropDownTrigger from "../../components/DropDown/DropDownTrigger";
 import useClickOutside from "../../hooks/useClickOutside";
 import useDropDownState from "../../hooks/useDropDownState";
 import useFlattenChildren from "../../hooks/useFlattenChildren";
-
+import { CollectionProvider } from "./context/CollectionContext";
+import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
    * @description 드롭다운을 열기 위한 외부 트리거 요소입니다.
@@ -91,55 +92,40 @@ const DropDown = ({
   onChange,
   ...rest
 }: DropDownProps) => {
-  const flattenedChildren = useFlattenChildren(children);
   const dropdownState = useDropDownState({
     value,
     defaultValue,
-    children: flattenedChildren,
     onChange,
   });
 
-  const { open, setOpen, handleKeyDown } = dropdownState;
+  const { open } = dropdownState;
 
   const defaultId = useId();
   const dropdownId = id ?? `dropdown-${defaultId}`;
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useClickOutside(dropdownRef, () => setOpen(false));
 
   return (
     <DropDownContext.Provider value={dropdownState}>
-      <Flex
-        aria-labelledby={`${dropdownId}-trigger`}
-        cursor="pointer"
-        direction="column"
-        gap="xs"
-        id={dropdownId}
-        outline="none"
-        position="relative"
-        ref={dropdownRef}
-        tabIndex={0}
-        width={trigger ? "fit-content" : "auto"}
-        onKeyDown={handleKeyDown}
-        {...rest}
-      >
-        <DropDownTrigger
-          dropdownId={dropdownId}
-          label={label}
-          placeholder={placeholder}
-          trigger={trigger}
-        />
-        {open && (
-          <Flex
-            direction="column"
-            className={dropdownContentStyle({
-              type: trigger ? "custom" : "default",
-            })}
-          >
-            {children}
-          </Flex>
-        )}
-      </Flex>
+      <CollectionProvider>
+        <DropDownWrapper dropdownId={dropdownId} {...rest}>
+          <DropDownTrigger
+            dropdownId={dropdownId}
+            label={label}
+            placeholder={placeholder}
+            trigger={trigger}
+          />
+          {open && (
+            <Flex
+              direction="column"
+              tabIndex={0}
+              className={dropdownContentStyle({
+                type: trigger ? "custom" : "default",
+              })}
+            >
+              {children}
+            </Flex>
+          )}
+        </DropDownWrapper>
+      </CollectionProvider>
     </DropDownContext.Provider>
   );
 };
