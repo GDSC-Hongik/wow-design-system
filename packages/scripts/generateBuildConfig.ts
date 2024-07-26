@@ -29,7 +29,6 @@ const excludedComponents = [
 const getFilteredComponentFiles = async (directoryPath: string) => {
   const files = await fs.readdir(directoryPath, { recursive: true });
 
-  console.log(directoryPath, files);
   return files.filter(
     (file) =>
       file.endsWith(".tsx") &&
