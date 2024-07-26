@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -70,6 +70,11 @@
       "require": "./dist/DropDown.cjs",
       "import": "./dist/DropDown.js"
     },
+    "./Divider": {
+      "types": "./dist/components/Divider/index.d.ts",
+      "require": "./dist/Divider.cjs",
+      "import": "./dist/Divider.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "require": "./dist/Chip.cjs",
@@ -117,6 +122,7 @@
     "@storybook/test": "^8.1.9",
     "@storybook/test-runner": "^0.18.2",
     "@storybook/testing-library": "^0.2.2",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",

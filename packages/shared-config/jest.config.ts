@@ -11,11 +11,6 @@ const config: Config = {
       },
     ],
   },
-
-  setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
-  verbose: true,
-  collectCoverage: true,
-  restoreMocks: true,
   testMatch: [
     "<rootDir>/src/**/*.test.(js|jsx|ts|tsx)",
     "<rootDir>/app/**/*.test.(js|jsx|ts|tsx)",
@@ -32,6 +27,10 @@ const config: Config = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@styled-system(.*)$": "<rootDir>/styled-system/$1",
   },
+  setupFilesAfterEnv: ["../shared-config/jest.setup.ts"],
+  verbose: true,
+  collectCoverage: true,
+  restoreMocks: true,
 };
 
 export default config;

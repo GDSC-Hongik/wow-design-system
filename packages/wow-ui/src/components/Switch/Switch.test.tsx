@@ -10,10 +10,10 @@ describe("toggle", () => {
     rendered = render(<Switch label="Label" value="switch" />);
   });
 
-  it("should render with attributes aria-checked to be false, aria-disabled to be false by default", () => {
+  it("should render with attributes checked to be false, aria-disabled to be false by default", () => {
     const switchComponent = rendered.getByRole("checkbox");
 
-    expect(switchComponent).toHaveAttribute("aria-checked", "false");
+    expect(switchComponent).not.toBeChecked();
     expect(switchComponent).toHaveAttribute("aria-disabled", "false");
   });
 
@@ -29,7 +29,7 @@ describe("toggle", () => {
     fireEvent.click(switchComponent);
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(switchComponent).toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "false");
     });
   });
@@ -40,7 +40,7 @@ describe("toggle", () => {
     fireEvent.type(switchComponent, "{enter}");
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(switchComponent).toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "false");
     });
   });
@@ -51,7 +51,7 @@ describe("toggle", () => {
     fireEvent.type(switchComponent, "{space}");
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(switchComponent).toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "false");
     });
   });
@@ -64,10 +64,10 @@ describe("when defaultChecked is true", () => {
     rendered = render(<Switch defaultChecked value="switch" />);
   });
 
-  it("should render with attributes aria-checked to be true, aria-disabled to be false", () => {
+  it("should render with attributes checked to be true, aria-disabled to be false", () => {
     const switchComponent = rendered.getByRole("checkbox");
 
-    expect(switchComponent).toHaveAttribute("aria-checked", "true");
+    expect(switchComponent).toBeChecked();
     expect(switchComponent).toHaveAttribute("aria-disabled", "false");
   });
 });
@@ -108,7 +108,7 @@ describe("disabled", () => {
     fireEvent.type(switchComponent, "{enter}");
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "false");
+      expect(switchComponent).not.toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "true");
     });
   });
@@ -119,7 +119,7 @@ describe("disabled", () => {
     fireEvent.type(switchComponent, "{space}");
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "false");
+      expect(switchComponent).not.toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "true");
     });
   });
@@ -166,7 +166,7 @@ describe("external control and events", () => {
     fireEvent.click(switchComponent);
 
     await waitFor(() => {
-      expect(switchComponent).toHaveAttribute("aria-checked", "true");
+      expect(switchComponent).toBeChecked();
       expect(switchComponent).toHaveAttribute("aria-disabled", "false");
     });
   });

@@ -1,0 +1,27 @@
+name: Auto Assign
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, converted_to_draft]
+  issues:
+    types: [opened]
+
+jobs:
+  assign_pull_request:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: hkusu/review-assign-action@v1
+        with:
+          assignees: ${{ github.actor }}
+
+  auto_assign_issue:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues'
+    permissions: 
+        issues: write
+    steps:
+        - name: 'Auto-assign issue'
+          uses: pozil/auto-assign-issue@v2
+          with:
+            assignees: ${{ github.actor }}

@@ -16,7 +16,7 @@ import type {
  *
  * @param {T} [element] 렌더링할 요소 또는 컴포넌트. 기본값은 button이며, Chip의 경우 input으로 사용될 수 있음
  * @param {boolean} [defaultChecked=false] 칩의 토글의 default 활성화 상태
- * @param {boolean} [isChecked=false] 외부에서 제어할 활성 상태.
+ * @param {boolean} [ischecked=false] 외부에서 제어할 활성 상태.
  * @param {string} label 칩 버튼에 들어갈 텍스트
  * @param {boolean} [clickable=true] 클릭할 수 있는 칩인지 여부 판단
  * @param {() => void} [onDelete] 칩 버튼을 삭제했을 때의 동작
@@ -42,20 +42,20 @@ type ChipComponent = <T extends ButtonElementType = "button">(
 
 const ChipLabel = ({
   label,
-  isChecked,
+  ischecked,
   disabled = true,
 }: {
   label: string;
-  isChecked: boolean;
+  ischecked: boolean;
   disabled: boolean;
 }) => {
   return (
     <styled.div
       data-disabled={disabled}
-      data-selected={isChecked}
+      data-selected={ischecked}
       textStyle="label2"
       className={chipLabel({
-        type: disabled ? "disabled" : isChecked ? "checked" : "unchecked",
+        type: disabled ? "disabled" : ischecked ? "checked" : "unchecked",
       })}
     >
       {label}
@@ -71,16 +71,15 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       clickable,
       onKeyDown,
       onClick,
-      isChecked: checkedProp = false,
+      ischecked: checkedProp = false,
       defaultChecked = false,
       disabled = false,
       style,
-      ...rest
     }: ChipProps<T>,
     ref: any
   ) => {
-    const Component = as || "button";
-    const [isChecked, setIsChecked] = useState(() =>
+    const Component = (as || "button") as React.ElementType;
+    const [ischecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
     useEffect(() => {
@@ -92,7 +91,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     const handleClick = () => {
       if (disabled) return;
       onClick?.();
-      clickable ? setIsChecked((prev) => !prev) : null;
+      clickable ? setIsChecked((prev: boolean) => !prev) : null;
     };
 
     const handleKeyDown = (event: any) => {
@@ -100,7 +99,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       if (event.currentTarget === event.target) {
         event.preventDefault();
         if (event.key === "Enter" || event.key === " ") {
-          setIsChecked((prev) => !prev);
+          setIsChecked((prev: boolean) => !prev);
           onKeyDown?.();
         }
       }
@@ -108,9 +107,13 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
 
     return (
       <Component
-        aria-label={`chip ${isChecked ? "activated" : "inactivated"}`}
-        data-selected={isChecked}
+        ischecked
+        aria-checked={clickable ? ischecked : undefined}
+        aria-disabled={disabled}
+        aria-label={`chip ${ischecked ? "activated" : "inactivated"}`}
+        data-selected={ischecked}
         ref={ref}
+        role={clickable ? "checkbox" : undefined}
         style={style}
         className={chip({
           clickable: disabled ? false : clickable,
@@ -119,7 +122,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
-        <ChipLabel disabled={disabled} isChecked={isChecked} label={label} />
+        <ChipLabel disabled={disabled} ischecked={ischecked} label={label} />
       </Component>
     );
   }
