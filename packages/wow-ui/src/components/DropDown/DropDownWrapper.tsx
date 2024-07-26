@@ -3,7 +3,6 @@ import {
   type KeyboardEvent,
   type PropsWithChildren,
   useCallback,
-  useMemo,
   useRef,
 } from "react";
 
@@ -33,10 +32,9 @@ export const DropDownWrapper = ({
     useCallback(() => setOpen(false), [setOpen])
   );
 
-  const values = useMemo(() => Array.from(itemMap.keys()), [itemMap]);
-
   const updateFocusedValue = useCallback(
     (direction: number) => {
+      const values = Array.from(itemMap.keys());
       setFocusedValue((prevValue) => {
         const currentIndex = values.indexOf(prevValue ?? "");
         const nextIndex =
@@ -44,13 +42,14 @@ export const DropDownWrapper = ({
         return values[nextIndex] ?? "";
       });
     },
-    [setFocusedValue, values]
+    [itemMap, setFocusedValue]
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
       if (!open) return;
 
+      //console.log(event);
       const { key } = event;
 
       if (key === "ArrowDown") {
