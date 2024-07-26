@@ -1,20 +1,20 @@
 "use client";
 
 import { cva } from "@styled-system/css";
-import { Flex, styled } from "@styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
 import type {
   CSSProperties,
   PropsWithChildren,
   ReactElement,
   ReactNode,
 } from "react";
-import { cloneElement, useId, useRef } from "react";
-import { DownArrow } from "wowds-icons";
+import { useId, useRef } from "react";
 
-import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
-import useClickOutside from "@/hooks/useClickOutside";
-import useDropDownState from "@/hooks/useDropDownState";
-import useFlattenChildren from "@/hooks/useFlattenChildren";
+import { DropDownContext } from "../../components/DropDown/context/DropDownContext";
+import DropDownTrigger from "../../components/DropDown/DropDownTrigger";
+import useClickOutside from "../../hooks/useClickOutside";
+import useDropDownState from "../../hooks/useDropDownState";
+import useFlattenChildren from "../../hooks/useFlattenChildren";
 
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
@@ -99,92 +99,13 @@ const DropDown = ({
     onChange,
   });
 
-  const {
-    selectedValue,
-    selectedText,
-    open,
-    setFocusedValue,
-    setOpen,
-    handleKeyDown,
-  } = dropdownState;
+  const { open, setOpen, handleKeyDown } = dropdownState;
 
   const defaultId = useId();
   const dropdownId = id ?? `dropdown-${defaultId}`;
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(dropdownRef, () => setOpen(false));
-
-  const toggleDropdown = () => {
-    setOpen((prevOpen) => {
-      if (!prevOpen) setFocusedValue(null);
-      return !prevOpen;
-    });
-  };
-
-  const renderCustomTrigger = (trigger: ReactElement) => (
-    <>
-      {cloneElement(trigger, {
-        onClick: toggleDropdown,
-        "aria-expanded": open,
-        "aria-haspopup": "true",
-        id: `${dropdownId}-trigger`,
-        "aria-controls": `${dropdownId}`,
-      })}
-    </>
-  );
-
-  const renderDefaultTrigger = () => (
-    <>
-      <styled.span
-        color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
-        textStyle="label2"
-      >
-        {label}
-      </styled.span>
-      <styled.button
-        alignItems="center"
-        aria-controls={dropdownId}
-        aria-expanded={open}
-        aria-haspopup={true}
-        cursor="pointer"
-        display="flex"
-        id={`${dropdownId}-trigger`}
-        justifyContent="space-between"
-        outline="none"
-        className={dropdownStyle({
-          type: open ? "focused" : selectedValue ? "selected" : "default",
-        })}
-        onClick={toggleDropdown}
-      >
-        <styled.div
-          className={placeholderStyle({
-            type: open ? "focused" : selectedValue ? "selected" : "default",
-          })}
-        >
-          {selectedText ? selectedText : placeholder}
-        </styled.div>
-        <DownArrow
-          className={iconStyle({ type: open ? "up" : "down" })}
-          stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
-          tabIndex={0}
-          onKeyDown={(e: React.KeyboardEvent) => {
-            if (e.key === "Enter") toggleDropdown();
-          }}
-        />
-      </styled.button>
-    </>
-  );
-
-  const renderOptions = () => (
-    <Flex
-      direction="column"
-      className={dropdownContentStyle({
-        type: trigger ? "custom" : "default",
-      })}
-    >
-      {children}
-    </Flex>
-  );
 
   return (
     <DropDownContext.Provider value={dropdownState}>
@@ -202,8 +123,22 @@ const DropDown = ({
         onKeyDown={handleKeyDown}
         {...rest}
       >
-        {trigger ? renderCustomTrigger(trigger) : renderDefaultTrigger()}
-        {open && renderOptions()}
+        <DropDownTrigger
+          dropdownId={dropdownId}
+          label={label}
+          placeholder={placeholder}
+          trigger={trigger}
+        />
+        {open && (
+          <Flex
+            direction="column"
+            className={dropdownContentStyle({
+              type: trigger ? "custom" : "default",
+            })}
+          >
+            {children}
+          </Flex>
+        )}
       </Flex>
     </DropDownContext.Provider>
   );
@@ -211,61 +146,6 @@ const DropDown = ({
 
 DropDown.displayName = "DropDown";
 export default DropDown;
-
-const iconStyle = cva({
-  base: {
-    transition: "transform 1s ease",
-  },
-  variants: {
-    type: {
-      up: {
-        transform: "rotate(180deg)",
-      },
-      down: {
-        transform: "rotate(0deg)",
-      },
-    },
-  },
-});
-const dropdownStyle = cva({
-  base: {
-    lg: {
-      maxWidth: "22.375rem",
-    },
-    smDown: {
-      width: "100%",
-    },
-    backgroundColor: "backgroundNormal",
-    border: "1px solid",
-    borderRadius: "sm",
-    borderColor: "outline",
-    paddingY: "xs",
-    paddingX: "sm",
-  },
-  variants: {
-    type: {
-      default: {
-        borderColor: "outline",
-        _hover: {
-          borderColor: "sub",
-        },
-        _pressed: {
-          backgroundColor: "monoBackgroundPressed",
-        },
-      },
-      focused: {
-        borderColor: "primary",
-        color: "primary",
-      },
-      selected: {
-        borderColor: "sub",
-      },
-    },
-  },
-  defaultVariants: {
-    type: "default",
-  },
-});
 
 const dropdownContentStyle = cva({
   base: {
@@ -308,26 +188,4 @@ const dropdownContentStyle = cva({
     },
   },
   defaultVariants: { type: "default" },
-});
-
-const placeholderStyle = cva({
-  base: {
-    textStyle: "body1",
-  },
-  variants: {
-    type: {
-      default: {
-        color: "outline",
-        _hover: {
-          color: "sub",
-        },
-      },
-      focused: {
-        color: "primary",
-      },
-      selected: {
-        color: "textBlack",
-      },
-    },
-  },
 });
