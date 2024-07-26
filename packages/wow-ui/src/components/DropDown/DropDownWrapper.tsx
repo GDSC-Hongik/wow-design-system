@@ -1,5 +1,11 @@
 import { Flex } from "@styled-system/jsx";
-import { type PropsWithChildren, useRef } from "react";
+import {
+  type KeyboardEvent,
+  type PropsWithChildren,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
 
 import type { DropDownProps } from "@/components/DropDown";
 import useClickOutside from "@/hooks/useClickOutside";
@@ -22,34 +28,44 @@ export const DropDownWrapper = ({
   const itemMap = useCollection();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(dropdownRef, () => setOpen(false));
+  useClickOutside(
+    dropdownRef,
+    useCallback(() => setOpen(false), [setOpen])
+  );
 
-  const updateFocusedValue = (direction: number) => {
-    const values = Array.from(itemMap.keys());
-    setFocusedValue((prevValue) => {
-      const currentIndex = values.indexOf(prevValue ?? "");
-      const nextIndex =
-        (currentIndex + direction + values.length) % values.length;
-      return values[nextIndex] ?? "";
-    });
-  };
+  const values = useMemo(() => Array.from(itemMap.keys()), [itemMap]);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!open) return;
+  const updateFocusedValue = useCallback(
+    (direction: number) => {
+      setFocusedValue((prevValue) => {
+        const currentIndex = values.indexOf(prevValue ?? "");
+        const nextIndex =
+          (currentIndex + direction + values.length) % values.length;
+        return values[nextIndex] ?? "";
+      });
+    },
+    [setFocusedValue, values]
+  );
 
-    const { key } = event;
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (!open) return;
 
-    if (key === "ArrowDown") {
-      updateFocusedValue(1);
-      event.preventDefault();
-    } else if (key === "ArrowUp") {
-      updateFocusedValue(-1);
-      event.preventDefault();
-    } else if (key === "Enter" && focusedValue !== null) {
-      handleSelect(focusedValue, itemMap.get(focusedValue)?.text);
-      event.preventDefault();
-    }
-  };
+      const { key } = event;
+
+      if (key === "ArrowDown") {
+        updateFocusedValue(1);
+        event.preventDefault();
+      } else if (key === "ArrowUp") {
+        updateFocusedValue(-1);
+        event.preventDefault();
+      } else if (key === "Enter" && focusedValue !== null) {
+        handleSelect(focusedValue, itemMap.get(focusedValue)?.text);
+        event.preventDefault();
+      }
+    },
+    [open, focusedValue, updateFocusedValue, handleSelect, itemMap]
+  );
 
   return (
     <Flex

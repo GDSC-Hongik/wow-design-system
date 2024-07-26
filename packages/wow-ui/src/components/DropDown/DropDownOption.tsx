@@ -3,7 +3,7 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useCallback, useEffect } from "react";
 
 import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
 
@@ -28,15 +28,21 @@ const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
     const isSelected = selectedValue === value;
     const isFocused = focusedValue !== null && focusedValue === value;
 
-    const handleOptionClick = (value: string, onClick?: () => void) => {
-      if (onClick) onClick();
-      handleSelect(value, text);
-    };
+    const handleOptionClick = useCallback(
+      (value: string, onClick?: () => void) => {
+        if (onClick) onClick();
+        handleSelect(value, text);
+      },
+      [handleSelect, text]
+    );
 
     const itemMap = useCollection();
 
     useEffect(() => {
-      itemMap.set(value, { text });
+      const currentItem = itemMap.get(value);
+      if (!currentItem || currentItem.text !== text) {
+        itemMap.set(value, { text });
+      }
     }, [itemMap, value, text]);
 
     return (

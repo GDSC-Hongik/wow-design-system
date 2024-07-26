@@ -1,13 +1,16 @@
+"use client";
+
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { KeyboardEvent } from "react";
-import { cloneElement } from "react";
+import { cloneElement, useCallback, useMemo } from "react";
 import { DownArrow } from "wowds-icons";
 
 import type { DropDownProps } from "@/components/DropDown";
 import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
 
 import { useCollection } from "./context/CollectionContext";
+
 interface DropDownTriggerProps {
   placeholder?: DropDownProps["placeholder"];
   label?: DropDownProps["label"];
@@ -25,27 +28,33 @@ const DropDownTrigger = ({
     useDropDownContext();
 
   const itemMap = useCollection();
-  const selectedText = itemMap.get(selectedValue)?.text;
+  const selectedText = useMemo(
+    () => itemMap.get(selectedValue)?.text,
+    [itemMap, selectedValue]
+  );
 
-  const toggleDropdown = () => {
+  const toggleDropdown = useCallback(() => {
     setOpen((prevOpen) => {
       if (!prevOpen) setFocusedValue(null);
       return !prevOpen;
     });
-  };
+  }, [setOpen, setFocusedValue]);
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Enter") toggleDropdown();
+    },
+    [toggleDropdown]
+  );
 
   if (trigger) {
-    return (
-      <>
-        {cloneElement(trigger, {
-          onClick: toggleDropdown,
-          "aria-expanded": open,
-          "aria-haspopup": "true",
-          id: `${dropdownId}-trigger`,
-          "aria-controls": `${dropdownId}`,
-        })}
-      </>
-    );
+    return cloneElement(trigger, {
+      onClick: toggleDropdown,
+      "aria-expanded": open,
+      "aria-haspopup": "true",
+      id: `${dropdownId}-trigger`,
+      "aria-controls": `${dropdownId}`,
+    });
   }
 
   return (
@@ -82,9 +91,7 @@ const DropDownTrigger = ({
           className={iconStyle({ type: open ? "up" : "down" })}
           stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
           tabIndex={0}
-          onKeyDown={(e: KeyboardEvent) => {
-            if (e.key === "Enter") toggleDropdown();
-          }}
+          onKeyDown={handleKeyDown}
         />
       </styled.button>
     </>
