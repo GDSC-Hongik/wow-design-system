@@ -15,6 +15,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {},
+};
+
+export const WithCustomSize: Story = {
+  args: {
+    width: "446px",
+    height: "400px",
+  },
 };
