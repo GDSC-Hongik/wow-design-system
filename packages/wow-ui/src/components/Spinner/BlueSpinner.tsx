@@ -3,6 +3,12 @@ import type { CSSProperties } from "react";
 
 import blueSpinner from "@/assets/lottie/blueSpinner.json";
 
+/**
+ * @description 블루 스피너 컴포넌트입니다.
+ *
+ * @param {CSSProperties["width"]} [width] - 스피너의 너비.
+ * @param {CSSProperties["height"]} [height] - 스피너의 높이.
+ */
 export interface BlueSpinnerProps {
   width?: CSSProperties["width"];
   height?: CSSProperties["height"];
