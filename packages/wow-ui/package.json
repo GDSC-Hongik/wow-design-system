@@ -40,6 +40,16 @@
       "require": "./dist/Stepper.cjs",
       "import": "./dist/Stepper.js"
     },
+    "./BlueSpinner": {
+      "types": "./dist/components/Spinner/BlueSpinner.d.ts",
+      "require": "./dist/BlueSpinner.cjs",
+      "import": "./dist/BlueSpinner.js"
+    },
+    "./RainbowSpinner": {
+      "types": "./dist/components/Spinner/RainbowSpinner.d.ts",
+      "require": "./dist/RainbowSpinner.cjs",
+      "import": "./dist/RainbowSpinner.js"
+    },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
       "require": "./dist/RadioButton.cjs",
