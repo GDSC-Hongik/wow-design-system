@@ -9,6 +9,24 @@ const meta = {
   parameters: {
     componentSubtitle: "블루 스피너 컴포넌트",
   },
+  argTypes: {
+    width: {
+      description: "스피너의 너비를 나타냅니다.",
+      table: {
+        type: { summary: "CSSProperties['width']" },
+        defaultValue: { summary: "223px" },
+      },
+      control: false,
+    },
+    height: {
+      description: "스피너의 높이를 나타냅니다.",
+      table: {
+        type: { summary: "CSSProperties['height']" },
+        defaultValue: { summary: "200px" },
+      },
+      control: false,
+    },
+  },
 } satisfies Meta<typeof BlueSpinner>;
 
 export default meta;
