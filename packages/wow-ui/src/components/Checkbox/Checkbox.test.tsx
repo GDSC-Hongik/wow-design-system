@@ -18,7 +18,7 @@ describe("Checkbox component", () => {
     expect(checkbox.checked).toBe(true);
 
     await waitFor(() => {
-      expect(checkbox).toHaveAttribute("aria-checked", "true");
+      expect(checkbox).toBeChecked();
       expect(checkbox).toHaveAttribute("aria-disabled", "false");
     });
 
@@ -26,7 +26,7 @@ describe("Checkbox component", () => {
     expect(checkbox.checked).toBe(false);
 
     await waitFor(() => {
-      expect(checkbox).toHaveAttribute("aria-checked", "false");
+      expect(checkbox).not.toBeChecked();
       expect(checkbox).toHaveAttribute("aria-disabled", "false");
     });
   });
@@ -48,7 +48,7 @@ describe("Checkbox component", () => {
     const checkbox = getByLabelText("checkbox") as HTMLInputElement;
 
     await userEvent.click(checkbox);
-    expect(checkbox.checked).toBe(true);
+    expect(checkbox).not.toBeChecked();
   });
 
   test("calls onMouseEnter and onMouseLeave", async () => {
@@ -76,7 +76,7 @@ describe("Checkbox component", () => {
     expect(checkbox.checked).toBe(false);
 
     await waitFor(() => {
-      expect(checkbox).toHaveAttribute("aria-checked", "false");
+      expect(checkbox).not.toBeChecked();
       expect(checkbox).toHaveAttribute("aria-disabled", "false");
     });
   });
@@ -90,7 +90,7 @@ describe("Checkbox component", () => {
     expect(checkbox.checked).toBe(false);
 
     await waitFor(() => {
-      expect(checkbox).toHaveAttribute("aria-checked", "false");
+      expect(checkbox).not.toBeChecked();
       expect(checkbox).toHaveAttribute("aria-disabled", "false");
     });
   });

@@ -45,62 +45,46 @@ const meta = {
       description: "스위치 오른쪽에 들어갈 텍스트입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
-        type: "label",
+        type: "text",
       },
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onClick: {
       description: "스위치를 클릭했을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onKeyDown: {
       description:
         "스위치가 포커스됐을 때 엔터 키 또는 스페이스 바를 눌렀을 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onMouseEnter: {
       description: "마우스가 스위치 위로 진입할 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
       },
+      control: false,
     },
     onMouseLeave: {
       description: "마우스가 스위치에서 벗어날 때 호출되는 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
-        control: {
-          type: "function",
-        },
       },
+      control: false,
     },
     inputProps: {
       description:

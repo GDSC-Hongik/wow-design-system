@@ -19,8 +19,7 @@ const meta = {
     label: {
       description: "텍스트필드의 라벨입니다.",
       table: {
-        type: { summary: "string", required: true },
-        defaultValue: { summary: null },
+        type: { summary: "string" },
       },
       control: {
         type: "text",
@@ -30,7 +29,6 @@ const meta = {
       description: "텍스트필드의 플레이스홀더 텍스트입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "text",
@@ -40,7 +38,6 @@ const meta = {
       description: "텍스트필드의 기본 값입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "text",
@@ -50,7 +47,6 @@ const meta = {
       description: "외부에서 제어할 활성 상태입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "text",
@@ -60,7 +56,6 @@ const meta = {
       description: "텍스트필드의 최대 입력 길이입니다.",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "number",
@@ -70,7 +65,6 @@ const meta = {
       description: "텍스트필드의 오류 상태 여부입니다.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
       },
       control: {
         type: "boolean",
@@ -80,7 +74,7 @@ const meta = {
       description: "텍스트필드의 성공 상태 여부입니다.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
       control: {
         type: "boolean",
@@ -90,7 +84,6 @@ const meta = {
       description: "텍스트필드 아래 추가적인 텍스트입니다.",
       table: {
         type: { summary: "ReactNode" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -98,37 +91,27 @@ const meta = {
       description: "외부 활성 상태가 변경될 때 호출될 콜백 함수입니다.",
       table: {
         type: { summary: "(value: string) => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onBlur: {
       description: "텍스트필드가 포커스를 잃을 때 호출될 콜백 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     onFocus: {
       description: "텍스트필드가 포커스됐을 때 호출될 콜백 함수입니다.",
       table: {
         type: { summary: "() => void" },
-        defaultValue: { summary: null },
       },
-      control: {
-        type: "function",
-      },
+      control: false,
     },
     textareaProps: {
       description: "텍스트필드에 전달할 추가 textarea 속성입니다.",
       table: {
         type: { summary: "TextareaHTMLAttributes<HTMLTextAreaElement>" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -136,7 +119,6 @@ const meta = {
       description: "텍스트필드의 커스텀 스타일 속성입니다.",
       table: {
         type: { summary: "CSSProperties" },
-        defaultValue: { summary: null },
       },
       control: false,
     },
@@ -144,7 +126,6 @@ const meta = {
       description: "텍스트필드에 전달하는 커스텀 클래스명입니다.",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: null },
       },
       control: {
         type: "text",

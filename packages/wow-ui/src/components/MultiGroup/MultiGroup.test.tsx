@@ -38,9 +38,9 @@ describe("multi group with checkbox", () => {
     expect(checkboxes[1]).toHaveAttribute("aria-disabled", "true");
     expect(checkboxes[2]).toHaveAttribute("aria-disabled", "false");
 
-    expect(checkboxes[0]).toHaveAttribute("aria-checked", "false");
-    expect(checkboxes[1]).toHaveAttribute("aria-checked", "false");
-    expect(checkboxes[2]).toHaveAttribute("aria-checked", "false");
+    expect(checkboxes[0]).not.toBeChecked();
+    expect(checkboxes[1]).not.toBeChecked();
+    expect(checkboxes[2]).not.toBeChecked();
   });
 
   it("should render checkbox components with external value provided", async () => {
@@ -53,9 +53,9 @@ describe("multi group with checkbox", () => {
     );
     const checkboxes = rendered.getAllByRole("checkbox");
 
-    expect(checkboxes[0]).toHaveAttribute("aria-checked", "false");
-    expect(checkboxes[1]).toHaveAttribute("aria-checked", "true");
-    expect(checkboxes[2]).toHaveAttribute("aria-checked", "true");
+    expect(checkboxes[0]).not.toBeChecked();
+    expect(checkboxes[1]).toBeChecked();
+    expect(checkboxes[2]).toBeChecked();
   });
 
   it("should render checkbox components with default value provided", () => {
@@ -68,9 +68,9 @@ describe("multi group with checkbox", () => {
     );
     const checkboxes = rendered.getAllByRole("checkbox");
 
-    expect(checkboxes[0]).toHaveAttribute("aria-checked", "true");
-    expect(checkboxes[1]).toHaveAttribute("aria-checked", "false");
-    expect(checkboxes[2]).toHaveAttribute("aria-checked", "true");
+    expect(checkboxes[0]).toBeChecked();
+    expect(checkboxes[1]).not.toBeChecked();
+    expect(checkboxes[2]).toBeChecked();
   });
 
   it("should toggle state when onChange event fired", async () => {
@@ -104,9 +104,9 @@ describe("multi group with checkbox", () => {
     fireEvent.click(checkboxes[2]!);
 
     await waitFor(() => {
-      expect(checkboxes[0]).toHaveAttribute("aria-checked", "true");
-      expect(checkboxes[1]).toHaveAttribute("aria-checked", "true");
-      expect(checkboxes[2]).toHaveAttribute("aria-checked", "false");
+      expect(checkboxes[0]).toBeChecked();
+      expect(checkboxes[1]).toBeChecked();
+      expect(checkboxes[2]).not.toBeChecked();
     });
   });
 
@@ -146,9 +146,9 @@ describe("multi group with checkbox", () => {
       expect(checkboxes[1]).toHaveAttribute("aria-disabled", "true");
       expect(checkboxes[2]).toHaveAttribute("aria-disabled", "true");
 
-      expect(checkboxes[0]).toHaveAttribute("aria-checked", "false");
-      expect(checkboxes[1]).toHaveAttribute("aria-checked", "false");
-      expect(checkboxes[2]).toHaveAttribute("aria-checked", "true");
+      expect(checkboxes[0]).not.toBeChecked();
+      expect(checkboxes[1]).not.toBeChecked();
+      expect(checkboxes[2]).toBeChecked();
     });
   });
 });
@@ -185,9 +185,9 @@ describe("multi group with switch", () => {
     expect(switches[1]).toHaveAttribute("aria-disabled", "true");
     expect(switches[2]).toHaveAttribute("aria-disabled", "false");
 
-    expect(switches[0]).toHaveAttribute("aria-checked", "false");
-    expect(switches[1]).toHaveAttribute("aria-checked", "false");
-    expect(switches[2]).toHaveAttribute("aria-checked", "false");
+    expect(switches[0]).not.toBeChecked();
+    expect(switches[1]).not.toBeChecked();
+    expect(switches[2]).not.toBeChecked();
   });
 
   it("should render switch components with external value provided", async () => {
@@ -200,9 +200,9 @@ describe("multi group with switch", () => {
     );
     const switches = rendered.getAllByRole("checkbox");
 
-    expect(switches[0]).toHaveAttribute("aria-checked", "false");
-    expect(switches[1]).toHaveAttribute("aria-checked", "true");
-    expect(switches[2]).toHaveAttribute("aria-checked", "true");
+    expect(switches[0]).not.toBeChecked();
+    expect(switches[1]).toBeChecked();
+    expect(switches[2]).toBeChecked();
   });
 
   it("should render switch components with default value provided", () => {
@@ -215,9 +215,9 @@ describe("multi group with switch", () => {
     );
     const switches = rendered.getAllByRole("checkbox");
 
-    expect(switches[0]).toHaveAttribute("aria-checked", "true");
-    expect(switches[1]).toHaveAttribute("aria-checked", "false");
-    expect(switches[2]).toHaveAttribute("aria-checked", "true");
+    expect(switches[0]).toBeChecked();
+    expect(switches[1]).not.toBeChecked();
+    expect(switches[2]).toBeChecked();
   });
 
   it("should toggle state when onChange event fired", async () => {
@@ -247,9 +247,9 @@ describe("multi group with switch", () => {
     fireEvent.click(switches[2]!);
 
     await waitFor(() => {
-      expect(switches[0]).toHaveAttribute("aria-checked", "true");
-      expect(switches[1]).toHaveAttribute("aria-checked", "true");
-      expect(switches[2]).toHaveAttribute("aria-checked", "false");
+      expect(switches[0]).toBeChecked();
+      expect(switches[1]).toBeChecked();
+      expect(switches[2]).not.toBeChecked();
     });
   });
 
@@ -289,9 +289,9 @@ describe("multi group with switch", () => {
       expect(switches[1]).toHaveAttribute("aria-disabled", "true");
       expect(switches[2]).toHaveAttribute("aria-disabled", "true");
 
-      expect(switches[0]).toHaveAttribute("aria-checked", "false");
-      expect(switches[1]).toHaveAttribute("aria-checked", "false");
-      expect(switches[2]).toHaveAttribute("aria-checked", "true");
+      expect(switches[0]).not.toBeChecked();
+      expect(switches[1]).not.toBeChecked();
+      expect(switches[2]).toBeChecked();
     });
   });
 });
