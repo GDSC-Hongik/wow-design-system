@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 15f3271: Box 컴포넌트의 가로 길이를 100%로 지정해요.
+
 ## 0.1.6
 
 ### Patch Changes
