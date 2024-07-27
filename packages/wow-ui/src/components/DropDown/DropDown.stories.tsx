@@ -10,10 +10,17 @@ const meta = {
   component: DropDown,
   tags: ["autodocs"],
   parameters: {
-    componentSubtitle: "드롭다운 컴포넌트",
+    componentSubtitle:
+      "사용자가 외부 트리거 컴포넌트나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.",
     a11y: {
       config: {
         rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
+    docs: {
+      description: {
+        component:
+          "children 에 DropDownOption 컴포넌트를 넣어서 사용합니다. 외부 트리거를 사용할 경우 trigger 를 사용합니다.",
       },
     },
   },
@@ -48,6 +55,13 @@ const meta = {
       },
       control: { type: "text" },
     },
+    id: {
+      description: "드롭다운의 id 를 나타냅니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: { type: "text" },
+    },
     value: {
       description: "현재 선택된 값을 나타냅니다.",
       table: {
@@ -71,6 +85,20 @@ const meta = {
         },
       },
       action: "changed",
+    },
+    style: {
+      description: "드롭다운의 커스텀 스타일을 설정할 수 있습니다.",
+      table: {
+        type: { summary: "CSSProperties" },
+      },
+      control: "object",
+    },
+    className: {
+      description: "드롭다운 전달하는 커스텀 클래스를 설정합니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: "text",
     },
   },
 } satisfies Meta<typeof DropDown>;
