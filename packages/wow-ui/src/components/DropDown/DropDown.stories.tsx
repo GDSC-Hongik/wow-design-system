@@ -150,13 +150,13 @@ export const WithDefaultValue: Story = {
   args: {
     children: (
       <>
-        <DropDownOption text="option 1" value="option 1" />
-        <DropDownOption text="option 2" value="option 2" />
+        <DropDownOption text="옵션 1" value="option 1" />
+        <DropDownOption text="옵션 2" value="option 2" />
       </>
     ),
     label: "Select an Option",
     placeholder: "Please select",
-    defaultValue: "Option 2",
+    defaultValue: "option 2",
   },
   parameters: {
     docs: {
