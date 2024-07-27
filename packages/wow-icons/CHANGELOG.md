@@ -1,5 +1,11 @@
 # wowds-icons
 
+## 0.1.1
+
+### Patch Changes
+
+- cbfa7b6: SearchBar 컴포넌트를 구현합니다
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # wowds-ui
 
+## 0.1.6
+
+### Patch Changes
+
+- cbfa7b6: SearchBar 컴포넌트를 구현합니다
+- Updated dependencies [cbfa7b6]
+  - wowds-icons@0.1.1
+
 ## 0.1.5
 
 ### Patch Changes
