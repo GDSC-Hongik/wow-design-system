@@ -15,7 +15,7 @@ const useDropDownState = ({
   defaultValue,
   onChange,
 }: DropDownStateProps) => {
-  const [selectedValue, setSelectedValue] = useState(defaultValue || "");
+  const [selectedValue, setSelectedValue] = useState("");
   const [open, setOpen] = useState(false);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
 
@@ -23,7 +23,10 @@ const useDropDownState = ({
     if (value !== undefined) {
       setSelectedValue(value);
     }
-  }, [value]);
+    if (defaultValue !== undefined) {
+      setSelectedValue(defaultValue);
+    }
+  }, [value, defaultValue]);
 
   const handleSelect = (selectedValue: string, selectedText: ReactNode) => {
     if (value === undefined) {

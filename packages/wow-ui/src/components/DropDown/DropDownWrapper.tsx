@@ -16,10 +16,12 @@ interface DropDownWrapperProps extends PropsWithChildren {
   dropdownId: string;
   style?: DropDownProps["style"];
   className?: DropDownProps["className"];
+  hasCustomTrigger?: boolean;
 }
 export const DropDownWrapper = ({
   children,
   dropdownId,
+  hasCustomTrigger,
   ...rest
 }: DropDownWrapperProps) => {
   const { open, setOpen, setFocusedValue, focusedValue, handleSelect } =
@@ -49,7 +51,6 @@ export const DropDownWrapper = ({
     (event: KeyboardEvent<HTMLDivElement>) => {
       if (!open) return;
 
-      //console.log(event);
       const { key } = event;
 
       if (key === "ArrowDown") {
@@ -77,7 +78,7 @@ export const DropDownWrapper = ({
       position="relative"
       ref={dropdownRef}
       tabIndex={0}
-      width="auto"
+      width={hasCustomTrigger ? "fit-content" : "auto"}
       onKeyDown={handleKeyDown}
       {...rest}
     >

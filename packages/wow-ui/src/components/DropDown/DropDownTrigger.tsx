@@ -3,7 +3,7 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { KeyboardEvent } from "react";
-import { cloneElement, useCallback, useMemo } from "react";
+import { cloneElement, useCallback } from "react";
 import { DownArrow } from "wowds-icons";
 
 import type { DropDownProps } from "@/components/DropDown";
@@ -24,14 +24,11 @@ const DropDownTrigger = ({
   trigger,
   dropdownId,
 }: DropDownTriggerProps) => {
+  const itemMap = useCollection();
   const { open, selectedValue, setOpen, setFocusedValue } =
     useDropDownContext();
 
-  const itemMap = useCollection();
-  const selectedText = useMemo(
-    () => itemMap.get(selectedValue)?.text,
-    [itemMap, selectedValue]
-  );
+  const selectedText = itemMap.get(selectedValue)?.text;
 
   const toggleDropdown = useCallback(() => {
     setOpen((prevOpen) => {
@@ -59,12 +56,14 @@ const DropDownTrigger = ({
 
   return (
     <>
-      <styled.span
-        color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
-        textStyle="label2"
-      >
-        {label}
-      </styled.span>
+      {label && (
+        <styled.span
+          color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
+          textStyle="label2"
+        >
+          {label}
+        </styled.span>
+      )}
       <styled.button
         alignItems="center"
         aria-controls={dropdownId}

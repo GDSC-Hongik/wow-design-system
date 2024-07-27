@@ -105,24 +105,28 @@ const DropDown = ({
   return (
     <DropDownContext.Provider value={dropdownState}>
       <CollectionProvider>
-        <DropDownWrapper dropdownId={dropdownId} {...rest}>
+        <DropDownWrapper
+          dropdownId={dropdownId}
+          hasCustomTrigger={!!trigger}
+          {...rest}
+        >
           <DropDownTrigger
             dropdownId={dropdownId}
             label={label}
             placeholder={placeholder}
             trigger={trigger}
           />
-          {open && (
-            <Flex
-              direction="column"
-              tabIndex={0}
-              className={dropdownContentStyle({
-                type: trigger ? "custom" : "default",
-              })}
-            >
-              {children}
-            </Flex>
-          )}
+          <Flex
+            direction="column"
+            role="listbox"
+            style={{ visibility: open ? "visible" : "hidden" }}
+            visibility={open ? "visible" : "hidden"}
+            className={dropdownContentStyle({
+              type: trigger ? "custom" : "default",
+            })}
+          >
+            {children}
+          </Flex>
         </DropDownWrapper>
       </CollectionProvider>
     </DropDownContext.Provider>
@@ -139,6 +143,7 @@ const dropdownContentStyle = cva({
     left: 0,
     zIndex: "dropdown",
     maxHeight: "18.75rem",
+    width: "100%",
     lg: {
       maxWidth: "22.375rem",
     },
@@ -167,7 +172,7 @@ const dropdownContentStyle = cva({
   variants: {
     type: {
       custom: {
-        width: "100%",
+        lg: {},
       },
       default: {},
     },

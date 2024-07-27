@@ -49,7 +49,8 @@ const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
       <styled.div
         id={`dropdown-option-${value}`}
         ref={ref}
-        tabIndex={-1}
+        role="option"
+        tabIndex={isSelected ? 0 : -1}
         className={optionStyle({
           type: isSelected ? "selected" : isFocused ? "focused" : "default",
         })}
