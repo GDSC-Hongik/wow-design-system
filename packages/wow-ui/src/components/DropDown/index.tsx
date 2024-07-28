@@ -1,7 +1,5 @@
 "use client";
 
-import { cva } from "@styled-system/css";
-import { Flex } from "@styled-system/jsx";
 import type {
   CSSProperties,
   PropsWithChildren,
@@ -10,10 +8,10 @@ import type {
 } from "react";
 import { useId } from "react";
 
-import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
-import DropDownTrigger from "@/components/DropDown/DropDownTrigger";
-import useDropDownState from "@/hooks/useDropDownState";
-
+import { DropDownContext } from "../../components/DropDown/context/DropDownContext";
+import { DropDownOptionList } from "../../components/DropDown/DropDownOptionList";
+import DropDownTrigger from "../../components/DropDown/DropDownTrigger";
+import useDropDownState from "../../hooks/useDropDownState";
 import { CollectionProvider } from "./context/CollectionContext";
 import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {
@@ -97,8 +95,6 @@ const DropDown = ({
     onChange,
   });
 
-  const { open } = dropdownState;
-
   const defaultId = useId();
   const dropdownId = id ?? `dropdown-${defaultId}`;
 
@@ -116,17 +112,9 @@ const DropDown = ({
             placeholder={placeholder}
             trigger={trigger}
           />
-          <Flex
-            direction="column"
-            role="listbox"
-            style={{ visibility: open ? "visible" : "hidden" }}
-            visibility={open ? "visible" : "hidden"}
-            className={dropdownContentStyle({
-              type: trigger ? "custom" : "default",
-            })}
-          >
+          <DropDownOptionList hasCustomTrigger={!!trigger}>
             {children}
-          </Flex>
+          </DropDownOptionList>
         </DropDownWrapper>
       </CollectionProvider>
     </DropDownContext.Provider>
@@ -135,47 +123,3 @@ const DropDown = ({
 
 DropDown.displayName = "DropDown";
 export default DropDown;
-
-const dropdownContentStyle = cva({
-  base: {
-    position: "absolute",
-    top: "calc(100% + 0.5rem)",
-    left: 0,
-    zIndex: "dropdown",
-    maxHeight: "18.75rem",
-    width: "100%",
-    lg: {
-      maxWidth: "22.375rem",
-    },
-    smDown: {
-      width: "100%",
-    },
-    backgroundColor: "backgroundNormal",
-    border: "1px solid",
-    borderRadius: "sm",
-    borderColor: "outline",
-    overflow: "auto",
-    _scrollbar: {
-      width: "2px",
-    },
-    _scrollbarThumb: {
-      width: "2px",
-      height: "65px",
-      borderRadius: "sm",
-      backgroundColor: "outline",
-    },
-    _scrollbarTrack: {
-      marginTop: "2px",
-      marginBottom: "2px",
-    },
-  },
-  variants: {
-    type: {
-      custom: {
-        lg: {},
-      },
-      default: {},
-    },
-  },
-  defaultVariants: { type: "default" },
-});

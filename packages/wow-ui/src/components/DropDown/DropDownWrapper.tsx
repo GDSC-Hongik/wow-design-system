@@ -1,15 +1,8 @@
 import { Flex } from "@styled-system/jsx";
-import {
-  type KeyboardEvent,
-  type PropsWithChildren,
-  useCallback,
-  useRef,
-} from "react";
+import { type PropsWithChildren, useCallback, useRef } from "react";
 
-import type { DropDownProps } from "@/components/DropDown";
-import useClickOutside from "@/hooks/useClickOutside";
-
-import { useCollection } from "./context/CollectionContext";
+import type { DropDownProps } from "../../components/DropDown";
+import useClickOutside from "../../hooks/useClickOutside";
 import { useDropDownContext } from "./context/DropDownContext";
 
 interface DropDownWrapperProps extends PropsWithChildren {
@@ -24,47 +17,13 @@ export const DropDownWrapper = ({
   hasCustomTrigger,
   ...rest
 }: DropDownWrapperProps) => {
-  const { open, setOpen, setFocusedValue, focusedValue, handleSelect } =
-    useDropDownContext();
-  const itemMap = useCollection();
+  const { setOpen } = useDropDownContext();
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(
     dropdownRef,
     useCallback(() => setOpen(false), [setOpen])
-  );
-
-  const updateFocusedValue = useCallback(
-    (direction: number) => {
-      const values = Array.from(itemMap.keys());
-      setFocusedValue((prevValue) => {
-        const currentIndex = values.indexOf(prevValue ?? "");
-        const nextIndex =
-          (currentIndex + direction + values.length) % values.length;
-        return values[nextIndex] ?? "";
-      });
-    },
-    [itemMap, setFocusedValue]
-  );
-
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>) => {
-      if (!open) return;
-
-      const { key } = event;
-
-      if (key === "ArrowDown") {
-        updateFocusedValue(1);
-        event.preventDefault();
-      } else if (key === "ArrowUp") {
-        updateFocusedValue(-1);
-        event.preventDefault();
-      } else if (key === "Enter" && focusedValue !== null) {
-        handleSelect(focusedValue, itemMap.get(focusedValue)?.text);
-        event.preventDefault();
-      }
-    },
-    [open, focusedValue, updateFocusedValue, handleSelect, itemMap]
   );
 
   return (
@@ -77,9 +36,8 @@ export const DropDownWrapper = ({
       outline="none"
       position="relative"
       ref={dropdownRef}
-      tabIndex={0}
+      tabIndex={-1}
       width={hasCustomTrigger ? "fit-content" : "auto"}
-      onKeyDown={handleKeyDown}
       {...rest}
     >
       {children}

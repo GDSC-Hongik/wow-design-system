@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import { createContext, useMemo } from "react";
 
-import useSafeContext from "@/hooks/useSafeContext";
+import useSafeContext from "../../../hooks/useSafeContext";
 
 type ItemData = {
   value: string;

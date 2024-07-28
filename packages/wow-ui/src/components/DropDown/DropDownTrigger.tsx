@@ -6,9 +6,8 @@ import type { KeyboardEvent } from "react";
 import { cloneElement, useCallback } from "react";
 import { DownArrow } from "wowds-icons";
 
-import type { DropDownProps } from "@/components/DropDown";
-import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
-
+import type { DropDownProps } from "../../components/DropDown";
+import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
 import { useCollection } from "./context/CollectionContext";
 
 interface DropDownTriggerProps {

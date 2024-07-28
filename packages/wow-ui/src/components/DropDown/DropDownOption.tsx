@@ -5,8 +5,7 @@ import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { forwardRef, useCallback, useEffect } from "react";
 
-import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
-
+import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
 import { useCollection } from "./context/CollectionContext";
 
 /**
@@ -22,7 +21,7 @@ export interface DropDownOptionProps {
   text: ReactNode;
 }
 
-const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
+const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
   function Option({ value, onClick, text }, ref) {
     const { focusedValue, selectedValue, handleSelect } = useDropDownContext();
     const isSelected = selectedValue === value;
@@ -46,7 +45,7 @@ const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
     }, [itemMap, value, text]);
 
     return (
-      <styled.div
+      <styled.li
         id={`dropdown-option-${value}`}
         ref={ref}
         role="option"
@@ -59,7 +58,7 @@ const DropDownOption = forwardRef<HTMLDivElement, DropDownOptionProps>(
         }}
       >
         {text}
-      </styled.div>
+      </styled.li>
     );
   }
 );
