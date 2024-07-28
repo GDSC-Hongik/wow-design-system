@@ -1,8 +1,9 @@
 import { Flex } from "@styled-system/jsx";
 import { type PropsWithChildren, useCallback, useRef } from "react";
 
-import type { DropDownProps } from "../../components/DropDown";
-import useClickOutside from "../../hooks/useClickOutside";
+import type { DropDownProps } from "@/components/DropDown";
+import useClickOutside from "@/hooks/useClickOutside";
+
 import { useDropDownContext } from "./context/DropDownContext";
 
 interface DropDownWrapperProps extends PropsWithChildren {

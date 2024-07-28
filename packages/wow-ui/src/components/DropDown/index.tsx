@@ -8,10 +8,11 @@ import type {
 } from "react";
 import { useId } from "react";
 
-import { DropDownContext } from "../../components/DropDown/context/DropDownContext";
-import { DropDownOptionList } from "../../components/DropDown/DropDownOptionList";
-import DropDownTrigger from "../../components/DropDown/DropDownTrigger";
-import useDropDownState from "../../hooks/useDropDownState";
+import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
+import { DropDownOptionList } from "@/components/DropDown/DropDownOptionList";
+import DropDownTrigger from "@/components/DropDown/DropDownTrigger";
+import useDropDownState from "@/hooks/useDropDownState";
+
 import { CollectionProvider } from "./context/CollectionContext";
 import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {

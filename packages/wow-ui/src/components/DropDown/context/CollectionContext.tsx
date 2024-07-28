@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import { createContext, useMemo } from "react";
 
-import useSafeContext from "../../../hooks/useSafeContext";
+import useSafeContext from "@/hooks/useSafeContext";
 
 type ItemData = {
   value: string;
@@ -9,7 +9,7 @@ type ItemData = {
 };
 
 type ContextValue = {
-  itemMap: Map<ItemData["value"], { text: ItemData["text"] }>;
+  itemMap: Map<ItemData["value"], ItemData["text"]>;
 };
 
 const CollectionContext = createContext<ContextValue | null>(null);
@@ -21,7 +21,7 @@ export const useCollectionContext = () => {
 
 export const CollectionProvider = ({ children }: PropsWithChildren) => {
   const itemMap = useMemo(
-    () => new Map<ItemData["value"], { text: ItemData["text"] }>(),
+    () => new Map<ItemData["value"], ItemData["text"]>(),
     []
   );
 

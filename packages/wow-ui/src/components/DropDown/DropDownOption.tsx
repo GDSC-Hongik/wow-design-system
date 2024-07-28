@@ -5,7 +5,8 @@ import { styled } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { forwardRef, useCallback, useEffect } from "react";
 
-import { useDropDownContext } from "../../components/DropDown/context/DropDownContext";
+import { useDropDownContext } from "@/components/DropDown/context/DropDownContext";
+
 import { useCollection } from "./context/CollectionContext";
 
 /**
@@ -39,8 +40,8 @@ const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
 
     useEffect(() => {
       const currentItem = itemMap.get(value);
-      if (!currentItem || currentItem.text !== text) {
-        itemMap.set(value, { text });
+      if (!currentItem || currentItem !== text) {
+        itemMap.set(value, text);
       }
     }, [itemMap, value, text]);
 

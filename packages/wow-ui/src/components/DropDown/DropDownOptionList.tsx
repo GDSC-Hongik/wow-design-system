@@ -55,7 +55,7 @@ export const DropDownOptionList = ({
         updateFocusedValue(-1);
         event.preventDefault();
       } else if (key === "Enter" && focusedValue !== null) {
-        handleSelect(focusedValue, itemMap.get(focusedValue)?.text);
+        handleSelect(focusedValue, itemMap.get(focusedValue));
         event.preventDefault();
       }
     },
