@@ -26,23 +26,6 @@ const meta = {
       },
       control: false,
     },
-    loop: {
-      description: "애니메이션의 반복 재생 여부를 나타냅니다.",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "true" },
-      },
-      control: "boolean",
-    },
-    autoPlay: {
-      description:
-        "컴포넌트가 마운트될 때 자동으로 애니메이션이 재생될지 여부를 나타냅니다.",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "true" },
-      },
-      control: "boolean",
-    },
   },
 } satisfies Meta<typeof BlueSpinner>;
 
