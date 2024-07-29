@@ -1,5 +1,12 @@
 # wowds-ui
 
+## 0.1.7
+
+### Patch Changes
+
+- 940b704: DropDownOption 컴포넌트를 context 를 이용하여 리팩토링 합니다.
+- 15f3271: Box 컴포넌트의 가로 길이를 100%로 지정해요.
+
 ## 0.1.6
 
 ### Patch Changes
