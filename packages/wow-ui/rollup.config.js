@@ -26,6 +26,7 @@ export default {
     Stepper: "./src/components/Stepper",
     BlueSpinner: "./src/components/Spinner/BlueSpinner",
     RainbowSpinner: "./src/components/Spinner/RainbowSpinner",
+    SearchBar: "./src/components/SearchBar",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
     MultiGroup: "./src/components/MultiGroup",

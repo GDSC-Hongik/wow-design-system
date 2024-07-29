@@ -1,3 +1,4 @@
+import Box from "wowds-ui/Box";
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
 import Divider from "wowds-ui/Divider";
@@ -6,6 +7,7 @@ import DropDownOption from "wowds-ui/DropDownOption";
 import MultiGroup from "wowds-ui/MultiGroup";
 import RadioButton from "wowds-ui/RadioButton";
 import RadioGroup from "wowds-ui/RadioGroup";
+import SearchBar from "wowds-ui/SearchBar";
 import Switch from "wowds-ui/Switch";
 
 const Home = () => {
@@ -36,6 +38,7 @@ const Home = () => {
         <Switch label="switch3" value="switch3" />
         <Switch label="switch4" value="switch4" />
       </MultiGroup>
+      <SearchBar />
     </>
   );
 };
