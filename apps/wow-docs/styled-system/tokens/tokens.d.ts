@@ -88,16 +88,14 @@ export type Token =
   | "zIndex.dropdown"
   | "shadows.blue"
   | "shadows.mono"
+  | "breakpoints.xs"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
-  | "breakpoints.xl"
-  | "breakpoints.2xl"
+  | "sizes.breakpoint-xs"
   | "sizes.breakpoint-sm"
   | "sizes.breakpoint-md"
   | "sizes.breakpoint-lg"
-  | "sizes.breakpoint-xl"
-  | "sizes.breakpoint-2xl"
   | "colors.primary"
   | "colors.success"
   | "colors.error"
@@ -311,14 +309,13 @@ export type ZIndexToken = "dropdown";
 
 export type ShadowToken = "blue" | "mono";
 
-export type BreakpointToken = "sm" | "md" | "lg" | "xl" | "2xl";
+export type BreakpointToken = "xs" | "sm" | "md" | "lg";
 
 export type SizeToken =
+  | "breakpoint-xs"
   | "breakpoint-sm"
   | "breakpoint-md"
-  | "breakpoint-lg"
-  | "breakpoint-xl"
-  | "breakpoint-2xl";
+  | "breakpoint-lg";
 
 export type Tokens = {
   colors: ColorToken;

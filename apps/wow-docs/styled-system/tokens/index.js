@@ -351,45 +351,37 @@ const tokens = {
     value: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
     variable: "var(--shadows-mono)",
   },
+  "breakpoints.xs": {
+    value: "360px",
+    variable: "var(--breakpoints-xs)",
+  },
   "breakpoints.sm": {
-    value: "640px",
+    value: "600px",
     variable: "var(--breakpoints-sm)",
   },
   "breakpoints.md": {
-    value: "768px",
+    value: "900px",
     variable: "var(--breakpoints-md)",
   },
   "breakpoints.lg": {
-    value: "1024px",
+    value: "1280px",
     variable: "var(--breakpoints-lg)",
   },
-  "breakpoints.xl": {
-    value: "1280px",
-    variable: "var(--breakpoints-xl)",
-  },
-  "breakpoints.2xl": {
-    value: "1536px",
-    variable: "var(--breakpoints-2xl)",
+  "sizes.breakpoint-xs": {
+    value: "360px",
+    variable: "var(--sizes-breakpoint-xs)",
   },
   "sizes.breakpoint-sm": {
-    value: "640px",
+    value: "600px",
     variable: "var(--sizes-breakpoint-sm)",
   },
   "sizes.breakpoint-md": {
-    value: "768px",
+    value: "900px",
     variable: "var(--sizes-breakpoint-md)",
   },
   "sizes.breakpoint-lg": {
-    value: "1024px",
-    variable: "var(--sizes-breakpoint-lg)",
-  },
-  "sizes.breakpoint-xl": {
     value: "1280px",
-    variable: "var(--sizes-breakpoint-xl)",
-  },
-  "sizes.breakpoint-2xl": {
-    value: "1536px",
-    variable: "var(--sizes-breakpoint-2xl)",
+    variable: "var(--sizes-breakpoint-lg)",
   },
   "colors.primary": {
     value: "#368FF7",
