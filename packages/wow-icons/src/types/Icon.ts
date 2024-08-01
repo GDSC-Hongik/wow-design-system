@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import type { ColorToken } from "theme/types";
+import type { ColorToken } from "wowds-theme";
 
 export interface IconProps extends HTMLAttributes<SVGSVGElement> {
   className?: string;

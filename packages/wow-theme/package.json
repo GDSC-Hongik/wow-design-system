@@ -1,0 +1,26 @@
+{
+  "name": "wowds-theme",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GDSC-Hongik/wow-design-system.git",
+    "directory": "packages/wow-theme"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && rollup -c --bundleConfigAsCjs && tsc --emitDeclarationOnly"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.39.0",
+    "postcss": "^8.4.38",
+    "wowds-tokens": "workspace:^"
+  }
+}

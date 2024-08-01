@@ -1,9 +1,13 @@
 import { defineConfig } from "@pandacss/dev";
-import { semanticTokens, textStyles, tokens } from "theme";
 
-import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
+import {
+  pandaPreset,
+  removeUnusedCssVars,
+  removeUnusedKeyframes,
+} from "wowds-theme";
 
 export default defineConfig({
+  presets: [pandaPreset],
   preflight: true,
   minify: true,
   watch: true,
@@ -13,11 +17,6 @@ export default defineConfig({
   include: ["./app/**/*.{ts,tsx,js,jsx}"],
   exclude: [],
   outdir: "styled-system",
-  theme: {
-    tokens,
-    textStyles,
-    semanticTokens,
-  },
   hooks: {
     "cssgen:done": ({ artifact, content }) => {
       if (artifact === "styles.css") {

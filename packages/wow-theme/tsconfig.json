@@ -19,8 +19,9 @@
     "outDir": "dist",
     "emitDeclarationOnly": true,
     "allowImportingTsExtensions": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 
 const TOKEN_DIR = "../wow-tokens/src/color.ts";
-const outputFile = "../theme/src/config/colorTokenList.ts";
+const outputFile = "../wow-theme/src/config/colorTokenList.ts";
 
 const extractTokenName = async (filePath: string): Promise<string[]> => {
   try {
