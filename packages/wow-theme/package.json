@@ -8,6 +8,14 @@
     "url": "git+https://github.com/GDSC-Hongik/wow-design-system.git",
     "directory": "packages/wow-theme"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
