@@ -24,6 +24,8 @@ export default {
     TextButton: "./src/components/TextButton",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",
+    BlueSpinner: "./src/components/Spinner/BlueSpinner",
+    RainbowSpinner: "./src/components/Spinner/RainbowSpinner",
     SearchBar: "./src/components/SearchBar",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
@@ -50,7 +52,7 @@ export default {
       entryFileNames: "[name].cjs",
     },
   ],
-  external: ["react/jsx-runtime"],
+  external: ["react/jsx-runtime", "lottie-react"],
   plugins: [
     alias({
       entries: [

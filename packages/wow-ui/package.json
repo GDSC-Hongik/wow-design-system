@@ -40,6 +40,16 @@
       "require": "./dist/Stepper.cjs",
       "import": "./dist/Stepper.js"
     },
+    "./BlueSpinner": {
+      "types": "./dist/components/Spinner/BlueSpinner.d.ts",
+      "require": "./dist/BlueSpinner.cjs",
+      "import": "./dist/BlueSpinner.js"
+    },
+    "./RainbowSpinner": {
+      "types": "./dist/components/Spinner/RainbowSpinner.d.ts",
+      "require": "./dist/RainbowSpinner.cjs",
+      "import": "./dist/RainbowSpinner.js"
+    },
     "./SearchBar": {
       "types": "./dist/components/SearchBar/index.d.ts",
       "require": "./dist/SearchBar.cjs",
@@ -137,6 +147,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "lottie-react": "^2.4.0",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {
