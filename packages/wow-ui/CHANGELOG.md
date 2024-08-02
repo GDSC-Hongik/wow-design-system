@@ -1,5 +1,12 @@
 # wowds-ui
 
+## 0.1.8
+
+### Patch Changes
+
+- 20d52e5: TextField 컴포넌트 style, className 속성을 적용할 수 있도록 수정합니다.
+- 5af6297: Spinner 컴포넌트를 배포합니다.
+
 ## 0.1.7
 
 ### Patch Changes
