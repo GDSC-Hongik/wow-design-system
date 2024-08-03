@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -39,6 +39,21 @@
       "types": "./dist/components/Stepper/index.d.ts",
       "require": "./dist/Stepper.cjs",
       "import": "./dist/Stepper.js"
+    },
+    "./BlueSpinner": {
+      "types": "./dist/components/Spinner/BlueSpinner.d.ts",
+      "require": "./dist/BlueSpinner.cjs",
+      "import": "./dist/BlueSpinner.js"
+    },
+    "./RainbowSpinner": {
+      "types": "./dist/components/Spinner/RainbowSpinner.d.ts",
+      "require": "./dist/RainbowSpinner.cjs",
+      "import": "./dist/RainbowSpinner.js"
+    },
+    "./SearchBar": {
+      "types": "./dist/components/SearchBar/index.d.ts",
+      "require": "./dist/SearchBar.cjs",
+      "import": "./dist/SearchBar.js"
     },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
@@ -132,6 +147,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "lottie-react": "^2.4.0",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {

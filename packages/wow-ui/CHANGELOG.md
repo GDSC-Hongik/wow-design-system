@@ -1,5 +1,27 @@
 # wowds-ui
 
+## 0.1.8
+
+### Patch Changes
+
+- 20d52e5: TextField 컴포넌트 style, className 속성을 적용할 수 있도록 수정합니다.
+- 5af6297: Spinner 컴포넌트를 배포합니다.
+
+## 0.1.7
+
+### Patch Changes
+
+- 940b704: DropDownOption 컴포넌트를 context 를 이용하여 리팩토링 합니다.
+- 15f3271: Box 컴포넌트의 가로 길이를 100%로 지정해요.
+
+## 0.1.6
+
+### Patch Changes
+
+- cbfa7b6: SearchBar 컴포넌트를 구현합니다
+- Updated dependencies [cbfa7b6]
+  - wowds-icons@0.1.1
+
 ## 0.1.5
 
 ### Patch Changes

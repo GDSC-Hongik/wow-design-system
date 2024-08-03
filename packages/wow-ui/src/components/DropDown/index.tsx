@@ -1,21 +1,20 @@
 "use client";
 
-import { cva } from "@styled-system/css";
-import { Flex, styled } from "@styled-system/jsx";
 import type {
   CSSProperties,
   PropsWithChildren,
   ReactElement,
   ReactNode,
 } from "react";
-import { cloneElement, isValidElement, useRef } from "react";
-import { DownArrow } from "wowds-icons";
+import { useId } from "react";
 
-import DropDownOption from "@/components/DropDown/DropDownOption";
-import useClickOutside from "@/hooks/useClickOutside";
+import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
+import { DropDownOptionList } from "@/components/DropDown/DropDownOptionList";
+import DropDownTrigger from "@/components/DropDown/DropDownTrigger";
 import useDropDownState from "@/hooks/useDropDownState";
-import useFlattenChildren from "@/hooks/useFlattenChildren";
 
+import { CollectionProvider } from "./context/CollectionContext";
+import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
    * @description 드롭다운을 열기 위한 외부 트리거 요소입니다.
@@ -53,8 +52,9 @@ export interface DropDownWithoutTriggerProps extends PropsWithChildren {
 }
 
 /**
- * @description 사용자가 외부 트리거 컴포넌트 나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
+ * @description 사용자가 외부 트리거 컴포넌트나 내부 요소를 통해서 선택 옵션 리스트 중에 아이템을 선택할 수 있는 드롭다운 컴포넌트 입니다.
  *
+ * @param {string} [id] 드롭다운 id 입니다.
  * @param {ReactElement} [trigger] 드롭다운을 열기 위한 외부 트리거 요소입니다.
  * @param {ReactNode} [label] 외부 트리거를 사용하지 않는 경우 레이블을 사용할 수 있습니다.
  * @param {string} [placeholder] 외부 트리거를 사용하지 않는 경우 선택되지 않았을 때 표시되는 플레이스홀더입니다.
@@ -68,6 +68,7 @@ export type DropDownProps = (
   | DropDownWithTriggerProps
   | DropDownWithoutTriggerProps
 ) & {
+  id?: string;
   value?: string;
   defaultValue?: string;
   onChange?: (value: {
@@ -79,6 +80,7 @@ export type DropDownProps = (
 };
 
 const DropDown = ({
+  id,
   children,
   trigger,
   label,
@@ -88,233 +90,37 @@ const DropDown = ({
   onChange,
   ...rest
 }: DropDownProps) => {
-  const flattenedChildren = useFlattenChildren(children);
-  const {
-    selectedValue,
-    selectedText,
-    open,
-    setOpen,
-    focusedIndex,
-    setFocusedIndex,
-    handleSelect,
-    handleKeyDown,
-  } = useDropDownState({
+  const dropdownState = useDropDownState({
     value,
     defaultValue,
-    children: flattenedChildren,
     onChange,
   });
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useClickOutside(dropdownRef, () => setOpen(false));
-
-  const toggleDropdown = () => {
-    setOpen((prevOpen) => {
-      if (!prevOpen) setFocusedIndex(null);
-      return !prevOpen;
-    });
-  };
-
-  const handleOptionClick = (value: string, onClick?: () => void) => () => {
-    if (onClick) onClick();
-    handleSelect(value);
-  };
-
-  const setOptionRef = (index: number) => (el: HTMLDivElement | null) => {
-    optionsRef.current[index] = el;
-  };
-
-  const renderTrigger = (trigger: ReactElement) => (
-    <>
-      {cloneElement(trigger, {
-        onClick: toggleDropdown,
-      })}
-    </>
-  );
-
-  const renderLabel = () => (
-    <>
-      <styled.span
-        color={open ? "primary" : selectedValue ? "textBlack" : "sub"}
-        textStyle="label2"
-      >
-        {label}
-      </styled.span>
-      <Flex
-        alignItems="center"
-        justifyContent="space-between"
-        className={dropdownStyle({
-          type: open ? "focused" : selectedValue ? "selected" : "default",
-        })}
-        onClick={toggleDropdown}
-      >
-        <styled.div
-          className={placeholderStyle({
-            type: open ? "focused" : selectedValue ? "selected" : "default",
-          })}
-        >
-          {selectedText ? selectedText : placeholder}
-        </styled.div>
-        <DownArrow
-          className={iconStyle({ type: open ? "up" : "down" })}
-          stroke={open ? "primary" : selectedValue ? "sub" : "outline"}
-          tabIndex={0}
-          onKeyDown={(e: React.KeyboardEvent) => {
-            if (e.key === "Enter") toggleDropdown();
-          }}
-        />
-      </Flex>
-    </>
-  );
-
-  const renderOptions = () => (
-    <Flex className={dropdownContentStyle()} direction="column">
-      {flattenedChildren.map((child, index) => {
-        if (isValidElement(child) && child.type === DropDownOption) {
-          return cloneElement(child as ReactElement, {
-            key: child.props.value,
-            ref: setOptionRef(index),
-            onClick: handleOptionClick(child.props.value, child.props.onClick),
-            focused: focusedIndex === index,
-            selected: selectedValue === child.props.value,
-          });
-        }
-        return child;
-      })}
-    </Flex>
-  );
+  const defaultId = useId();
+  const dropdownId = id ?? `dropdown-${defaultId}`;
 
   return (
-    <Flex
-      cursor="pointer"
-      direction="column"
-      gap="xs"
-      outline="none"
-      position="relative"
-      ref={dropdownRef}
-      tabIndex={0}
-      width={trigger ? "fit-content" : "auto"}
-      onKeyDown={handleKeyDown}
-      {...rest}
-    >
-      {trigger ? renderTrigger(trigger) : renderLabel()}
-      {open && renderOptions()}
-    </Flex>
+    <DropDownContext.Provider value={dropdownState}>
+      <CollectionProvider>
+        <DropDownWrapper
+          dropdownId={dropdownId}
+          hasCustomTrigger={!!trigger}
+          {...rest}
+        >
+          <DropDownTrigger
+            dropdownId={dropdownId}
+            label={label}
+            placeholder={placeholder}
+            trigger={trigger}
+          />
+          <DropDownOptionList hasCustomTrigger={!!trigger}>
+            {children}
+          </DropDownOptionList>
+        </DropDownWrapper>
+      </CollectionProvider>
+    </DropDownContext.Provider>
   );
 };
 
 DropDown.displayName = "DropDown";
 export default DropDown;
-
-const iconStyle = cva({
-  base: {
-    transition: "transform 1s ease",
-  },
-  variants: {
-    type: {
-      up: {
-        transform: "rotate(180deg)",
-      },
-      down: {
-        transform: "rotate(0deg)",
-      },
-    },
-  },
-});
-const dropdownStyle = cva({
-  base: {
-    lg: {
-      maxWidth: "22.375rem",
-    },
-    smDown: {
-      width: "100%",
-    },
-    backgroundColor: "backgroundNormal",
-    border: "1px solid",
-    borderRadius: "sm",
-    borderColor: "outline",
-    paddingY: "xs",
-    paddingX: "sm",
-  },
-  variants: {
-    type: {
-      default: {
-        borderColor: "outline",
-        _hover: {
-          borderColor: "sub",
-        },
-        _pressed: {
-          backgroundColor: "monoBackgroundPressed",
-        },
-      },
-      focused: {
-        borderColor: "primary",
-        color: "primary",
-      },
-      selected: {
-        borderColor: "sub",
-      },
-    },
-  },
-  defaultVariants: {
-    type: "default",
-  },
-});
-
-const dropdownContentStyle = cva({
-  base: {
-    position: "absolute",
-    top: "calc(100% + 0.5rem)",
-    left: 0,
-    zIndex: "dropdown",
-    maxHeight: "18.75rem",
-    lg: {
-      maxWidth: "22.375rem",
-    },
-    smDown: {
-      width: "100%",
-    },
-    backgroundColor: "backgroundNormal",
-    border: "1px solid",
-    borderRadius: "sm",
-    borderColor: "outline",
-    overflow: "auto",
-    _scrollbar: {
-      width: "2px",
-    },
-    _scrollbarThumb: {
-      width: "2px",
-      height: "65px",
-      borderRadius: "sm",
-      backgroundColor: "outline",
-    },
-    _scrollbarTrack: {
-      marginTop: "2px",
-      marginBottom: "2px",
-    },
-  },
-});
-
-const placeholderStyle = cva({
-  base: {
-    textStyle: "body1",
-  },
-  variants: {
-    type: {
-      default: {
-        color: "outline",
-        _hover: {
-          color: "sub",
-        },
-      },
-      focused: {
-        color: "primary",
-      },
-      selected: {
-        color: "textBlack",
-      },
-    },
-  },
-});

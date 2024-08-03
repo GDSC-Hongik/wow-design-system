@@ -122,7 +122,7 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
     };
 
     return (
-      <Flex className={containerStyle()} direction="column" gap="xs">
+      <Flex className={containerStyle()} direction="column" gap="xs" {...rest}>
         <Flex alignItems="flex-end" justifyContent="space-between">
           <Label textareaId={descriptionId} variant={variant}>
             {label}
@@ -150,7 +150,6 @@ const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
-          {...rest}
         />
         {helperText && <HelperText variant={variant}>{helperText}</HelperText>}
       </Flex>

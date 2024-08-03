@@ -6,6 +6,7 @@ import DropDownOption from "wowds-ui/DropDownOption";
 import MultiGroup from "wowds-ui/MultiGroup";
 import RadioButton from "wowds-ui/RadioButton";
 import RadioGroup from "wowds-ui/RadioGroup";
+import SearchBar from "wowds-ui/SearchBar";
 import Switch from "wowds-ui/Switch";
 
 const Home = () => {
@@ -21,8 +22,8 @@ const Home = () => {
         <RadioButton label="2학년" value="2학년" />
       </RadioGroup>
       <DropDown placeholder="목록을 입력하세요">
-        <DropDownOption text="option 1" value="option 1" />
-        <DropDownOption text="option 1" value="option 2" />
+        <DropDownOption text="옵 1" value="option 1" />
+        <DropDownOption text="옵 2" value="option 2" />
       </DropDown>
       <MultiGroup variant="checkbox">
         <Checkbox label="checkbox1" value="checkbox1" />
@@ -36,6 +37,7 @@ const Home = () => {
         <Switch label="switch3" value="switch3" />
         <Switch label="switch4" value="switch4" />
       </MultiGroup>
+      <SearchBar />
     </>
   );
 };
