@@ -144,6 +144,9 @@ importers:
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.2
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -244,12 +247,6 @@ importers:
 
   packages/wow-theme:
     devDependencies:
-      '@pandacss/dev':
-        specifier: ^0.39.0
-        version: 0.39.0(typescript@5.3.3)
-      postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
       wowds-tokens:
         specifier: workspace:^
         version: link:../wow-tokens

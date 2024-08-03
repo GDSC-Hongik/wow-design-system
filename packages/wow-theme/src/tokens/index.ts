@@ -1,7 +1,3 @@
-export * from "./breakpoint.ts";
-export * from "./color.ts";
-export * from "./typography.ts";
-
 import { defineTokens } from "@pandacss/dev";
 
 import { colors, gradients } from "./color.ts";
@@ -20,3 +16,7 @@ export const tokens = defineTokens({
   zIndex,
   shadows,
 });
+
+export * from "./breakpoint.ts";
+export * from "./color.ts";
+export * from "./typography.ts";
