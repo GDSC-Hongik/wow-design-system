@@ -216,30 +216,6 @@ export interface Conditions {
   smToLg: string;
   /** `@media screen and (min-width: 56.25rem) and (max-width: 79.9975rem)` */
   mdToLg: string;
-  /** `@container  (min-width: 20rem)` */
-  "@/xs": string;
-  /** `@container  (min-width: 24rem)` */
-  "@/sm": string;
-  /** `@container  (min-width: 28rem)` */
-  "@/md": string;
-  /** `@container  (min-width: 32rem)` */
-  "@/lg": string;
-  /** `@container  (min-width: 36rem)` */
-  "@/xl": string;
-  /** `@container  (min-width: 42rem)` */
-  "@/2xl": string;
-  /** `@container  (min-width: 48rem)` */
-  "@/3xl": string;
-  /** `@container  (min-width: 56rem)` */
-  "@/4xl": string;
-  /** `@container  (min-width: 64rem)` */
-  "@/5xl": string;
-  /** `@container  (min-width: 72rem)` */
-  "@/6xl": string;
-  /** `@container  (min-width: 80rem)` */
-  "@/7xl": string;
-  /** `@container  (min-width: 90rem)` */
-  "@/8xl": string;
   /** The base (=no conditions) styles to apply  */
   base: string;
 }

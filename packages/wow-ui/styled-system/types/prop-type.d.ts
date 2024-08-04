@@ -538,7 +538,6 @@ export interface UtilityValues {
     | "opacity"
     | "shadow"
     | "transform";
-  animationName: "spin" | "ping" | "pulse" | "bounce";
   rotate: "auto" | "auto-3d" | CssProperties["rotate"];
   rotateX: CssProperties["rotate"];
   rotateY: CssProperties["rotate"];

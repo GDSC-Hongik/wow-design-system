@@ -1,7 +1,9 @@
 import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
-import { semanticTokens, textStyles, tokens, breakpoints } from "theme";
-import { colorTokenList } from "theme/config";
-import { removeUnusedCssVars, removeUnusedKeyframes } from "theme/utils";
+import {
+  removeUnusedCssVars,
+  removeUnusedKeyframes,
+  pandaPreset,
+} from "wowds-theme";
 
 const globalCss = defineGlobalStyles({
   body: {
@@ -11,15 +13,7 @@ const globalCss = defineGlobalStyles({
 });
 
 export default defineConfig({
-  staticCss: {
-    css: [
-      {
-        properties: {
-          color: colorTokenList,
-        },
-      },
-    ],
-  },
+  presets: [pandaPreset],
   globalCss,
   preflight: true,
   minify: true,
@@ -38,12 +32,6 @@ export default defineConfig({
     },
   },
   outdir: "styled-system",
-  theme: {
-    tokens,
-    textStyles,
-    semanticTokens,
-    breakpoints,
-  },
   conditions: {
     hover: "&[aria-pressed=false]:not(:disabled):hover",
   },
