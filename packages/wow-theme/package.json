@@ -1,7 +1,6 @@
 {
   "name": "wowds-theme",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "repository": {
     "type": "git",
@@ -28,5 +27,8 @@
   },
   "devDependencies": {
     "wowds-tokens": "workspace:^"
-  }
+  },
+  "keywords": [],
+  "author": "gdsc-hongik",
+  "license": "ISC"
 }
