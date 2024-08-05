@@ -1,5 +1,11 @@
 # wowds-theme
 
+## 0.1.1
+
+### Patch Changes
+
+- 94ed8d4: wowds-theme 을 patch 버전 올려서 배포합니다
+
 ## 0.1.0
 
 ### Minor Changes
