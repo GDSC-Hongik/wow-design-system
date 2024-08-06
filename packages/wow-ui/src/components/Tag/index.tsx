@@ -62,8 +62,8 @@ const TagStyle = cva({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    paddingX: "xxs",
-    paddingY: "xs",
+    paddingX: "xs",
+    paddingY: "xxs",
     borderRadius: "sm",
     width: "fit-content",
     border: "1px solid",
@@ -84,20 +84,20 @@ const TagStyle = cva({
     },
     color: {
       red: {
-        borderColor: "red.500",
-        color: "red.500",
+        borderColor: "secondaryRed",
+        color: "secondaryRed",
       },
       green: {
-        borderColor: "green.500",
-        color: "green.500",
+        borderColor: "secondaryGreen",
+        color: "secondaryGreen",
       },
       blue: {
-        borderColor: "blue.500",
-        color: "blue.500",
+        borderColor: "secondaryBlue",
+        color: "secondaryBlue",
       },
       yellow: {
-        borderColor: "yellow.500",
-        color: "yellow.500",
+        borderColor: "secondaryYellow",
+        color: "secondaryYellow",
       },
       grey: {},
     },
@@ -107,7 +107,7 @@ const TagStyle = cva({
       variant: "solid2",
       color: "blue",
       css: {
-        backgroundColor: "bluePressed",
+        backgroundColor: "blueDisabled",
         color: "blueHover",
       },
     },
@@ -115,8 +115,8 @@ const TagStyle = cva({
       variant: "solid2",
       color: "red",
       css: {
-        backgroundColor: "error",
-        color: "red.500",
+        backgroundColor: "errorBackground",
+        color: "error",
       },
     },
     {

@@ -105,6 +105,12 @@ export const semanticTokens = defineSemanticTokens({
     blueShadow: { value: color.blueShadow },
     discord: { value: color.discord },
     github: { value: color.github },
+    secondaryYellow: { value: color.secondaryYellow },
+    secondaryGreen: { value: color.secondaryGreen },
+    secondaryRed: { value: color.secondaryRed },
+    errorBackground: { value: color.errorBackground },
+    blueDisabled: { value: color.blueDisabled },
+    textBlueDisabled: { value: color.textBlueDisabled },
   },
 });
 

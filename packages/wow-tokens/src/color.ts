@@ -96,6 +96,7 @@ export const error = red600;
 export const backgroundNormal = white;
 export const backgroundAlternative = mono50;
 export const backgroundDimmer = blackOpacity80;
+export const errorBackground = red100;
 
 export const sub = mono700;
 export const outline = mono400;
@@ -104,10 +105,11 @@ export const textWhite = white;
 
 export const darkDisabled = mono400;
 export const lightDisabled = mono200;
+export const blueDisabled = blue100;
+export const textBlueDisabled = blue200;
 
 export const blueHover = blue600;
 export const monoHover = mono950;
-
 export const elevatedHover = "rgba(16, 43, 74, 0.2)";
 
 export const bluePressed = blue400;
@@ -120,6 +122,10 @@ export const blueShadow = "rgba(16, 43, 74, 0.2)";
 
 export const discord = "#5566FB";
 export const github = black;
+
+export const secondaryYellow = yellow500;
+export const secondaryGreen = green500;
+export const secondaryRed = red500;
 
 export const blueGradientDark = {
   gradientFrom: blue500,

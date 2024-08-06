@@ -30,6 +30,11 @@
       "require": "./dist/TextButton.cjs",
       "import": "./dist/TextButton.js"
     },
+    "./Tag": {
+      "types": "./dist/components/Tag/index.d.ts",
+      "require": "./dist/Tag.cjs",
+      "import": "./dist/Tag.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
