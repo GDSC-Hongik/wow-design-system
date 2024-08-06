@@ -33,6 +33,13 @@ export const h3 = {
   letterSpacing: "-0.01rem",
 };
 
+export const body0 = {
+  fontSize: "1.125rem",
+  lineHeight: "160%",
+  fontWeight: 500,
+  letterSpacing: "-0.01125rem",
+};
+
 export const body1 = {
   fontSize: "1rem",
   lineHeight: "160%",
