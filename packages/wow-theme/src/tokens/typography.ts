@@ -17,6 +17,9 @@ export const textStyles = defineTextStyles({
   h3: {
     value: typography.h3,
   },
+  body0: {
+    value: typography.body0,
+  },
   body1: {
     value: typography.body1,
   },
