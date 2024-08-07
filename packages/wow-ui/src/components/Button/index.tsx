@@ -145,7 +145,8 @@ const ButtonStyle = cva({
         color: "textWhite",
 
         _disabled: {
-          background: "darkDisabled",
+          background: "monoBackgroundPressed",
+          color: "outline",
           cursor: "not-allowed",
         },
         _hover: {
