@@ -1,4 +1,4 @@
-import { color } from "./index.ts";
+import * as color from "./color.ts";
 
 export const blue = {
   offsetX: 0,
