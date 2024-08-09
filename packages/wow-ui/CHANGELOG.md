@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.9
+
+### Patch Changes
+
+- 48d2e28: dropdownTrigger의 타입을 button으로 지정합니다.
+
 ## 0.1.8
 
 ### Patch Changes
