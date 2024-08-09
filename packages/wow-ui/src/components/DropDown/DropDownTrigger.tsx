@@ -74,6 +74,7 @@ const DropDownTrigger = ({
         id={`${dropdownId}-trigger`}
         justifyContent="space-between"
         outline="none"
+        type="button"
         className={dropdownStyle({
           type: open ? "focused" : selectedValue ? "selected" : "default",
         })}
