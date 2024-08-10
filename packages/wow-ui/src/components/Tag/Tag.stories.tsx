@@ -66,25 +66,25 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const OutlineBlue: Story = {
+export const Outline: Story = {
   args: {
-    children: "Outline Red",
+    children: "Tag",
     variant: "outline",
     color: "blue",
   },
 };
 
-export const Solid1Blue: Story = {
+export const Solid1: Story = {
   args: {
-    children: "Solid1 Blue",
+    children: "Tag",
     variant: "solid1",
     color: "blue",
   },
 };
 
-export const Solid2Blue: Story = {
+export const Solid2: Story = {
   args: {
-    children: "Solid2 Grey",
+    children: "Tag",
     variant: "solid2",
     color: "blue",
   },

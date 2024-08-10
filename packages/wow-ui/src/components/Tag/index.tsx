@@ -92,8 +92,8 @@ const TagStyle = cva({
         color: "secondaryGreen",
       },
       blue: {
-        borderColor: "secondaryBlue",
-        color: "secondaryBlue",
+        borderColor: "primary",
+        color: "primary",
       },
       yellow: {
         borderColor: "secondaryYellow",
