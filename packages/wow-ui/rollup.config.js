@@ -22,6 +22,8 @@ export default {
   input: {
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
+    Table: "./src/components/Table",
+    TableContainer: "./src/components/Table/TableContainer",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",
     BlueSpinner: "./src/components/Spinner/BlueSpinner",

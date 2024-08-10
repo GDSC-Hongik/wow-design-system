@@ -30,6 +30,16 @@
       "require": "./dist/TextButton.cjs",
       "import": "./dist/TextButton.js"
     },
+    "./Table": {
+      "types": "./dist/components/Table/index.d.ts",
+      "require": "./dist/Table.cjs",
+      "import": "./dist/Table.js"
+    },
+    "./TableContainer": {
+      "types": "./dist/components/Table/TableContainer.d.ts",
+      "require": "./dist/TableContainer.cjs",
+      "import": "./dist/TableContainer.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
