@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Table from "@/components/Table/Table";
-import TableBody from "@/components/Table/TableBody";
+import TableBodyContainer from "@/components/Table/TableBody";
 import TableCell from "@/components/Table/TableCell";
 import TableContainer from "@/components/Table/TableContainer";
 import TableHeader from "@/components/Table/TableHeader";
+import TableHeaderContainer from "@/components/Table/TableHeaderContainer";
 import TableRow from "@/components/Table/TableRow";
 
 const meta = {
@@ -127,12 +128,14 @@ export const Primary: Story = {
     return (
       <TableContainer>
         <Table>
-          <TableRow>
-            <TableHeader>학번</TableHeader>
-            <TableHeader>이름</TableHeader>
-            <TableHeader>전화번호</TableHeader>
-          </TableRow>
-          <TableBody>
+          <TableHeaderContainer>
+            <TableRow>
+              <TableHeader>학번</TableHeader>
+              <TableHeader>이름</TableHeader>
+              <TableHeader>전화번호</TableHeader>
+            </TableRow>
+          </TableHeaderContainer>
+          <TableBodyContainer>
             <TableRow>
               <TableCell>C000000</TableCell>
               <TableCell>가나다</TableCell>
@@ -143,7 +146,7 @@ export const Primary: Story = {
               <TableCell>가나다</TableCell>
               <TableCell>0100000000</TableCell>
             </TableRow>
-          </TableBody>
+          </TableBodyContainer>
         </Table>
       </TableContainer>
     );
@@ -155,12 +158,14 @@ export const CheckableTable: Story = {
     return (
       <TableContainer>
         <Table variant="checkable">
-          <TableRow>
-            <TableHeader>학번</TableHeader>
-            <TableHeader>이름</TableHeader>
-            <TableHeader>전화번호</TableHeader>
-          </TableRow>
-          <TableBody>
+          <TableHeaderContainer>
+            <TableRow>
+              <TableHeader>학번</TableHeader>
+              <TableHeader>이름</TableHeader>
+              <TableHeader>전화번호</TableHeader>
+            </TableRow>
+          </TableHeaderContainer>
+          <TableBodyContainer>
             <TableRow>
               <TableCell>C000000</TableCell>
               <TableCell>가나다</TableCell>
@@ -171,7 +176,7 @@ export const CheckableTable: Story = {
               <TableCell>가나다</TableCell>
               <TableCell>0100000000</TableCell>
             </TableRow>
-          </TableBody>
+          </TableBodyContainer>
         </Table>
       </TableContainer>
     );

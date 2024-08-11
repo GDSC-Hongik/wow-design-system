@@ -1,10 +1,13 @@
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren } from "react";
-import { forwardRef, useId } from "react";
+import { forwardRef, useContext, useId } from "react";
+import { color } from "wowds-tokens";
 
 import Checkbox from "@/components/Checkbox";
 import { useTableVariantContext } from "@/components/Table/context/TableVariantContext";
 import TableCell from "@/components/Table/TableCell";
+import TableHeader from "@/components/Table/TableHeader";
+import { TableHeaderContext } from "@/components/Table/TableHeaderContainer";
 interface TableRowProps extends PropsWithChildren {
   style?: CSSProperties;
 }
@@ -13,7 +16,34 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
     const { children } = props;
     const id = useId();
-    const { variant } = useTableVariantContext();
+    const isHeader = useContext(TableHeaderContext);
+    const { variant, onChange } = useTableVariantContext();
+
+    const TableCheckBoxCell = (isHeader: boolean) => {
+      if (isHeader) {
+        return (
+          <TableHeader
+            style={{
+              width: "43px",
+              backgroundColor: color.backgroundAlternative,
+            }}
+          >
+            <Checkbox value={id} onChange={onChange} />
+          </TableHeader>
+        );
+      } else {
+        return (
+          <TableCell
+            style={{
+              width: "43px",
+              backgroundColor: "white",
+            }}
+          >
+            <Checkbox value={id} onChange={onChange} />
+          </TableCell>
+        );
+      }
+    };
     return (
       <styled.tr
         color="textBlack"
@@ -23,11 +53,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
         textStyle="body2"
         {...props}
       >
-        {variant === "checkable" && (
-          <TableCell style={{ width: "43px" }}>
-            <Checkbox value={id} />
-          </TableCell>
-        )}
+        {variant === "checkable" && TableCheckBoxCell(isHeader)}
         {children}
       </styled.tr>
     );

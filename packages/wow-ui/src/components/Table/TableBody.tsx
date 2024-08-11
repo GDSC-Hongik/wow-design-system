@@ -5,7 +5,7 @@ interface TableBodyProps extends PropsWithChildren {
   style?: CSSProperties;
 }
 
-const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
+const TableBodyContainer = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   (props, ref) => {
     const { children } = props;
     return (
@@ -16,4 +16,4 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   }
 );
 
-export default TableBody;
+export default TableBodyContainer;

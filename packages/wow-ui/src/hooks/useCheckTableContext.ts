@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 interface CheckTableContextProps {
   variant?: "default" | "checkable";
   value?: string;
@@ -9,8 +11,11 @@ const useCheckTable = ({
   value,
   onChange,
 }: CheckTableContextProps) => {
-  if (variant === "default") return { variant };
+  useEffect(() => {
+    if (onChange) onChange();
+  }, [value, onChange]);
 
+  if (variant === "default") return { variant };
   return { variant, value, onChange };
 };
 
