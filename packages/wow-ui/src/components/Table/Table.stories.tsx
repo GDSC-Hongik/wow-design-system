@@ -149,3 +149,31 @@ export const Primary: Story = {
     );
   },
 };
+
+export const CheckableTable: Story = {
+  render: () => {
+    return (
+      <TableContainer>
+        <Table variant="checkable">
+          <TableRow>
+            <TableHeader>학번</TableHeader>
+            <TableHeader>이름</TableHeader>
+            <TableHeader>전화번호</TableHeader>
+          </TableRow>
+          <TableBody>
+            <TableRow>
+              <TableCell>C000000</TableCell>
+              <TableCell>가나다</TableCell>
+              <TableCell>0100000000</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>C000000</TableCell>
+              <TableCell>가나다</TableCell>
+              <TableCell>0100000000</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  },
+};
