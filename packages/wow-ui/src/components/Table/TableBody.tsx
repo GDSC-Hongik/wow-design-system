@@ -7,7 +7,7 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   (props, ref) => {
     const { children } = props;
     return (
-      <styled.tbody ref={ref} {...props}>
+      <styled.tbody ref={ref} {...props} textAlign="start">
         {children}
       </styled.tbody>
     );

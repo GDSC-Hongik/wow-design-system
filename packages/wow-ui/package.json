@@ -35,10 +35,30 @@
       "require": "./dist/Table.cjs",
       "import": "./dist/Table.js"
     },
+    "./TableBody": {
+      "types": "./dist/components/Table/TableBody.d.ts",
+      "require": "./dist/TableBody.cjs",
+      "import": "./dist/TableBody.js"
+    },
+    "./TableCell": {
+      "types": "./dist/components/Table/TableCell.d.ts",
+      "require": "./dist/TableCell.cjs",
+      "import": "./dist/TableCell.js"
+    },
     "./TableContainer": {
       "types": "./dist/components/Table/TableContainer.d.ts",
       "require": "./dist/TableContainer.cjs",
       "import": "./dist/TableContainer.js"
+    },
+    "./TableHeader": {
+      "types": "./dist/components/Table/TableHeader.d.ts",
+      "require": "./dist/TableHeader.cjs",
+      "import": "./dist/TableHeader.js"
+    },
+    "./TableRow": {
+      "types": "./dist/components/Table/TableRow.d.ts",
+      "require": "./dist/TableRow.cjs",
+      "import": "./dist/TableRow.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",

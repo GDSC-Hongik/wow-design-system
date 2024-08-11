@@ -7,7 +7,7 @@ const TableCell = forwardRef<HTMLTableDataCellElement, TableCellProps>(
   (props, ref) => {
     const { children } = props;
     return (
-      <styled.td ref={ref} {...props}>
+      <styled.td maxWidth="100%" paddingX="sm" ref={ref} {...props}>
         {children}
       </styled.td>
     );

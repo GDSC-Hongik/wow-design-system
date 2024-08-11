@@ -1,8 +1,10 @@
 import { styled } from "@styled-system/jsx";
-import type { PropsWithChildren } from "react";
+import type { CSSProperties, PropsWithChildren } from "react";
 import { forwardRef } from "react";
 
-interface TableContainerProps extends PropsWithChildren {}
+interface TableContainerProps extends PropsWithChildren {
+  style?: CSSProperties;
+}
 
 const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
   (props, ref) => {

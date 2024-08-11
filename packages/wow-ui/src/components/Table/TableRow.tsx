@@ -7,7 +7,14 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
     const { children } = props;
     return (
-      <styled.tr ref={ref} {...props}>
+      <styled.tr
+        color="textBlack"
+        height="44px"
+        minWidth="100%"
+        ref={ref}
+        textStyle="body2"
+        {...props}
+      >
         {children}
       </styled.tr>
     );

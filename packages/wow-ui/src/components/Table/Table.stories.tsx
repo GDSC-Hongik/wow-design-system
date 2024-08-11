@@ -127,28 +127,21 @@ export const Primary: Story = {
     return (
       <TableContainer>
         <Table>
-          <TableHeader>
-            <TableRow>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-            </TableRow>
-          </TableHeader>
+          <TableRow>
+            <TableHeader>학번</TableHeader>
+            <TableHeader>이름</TableHeader>
+            <TableHeader>전화번호</TableHeader>
+          </TableRow>
           <TableBody>
             <TableRow>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
+              <TableCell>C000000</TableCell>
+              <TableCell>가나다</TableCell>
+              <TableCell>0100000000</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
-              <TableCell>하이루</TableCell>
+              <TableCell>C000000</TableCell>
+              <TableCell>가나다</TableCell>
+              <TableCell>0100000000</TableCell>
             </TableRow>
           </TableBody>
         </Table>
