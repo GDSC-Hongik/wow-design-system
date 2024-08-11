@@ -55,6 +55,11 @@
       "require": "./dist/TableHeader.cjs",
       "import": "./dist/TableHeader.js"
     },
+    "./TableHeaderContainer": {
+      "types": "./dist/components/Table/TableHeaderContainer.d.ts",
+      "require": "./dist/TableHeaderContainer.cjs",
+      "import": "./dist/TableHeaderContainer.js"
+    },
     "./TableRow": {
       "types": "./dist/components/Table/TableRow.d.ts",
       "require": "./dist/TableRow.cjs",

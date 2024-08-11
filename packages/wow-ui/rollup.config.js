@@ -27,6 +27,7 @@ export default {
     TableCell: "./src/components/Table/TableCell",
     TableContainer: "./src/components/Table/TableContainer",
     TableHeader: "./src/components/Table/TableHeader",
+    TableHeaderContainer: "./src/components/Table/TableHeaderContainer",
     TableRow: "./src/components/Table/TableRow",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",

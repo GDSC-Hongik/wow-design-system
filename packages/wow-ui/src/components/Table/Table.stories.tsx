@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Table from "@/components/Table/Table";
-import TableBodyContainer from "@/components/Table/TableBody";
+import TableBodyContainer from "@/components/Table/TableBodyContainer";
 import TableCell from "@/components/Table/TableCell";
 import TableContainer from "@/components/Table/TableContainer";
 import TableHeader from "@/components/Table/TableHeader";

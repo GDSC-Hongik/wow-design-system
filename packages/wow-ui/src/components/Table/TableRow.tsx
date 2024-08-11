@@ -10,14 +10,16 @@ import TableHeader from "@/components/Table/TableHeader";
 import { TableHeaderContext } from "@/components/Table/TableHeaderContainer";
 interface TableRowProps extends PropsWithChildren {
   style?: CSSProperties;
+  value?: string;
 }
 
 const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
-    const { children } = props;
+    const { children, value } = props;
     const id = useId();
     const isHeader = useContext(TableHeaderContext);
-    const { variant, onChange } = useTableVariantContext();
+    const { variant, onChange, handleCheckboxChange } =
+      useTableVariantContext();
 
     const TableCheckBoxCell = (isHeader: boolean) => {
       if (isHeader) {
@@ -28,7 +30,12 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
               backgroundColor: color.backgroundAlternative,
             }}
           >
-            <Checkbox value={id} onChange={onChange} />
+            <Checkbox
+              value="all"
+              onChange={() => {
+                handleCheckboxChange();
+              }}
+            />
           </TableHeader>
         );
       } else {
@@ -39,7 +46,12 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
               backgroundColor: "white",
             }}
           >
-            <Checkbox value={id} onChange={onChange} />
+            <Checkbox
+              value={value ? value : id}
+              onChange={() => {
+                if (handleCheckboxChange) handleCheckboxChange(1);
+              }}
+            />
           </TableCell>
         );
       }
