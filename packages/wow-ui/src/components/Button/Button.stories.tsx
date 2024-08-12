@@ -168,6 +168,14 @@ export const SmallOutline: Story = {
   },
 };
 
+export const SmallSub: Story = {
+  args: {
+    children: "버튼",
+    size: "sm",
+    variant: "sub",
+  },
+};
+
 export const LargeWithIcon: Story = {
   args: {
     children: "버튼",
