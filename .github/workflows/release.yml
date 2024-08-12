@@ -53,6 +53,8 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
+          title: "[Chore] version packages"
+          commit: "chore: version packages"
           version: pnpm changeset version
           publish: pnpm changeset publish
         env:
