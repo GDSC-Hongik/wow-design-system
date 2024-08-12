@@ -33,8 +33,14 @@ const DatePicker = ({
             paddingY: "1.25rem",
 
             background: "background",
-            borderRadius: "sm",
+            borderRadius: "md",
             shadow: "mono",
+          }),
+          nav: css({
+            width: "17.75rem",
+            display: "flex",
+            justifyContent: "space-between",
+            position: "absolute",
           }),
           month: css({
             display: "flex",
@@ -43,25 +49,10 @@ const DatePicker = ({
             alignItems: "center",
           }),
           month_grid: css({ width: "100%" }),
-          nav: css({
-            width: "17.75rem",
-            display: "flex",
-            justifyContent: "space-between",
-            position: "absolute",
-          }),
           weekday: buttonStyle({ variant: "date", state: "default" }),
-
-          head_row: "flex",
-          head_cell:
-            "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-          row: "flex w-full mt-2",
-          cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
           day: buttonStyle({ variant: "date", state: "default" }),
-          day_selected: buttonStyle({ variant: "date", state: "selected" }),
-          day_today: buttonStyle({ variant: "date", state: "selected" }),
-          day_outside: buttonStyle({ variant: "date", state: "disabled" }),
-          day_disabled: buttonStyle({ variant: "date", state: "disabled" }),
-          day_hidden: buttonStyle({ variant: "date", state: "disabled" }),
+          outside: buttonStyle({ variant: "date", state: "disabled" }),
+          selected: buttonStyle({ variant: "date", state: "selected" }),
           ...classNames,
         }}
         components={{
@@ -148,7 +139,7 @@ const buttonStyle = cva({
       },
       disabled: {
         color: "lightDisabled",
-        cursor: "not-allowed",
+        pointerEvents: "none",
       },
     },
   },
