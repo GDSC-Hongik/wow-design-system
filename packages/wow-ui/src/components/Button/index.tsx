@@ -19,7 +19,7 @@ import type {
  * @param {string} subText - 버튼의 하단에 위치할 보조 텍스트.
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
- * @param {"solid" | "outline"} [variant] - 버튼의 종류.
+ * @param {"solid" | "outline" | "sub"} [variant] - 버튼의 종류.
  * @param {ReactNode} [icon] - 버튼의 좌측에 들어갈 아이콘.
  * @param {() => void} [onKeyUp] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트.
  * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
@@ -37,7 +37,7 @@ export interface CustomButtonProps {
   subText?: string;
   disabled?: boolean;
   size?: "lg" | "sm";
-  variant?: "solid" | "outline";
+  variant?: "solid" | "outline" | "sub";
   icon?: ReactNode;
   onKeyUp?: () => void;
   onKeyDown?: () => void;
@@ -101,7 +101,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         disabled={disabled}
         ref={ref}
         className={ButtonStyle({
-          size,
+          size: variant === "sub" ? "sm" : size,
           variant,
         })}
         onKeyDown={handleKeyDown}
@@ -182,6 +182,21 @@ const ButtonStyle = cva({
           borderColor: "bluePressed",
           background: "blueBackgroundPressed",
           color: "bluePressed",
+        },
+      },
+      sub: {
+        background: "blueBackgroundPressed",
+        color: "primary",
+
+        _disabled: {
+          color: "blueDisabled",
+          cursor: "not-allowed",
+        },
+        _hover: {
+          shadow: "blue",
+        },
+        _pressed: {
+          background: "blueDisabled",
         },
       },
     },
