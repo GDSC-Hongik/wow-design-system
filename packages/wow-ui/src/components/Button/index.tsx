@@ -16,6 +16,7 @@ import type {
  * @description 버튼 컴포넌트의 속성을 정의합니다.
  *
  * @param {ReactNode} children - 버튼의 자식 요소.
+ * @param {string} subText - 버튼의 하단에 위치할 보조 텍스트.
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
  * @param {"solid" | "outline"} [variant] - 버튼의 종류.
@@ -33,6 +34,7 @@ import type {
 
 export interface CustomButtonProps {
   children: ReactNode;
+  subText?: string;
   disabled?: boolean;
   size?: "lg" | "sm";
   variant?: "solid" | "outline";
@@ -60,6 +62,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
     {
       as,
       children,
+      subText,
       disabled = false,
       size = "lg",
       variant = "solid",
@@ -108,14 +111,11 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         onPointerUp={handlePointerUp}
         {...rest}
       >
-        {icon}
-        <styled.span
-          {...(typeof children === "string" && {
-            textStyle: size === "lg" ? "label1" : "label2",
-          })}
-        >
+        <styled.span className={ContentStyle({ size })}>
+          {icon}
           {children}
         </styled.span>
+        {subText && <styled.span textStyle="label3">{subText}</styled.span>}
       </Component>
     );
   }
@@ -124,8 +124,10 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
 const ButtonStyle = cva({
   base: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    gap: "xs",
 
     cursor: "pointer",
   },
@@ -134,16 +136,10 @@ const ButtonStyle = cva({
       lg: {
         width: "100%",
         maxWidth: { lgOnly: 316 },
-        height: "3rem",
-
-        gap: "xs",
-
         padding: "1rem",
         borderRadius: "md",
       },
       sm: {
-        gap: "xxs",
-
         padding: "0.75rem 1.25rem",
         borderRadius: "full",
       },
@@ -210,6 +206,26 @@ const ButtonStyle = cva({
       },
     },
   ],
+});
+
+const ContentStyle = cva({
+  base: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  variants: {
+    size: {
+      lg: {
+        gap: "xs",
+        textStyle: "label1",
+      },
+      sm: {
+        gap: "xxs",
+        textStyle: "label2",
+      },
+    },
+  },
 });
 
 Button.displayName = "Button";
