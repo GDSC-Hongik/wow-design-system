@@ -1,3 +1,4 @@
+export { default as Calendar } from "./Calendar.tsx";
 export { default as Check } from "./Check.tsx";
 export { default as Close } from "./Close.tsx";
 export { default as DownArrow } from "./DownArrow.tsx";
