@@ -660,14 +660,19 @@ export interface UtilityValues {
     | "shadowMedium"
     | "blueShadow"
     | "discord"
-    | "github";
+    | "github"
+    | "secondaryYellow"
+    | "secondaryGreen"
+    | "secondaryRed"
+    | "errorBackground"
+    | "blueDisabled"
+    | "textBlueDisabled";
   textStyle:
     | "display1"
     | "display2"
     | "h1"
     | "h2"
     | "h3"
-    | "body0"
     | "body1"
     | "body2"
     | "body3"
