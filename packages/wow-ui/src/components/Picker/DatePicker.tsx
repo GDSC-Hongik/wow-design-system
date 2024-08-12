@@ -1,8 +1,7 @@
 "use client";
 
-import { css, cva, cx } from "@styled-system/css";
+import { css, cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
-import type { ComponentProps } from "react";
 import { useState } from "react";
 import type { PropsBase, PropsSingle } from "react-day-picker";
 import { DayPicker } from "react-day-picker";
@@ -75,21 +74,23 @@ const DatePicker = ({
           components={{
             Weekdays: () => {
               return (
-                <styled.tr>
-                  {["S", "M", "T", "W", "T", "F", "S"].map(
-                    (week: string, index: number) => (
-                      <styled.th
-                        key={index}
-                        className={buttonStyle({
-                          variant: "month",
-                          state: "default",
-                        })}
-                      >
-                        {week}
-                      </styled.th>
-                    )
-                  )}
-                </styled.tr>
+                <styled.thead>
+                  <styled.tr>
+                    {["S", "M", "T", "W", "T", "F", "S"].map(
+                      (week: string, index: number) => (
+                        <styled.th
+                          key={index}
+                          className={buttonStyle({
+                            variant: "month",
+                            state: "default",
+                          })}
+                        >
+                          {week}
+                        </styled.th>
+                      )
+                    )}
+                  </styled.tr>
+                </styled.thead>
               );
             },
             MonthCaption: (props) => {
