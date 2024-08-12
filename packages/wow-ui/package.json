@@ -70,6 +70,11 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
+    "./DateDropDown": {
+      "types": "./dist/components/Picker/DateDropDown.d.ts",
+      "require": "./dist/DateDropDown.cjs",
+      "import": "./dist/DateDropDown.js"
+    },
     "./DatePicker": {
       "types": "./dist/components/Picker/DatePicker.d.ts",
       "require": "./dist/DatePicker.cjs",
