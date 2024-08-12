@@ -22,6 +22,7 @@ export default {
   input: {
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
+    Tag: "./src/components/Tag",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",
     BlueSpinner: "./src/components/Spinner/BlueSpinner",
