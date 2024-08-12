@@ -1,7 +1,7 @@
 "use client";
 
 import { cva } from "@styled-system/css/cva";
-import { styled } from "@styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
 
@@ -105,13 +105,9 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         onPointerUp={handlePointerUp}
         {...rest}
       >
-        <styled.span
-          {...(typeof children === "string" && {
-            textStyle: size === "lg" ? "label1" : "label2",
-          })}
-        >
+        <Flex gap="8px" textStyle={size === "lg" ? "label1" : "label2"}>
           {children}
-        </styled.span>
+        </Flex>
       </Component>
     );
   }
