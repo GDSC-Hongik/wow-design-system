@@ -64,14 +64,40 @@ const DatePicker = ({
               gap: "lg",
               alignItems: "center",
             }),
-            month_grid: css({ width: "100%" }),
+            month_grid: css({
+              width: "100%",
+            }),
             weekday: buttonStyle({ variant: "date", state: "default" }),
             day: buttonStyle({ variant: "date", state: "default" }),
+            day_button: css({
+              width: "100%",
+              cursor: "pointer",
+            }),
             outside: buttonStyle({ variant: "date", state: "disabled" }),
             selected: buttonStyle({ variant: "date", state: "selected" }),
             ...classNames,
           }}
           components={{
+            Chevron: (props) => {
+              switch (props.orientation) {
+                case "left":
+                  return <LeftArrow stroke="outline" />;
+                case "right":
+                  return <RightArrow stroke="outline" />;
+                case "down":
+                  return <DownArrow stroke="outline" />;
+                default:
+                  return <DownArrow stroke="outline" />;
+              }
+            },
+            MonthCaption: (props) => {
+              const date = props.calendarMonth.date;
+              const year = date.getFullYear();
+              const month = date.getMonth().toString().padStart(2, "0");
+              return (
+                <styled.span textStyle="h2">{`${year}.${month}`}</styled.span>
+              );
+            },
             Weekdays: () => {
               return (
                 <styled.thead>
@@ -93,26 +119,6 @@ const DatePicker = ({
                 </styled.thead>
               );
             },
-            MonthCaption: (props) => {
-              const date = props.calendarMonth.date;
-              const year = date.getFullYear();
-              const month = date.getMonth().toString().padStart(2, "0");
-              return (
-                <styled.span textStyle="h2">{`${year}.${month}`}</styled.span>
-              );
-            },
-            Chevron: (props) => {
-              switch (props.orientation) {
-                case "left":
-                  return <LeftArrow stroke="outline" />;
-                case "right":
-                  return <RightArrow stroke="outline" />;
-                case "down":
-                  return <DownArrow stroke="outline" />;
-                default:
-                  return <DownArrow stroke="outline" />;
-              }
-            },
           }}
           onSelect={setSelected}
           {...rest}
@@ -129,7 +135,6 @@ const buttonStyle = cva({
     borderRadius: "sm",
     textStyle: "body1",
     textAlign: "center",
-    cursor: "pointer",
   },
   variants: {
     variant: {
