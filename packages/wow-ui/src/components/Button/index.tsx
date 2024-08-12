@@ -16,7 +16,7 @@ import type {
  * @description 버튼 컴포넌트의 속성을 정의합니다.
  *
  * @param {ReactNode} children - 버튼의 자식 요소.
- * @param {string} subText - 버튼의 하단에 위치할 보조 텍스트.
+ * @param {string} [subText] - 버튼의 하단에 위치할 보조 텍스트.
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
  * @param {"solid" | "outline" | "sub"} [variant] - 버튼의 종류.
