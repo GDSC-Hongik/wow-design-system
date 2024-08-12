@@ -184,3 +184,12 @@ export const SmallWithIcon: Story = {
     icon: <Help />,
   },
 };
+
+export const LargeWithSubText: Story = {
+  args: {
+    children: "버튼",
+    variant: "solid",
+    subText: "최종 수정 일시 : 2024년 5월 23일 23:11",
+    icon: <Help />,
+  },
+};
