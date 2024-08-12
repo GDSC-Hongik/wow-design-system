@@ -30,6 +30,7 @@ export default {
     SearchBar: "./src/components/SearchBar",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
+    DatePicker: "./src/components/Picker/DatePicker",
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",
