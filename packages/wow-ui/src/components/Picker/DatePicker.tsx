@@ -9,8 +9,8 @@ import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
 
-export type CalendarProps = PropsBase &
-  PropsSingle & {
+export type CalendarProps = Omit<PropsBase, "mode"> &
+  Omit<PropsSingle, "mode"> & {
     label: string;
     placeholder?: string;
   };
@@ -41,6 +41,7 @@ const DatePicker = ({
         <DayPicker
           showOutsideDays
           className={className}
+          mode="single"
           selected={selected}
           classNames={{
             root: css({

@@ -18,7 +18,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    mode: "single",
     label: "종료 날짜",
   },
 };
