@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Help } from "wowds-icons";
 
 import Button from "@/components/Button";
 
@@ -164,5 +165,39 @@ export const SmallOutline: Story = {
     children: "버튼",
     size: "sm",
     variant: "outline",
+  },
+};
+
+export const SmallSub: Story = {
+  args: {
+    children: "버튼",
+    size: "sm",
+    variant: "sub",
+  },
+};
+
+export const LargeWithIcon: Story = {
+  args: {
+    children: "버튼",
+    variant: "solid",
+    icon: <Help />,
+  },
+};
+
+export const SmallWithIcon: Story = {
+  args: {
+    children: "버튼",
+    size: "sm",
+    variant: "solid",
+    icon: <Help />,
+  },
+};
+
+export const LargeWithSubText: Story = {
+  args: {
+    children: "버튼",
+    variant: "solid",
+    subText: "최종 수정 일시 : 2024년 5월 23일 23:11",
+    icon: <Help />,
   },
 };

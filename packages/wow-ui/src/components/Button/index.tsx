@@ -16,9 +16,11 @@ import type {
  * @description 버튼 컴포넌트의 속성을 정의합니다.
  *
  * @param {ReactNode} children - 버튼의 자식 요소.
+ * @param {string} [subText] - 버튼의 하단에 위치할 보조 텍스트.
  * @param {boolean} [disabled] - 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
- * @param {"solid" | "outline"} [variant] - 버튼의 종류.
+ * @param {"solid" | "outline" | "sub"} [variant] - 버튼의 종류.
+ * @param {ReactNode} [icon] - 버튼의 좌측에 들어갈 아이콘.
  * @param {() => void} [onKeyUp] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트.
  * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
  * @param {() => void} [onMouseLeave] - 버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트.
@@ -32,9 +34,11 @@ import type {
 
 export interface CustomButtonProps {
   children: ReactNode;
+  subText?: string;
   disabled?: boolean;
   size?: "lg" | "sm";
-  variant?: "solid" | "outline";
+  variant?: "solid" | "outline" | "sub";
+  icon?: ReactNode;
   onKeyUp?: () => void;
   onKeyDown?: () => void;
   onMouseLeave?: () => void;
@@ -58,9 +62,11 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
     {
       as,
       children,
+      subText,
       disabled = false,
       size = "lg",
       variant = "solid",
+      icon,
       onKeyUp,
       onKeyDown,
       onMouseLeave,
@@ -95,7 +101,7 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         disabled={disabled}
         ref={ref}
         className={ButtonStyle({
-          size,
+          size: variant === "sub" ? "sm" : size,
           variant,
         })}
         onKeyDown={handleKeyDown}
@@ -105,13 +111,11 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
         onPointerUp={handlePointerUp}
         {...rest}
       >
-        <styled.span
-          {...(typeof children === "string" && {
-            textStyle: size === "lg" ? "label1" : "label2",
-          })}
-        >
+        <styled.span className={ContentStyle({ size })}>
+          {icon}
           {children}
         </styled.span>
+        {subText && <styled.span textStyle="label3">{subText}</styled.span>}
       </Component>
     );
   }
@@ -120,8 +124,10 @@ const Button: ButtonComponent & { displayName?: string } = forwardRef(
 const ButtonStyle = cva({
   base: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    gap: "xs",
 
     cursor: "pointer",
   },
@@ -130,7 +136,6 @@ const ButtonStyle = cva({
       lg: {
         width: "100%",
         maxWidth: { lgOnly: 316 },
-        height: "3rem",
         padding: "1rem",
         borderRadius: "md",
       },
@@ -145,7 +150,8 @@ const ButtonStyle = cva({
         color: "textWhite",
 
         _disabled: {
-          background: "darkDisabled",
+          background: "monoBackgroundPressed",
+          color: "outline",
           cursor: "not-allowed",
         },
         _hover: {
@@ -178,6 +184,21 @@ const ButtonStyle = cva({
           color: "bluePressed",
         },
       },
+      sub: {
+        background: "blueBackgroundPressed",
+        color: "primary",
+
+        _disabled: {
+          color: "blueDisabled",
+          cursor: "not-allowed",
+        },
+        _hover: {
+          shadow: "blue",
+        },
+        _pressed: {
+          background: "blueDisabled",
+        },
+      },
     },
   },
   compoundVariants: [
@@ -200,6 +221,26 @@ const ButtonStyle = cva({
       },
     },
   ],
+});
+
+const ContentStyle = cva({
+  base: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  variants: {
+    size: {
+      lg: {
+        gap: "xs",
+        textStyle: "label1",
+      },
+      sm: {
+        gap: "xxs",
+        textStyle: "label2",
+      },
+    },
+  },
 });
 
 Button.displayName = "Button";
