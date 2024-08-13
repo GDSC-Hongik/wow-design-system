@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.11
+
+### Patch Changes
+
+- 1632731: Button 컴포넌트의 추가 스펙을 구현합니다.
+
 ## 0.1.10
 
 ### Patch Changes
