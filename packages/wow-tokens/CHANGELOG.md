@@ -1,5 +1,11 @@
 # wowds-tokens
 
+## 0.1.2
+
+### Patch Changes
+
+- f880aa6: Tag 컴포넌트를 구현합니다.
+
 ## 0.1.1
 
 ### Patch Changes
