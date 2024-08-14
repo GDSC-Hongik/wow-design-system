@@ -1,5 +1,11 @@
 # wowds-icons
 
+## 0.1.3
+
+### Patch Changes
+
+- fea47e1: edit, trash, reload 아이콘을 추가합니다.
+
 ## 0.1.2
 
 ### Patch Changes
