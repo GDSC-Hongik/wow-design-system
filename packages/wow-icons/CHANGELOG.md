@@ -1,5 +1,11 @@
 # wowds-icons
 
+## 0.1.2
+
+### Patch Changes
+
+- ac27c6b: Plus, Link 아이콘을 추가합니다.
+
 ## 0.1.1
 
 ### Patch Changes
