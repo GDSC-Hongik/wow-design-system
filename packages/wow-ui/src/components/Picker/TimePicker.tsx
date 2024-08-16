@@ -11,7 +11,7 @@ interface Time<T> {
 }
 
 interface TimePickerProps {
-  label: string;
+  label?: string;
   selectedTime: Time<number>;
   setTime: (time: Time<number>) => void;
   time: Time<string>;
@@ -34,9 +34,11 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       selectedValue: string;
       selectedText: React.ReactNode;
     }) => {
-      console.log(value.selectedValue);
       setTime({
-        hour: isAM ? +value.selectedValue : +value.selectedValue + 12,
+        hour:
+          isAM || +value.selectedValue === 12
+            ? +value.selectedValue
+            : +value.selectedValue + 12,
         minute: selectedTime.minute,
       });
     };
@@ -49,45 +51,50 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     };
 
     return (
-      <Flex gap="sm" ref={ref} {...rest}>
-        <styled.button
-          className={pickerButtonStyle({ variant: "time" })}
-          onClick={() => setIsAM((prev) => !prev)}
-        >
-          {isAM ? "AM" : "PM"}
-        </styled.button>
-        <DropDown
-          trigger={
-            <styled.button className={pickerButtonStyle({ variant: "time" })}>
-              {time.hour}
-            </styled.button>
-          }
-          onChange={handleChangeHour}
-        >
-          {hours.map((hour) => (
-            <DropDownOption
-              key={hour}
-              text={hour.padStart(2, "0")}
-              value={hour}
-            />
-          ))}
-        </DropDown>
-        <DropDown
-          trigger={
-            <styled.button className={pickerButtonStyle({ variant: "time" })}>
-              {time.minute}
-            </styled.button>
-          }
-          onChange={handleChangeMinute}
-        >
-          {minutes.map((minute) => (
-            <DropDownOption
-              key={minute}
-              text={minute.padStart(2, "0")}
-              value={minute}
-            ></DropDownOption>
-          ))}
-        </DropDown>
+      <Flex direction="column" gap="0.75rem">
+        <styled.span color="sub" textStyle="label2">
+          {label}
+        </styled.span>
+        <Flex gap="sm" ref={ref} {...rest}>
+          <styled.button
+            className={pickerButtonStyle({ variant: "time" })}
+            onClick={() => setIsAM((prev) => !prev)}
+          >
+            {isAM ? "AM" : "PM"}
+          </styled.button>
+          <DropDown
+            trigger={
+              <styled.button className={pickerButtonStyle({ variant: "time" })}>
+                {time.hour}
+              </styled.button>
+            }
+            onChange={handleChangeHour}
+          >
+            {hours.map((hour) => (
+              <DropDownOption
+                key={hour}
+                text={hour.padStart(2, "0")}
+                value={hour}
+              />
+            ))}
+          </DropDown>
+          <DropDown
+            trigger={
+              <styled.button className={pickerButtonStyle({ variant: "time" })}>
+                {time.minute}
+              </styled.button>
+            }
+            onChange={handleChangeMinute}
+          >
+            {minutes.map((minute) => (
+              <DropDownOption
+                key={minute}
+                text={minute.padStart(2, "0")}
+                value={minute}
+              ></DropDownOption>
+            ))}
+          </DropDown>
+        </Flex>
       </Flex>
     );
   }

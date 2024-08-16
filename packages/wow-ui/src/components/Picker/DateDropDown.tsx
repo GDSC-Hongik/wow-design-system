@@ -19,10 +19,7 @@ const DateDropDown = ({
 }: DateDropDownProps) => {
   return (
     <Flex direction="column" gap="0.75rem" onClick={onClick}>
-      <styled.span
-        color={selectedValue ? "textBlack" : "sub"}
-        textStyle="label2"
-      >
+      <styled.span color="sub" textStyle="label2">
         {label}
       </styled.span>
       <styled.button
