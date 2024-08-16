@@ -1,6 +1,6 @@
 "use client";
 
-import { css, cva } from "@styled-system/css";
+import { css } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import { forwardRef, useState } from "react";
 import type { PropsBase, PropsSingle } from "react-day-picker";
@@ -8,6 +8,7 @@ import { DayPicker } from "react-day-picker";
 import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
+import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
 
 export interface StringDate {
   year?: string;
@@ -79,14 +80,20 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               month_grid: css({
                 width: "100%",
               }),
-              weekday: buttonStyle({ variant: "date", state: "default" }),
-              day: buttonStyle({ variant: "date", state: "default" }),
+              weekday: pickerButtonStyle({ variant: "date", state: "default" }),
+              day: pickerButtonStyle({ variant: "date", state: "default" }),
               day_button: css({
                 width: "100%",
                 cursor: "pointer",
               }),
-              outside: buttonStyle({ variant: "date", state: "disabled" }),
-              selected: buttonStyle({ variant: "date", state: "selected" }),
+              outside: pickerButtonStyle({
+                variant: "date",
+                state: "disabled",
+              }),
+              selected: pickerButtonStyle({
+                variant: "date",
+                state: "selected",
+              }),
               ...classNames,
             }}
             components={{
@@ -118,7 +125,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                         (week: string, index: number) => (
                           <styled.th
                             key={index}
-                            className={buttonStyle({
+                            className={pickerButtonStyle({
                               variant: "month",
                               state: "default",
                             })}
@@ -140,50 +147,6 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     );
   }
 );
-
-const buttonStyle = cva({
-  base: {
-    paddingX: "xs",
-
-    borderRadius: "sm",
-    textStyle: "body1",
-    textAlign: "center",
-  },
-  variants: {
-    variant: {
-      time: {
-        color: "sub",
-        background: "background",
-        _selected: {
-          borderWidth: 1,
-          borderColor: "textBlack",
-        },
-        _pressed: {
-          borderWidth: 1,
-          background: "monoBackgroundPressed",
-        },
-      },
-      date: {
-        color: "sub",
-        _active: {
-          background: "monoBackgroundPressed",
-        },
-      },
-      month: { color: "sub", cursor: "default" },
-    },
-    state: {
-      default: {},
-      selected: {
-        background: "primary",
-        color: "textWhite",
-      },
-      disabled: {
-        color: "lightDisabled",
-        pointerEvents: "none",
-      },
-    },
-  },
-});
 
 DatePicker.displayName = "DatePicker";
 export default DatePicker;
