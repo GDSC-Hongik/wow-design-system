@@ -32,6 +32,7 @@ export default {
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
     DateDropDown: "./src/components/Picker/DateDropDown",
     DatePicker: "./src/components/Picker/DatePicker",
+    TimePicker: "./src/components/Picker/TimePicker",
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",

@@ -80,6 +80,11 @@
       "require": "./dist/DatePicker.cjs",
       "import": "./dist/DatePicker.js"
     },
+    "./TimePicker": {
+      "types": "./dist/components/Picker/TimePicker.d.ts",
+      "require": "./dist/TimePicker.cjs",
+      "import": "./dist/TimePicker.js"
+    },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",
       "require": "./dist/MultiGroup.cjs",
