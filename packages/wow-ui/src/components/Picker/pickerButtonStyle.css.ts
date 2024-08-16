@@ -2,17 +2,20 @@ import { cva } from "@styled-system/css";
 
 export const pickerButtonStyle = cva({
   base: {
+    width: "2.3125rem",
     paddingX: "xs",
 
     borderRadius: "sm",
     textStyle: "body1",
     textAlign: "center",
+
+    cursor: "pointer",
   },
   variants: {
     variant: {
       time: {
         color: "sub",
-        background: "background",
+        background: "backgroundAlternative",
         _selected: {
           borderWidth: 1,
           borderColor: "textBlack",
