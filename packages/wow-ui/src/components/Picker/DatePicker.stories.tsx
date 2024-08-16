@@ -69,7 +69,8 @@ export const Default = () => {
 };
 
 export const WithTimePicker = () => {
-  const { selected, setSelected, date } = usePickerState();
+  const { selected, setSelected, setTime, time, selectedTime, date } =
+    usePickerState();
 
   return (
     <>
@@ -79,7 +80,12 @@ export const WithTimePicker = () => {
         selected={selected}
         setSelected={setSelected}
       />
-      <TimePicker />
+      <TimePicker
+        label="종료 시간"
+        selectedTime={selectedTime}
+        setTime={setTime}
+        time={time}
+      />
     </>
   );
 };
