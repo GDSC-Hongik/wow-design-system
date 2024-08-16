@@ -4,10 +4,21 @@ interface PickerStateProps {
   initialDate?: Date;
 }
 
+interface TimePicker {
+  time: "AM" | "PM";
+  hour: number;
+  minute: number;
+}
+
 const usePickerState = ({
   initialDate = new Date(),
 }: PickerStateProps = {}) => {
   const [selected, setSelected] = useState<Date | undefined>(initialDate);
+  const [timeValue, setTimeValue] = useState<TimePicker>({
+    time: "AM",
+    hour: 0,
+    minute: 0,
+  });
 
   const year = selected?.getFullYear().toString();
   const month = selected?.getMonth().toString().padStart(2, "0");

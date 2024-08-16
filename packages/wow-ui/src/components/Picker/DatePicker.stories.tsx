@@ -1,6 +1,7 @@
 import type { Meta } from "@storybook/react";
 
 import DatePicker from "@/components/Picker/DatePicker";
+import TimePicker from "@/components/Picker/TimePicker";
 import usePickerState from "@/hooks/usePickerState";
 
 const meta = {
@@ -64,5 +65,21 @@ export const Default = () => {
       selected={selected}
       setSelected={setSelected}
     />
+  );
+};
+
+export const WithTimePicker = () => {
+  const { selected, setSelected, date } = usePickerState();
+
+  return (
+    <>
+      <DatePicker
+        date={date}
+        label="종료 날짜"
+        selected={selected}
+        setSelected={setSelected}
+      />
+      <TimePicker />
+    </>
   );
 };
