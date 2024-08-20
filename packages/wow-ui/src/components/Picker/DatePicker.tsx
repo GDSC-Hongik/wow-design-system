@@ -21,7 +21,7 @@ export type DatePickerProps = Omit<PropsBase, "mode"> &
     label: string;
     selected: Date | undefined;
     setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
-    date: StringDate;
+    strDate: StringDate;
     placeholder?: string;
   };
 
@@ -32,7 +32,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       classNames,
       selected,
       setSelected,
-      date,
+      strDate,
       label,
       placeholder = "YYYY-MM-DD",
       ...rest
@@ -46,7 +46,9 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         <DateDropDown
           label={label}
           placeholder={placeholder}
-          selectedValue={selected && `${date.year}-${date.month}-${date.day}`}
+          selectedValue={
+            selected && `${strDate.year}-${strDate.month}-${strDate.day}`
+          }
           onClick={() => setOpen((prev) => !prev)}
         />
         {open && (

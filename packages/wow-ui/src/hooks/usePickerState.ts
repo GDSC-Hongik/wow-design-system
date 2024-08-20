@@ -5,6 +5,7 @@ interface PickerStateProps {
 }
 
 interface Time {
+  isAM: boolean;
   hour: number;
   minute: number;
 }
@@ -13,7 +14,11 @@ const usePickerState = ({
   initialDate = new Date(),
 }: PickerStateProps = {}) => {
   const [selected, setSelected] = useState<Date | undefined>(initialDate);
-  const [time, setTime] = useState<Time>({ hour: 0, minute: 0 });
+  const [time, setTime] = useState<Time>({
+    isAM: initialDate.getHours() < 12,
+    hour: initialDate.getHours(),
+    minute: initialDate.getMinutes(),
+  });
 
   const handleTimeSelect = (newTime: Time) => {
     setTime(newTime);
@@ -22,7 +27,7 @@ const usePickerState = ({
       selected.getFullYear(),
       selected.getMonth(),
       selected.getDate(),
-      newTime.hour,
+      newTime.isAM ? newTime.hour % 12 : newTime.hour + 12,
       newTime.minute
     );
     setSelected(newDate);
@@ -40,12 +45,13 @@ const usePickerState = ({
     selectedTime: time,
     setSelected,
     setTime: handleTimeSelect,
-    date: {
+    strDate: {
       year,
       month,
       day,
     },
-    time: {
+    strTime: {
+      isAM: time.isAM,
       hour,
       minute,
     },

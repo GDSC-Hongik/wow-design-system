@@ -35,7 +35,7 @@ const meta = {
         },
       },
     },
-    date: {
+    strDate: {
       description: "DatePicker에서 쓰일 날짜 객체를 나타냅니다.",
       table: {
         type: { summary: "Object" },
@@ -56,35 +56,37 @@ const meta = {
 export default meta;
 
 export const Default = () => {
-  const { selected, setSelected, date } = usePickerState();
+  const { selected, setSelected, strDate } = usePickerState();
 
   return (
     <DatePicker
-      date={date}
       label="종료 날짜"
       selected={selected}
       setSelected={setSelected}
+      strDate={strDate}
     />
   );
 };
 
 export const WithTimePicker = () => {
-  const { selected, setSelected, setTime, time, selectedTime, date } =
+  const { selected, setSelected, setTime, strTime, selectedTime, strDate } =
     usePickerState();
+
+  console.log(selected);
 
   return (
     <>
       <DatePicker
-        date={date}
         label="종료 날짜"
         selected={selected}
         setSelected={setSelected}
+        strDate={strDate}
       />
       <TimePicker
         label="종료 시간"
         selectedTime={selectedTime}
         setTime={setTime}
-        time={time}
+        strTime={strTime}
       />
     </>
   );
