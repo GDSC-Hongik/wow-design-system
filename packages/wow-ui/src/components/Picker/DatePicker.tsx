@@ -100,13 +100,33 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               Chevron: (props) => {
                 switch (props.orientation) {
                   case "left":
-                    return <LeftArrow stroke="outline" />;
+                    return (
+                      <LeftArrow
+                        stroke="outline"
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
                   case "right":
-                    return <RightArrow stroke="outline" />;
+                    return (
+                      <RightArrow
+                        stroke="outline"
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
                   case "down":
-                    return <DownArrow stroke="outline" />;
+                    return (
+                      <DownArrow
+                        stroke="outline"
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
                   default:
-                    return <DownArrow stroke="outline" />;
+                    return (
+                      <DownArrow
+                        stroke="outline"
+                        style={{ cursor: "pointer" }}
+                      />
+                    );
                 }
               },
               MonthCaption: (props) => {
