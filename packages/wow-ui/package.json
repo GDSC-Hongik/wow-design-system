@@ -75,10 +75,15 @@
       "require": "./dist/DateDropDown.cjs",
       "import": "./dist/DateDropDown.js"
     },
-    "./DatePicker": {
-      "types": "./dist/components/Picker/DatePicker.d.ts",
-      "require": "./dist/DatePicker.cjs",
-      "import": "./dist/DatePicker.js"
+    "./RangeDatePicker": {
+      "types": "./dist/components/Picker/RangeDatePicker.d.ts",
+      "require": "./dist/RangeDatePicker.cjs",
+      "import": "./dist/RangeDatePicker.js"
+    },
+    "./SingleDatePicker": {
+      "types": "./dist/components/Picker/SingleDatePicker.d.ts",
+      "require": "./dist/SingleDatePicker.cjs",
+      "import": "./dist/SingleDatePicker.js"
     },
     "./TimePicker": {
       "types": "./dist/components/Picker/TimePicker.d.ts",
