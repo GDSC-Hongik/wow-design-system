@@ -122,6 +122,8 @@ export const TimeRange = () => {
     strTime: strEnd,
   } = usePickerTimeState();
 
+  console.log(start, end);
+
   return (
     <Flex align="flex-end" gap="lg">
       <TimePicker
