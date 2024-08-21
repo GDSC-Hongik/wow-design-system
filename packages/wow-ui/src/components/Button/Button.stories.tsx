@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import Link from "next/link";
 import { Help } from "wowds-icons";
 
 import Button from "@/components/Button";
@@ -138,21 +139,21 @@ export const Primary: Story = {
   },
 };
 
-export const LargeSolid: Story = {
+export const LargeSolidButton: Story = {
   args: {
     children: "버튼",
     variant: "solid",
   },
 };
 
-export const LargeOutline: Story = {
+export const LargeOutlineButton: Story = {
   args: {
     children: "버튼",
     variant: "outline",
   },
 };
 
-export const SmallSolid: Story = {
+export const SmallSolidButton: Story = {
   args: {
     children: "버튼",
     size: "sm",
@@ -160,7 +161,7 @@ export const SmallSolid: Story = {
   },
 };
 
-export const SmallOutline: Story = {
+export const SmallOutlineButton: Story = {
   args: {
     children: "버튼",
     size: "sm",
@@ -168,7 +169,7 @@ export const SmallOutline: Story = {
   },
 };
 
-export const SmallSub: Story = {
+export const SmallSubButton: Story = {
   args: {
     children: "버튼",
     size: "sm",
@@ -176,7 +177,7 @@ export const SmallSub: Story = {
   },
 };
 
-export const LargeWithIcon: Story = {
+export const LargeButtonWithIcon: Story = {
   args: {
     children: "버튼",
     variant: "solid",
@@ -184,7 +185,7 @@ export const LargeWithIcon: Story = {
   },
 };
 
-export const SmallWithIcon: Story = {
+export const SmallButtonWithIcon: Story = {
   args: {
     children: "버튼",
     size: "sm",
@@ -193,11 +194,19 @@ export const SmallWithIcon: Story = {
   },
 };
 
-export const LargeWithSubText: Story = {
+export const LargeButtonWithSubText: Story = {
   args: {
     children: "버튼",
     variant: "solid",
     subText: "최종 수정 일시 : 2024년 5월 23일 23:11",
     icon: <Help />,
+  },
+};
+
+export const LinkButton: Story = {
+  args: {
+    children: "버튼",
+    as: Link,
+    href: "/",
   },
 };

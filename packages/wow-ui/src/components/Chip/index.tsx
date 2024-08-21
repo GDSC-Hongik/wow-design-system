@@ -66,7 +66,7 @@ const ChipLabel = ({
 const Chip: ChipComponent & { displayName?: string } = forwardRef(
   <T extends ButtonElementType = "button">(
     {
-      as,
+      asProp,
       label,
       clickable,
       onKeyDown,
@@ -78,7 +78,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
     }: ChipProps<T>,
     ref: any
   ) => {
-    const Component = (as || "button") as React.ElementType;
+    const Component = (asProp || "button") as React.ElementType;
     const [ischecked, setIsChecked] = useState(() =>
       checkedProp ? checkedProp : defaultChecked
     );
