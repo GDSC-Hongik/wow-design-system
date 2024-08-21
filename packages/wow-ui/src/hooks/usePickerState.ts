@@ -1,33 +1,28 @@
 import { useState } from "react";
 
-interface PickerStateProps {
-  initialDate?: Date;
-}
-
 interface Time {
   isAM: boolean;
   hour: number;
   minute: number;
 }
 
-const usePickerState = ({
-  initialDate = new Date(),
-}: PickerStateProps = {}) => {
+const usePickerState = (initialDate?: Date) => {
   const [selected, setSelected] = useState<Date | undefined>(initialDate);
   const [time, setTime] = useState<Time>({
-    isAM: initialDate.getHours() < 12,
-    hour: initialDate.getHours(),
-    minute: initialDate.getMinutes(),
+    isAM: initialDate ? initialDate.getHours() < 12 : true,
+    hour: initialDate ? initialDate.getHours() % 12 : 12,
+    minute: initialDate ? initialDate.getMinutes() : 0,
   });
 
   const handleTimeSelect = (newTime: Time) => {
     setTime(newTime);
+    console.log("newTime", newTime);
     if (!selected) return;
     const newDate = new Date(
       selected.getFullYear(),
       selected.getMonth(),
       selected.getDate(),
-      newTime.isAM ? newTime.hour % 12 : newTime.hour + 12,
+      newTime.isAM ? newTime.hour % 12 : (newTime.hour % 12) + 12,
       newTime.minute
     );
     setSelected(newDate);

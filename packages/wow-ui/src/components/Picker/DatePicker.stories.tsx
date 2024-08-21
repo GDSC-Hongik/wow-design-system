@@ -70,8 +70,7 @@ export const Default = () => {
 
 export const WithTimePicker = () => {
   const { selected, setSelected, setTime, strTime, selectedTime, strDate } =
-    usePickerState();
-
+    usePickerState(new Date());
   console.log(selected);
 
   return (
