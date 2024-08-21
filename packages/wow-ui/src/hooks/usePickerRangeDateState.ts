@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 
-const usePickerRangeState = (initialDate?: DateRange) => {
+const usePickerRangeDateState = (initialDate?: DateRange) => {
   const resetDateTime = (date?: Date) => {
     const prevDate = date ? date : new Date();
     const newDate = new Date(
@@ -37,4 +37,4 @@ const usePickerRangeState = (initialDate?: DateRange) => {
   };
 };
 
-export default usePickerRangeState;
+export default usePickerRangeDateState;

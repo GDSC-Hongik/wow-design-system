@@ -1,10 +1,12 @@
 import type { Meta } from "@storybook/react";
+import { Flex } from "@styled-system/jsx";
 
 import RangeDatePicker from "@/components/Picker/RangeDatePicker";
 import DatePicker from "@/components/Picker/SingleDatePicker";
 import TimePicker from "@/components/Picker/TimePicker";
-import usePickerRangeState from "@/hooks/usePickerRangeState";
+import usePickerRangeState from "@/hooks/usePickerRangeDateState";
 import usePickerState from "@/hooks/usePickerState";
+import usePickerTimeState from "@/hooks/usePickerTimeState";
 
 const meta = {
   title: "UI/DatePicker",
@@ -60,6 +62,7 @@ export default meta;
 export const Default = () => {
   const { selected, setSelected, strDate } = usePickerState();
 
+  console.log(selected);
   return (
     <DatePicker
       label="종료 날짜"
@@ -74,8 +77,10 @@ export const WithTimePicker = () => {
   const { selected, setSelected, setTime, strTime, selectedTime, strDate } =
     usePickerState(new Date());
 
+  console.log(selected);
+
   return (
-    <>
+    <Flex>
       <DatePicker
         label="종료 날짜"
         selected={selected}
@@ -88,18 +93,45 @@ export const WithTimePicker = () => {
         setTime={setTime}
         strTime={strTime}
       />
-    </>
+    </Flex>
   );
 };
 
-export const Range = () => {
+export const DateRange = () => {
   const { selected, setSelected, strDate } = usePickerRangeState();
+  console.log(selected);
   return (
     <RangeDatePicker
-      label="종료 날짜"
+      label="스터디 신청 기간"
       selected={selected}
       strDate={strDate}
       onSelect={setSelected}
     />
+  );
+};
+
+export const TimeRange = () => {
+  const {
+    selectedTime: start,
+    setTime: setStart,
+    strTime: strStart,
+  } = usePickerTimeState();
+  const {
+    selectedTime: end,
+    setTime: setEnd,
+    strTime: strEnd,
+  } = usePickerTimeState();
+
+  return (
+    <Flex align="flex-end" gap="lg">
+      <TimePicker
+        label="스터디 시간"
+        selectedTime={start}
+        setTime={setStart}
+        strTime={strStart}
+      />
+      <span>~</span>
+      <TimePicker selectedTime={end} setTime={setEnd} strTime={strEnd} />
+    </Flex>
   );
 };

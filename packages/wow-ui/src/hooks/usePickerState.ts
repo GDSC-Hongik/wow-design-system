@@ -23,9 +23,9 @@ const usePickerState = (initialDate?: Date) => {
     resetDateTime(initialDate)
   );
   const [time, setTime] = useState<Time>({
-    isAM: initialDate ? initialDate.getHours() < 12 : true,
-    hour: initialDate ? initialDate.getHours() % 12 : 12,
-    minute: initialDate ? initialDate.getMinutes() : 0,
+    isAM: selected ? selected.getHours() < 12 : true,
+    hour: selected ? selected.getHours() % 12 : 12,
+    minute: selected ? selected.getMinutes() : 0,
   });
 
   const handleTimeSelect = (newTime: Time) => {
