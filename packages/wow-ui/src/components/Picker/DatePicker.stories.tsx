@@ -7,7 +7,6 @@ import PickerGroup from "@/components/Picker/PickerGroup";
 import RangeDatePicker from "@/components/Picker/RangeDatePicker";
 import DatePicker from "@/components/Picker/SingleDatePicker";
 import TimePicker from "@/components/Picker/TimePicker";
-import usePickerRangeState from "@/hooks/usePickerRangeDateState";
 
 const meta = {
   title: "UI/DatePicker",
@@ -54,6 +53,14 @@ const meta = {
 export default meta;
 
 export const Default = () => {
+  const [selected, setSelected] = useState<Date | undefined>();
+  console.log(selected);
+  return (
+    <DatePicker label="종료 날짜" selected={selected} onSelect={setSelected} />
+  );
+};
+
+export const WithInitialDate = () => {
   const [selected, setSelected] = useState<Date | undefined>(new Date());
   console.log(selected);
   return (
@@ -74,7 +81,10 @@ export const WithTimePicker = () => {
 };
 
 export const DateRange = () => {
-  const { selected, setSelected } = usePickerRangeState();
+  // DateRange 타입
+  const [selected, setSelected] = useState<
+    { from: Date | undefined; to?: Date | undefined } | undefined
+  >();
   console.log(selected);
   return (
     <RangeDatePicker
@@ -92,7 +102,7 @@ export const TimeRange = () => {
   console.log(start, end);
 
   return (
-    <Flex align="flex-end" gap="lg">
+    <Flex align="center" gap="lg">
       <TimePicker selectedTime={start} setSelectedTime={setStart} />
       <span>~</span>
       <TimePicker selectedTime={end} setSelectedTime={setEnd} />
