@@ -75,6 +75,11 @@
       "require": "./dist/DateDropDown.cjs",
       "import": "./dist/DateDropDown.js"
     },
+    "./PickerGroup": {
+      "types": "./dist/components/Picker/PickerGroup.d.ts",
+      "require": "./dist/PickerGroup.cjs",
+      "import": "./dist/PickerGroup.js"
+    },
     "./RangeDatePicker": {
       "types": "./dist/components/Picker/RangeDatePicker.d.ts",
       "require": "./dist/RangeDatePicker.cjs",
