@@ -7,7 +7,21 @@ interface Time {
 }
 
 const usePickerState = (initialDate?: Date) => {
-  const [selected, setSelected] = useState<Date | undefined>(initialDate);
+  const resetDateTime = (date?: Date) => {
+    const prevDate = date ? date : new Date();
+    const newDate = new Date(
+      prevDate.getFullYear(),
+      prevDate.getMonth(),
+      prevDate.getDate(),
+      0,
+      0
+    );
+    return newDate;
+  };
+
+  const [selected, setSelected] = useState<Date | undefined>(
+    resetDateTime(initialDate)
+  );
   const [time, setTime] = useState<Time>({
     isAM: initialDate ? initialDate.getHours() < 12 : true,
     hour: initialDate ? initialDate.getHours() % 12 : 12,
@@ -16,7 +30,6 @@ const usePickerState = (initialDate?: Date) => {
 
   const handleTimeSelect = (newTime: Time) => {
     setTime(newTime);
-    console.log("newTime", newTime);
     if (!selected) return;
     const newDate = new Date(
       selected.getFullYear(),

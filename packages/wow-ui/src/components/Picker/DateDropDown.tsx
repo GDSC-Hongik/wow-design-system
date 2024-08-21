@@ -4,14 +4,26 @@ import { cva } from "@styled-system/css";
 import { Flex, styled } from "@styled-system/jsx";
 import { Calendar } from "wowds-icons";
 
-interface DateDropDownProps {
+interface DateDropDownPropsBase {
   label: string;
-  selectedValue?: string;
   placeholder?: string;
   onClick: () => void;
 }
 
+interface SingleDateDropDownProps extends DateDropDownPropsBase {
+  mode: "single";
+  selectedValue?: string;
+}
+
+interface RangeDateDropDownProps extends DateDropDownPropsBase {
+  mode: "range";
+  selectedValue?: { start: string; end: string };
+}
+
+type DateDropDownProps = SingleDateDropDownProps | RangeDateDropDownProps;
+
 const DateDropDown = ({
+  mode,
   placeholder,
   label,
   selectedValue,
@@ -37,8 +49,21 @@ const DateDropDown = ({
             type: selectedValue ? "selected" : "default",
           })}
         >
-          {selectedValue ? selectedValue : placeholder}
+          {selectedValue
+            ? mode === "range"
+              ? selectedValue.start
+              : selectedValue
+            : placeholder}
         </styled.div>
+        {mode === "range" && (
+          <styled.div
+            className={placeholderStyle({
+              type: selectedValue ? "selected" : "default",
+            })}
+          >
+            {selectedValue ? `~ ${selectedValue.end}` : placeholder}
+          </styled.div>
+        )}
         <Calendar stroke="outline" />
       </styled.button>
     </Flex>

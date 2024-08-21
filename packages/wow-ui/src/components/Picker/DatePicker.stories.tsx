@@ -1,7 +1,9 @@
 import type { Meta } from "@storybook/react";
 
-import DatePicker from "@/components/Picker/DatePicker";
+import RangeDatePicker from "@/components/Picker/RangeDatePicker";
+import DatePicker from "@/components/Picker/SingleDatePicker";
 import TimePicker from "@/components/Picker/TimePicker";
+import usePickerRangeState from "@/hooks/usePickerRangeState";
 import usePickerState from "@/hooks/usePickerState";
 
 const meta = {
@@ -26,7 +28,7 @@ const meta = {
         defaultValue: { summary: undefined },
       },
     },
-    setSelected: {
+    onSelect: {
       description: "DatePicker의 날짜를 선택할 수 있는 함수를 나타냅니다.",
       table: {
         type: { summary: "function" },
@@ -62,8 +64,8 @@ export const Default = () => {
     <DatePicker
       label="종료 날짜"
       selected={selected}
-      setSelected={setSelected}
       strDate={strDate}
+      onSelect={setSelected}
     />
   );
 };
@@ -71,15 +73,14 @@ export const Default = () => {
 export const WithTimePicker = () => {
   const { selected, setSelected, setTime, strTime, selectedTime, strDate } =
     usePickerState(new Date());
-  console.log(selected);
 
   return (
     <>
       <DatePicker
         label="종료 날짜"
         selected={selected}
-        setSelected={setSelected}
         strDate={strDate}
+        onSelect={setSelected}
       />
       <TimePicker
         label="종료 시간"
@@ -88,5 +89,17 @@ export const WithTimePicker = () => {
         strTime={strTime}
       />
     </>
+  );
+};
+
+export const Range = () => {
+  const { selected, setSelected, strDate } = usePickerRangeState();
+  return (
+    <RangeDatePicker
+      label="종료 날짜"
+      selected={selected}
+      strDate={strDate}
+      onSelect={setSelected}
+    />
   );
 };

@@ -19,19 +19,17 @@ export interface StringDate {
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsSingle, "mode"> & {
     label: string;
-    selected: Date | undefined;
-    setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
     strDate: StringDate;
     placeholder?: string;
   };
 
-const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
+const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (
     {
       className,
       classNames,
       selected,
-      setSelected,
+      onSelect,
       strDate,
       label,
       placeholder = "YYYY-MM-DD",
@@ -45,6 +43,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">
         <DateDropDown
           label={label}
+          mode="single"
           placeholder={placeholder}
           selectedValue={
             selected && `${strDate.year}-${strDate.month}-${strDate.day}`
@@ -161,7 +160,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 );
               },
             }}
-            onSelect={setSelected}
+            onSelect={onSelect}
             {...rest}
           />
         )}
@@ -170,5 +169,5 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   }
 );
 
-DatePicker.displayName = "DatePicker";
-export default DatePicker;
+SingleDatePicker.displayName = "SingleDatePicker";
+export default SingleDatePicker;

@@ -43,6 +43,12 @@ export const pickerButtonStyle = cva({
         color: "lightDisabled",
         pointerEvents: "none",
       },
+      range: {
+        background: "blueBackgroundPressed",
+        color: "sub",
+
+        borderRadius: 0,
+      },
     },
   },
 });
