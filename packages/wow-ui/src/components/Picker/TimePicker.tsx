@@ -4,27 +4,28 @@ import { forwardRef, useMemo, useState } from "react";
 import DropDown from "@/components/DropDown";
 import DropDownOption from "@/components/DropDown/DropDownOption";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
+import type {
+  PickerContextProps,
+  Time,
+} from "@/components/Picker/PickerContext";
+import { usePicker } from "@/components/Picker/PickerContext";
 
-interface Time {
-  isAM: boolean;
-  hour: number;
-  minute: number;
-}
-
-export interface StringTime {
-  hour: string;
-  minute: string;
-}
-
-interface TimePickerProps {
+interface TimePickerProps
+  extends Partial<
+    Pick<PickerContextProps, "selectedTime" | "setSelectedTime">
+  > {
   label?: string;
-  selectedTime: Time;
-  setTime: (time: Time) => void;
-  strTime: StringTime;
 }
 
 const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
-  ({ setTime, selectedTime, strTime, label, ...rest }, ref) => {
+  (
+    {
+      label,
+      selectedTime: propSelectedTime,
+      setSelectedTime: propSetSelectedTime,
+    },
+    ref
+  ) => {
     const hours = useMemo(
       () => new Array(12).fill(0).map((_, i) => (i + 1).toString()),
       []
@@ -34,10 +35,19 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       []
     );
 
+    const context = usePicker();
+    const selectedTime = context?.selectedTime ||
+      propSelectedTime! || {
+        isAM: true,
+        hour: 12,
+        minute: 0,
+      };
+    const setSelectedTime = context?.setSelectedTime || propSetSelectedTime!;
+
     const [isAM, setIsAM] = useState<boolean>(selectedTime.isAM);
 
     const handleClickAMOrPM = () => {
-      setTime({
+      setSelectedTime({
         isAM: !isAM,
         hour: selectedTime.hour,
         minute: selectedTime.minute,
@@ -49,7 +59,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       selectedValue: string;
       selectedText: React.ReactNode;
     }) => {
-      setTime({
+      setSelectedTime({
         isAM: isAM,
         hour: +value.selectedValue,
         minute: selectedTime.minute,
@@ -60,19 +70,41 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       selectedValue: string;
       selectedText: React.ReactNode;
     }) => {
-      setTime({
+      setSelectedTime({
         isAM: isAM,
         hour: selectedTime.hour,
         minute: +value.selectedValue,
       });
     };
 
+    const changeNumberToStirng = (number: number) => {
+      return number.toString().padStart(2, "0");
+    };
+
+    const changeTimeToString = (time: Time) => {
+      const transformedHour =
+        time.hour === 0
+          ? time.hour + 12
+          : time.hour > 12
+            ? time.hour - 12
+            : time.hour;
+
+      const hour = changeNumberToStirng(transformedHour);
+      const minute = changeNumberToStirng(time.minute);
+
+      return { hour, minute };
+    };
+
+    const strTime = changeTimeToString(selectedTime);
+
     return (
       <Flex direction="column" gap="0.75rem">
-        <styled.span color="sub" textStyle="label2">
-          {label}
-        </styled.span>
-        <Flex gap="sm" ref={ref} {...rest}>
+        {label && (
+          <styled.span color="sub" textStyle="label2">
+            {label}
+          </styled.span>
+        )}
+        <Flex alignItems="center" gap="sm" paddingY="xs" ref={ref}>
           <styled.button
             className={pickerButtonStyle({ variant: "time" })}
             onClick={handleClickAMOrPM}

@@ -9,17 +9,11 @@ import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
-
-export interface StringDate {
-  year?: string;
-  month?: string;
-  day?: string;
-}
+import { changeDateToString } from "@/utils/changeDateToString";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsRange, "mode"> & {
     label: string;
-    strDate?: { from: StringDate; to: StringDate };
     placeholder?: string;
   };
 
@@ -30,7 +24,6 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       classNames,
       selected,
       onSelect,
-      strDate,
       label,
       placeholder = "YYYY-MM-DD",
       ...rest
@@ -38,6 +31,10 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     ref
   ) => {
     const [open, setOpen] = useState<boolean>(false);
+    const strDate = selected && {
+      from: selected.from && changeDateToString(selected.from),
+      to: selected.to && changeDateToString(selected?.to),
+    };
 
     return (
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">
@@ -47,8 +44,12 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           placeholder={placeholder}
           selectedValue={
             strDate && {
-              start: `${strDate.from.year}-${strDate.from.month}-${strDate.from.day}`,
-              end: `${strDate.to.year}-${strDate.to.month}-${strDate.to.day}`,
+              start:
+                strDate.from &&
+                `${strDate.from.year}-${strDate.from.month}-${strDate.from.day}`,
+              end:
+                strDate.to &&
+                `${strDate.to.year}-${strDate.to.month}-${strDate.to.day}`,
             }
           }
           onClick={() => setOpen((prev) => !prev)}

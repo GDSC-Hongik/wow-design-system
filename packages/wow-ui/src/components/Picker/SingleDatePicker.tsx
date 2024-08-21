@@ -9,17 +9,11 @@ import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
-
-export interface StringDate {
-  year?: string;
-  month?: string;
-  day?: string;
-}
+import { usePicker } from "@/components/Picker/PickerContext";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsSingle, "mode"> & {
-    label: string;
-    strDate: StringDate;
+    label?: string;
     placeholder?: string;
   };
 
@@ -28,9 +22,8 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     {
       className,
       classNames,
-      selected,
-      onSelect,
-      strDate,
+      selected: propSelected,
+      onSelect: propOnSelect,
       label,
       placeholder = "YYYY-MM-DD",
       ...rest
@@ -39,15 +32,22 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   ) => {
     const [open, setOpen] = useState<boolean>(false);
 
+    const context = usePicker();
+    const selected = context?.selectedDate || propSelected!;
+    const onSelect = context?.setSelectedDate || propOnSelect!;
+
+    const year = selected?.getFullYear().toString();
+    const month =
+      selected && (selected.getMonth() + 1).toString().padStart(2, "0");
+    const day = selected?.getDate().toString().padStart(2, "0");
+
     return (
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">
         <DateDropDown
           label={label}
           mode="single"
           placeholder={placeholder}
-          selectedValue={
-            selected && `${strDate.year}-${strDate.month}-${strDate.day}`
-          }
+          selectedValue={selected && `${year}-${month}-${day}`}
           onClick={() => setOpen((prev) => !prev)}
         />
         {open && (

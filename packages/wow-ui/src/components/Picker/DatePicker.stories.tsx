@@ -1,12 +1,13 @@
 import type { Meta } from "@storybook/react";
 import { Flex } from "@styled-system/jsx";
+import { useState } from "react";
 
+import type { Time } from "@/components/Picker/PickerContext";
+import PickerGroup from "@/components/Picker/PickerGroup";
 import RangeDatePicker from "@/components/Picker/RangeDatePicker";
 import DatePicker from "@/components/Picker/SingleDatePicker";
 import TimePicker from "@/components/Picker/TimePicker";
 import usePickerRangeState from "@/hooks/usePickerRangeDateState";
-import usePickerState from "@/hooks/usePickerState";
-import usePickerTimeState from "@/hooks/usePickerTimeState";
 
 const meta = {
   title: "UI/DatePicker",
@@ -39,13 +40,6 @@ const meta = {
         },
       },
     },
-    strDate: {
-      description: "DatePicker에서 쓰일 날짜 객체를 나타냅니다.",
-      table: {
-        type: { summary: "Object" },
-        defaultValue: { summary: undefined },
-      },
-    },
     placeholder: {
       description:
         "DatePicker의 드롭다운에 들어갈 placeholder 텍스트를 나타냅니다.",
@@ -60,80 +54,48 @@ const meta = {
 export default meta;
 
 export const Default = () => {
-  const { selected, setSelected, strDate } = usePickerState();
-
+  const [selected, setSelected] = useState<Date | undefined>(new Date());
   console.log(selected);
   return (
-    <DatePicker
-      label="종료 날짜"
-      selected={selected}
-      strDate={strDate}
-      onSelect={setSelected}
-    />
+    <DatePicker label="종료 날짜" selected={selected} onSelect={setSelected} />
   );
 };
 
 export const WithTimePicker = () => {
-  const { selected, setSelected, setTime, strTime, selectedTime, strDate } =
-    usePickerState(new Date());
-
+  const [selected, setSelected] = useState<Date | undefined>(new Date());
   console.log(selected);
 
   return (
-    <Flex>
-      <DatePicker
-        label="종료 날짜"
-        selected={selected}
-        strDate={strDate}
-        onSelect={setSelected}
-      />
-      <TimePicker
-        label="종료 시간"
-        selectedTime={selectedTime}
-        setTime={setTime}
-        strTime={strTime}
-      />
-    </Flex>
+    <PickerGroup selectedDate={selected} setSelectedDate={setSelected}>
+      <DatePicker label="종료 날짜" />
+      <TimePicker label="종료 시간" />
+    </PickerGroup>
   );
 };
 
 export const DateRange = () => {
-  const { selected, setSelected, strDate } = usePickerRangeState();
+  const { selected, setSelected } = usePickerRangeState();
   console.log(selected);
   return (
     <RangeDatePicker
       label="스터디 신청 기간"
       selected={selected}
-      strDate={strDate}
       onSelect={setSelected}
     />
   );
 };
 
 export const TimeRange = () => {
-  const {
-    selectedTime: start,
-    setTime: setStart,
-    strTime: strStart,
-  } = usePickerTimeState();
-  const {
-    selectedTime: end,
-    setTime: setEnd,
-    strTime: strEnd,
-  } = usePickerTimeState();
+  const [start, setStart] = useState<Time>();
+  const [end, setEnd] = useState<Time>();
 
   console.log(start, end);
 
   return (
     <Flex align="flex-end" gap="lg">
-      <TimePicker
-        label="스터디 시간"
-        selectedTime={start}
-        setTime={setStart}
-        strTime={strStart}
-      />
+      <TimePicker selectedTime={start} setSelectedTime={setStart} />
       <span>~</span>
-      <TimePicker selectedTime={end} setTime={setEnd} strTime={strEnd} />
+      <TimePicker selectedTime={end} setSelectedTime={setEnd} />
     </Flex>
   );
 };
