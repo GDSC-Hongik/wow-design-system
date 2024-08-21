@@ -42,7 +42,8 @@ const usePickerState = (initialDate?: Date) => {
   };
 
   const year = selected?.getFullYear().toString();
-  const month = selected?.getMonth().toString().padStart(2, "0");
+  const month =
+    selected && (selected.getMonth() + 1).toString().padStart(2, "0");
   const day = selected?.getDate().toString().padStart(2, "0");
   const transformedHour = time.hour > 12 ? time.hour - 12 : time.hour;
   const hour = transformedHour.toString().padStart(2, "0");

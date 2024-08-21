@@ -16,7 +16,7 @@ const usePickerRangeDateState = (initialDate?: DateRange) => {
 
   const dateToStr = (date?: Date) => {
     const year = date && date.getFullYear().toString();
-    const month = date && date.getMonth().toString().padStart(2, "0");
+    const month = date && (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date && date.getDate().toString().padStart(2, "0");
 
     return { year, month, day };
