@@ -10,6 +10,7 @@ import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 import DateDropDown from "@/components/Picker/DateDropDown";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
 import { usePicker } from "@/components/Picker/PickerContext";
+import { changeDateToString } from "@/utils/changeDateToString";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsSingle, "mode"> & {
@@ -36,10 +37,7 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const selected = context?.selectedDate || propSelected!;
     const onSelect = context?.setSelectedDate || propOnSelect!;
 
-    const year = selected?.getFullYear().toString();
-    const month =
-      selected && (selected.getMonth() + 1).toString().padStart(2, "0");
-    const day = selected?.getDate().toString().padStart(2, "0");
+    const { year, month, day } = changeDateToString(selected);
 
     return (
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">
