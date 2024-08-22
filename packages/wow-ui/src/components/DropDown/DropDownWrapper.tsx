@@ -7,18 +7,16 @@ import useClickOutside from "@/hooks/useClickOutside";
 import { useDropDownContext } from "./context/DropDownContext";
 
 interface DropDownWrapperProps extends PropsWithChildren {
-  dropdownId: string;
   style?: DropDownProps["style"];
   className?: DropDownProps["className"];
   hasCustomTrigger?: boolean;
 }
 export const DropDownWrapper = ({
   children,
-  dropdownId,
   hasCustomTrigger,
   ...rest
 }: DropDownWrapperProps) => {
-  const { setOpen } = useDropDownContext();
+  const { setOpen, dropdownId } = useDropDownContext();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 

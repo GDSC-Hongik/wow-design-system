@@ -8,12 +8,14 @@ interface DropDownStateProps {
     selectedValue: string;
     selectedText: ReactNode;
   }) => void;
+  dropdownId?: string;
 }
 
 const useDropDownState = ({
   value,
   defaultValue,
   onChange,
+  dropdownId,
 }: DropDownStateProps) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [open, setOpen] = useState(false);
@@ -45,6 +47,7 @@ const useDropDownState = ({
     focusedValue,
     setFocusedValue,
     handleSelect,
+    dropdownId,
   };
 };
 

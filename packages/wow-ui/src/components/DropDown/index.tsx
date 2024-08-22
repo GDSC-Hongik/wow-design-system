@@ -90,25 +90,21 @@ const DropDown = ({
   onChange,
   ...rest
 }: DropDownProps) => {
+  const defaultId = useId();
+  const dropdownId = id ?? `dropdown-${defaultId}`;
+
   const dropdownState = useDropDownState({
     value,
     defaultValue,
     onChange,
+    dropdownId,
   });
-
-  const defaultId = useId();
-  const dropdownId = id ?? `dropdown-${defaultId}`;
 
   return (
     <DropDownContext.Provider value={dropdownState}>
       <CollectionProvider>
-        <DropDownWrapper
-          dropdownId={dropdownId}
-          hasCustomTrigger={!!trigger}
-          {...rest}
-        >
+        <DropDownWrapper hasCustomTrigger={!!trigger} {...rest}>
           <DropDownTrigger
-            dropdownId={dropdownId}
             label={label}
             placeholder={placeholder}
             trigger={trigger}
