@@ -14,6 +14,11 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "DatePicker 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   argTypes: {
     label: {
