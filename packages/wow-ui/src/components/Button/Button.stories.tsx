@@ -206,7 +206,7 @@ export const LargeButtonWithSubText: Story = {
 export const LinkButton: Story = {
   args: {
     children: "버튼",
-    as: Link,
+    asProp: Link,
     href: "/",
   },
 };
