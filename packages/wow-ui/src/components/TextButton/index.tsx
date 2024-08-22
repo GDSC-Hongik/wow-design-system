@@ -53,7 +53,7 @@ type ButtonComponent = <C extends ElementType = "button">(
 const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
   <C extends ElementType = "button">(
     {
-      as,
+      asProp,
       text,
       disabled = false,
       size = "lg",
@@ -66,7 +66,7 @@ const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
     }: ButtonProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
-    const Component = as || "button";
+    const Component = asProp || "button";
 
     const {
       pressed,

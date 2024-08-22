@@ -26,7 +26,7 @@ const meta = {
         type: "text",
       },
     },
-    as: {
+    asProp: {
       description: "버튼을 구성할 HTML 태그의 종류를 나타냅니다.",
       table: {
         type: { summary: "ElementType" },
