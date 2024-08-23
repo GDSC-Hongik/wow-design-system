@@ -5,7 +5,6 @@ import { styled } from "@styled-system/jsx";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
 
-import useButton from "@/hooks/useButton";
 import type {
   PolymorphicComponentProps,
   PolymorphicComponentPropsWithRef,
@@ -18,10 +17,6 @@ import type {
  * @param {string} text - 텍스트 버튼의 라벨.
  * @param {boolean} [disabled] - 텍스트 버튼이 비활성화되어 있는지 여부.
  * @param {"lg" | "sm"} [size] - 텍스트 버튼의 크기.
- * @param {() => void} [onKeyDown] - 텍스트 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
- * @param {() => void} [onMouseLeave] - 텍스트 버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트.
- * @param {() => void} [onPointerDown] - 텍스트 버튼에 포커스 된 상태에서 마우스 또는 터치로 누르고 있는 동안 동작할 이벤트.
- * @param {() => void} [onPointerUp] - 텍스트 버튼에 포커스 된 상태에서 마우스 또는 터치를 뗐을 때 동작할 이벤트.
  * @param {CSSProperties} [style] - 텍스트 버튼의 커스텀 스타일.
  * @param {string} [className] - 텍스트 버튼에 전달하는 커스텀 클래스.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
@@ -32,11 +27,6 @@ export interface CustomButtonProps {
   text: string;
   disabled?: boolean;
   size?: "lg" | "sm";
-  onKeyUp?: () => void;
-  onKeyDown?: () => void;
-  onMouseLeave?: () => void;
-  onPointerDown?: () => void;
-  onPointerUp?: () => void;
   style?: CSSProperties;
   className?: string;
 }
@@ -52,50 +42,17 @@ type ButtonComponent = <C extends ElementType = "button">(
 
 const TextButton: ButtonComponent & { displayName?: string } = forwardRef(
   <C extends ElementType = "button">(
-    {
-      asProp,
-      text,
-      disabled = false,
-      size = "lg",
-      onKeyUp,
-      onKeyDown,
-      onMouseLeave,
-      onPointerDown,
-      onPointerUp,
-      ...rest
-    }: ButtonProps<C>,
+    { asProp, text, disabled = false, size = "lg", ...rest }: ButtonProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = asProp || "button";
 
-    const {
-      pressed,
-      handleKeyDown,
-      handleKeyUp,
-      handlePointerDown,
-      handlePointerUp,
-      handleMouseLeave,
-    } = useButton({
-      disabled,
-      onKeyUp,
-      onKeyDown,
-      onMouseLeave,
-      onPointerDown,
-      onPointerUp,
-    });
-
     return (
       <Component
         aria-disabled={disabled}
-        aria-pressed={pressed}
         className={TextButtonStyle}
         disabled={disabled}
         ref={ref}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        onMouseLeave={handleMouseLeave}
-        onPointerDown={handlePointerDown}
-        onPointerUp={handlePointerUp}
         {...rest}
       >
         <styled.span
@@ -124,7 +81,7 @@ const TextButtonStyle = css({
   _hover: {
     color: "textBlack",
   },
-  _pressed: {
+  _active: {
     background: "monoBackgroundPressed",
     color: "sub",
   },
