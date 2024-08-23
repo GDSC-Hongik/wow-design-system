@@ -19,7 +19,7 @@ const meta = {
         type: "text",
       },
     },
-    as: {
+    asProp: {
       description: "텍스트 버튼을 구성할 HTML 태그의 종류를 나타냅니다.",
       table: {
         type: { summary: "ElementType" },
@@ -46,46 +46,6 @@ const meta = {
         type: "radio",
         options: ["lg", "sm"],
       },
-    },
-    onKeyDown: {
-      description:
-        "텍스트 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onKeyUp: {
-      description:
-        "텍스트 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onMouseLeave: {
-      description:
-        "텍스트 버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onPointerDown: {
-      description:
-        "텍스트 버튼에 포커스 된 상태에서 마우스 또는 터치로 누르고 있는 동안 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onPointerUp: {
-      description:
-        "텍스트 버튼에 포커스 된 상태에서 마우스 또는 터치를 뗐을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
     },
     style: {
       description: "텍스트 버튼의 커스텀 스타일을 나타냅니다.",

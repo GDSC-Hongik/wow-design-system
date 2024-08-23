@@ -6,7 +6,7 @@ import Chip from "@/components/Chip";
 describe("Chip rendering Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip as="div" label="Chip" />);
+    renderChip = render(<Chip asProp="div" label="Chip" />);
   });
 
   it("should render Chip", () => {
@@ -24,7 +24,7 @@ describe("Chip rendering Test", () => {
 describe("Chip toggle Test", () => {
   let renderChip: RenderResult;
   beforeEach(() => {
-    renderChip = render(<Chip as="button" clickable={true} label="Chip" />);
+    renderChip = render(<Chip asProp="button" clickable={true} label="Chip" />);
   });
 
   it("should toggle state when onClick event is fired", async () => {
@@ -94,7 +94,7 @@ describe("external control and events", () => {
   });
 
   it("should fire external onKeyDown event", async () => {
-    renderChip = render(<Chip clickable as="button" label="Chip" />);
+    renderChip = render(<Chip clickable asProp="button" label="Chip" />);
     const user = userEvent.setup();
     const chipComponent = renderChip.getByRole("checkbox");
     const onKeyDownHandler = jest.fn();
@@ -112,7 +112,7 @@ describe("external control and events", () => {
     const handleChange = () => {
       checked = !checked;
     };
-    const rendered = render(<Chip clickable as="button" label="Chip" />);
+    const rendered = render(<Chip clickable asProp="button" label="Chip" />);
     const chipComponent = rendered.getByRole("checkbox");
     chipComponent.onchange = handleChange;
 

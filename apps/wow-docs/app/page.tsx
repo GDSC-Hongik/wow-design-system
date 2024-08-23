@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Button from "wowds-ui/Button";
 import Checkbox from "wowds-ui/Checkbox";
 import Chip from "wowds-ui/Chip";
 import Divider from "wowds-ui/Divider";
@@ -12,6 +14,9 @@ import Switch from "wowds-ui/Switch";
 const Home = () => {
   return (
     <>
+      <Button asProp={Link} href="/check">
+        버튼
+      </Button>
       <Checkbox value="checkbox" />
       <Chip label="Chip" />
       <Switch />

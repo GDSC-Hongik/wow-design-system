@@ -5,7 +5,6 @@ import { styled } from "@styled-system/jsx";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
 
-import useButton from "@/hooks/useButton";
 import type {
   PolymorphicComponentProps,
   PolymorphicComponentPropsWithRef,
@@ -21,11 +20,6 @@ import type {
  * @param {"lg" | "sm"} [size] - 버튼의 크기.
  * @param {"solid" | "outline" | "sub"} [variant] - 버튼의 종류.
  * @param {ReactNode} [icon] - 버튼의 좌측에 들어갈 아이콘.
- * @param {() => void} [onKeyUp] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트.
- * @param {() => void} [onKeyDown] - 버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트.
- * @param {() => void} [onMouseLeave] - 버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트.
- * @param {() => void} [onPointerDown] - 버튼에 포커스 된 상태에서 마우스 또는 터치로 누르고 있는 동안 동작할 이벤트.
- * @param {() => void} [onPointerUp] - 버튼에 포커스 된 상태에서 마우스 또는 터치를 뗐을 때 동작할 이벤트.
  * @param {CSSProperties} [style] - 버튼의 커스텀 스타일.
  * @param {string} [className] - 버튼에 전달하는 커스텀 클래스.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
@@ -60,55 +54,28 @@ type ButtonComponent = <C extends ElementType = "button">(
 const Button: ButtonComponent & { displayName?: string } = forwardRef(
   <C extends ElementType = "button">(
     {
-      as,
+      asProp,
       children,
       subText,
       disabled = false,
       size = "lg",
       variant = "solid",
       icon,
-      onKeyUp,
-      onKeyDown,
-      onMouseLeave,
-      onPointerDown,
-      onPointerUp,
       ...rest
     }: ButtonProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
-    const Component = as || "button";
-
-    const {
-      pressed,
-      handleKeyDown,
-      handleKeyUp,
-      handlePointerDown,
-      handlePointerUp,
-      handleMouseLeave,
-    } = useButton({
-      disabled,
-      onMouseLeave,
-      onKeyUp,
-      onKeyDown,
-      onPointerDown,
-      onPointerUp,
-    });
+    const Component = asProp || "button";
 
     return (
       <Component
         aria-disabled={disabled}
-        aria-pressed={pressed}
         disabled={disabled}
         ref={ref}
         className={ButtonStyle({
           size: variant === "sub" ? "sm" : size,
           variant,
         })}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        onMouseLeave={handleMouseLeave}
-        onPointerDown={handlePointerDown}
-        onPointerUp={handlePointerUp}
         {...rest}
       >
         <styled.span className={ContentStyle({ size })}>
@@ -157,7 +124,7 @@ const ButtonStyle = cva({
         _hover: {
           shadow: "blue",
         },
-        _pressed: {
+        _active: {
           background: "bluePressed",
         },
       },
@@ -178,7 +145,7 @@ const ButtonStyle = cva({
           borderColor: "blueHover",
           color: "blueHover",
         },
-        _pressed: {
+        _active: {
           borderColor: "bluePressed",
           background: "blueBackgroundPressed",
           color: "bluePressed",
@@ -195,7 +162,7 @@ const ButtonStyle = cva({
         _hover: {
           shadow: "blue",
         },
-        _pressed: {
+        _active: {
           background: "blueDisabled",
         },
       },
@@ -213,7 +180,7 @@ const ButtonStyle = cva({
           borderColor: "textBlack",
           color: "textBlack",
         },
-        _pressed: {
+        _active: {
           borderColor: "outline",
           background: "monoBackgroundPressed",
           color: "textBlack",

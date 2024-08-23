@@ -5,7 +5,7 @@ import type {
 } from "react";
 
 export interface AsProps<T extends ElementType> {
-  as?: T;
+  asProp?: T;
 }
 
 export type PolymorphicRef<T extends ElementType> =

@@ -32,7 +32,4 @@ export default defineConfig({
     },
   },
   outdir: "styled-system",
-  conditions: {
-    hover: "&[aria-pressed=false]:not(:disabled):hover",
-  },
 });
