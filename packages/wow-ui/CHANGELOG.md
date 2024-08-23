@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.14
+
+### Patch Changes
+
+- 3330386: Button 컴포넌트가 Link로 사용될 수 있도록 합니다.
+
 ## 0.1.13
 
 ### Patch Changes
