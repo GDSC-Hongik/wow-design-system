@@ -35,6 +35,7 @@ export default {
     RangeDatePicker: "./src/components/Picker/RangeDatePicker",
     SingleDatePicker: "./src/components/Picker/SingleDatePicker",
     TimePicker: "./src/components/Picker/TimePicker",
+    pickerComponents: "./src/components/Picker/pickerComponents",
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",
