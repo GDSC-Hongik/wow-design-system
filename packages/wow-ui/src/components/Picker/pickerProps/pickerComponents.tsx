@@ -2,7 +2,7 @@ import { styled } from "@styled-system/jsx";
 import type { CustomComponents } from "react-day-picker";
 import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
-import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
+import { pickerButtonStyle } from "@/components/Picker/pickerProps/pickerButtonStyle.css";
 
 const pickerComponents: Partial<CustomComponents> = {
   Chevron: (props) => {

@@ -1,7 +1,7 @@
 import { css } from "@styled-system/css";
 import type { ClassNames } from "react-day-picker";
 
-import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
+import { pickerButtonStyle } from "@/components/Picker/pickerProps/pickerButtonStyle.css";
 
 const pickerClassNames: Partial<ClassNames> | undefined = {
   root: css({

@@ -6,8 +6,8 @@ import type { PropsBase, PropsRange } from "react-day-picker";
 import { DayPicker } from "react-day-picker";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
-import pickerClassNames from "@/components/Picker/pickerClassNames";
-import pickerComponents from "@/components/Picker/pickerComponents";
+import pickerClassNames from "@/components/Picker/pickerProps/pickerClassNames";
+import pickerComponents from "@/components/Picker/pickerProps/pickerComponents";
 import { changeDateToString } from "@/utils/changeDateToString";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
