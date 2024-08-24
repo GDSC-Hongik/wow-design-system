@@ -97,11 +97,10 @@ const DropDown = ({
     value,
     defaultValue,
     onChange,
-    dropdownId,
   });
 
   return (
-    <DropDownContext.Provider value={dropdownState}>
+    <DropDownContext.Provider value={{ ...dropdownState, dropdownId }}>
       <CollectionProvider>
         <DropDownWrapper hasCustomTrigger={!!trigger} {...rest}>
           <DropDownTrigger
