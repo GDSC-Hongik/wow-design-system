@@ -1,14 +1,14 @@
 "use client";
 
-import { Flex, styled } from "@styled-system/jsx";
+import { Flex } from "@styled-system/jsx";
 import { forwardRef, useState } from "react";
 import type { PropsBase, PropsSingle } from "react-day-picker";
 import { DayPicker } from "react-day-picker";
-import { DownArrow, LeftArrow, RightArrow } from "wowds-icons";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
 import pickerClassNames from "@/components/Picker/pickerClassNames";
+import pickerComponents from "@/components/Picker/pickerComponents";
 import { usePicker } from "@/components/Picker/PickerContext";
 import { changeDateToString } from "@/utils/changeDateToString";
 
@@ -52,6 +52,7 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           <DayPicker
             showOutsideDays
             className={className}
+            components={pickerComponents}
             mode="single"
             selected={selected}
             classNames={{
@@ -61,69 +62,6 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 state: "selected",
               }),
               ...classNames,
-            }}
-            components={{
-              Chevron: (props) => {
-                switch (props.orientation) {
-                  case "left":
-                    return (
-                      <LeftArrow
-                        stroke="outline"
-                        style={{ cursor: "pointer" }}
-                      />
-                    );
-                  case "right":
-                    return (
-                      <RightArrow
-                        stroke="outline"
-                        style={{ cursor: "pointer" }}
-                      />
-                    );
-                  case "down":
-                    return (
-                      <DownArrow
-                        stroke="outline"
-                        style={{ cursor: "pointer" }}
-                      />
-                    );
-                  default:
-                    return (
-                      <DownArrow
-                        stroke="outline"
-                        style={{ cursor: "pointer" }}
-                      />
-                    );
-                }
-              },
-              MonthCaption: (props) => {
-                const date = props.calendarMonth.date;
-                const year = date.getFullYear();
-                const month = (date.getMonth() + 1).toString().padStart(2, "0");
-                return (
-                  <styled.span textStyle="h2">{`${year}.${month}`}</styled.span>
-                );
-              },
-              Weekdays: () => {
-                return (
-                  <styled.thead>
-                    <styled.tr>
-                      {["S", "M", "T", "W", "T", "F", "S"].map(
-                        (week: string, index: number) => (
-                          <styled.th
-                            key={index}
-                            className={pickerButtonStyle({
-                              variant: "month",
-                              state: "default",
-                            })}
-                          >
-                            {week}
-                          </styled.th>
-                        )
-                      )}
-                    </styled.tr>
-                  </styled.thead>
-                );
-              },
             }}
             onSelect={onSelect}
             {...rest}
