@@ -21,12 +21,10 @@ const PickerGroup = ({
   setSelectedDate,
   label,
 }: PickerGroupProps) => {
+  const hours = selectedDate?.getHours() as number;
   const [time, setTime] = useState<Time>({
-    isAM: selectedDate ? selectedDate.getHours() < 12 : true,
-    hour:
-      selectedDate && selectedDate.getHours() && selectedDate.getHours() !== 12
-        ? selectedDate.getHours() % 12
-        : 12,
+    isAM: selectedDate ? hours < 12 : true,
+    hour: selectedDate && hours && hours !== 12 ? hours % 12 : 12,
     minute: selectedDate ? selectedDate.getMinutes() : 0,
   });
 
