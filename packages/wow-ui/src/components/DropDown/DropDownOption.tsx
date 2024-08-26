@@ -24,7 +24,8 @@ export interface DropDownOptionProps {
 
 const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
   function Option({ value, onClick, text }, ref) {
-    const { focusedValue, selectedValue, handleSelect } = useDropDownContext();
+    const { focusedValue, selectedValue, handleSelect, dropdownId } =
+      useDropDownContext();
     const isSelected = selectedValue === value;
     const isFocused = focusedValue !== null && focusedValue === value;
 
@@ -47,7 +48,7 @@ const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
 
     return (
       <styled.li
-        id={`dropdown-option-${value}`}
+        id={`${dropdownId}-option-${value}`}
         ref={ref}
         role="option"
         tabIndex={isSelected ? 0 : -1}
