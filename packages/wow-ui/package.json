@@ -95,11 +95,6 @@
       "require": "./dist/TimePicker.cjs",
       "import": "./dist/TimePicker.js"
     },
-    "./pickerComponents": {
-      "types": "./dist/components/Picker/pickerComponents.d.ts",
-      "require": "./dist/pickerComponents.cjs",
-      "import": "./dist/pickerComponents.js"
-    },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",
       "require": "./dist/MultiGroup.cjs",
