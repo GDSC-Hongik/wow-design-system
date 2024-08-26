@@ -1,11 +1,12 @@
 import { Flex, styled } from "@styled-system/jsx";
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useMemo } from "react";
 
 import DropDown from "@/components/DropDown";
 import DropDownOption from "@/components/DropDown/DropDownOption";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
 import type { PickerContextProps } from "@/components/Picker/PickerContext";
 import { usePicker } from "@/components/Picker/PickerContext";
+import useTimeState from "@/hooks/useTimeState";
 import { formatTimeToString } from "@/utils/formatToString";
 
 interface TimePickerProps
@@ -42,38 +43,8 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       };
     const setSelectedTime = context?.setSelectedTime || propSetSelectedTime!;
 
-    const [isAM, setIsAM] = useState<boolean>(selectedTime.isAM);
-
-    const handleClickAMOrPM = () => {
-      setSelectedTime({
-        isAM: !isAM,
-        hour: selectedTime.hour,
-        minute: selectedTime.minute,
-      });
-      setIsAM((prev) => !prev);
-    };
-
-    const handleChangeHour = (value: {
-      selectedValue: string;
-      selectedText: React.ReactNode;
-    }) => {
-      setSelectedTime({
-        isAM: isAM,
-        hour: +value.selectedValue,
-        minute: selectedTime.minute,
-      });
-    };
-
-    const handleChangeMinute = (value: {
-      selectedValue: string;
-      selectedText: React.ReactNode;
-    }) => {
-      setSelectedTime({
-        isAM: isAM,
-        hour: selectedTime.hour,
-        minute: +value.selectedValue,
-      });
-    };
+    const { isAM, handleClickAMOrPM, handleChangeHour, handleChangeMinute } =
+      useTimeState({ selectedTime, setSelectedTime });
 
     const strTime = formatTimeToString(selectedTime);
 
