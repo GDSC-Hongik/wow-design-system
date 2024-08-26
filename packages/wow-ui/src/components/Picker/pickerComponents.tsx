@@ -25,11 +25,11 @@ const pickerComponents: Partial<CustomComponents> = {
   },
   Weekdays: () => {
     return (
-      <styled.thead>
-        <styled.tr>
+      <thead>
+        <tr>
           {["S", "M", "T", "W", "T", "F", "S"].map(
             (week: string, index: number) => (
-              <styled.th
+              <th
                 key={index}
                 className={pickerButtonStyle({
                   variant: "month",
@@ -37,11 +37,11 @@ const pickerComponents: Partial<CustomComponents> = {
                 })}
               >
                 {week}
-              </styled.th>
+              </th>
             )
           )}
-        </styled.tr>
-      </styled.thead>
+        </tr>
+      </thead>
     );
   },
 };

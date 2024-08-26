@@ -104,17 +104,17 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
           </styled.span>
         )}
         <Flex alignItems="center" gap="sm" paddingY="xs" ref={ref}>
-          <styled.button
+          <button
             className={pickerButtonStyle({ variant: "time" })}
             onClick={handleClickAMOrPM}
           >
             {isAM ? "AM" : "PM"}
-          </styled.button>
+          </button>
           <DropDown
             trigger={
-              <styled.button className={pickerButtonStyle({ variant: "time" })}>
+              <button className={pickerButtonStyle({ variant: "time" })}>
                 {strTime.hour}
-              </styled.button>
+              </button>
             }
             onChange={handleChangeHour}
           >
@@ -128,9 +128,9 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
           </DropDown>
           <DropDown
             trigger={
-              <styled.button className={pickerButtonStyle({ variant: "time" })}>
+              <button className={pickerButtonStyle({ variant: "time" })}>
                 {strTime.minute}
-              </styled.button>
+              </button>
             }
             onChange={handleChangeMinute}
           >

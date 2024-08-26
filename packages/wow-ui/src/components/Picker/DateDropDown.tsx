@@ -42,34 +42,25 @@ const DateDropDown = ({
           {label}
         </styled.span>
       )}
-      <styled.button
-        alignItems="center"
-        aria-haspopup={true}
-        className={dropdownStyle()}
-        cursor="pointer"
-        display="flex"
-        justifyContent="space-between"
-        outline="none"
-        type="button"
-      >
-        <styled.div
+      <button aria-haspopup={true} className={dropdownStyle()}>
+        <div
           className={placeholderStyle({
             type: selectedValue ? "selected" : "default",
           })}
         >
           {findRenderString()}
-        </styled.div>
+        </div>
         {mode === "range" && (
-          <styled.div
+          <div
             className={placeholderStyle({
               type: selectedValue ? "selected" : "default",
             })}
           >
             {selectedValue ? `~ ${selectedValue.end}` : placeholder}
-          </styled.div>
+          </div>
         )}
         <Calendar stroke="outline" />
-      </styled.button>
+      </button>
     </Flex>
   );
 };
@@ -84,14 +75,20 @@ const dropdownStyle = cva({
     smDown: {
       width: "100%",
     },
-    backgroundColor: "background",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
 
     border: "1px solid",
     borderRadius: "sm",
     borderColor: "outline",
+    outline: "none",
 
     paddingY: "xs",
     paddingX: "sm",
+
+    backgroundColor: "background",
+    cursor: "pointer",
   },
 });
 
