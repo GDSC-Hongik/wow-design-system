@@ -4,11 +4,9 @@ import { forwardRef, useMemo, useState } from "react";
 import DropDown from "@/components/DropDown";
 import DropDownOption from "@/components/DropDown/DropDownOption";
 import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
-import type {
-  PickerContextProps,
-  Time,
-} from "@/components/Picker/PickerContext";
+import type { PickerContextProps } from "@/components/Picker/PickerContext";
 import { usePicker } from "@/components/Picker/PickerContext";
+import { formatTimeToString } from "@/utils/formatToString";
 
 interface TimePickerProps
   extends Partial<
@@ -75,23 +73,6 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         hour: selectedTime.hour,
         minute: +value.selectedValue,
       });
-    };
-
-    const formatNumberToStirng = (number: number) => {
-      return number.toString().padStart(2, "0");
-    };
-
-    const formatTimeToString = (time: Time) => {
-      const transformedHour = () => {
-        if (time.hour === 0) return 12;
-        if (time.hour > 12) return time.hour - 12;
-        return time.hour;
-      };
-
-      const hour = formatNumberToStirng(transformedHour());
-      const minute = formatNumberToStirng(time.minute);
-
-      return { hour, minute };
     };
 
     const strTime = formatTimeToString(selectedTime);

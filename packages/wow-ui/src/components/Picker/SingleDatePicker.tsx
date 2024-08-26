@@ -10,7 +10,7 @@ import { pickerButtonStyle } from "@/components/Picker/pickerButtonStyle.css";
 import pickerClassNames from "@/components/Picker/pickerClassNames";
 import pickerComponents from "@/components/Picker/pickerComponents";
 import { usePicker } from "@/components/Picker/PickerContext";
-import { changeDateToString } from "@/utils/changeDateToString";
+import { formatDateToString } from "@/utils/formatToString";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsSingle, "mode"> & {
@@ -37,7 +37,7 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const selected = context?.selectedDate || propSelected!;
     const onSelect = context?.setSelectedDate || propOnSelect!;
 
-    const { year, month, day } = changeDateToString(selected);
+    const { year, month, day } = formatDateToString(selected);
 
     return (
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">

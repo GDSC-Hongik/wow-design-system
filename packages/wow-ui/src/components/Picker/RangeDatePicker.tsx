@@ -13,7 +13,7 @@ import { DayPicker } from "react-day-picker";
 import DateDropDown from "@/components/Picker/DateDropDown";
 import pickerClassNames from "@/components/Picker/pickerClassNames";
 import pickerComponents from "@/components/Picker/pickerComponents";
-import { changeDateToString } from "@/utils/changeDateToString";
+import { formatDateToString } from "@/utils/formatToString";
 
 export type DatePickerProps = Omit<PropsBase, "mode"> &
   Omit<PropsRange, "mode"> & {
@@ -48,8 +48,8 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     };
 
     const strDate = prevSelected && {
-      from: prevSelected.from && changeDateToString(prevSelected.from),
-      to: prevSelected.to && changeDateToString(prevSelected?.to),
+      from: prevSelected.from && formatDateToString(prevSelected.from),
+      to: prevSelected.to && formatDateToString(prevSelected?.to),
     };
 
     return (
