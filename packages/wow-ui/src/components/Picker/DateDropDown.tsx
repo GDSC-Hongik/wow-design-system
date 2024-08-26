@@ -29,7 +29,7 @@ const DateDropDown = ({
   selectedValue,
   onClick,
 }: DateDropDownProps) => {
-  const findRenderString = () => {
+  const formatSelectedValue = () => {
     if (!selectedValue) return placeholder;
     if (mode === "range" && selectedValue.start) return selectedValue.start;
     if (mode === "single") return selectedValue;
@@ -48,7 +48,7 @@ const DateDropDown = ({
             type: selectedValue ? "selected" : "default",
           })}
         >
-          {findRenderString()}
+          {formatSelectedValue()}
         </div>
         {mode === "range" && (
           <div

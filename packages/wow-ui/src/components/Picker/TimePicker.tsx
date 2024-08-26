@@ -77,24 +77,24 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       });
     };
 
-    const changeNumberToStirng = (number: number) => {
+    const formatNumberToStirng = (number: number) => {
       return number.toString().padStart(2, "0");
     };
 
-    const changeTimeToString = (time: Time) => {
+    const formatTimeToString = (time: Time) => {
       const transformedHour = () => {
         if (time.hour === 0) return 12;
         if (time.hour > 12) return time.hour - 12;
         return time.hour;
       };
 
-      const hour = changeNumberToStirng(transformedHour());
-      const minute = changeNumberToStirng(time.minute);
+      const hour = formatNumberToStirng(transformedHour());
+      const minute = formatNumberToStirng(time.minute);
 
       return { hour, minute };
     };
 
-    const strTime = changeTimeToString(selectedTime);
+    const strTime = formatTimeToString(selectedTime);
 
     return (
       <Flex direction="column" gap="0.75rem">
