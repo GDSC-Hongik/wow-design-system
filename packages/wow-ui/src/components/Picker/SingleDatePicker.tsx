@@ -37,7 +37,7 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const selected = context?.selectedDate || propSelected!;
     const onSelect = context?.setSelectedDate || propOnSelect!;
 
-    const { year, month, day } = formatDateToString(selected);
+    const date = formatDateToString(selected);
 
     return (
       <Flex direction="column" gap="0.75rem" ref={ref} width="19.75rem">
@@ -45,7 +45,7 @@ const SingleDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           label={label}
           mode="single"
           placeholder={placeholder}
-          selectedValue={selected && `${year}-${month}-${day}`}
+          selectedValue={selected && date}
           onClick={() => setOpen((prev) => !prev)}
         />
         {open && (

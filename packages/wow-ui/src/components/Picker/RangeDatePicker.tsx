@@ -60,12 +60,8 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           placeholder={placeholder}
           selectedValue={
             strDate && {
-              start:
-                strDate.from &&
-                `${strDate.from.year}-${strDate.from.month}-${strDate.from.day}`,
-              end:
-                strDate.to &&
-                `${strDate.to.year}-${strDate.to.month}-${strDate.to.day}`,
+              start: strDate.from,
+              end: strDate.to,
             }
           }
           onClick={() => setOpen((prev) => !prev)}
