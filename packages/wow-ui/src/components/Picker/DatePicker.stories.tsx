@@ -59,7 +59,6 @@ export default meta;
 
 export const Default = () => {
   const [selected, setSelected] = useState<Date | undefined>();
-  console.log(selected);
   return (
     <DatePicker label="종료 날짜" selected={selected} onSelect={setSelected} />
   );
@@ -67,7 +66,6 @@ export const Default = () => {
 
 export const WithInitialDate = () => {
   const [selected, setSelected] = useState<Date | undefined>(new Date());
-  console.log(selected);
   return (
     <DatePicker label="종료 날짜" selected={selected} onSelect={setSelected} />
   );
@@ -75,7 +73,6 @@ export const WithInitialDate = () => {
 
 export const WithTimePicker = () => {
   const [selected, setSelected] = useState<Date | undefined>(new Date());
-  console.log(selected);
 
   return (
     <PickerGroup selectedDate={selected} setSelectedDate={setSelected}>
@@ -90,7 +87,6 @@ export const DateRange = () => {
   const [selected, setSelected] = useState<
     { from: Date | undefined; to?: Date | undefined } | undefined
   >();
-  console.log(selected);
   return (
     <RangeDatePicker
       label="스터디 신청 기간"
@@ -103,8 +99,6 @@ export const DateRange = () => {
 export const TimeRange = () => {
   const [start, setStart] = useState<Time>();
   const [end, setEnd] = useState<Time>();
-
-  console.log(start, end);
 
   return (
     <Flex align="center" gap="lg">
