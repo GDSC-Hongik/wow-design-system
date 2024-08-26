@@ -2,7 +2,12 @@
 
 import { Flex } from "@styled-system/jsx";
 import { forwardRef, useState } from "react";
-import type { PropsBase, PropsRange } from "react-day-picker";
+import type {
+  DateRange,
+  Modifiers,
+  PropsBase,
+  PropsRange,
+} from "react-day-picker";
 import { DayPicker } from "react-day-picker";
 
 import DateDropDown from "@/components/Picker/DateDropDown";
@@ -21,7 +26,7 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     {
       className,
       classNames,
-      selected,
+      selected: prevSelected,
       onSelect,
       label,
       placeholder = "YYYY-MM-DD",
@@ -30,9 +35,21 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     ref
   ) => {
     const [open, setOpen] = useState<boolean>(false);
-    const strDate = selected && {
-      from: selected.from && changeDateToString(selected.from),
-      to: selected.to && changeDateToString(selected?.to),
+    const handleSelectDate = (
+      selected: DateRange | undefined,
+      triggerDate: Date,
+      modifiers: Modifiers,
+      e: React.MouseEvent | React.KeyboardEvent
+    ) => {
+      if (!onSelect) return;
+      if (prevSelected && prevSelected.from !== prevSelected.to)
+        onSelect(undefined, triggerDate, modifiers, e);
+      else onSelect(selected, triggerDate, modifiers, e);
+    };
+
+    const strDate = prevSelected && {
+      from: prevSelected.from && changeDateToString(prevSelected.from),
+      to: prevSelected.to && changeDateToString(prevSelected?.to),
     };
 
     return (
@@ -60,8 +77,8 @@ const RangeDatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             classNames={{ ...pickerClassNames, ...classNames }}
             components={pickerComponents}
             mode="range"
-            selected={selected}
-            onSelect={onSelect}
+            selected={prevSelected}
+            onSelect={handleSelectDate}
             {...rest}
           />
         )}
