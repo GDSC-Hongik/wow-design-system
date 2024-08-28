@@ -119,7 +119,7 @@ const ButtonStyle = cva({
         _disabled: {
           background: "monoBackgroundPressed",
           color: "outline",
-          cursor: "not-allowed",
+          pointerEvents: "none",
         },
         _hover: {
           shadow: "blue",
