@@ -3,7 +3,7 @@ import { cva } from "@styled-system/css";
 export const pickerButtonStyle = cva({
   base: {
     width: "2.3125rem",
-    paddingX: "xs",
+    paddingX: "0.4rem",
 
     borderRadius: "sm",
     textStyle: "body1",
@@ -16,13 +16,11 @@ export const pickerButtonStyle = cva({
       time: {
         color: "sub",
         background: "backgroundAlternative",
-        _selected: {
-          borderWidth: 1,
-          borderColor: "textBlack",
-        },
-        _pressed: {
-          borderWidth: 1,
+
+        _active: {
           background: "monoBackgroundPressed",
+          borderWidth: 1,
+          borderColor: "sub",
         },
       },
       date: {
@@ -51,4 +49,23 @@ export const pickerButtonStyle = cva({
       },
     },
   },
+  compoundVariants: [
+    {
+      variant: "time",
+      state: "selected",
+      css: {
+        background: "backgroundAlternative",
+        color: "textBlack",
+
+        borderWidth: 1,
+        borderColor: "textBlack",
+
+        _active: {
+          color: "sub",
+          background: "monoBackgroundPressed",
+          borderColor: "sub",
+        },
+      },
+    },
+  ],
 });

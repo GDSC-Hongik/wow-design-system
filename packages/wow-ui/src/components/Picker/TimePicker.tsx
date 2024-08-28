@@ -35,6 +35,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     );
 
     const context = usePicker();
+    const selected = context?.selectedTime || propSelectedTime!;
     const selectedTime = context?.selectedTime ||
       propSelectedTime! || {
         isAM: true,
@@ -57,14 +58,22 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         )}
         <Flex alignItems="center" gap="sm" paddingY="xs" ref={ref}>
           <button
-            className={pickerButtonStyle({ variant: "time" })}
+            className={pickerButtonStyle({
+              variant: "time",
+              state: selected ? "selected" : "default",
+            })}
             onClick={handleClickAMOrPM}
           >
             {isAM ? "AM" : "PM"}
           </button>
           <DropDown
             trigger={
-              <button className={pickerButtonStyle({ variant: "time" })}>
+              <button
+                className={pickerButtonStyle({
+                  variant: "time",
+                  state: selected ? "selected" : "default",
+                })}
+              >
                 {strTime.hour}
               </button>
             }
@@ -80,7 +89,12 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
           </DropDown>
           <DropDown
             trigger={
-              <button className={pickerButtonStyle({ variant: "time" })}>
+              <button
+                className={pickerButtonStyle({
+                  variant: "time",
+                  state: selected ? "selected" : "default",
+                })}
+              >
                 {strTime.minute}
               </button>
             }
