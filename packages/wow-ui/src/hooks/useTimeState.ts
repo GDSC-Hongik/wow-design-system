@@ -19,33 +19,21 @@ const useTimeState = ({ selectedTime, setSelectedTime }: TimeStateProps) => {
     setIsAM((prev) => !prev);
   };
 
-  const handleChangeHour = (value: {
-    selectedValue: string;
-    selectedText: React.ReactNode;
-  }) => {
+  const handleChangeTime = (
+    type: "hour" | "minute",
+    value: { selectedValue: string; selectedText: React.ReactNode }
+  ) => {
     setSelectedTime({
       isAM: isAM,
-      hour: +value.selectedValue,
-      minute: selectedTime.minute,
-    });
-  };
-
-  const handleChangeMinute = (value: {
-    selectedValue: string;
-    selectedText: React.ReactNode;
-  }) => {
-    setSelectedTime({
-      isAM: isAM,
-      hour: selectedTime.hour,
-      minute: +value.selectedValue,
+      hour: type === "hour" ? +value.selectedValue : selectedTime.hour,
+      minute: type === "minute" ? +value.selectedValue : selectedTime.minute,
     });
   };
 
   return {
     isAM,
     handleClickAMOrPM,
-    handleChangeHour,
-    handleChangeMinute,
+    handleChangeTime,
   };
 };
 

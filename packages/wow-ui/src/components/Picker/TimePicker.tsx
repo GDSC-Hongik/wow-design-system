@@ -44,8 +44,10 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       };
     const setSelectedTime = context?.setSelectedTime || propSetSelectedTime!;
 
-    const { isAM, handleClickAMOrPM, handleChangeHour, handleChangeMinute } =
-      useTimeState({ selectedTime, setSelectedTime });
+    const { isAM, handleClickAMOrPM, handleChangeTime } = useTimeState({
+      selectedTime,
+      setSelectedTime,
+    });
 
     const strTime = formatTimeToString(selectedTime);
 
@@ -77,7 +79,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                 {strTime.hour}
               </button>
             }
-            onChange={handleChangeHour}
+            onChange={(value) => handleChangeTime("hour", value)}
           >
             {hours.map((hour) => (
               <DropDownOption
@@ -98,7 +100,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                 {strTime.minute}
               </button>
             }
-            onChange={handleChangeMinute}
+            onChange={(value) => handleChangeTime("minute", value)}
           >
             {minutes.map((minute) => (
               <DropDownOption
