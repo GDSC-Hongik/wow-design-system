@@ -105,7 +105,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
                 key={minute}
                 text={minute.padStart(2, "0")}
                 value={minute}
-              ></DropDownOption>
+              />
             ))}
           </DropDown>
         </Flex>
