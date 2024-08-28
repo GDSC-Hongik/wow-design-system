@@ -33,11 +33,6 @@ export interface CustomButtonProps {
   size?: "lg" | "sm";
   variant?: "solid" | "outline" | "sub";
   icon?: ReactNode;
-  onKeyUp?: () => void;
-  onKeyDown?: () => void;
-  onMouseLeave?: () => void;
-  onPointerDown?: () => void;
-  onPointerUp?: () => void;
   style?: CSSProperties;
   className?: string;
 }
