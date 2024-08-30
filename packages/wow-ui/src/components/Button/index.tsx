@@ -134,7 +134,7 @@ const ButtonStyle = cva({
         _disabled: {
           borderColor: "darkDisabled",
           color: "darkDisabled",
-          cursor: "not-allowed",
+          pointerEvents: "none",
         },
         _hover: {
           borderColor: "blueHover",
@@ -152,7 +152,7 @@ const ButtonStyle = cva({
 
         _disabled: {
           color: "blueDisabled",
-          cursor: "not-allowed",
+          pointerEvents: "none",
         },
         _hover: {
           shadow: "blue",
