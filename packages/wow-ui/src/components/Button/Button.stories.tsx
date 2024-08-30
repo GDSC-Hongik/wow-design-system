@@ -170,3 +170,10 @@ export const LinkButton: Story = {
     href: "/",
   },
 };
+
+export const DisabledButton: Story = {
+  args: {
+    children: "버튼",
+    disabled: true,
+  },
+};
