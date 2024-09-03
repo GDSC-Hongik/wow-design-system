@@ -20,6 +20,7 @@ process.env.BABEL_ENV = "production";
 
 export default {
   input: {
+    Toast: "./src/components/Toast",
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
     Tag: "./src/components/Tag",

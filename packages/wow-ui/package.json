@@ -20,6 +20,11 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
+    "./Toast": {
+      "types": "./dist/components/Toast/index.d.ts",
+      "require": "./dist/Toast.cjs",
+      "import": "./dist/Toast.js"
+    },
     "./TextField": {
       "types": "./dist/components/TextField/index.d.ts",
       "require": "./dist/TextField.cjs",
