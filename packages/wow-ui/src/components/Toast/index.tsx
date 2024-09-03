@@ -4,7 +4,7 @@ import { css } from "@styled-system/css";
 import type { FlexProps } from "@styled-system/jsx";
 import { Flex, styled } from "@styled-system/jsx";
 import type { CSSProperties, ReactNode } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Close, RightArrow } from "wowds-icons";
 
 /**
@@ -14,6 +14,7 @@ import { Close, RightArrow } from "wowds-icons";
  * @param {"default"|"close"|"arrow"} [type] - 토스트 컴포넌트의 타입.
  * @param {string} text - 토스트 컴포넌트의 메인 텍스트.
  * @param {ReactNode} icon - 토스트 컴포넌트의 좌측에 들어갈 아이콘.
+ * @param {()=>void} onRemove - 토스트 컴포넌트가 사라지도록 하는 트리거 함수.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
  * @param {CSSProperties} [style] - 커스텀 스타일을 적용하기 위한 객체.
  * @param {string} [className] - 커스텀 클래스를 적용하기 위한 문자열.
@@ -23,25 +24,59 @@ export interface ToastProps extends FlexProps {
   id: string;
   type?: "default" | "close" | "arrow";
   text: string;
+  onRemove: () => void;
   icon?: ReactNode;
   subText?: string;
   style?: CSSProperties;
   className?: string;
 }
 
+const TOAST_DURATION = 2000;
+const ANIMATION_DURATION = 200;
+
 const Toast = forwardRef(
-  ({ text, subText, type = "default", icon, ...rest }: ToastProps) => {
+  ({
+    id,
+    text,
+    subText,
+    onRemove,
+    type = "default",
+    icon,
+    ...rest
+  }: ToastProps) => {
     const TypeIconComponent = () => {
       if (type === "close") return <Close stroke="outline" width={14} />;
       else if (type === "arrow") return <RightArrow stroke="outline" />;
       return null;
     };
 
+    const [opacity, setOpacity] = useState<number>(0.2);
+
+    useEffect(() => {
+      setOpacity(1);
+      const timeoutForRemove = setTimeout(() => {
+        onRemove();
+      }, TOAST_DURATION);
+
+      const timeoutForVisible = setTimeout(() => {
+        setOpacity(0);
+      }, TOAST_DURATION - ANIMATION_DURATION);
+
+      return () => {
+        clearTimeout(timeoutForRemove);
+        clearTimeout(timeoutForVisible);
+      };
+    }, [id, onRemove]);
+
     return (
       <Flex
         align="center"
         className={toastContainerStyle}
         justify="space-between"
+        style={{ opacity }}
+        transition="opacity"
+        transitionDelay="0.5"
+        transitionTimingFunction="ease-in-out"
         {...rest}
       >
         <Flex align="center" gap="0.25rem">
