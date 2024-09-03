@@ -108,3 +108,17 @@ export const TimeRange = () => {
     </Flex>
   );
 };
+
+export const DisabledDatePicker = () => {
+  const [selected, setSelected] = useState<Date | undefined>(new Date());
+
+  return (
+    <PickerGroup selectedDate={selected} setSelectedDate={setSelected}>
+      <DatePicker
+        disabled={{ from: new Date("2024-09-04"), to: new Date("2024-09-05") }}
+        label="종료 날짜"
+      />
+      <TimePicker label="종료 시간" />
+    </PickerGroup>
+  );
+};
