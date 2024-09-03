@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Warn } from "wowds-icons";
 
-import { Toast } from ".";
+import Toast from ".";
 
 const meta: Meta<typeof Toast> = {
   title: "UI/Toast",

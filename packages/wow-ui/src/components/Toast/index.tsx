@@ -29,7 +29,7 @@ export interface ToastProps extends FlexProps {
   className?: string;
 }
 
-export const Toast = forwardRef(
+const Toast = forwardRef(
   ({ text, subText, type, icon, ...rest }: ToastProps) => {
     const TypeIconComponent = () => {
       if (type === "close") return <Close stroke="outline" width={14} />;
@@ -73,3 +73,6 @@ const toastContainerStyle = css({
   backdropFilter: "blur(30px)",
   boxShadow: "mono",
 });
+
+Toast.displayName = "Toast";
+export default Toast;
