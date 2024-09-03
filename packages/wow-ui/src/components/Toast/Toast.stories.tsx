@@ -50,7 +50,6 @@ export const Default: Story = {
   args: {
     text: "Text",
     subText: "subtext",
-    type: "default",
   },
 };
 
@@ -74,7 +73,6 @@ export const Icon: Story = {
   args: {
     text: "Text",
     subText: "subtext",
-    type: "default",
     icon: <Warn />,
   },
 };
@@ -91,6 +89,5 @@ export const IconArrow: Story = {
 export const TwoLines: Story = {
   args: {
     text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
-    type: "default",
   },
 };
