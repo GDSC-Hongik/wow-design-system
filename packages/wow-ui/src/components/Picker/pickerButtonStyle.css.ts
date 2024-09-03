@@ -67,5 +67,15 @@ export const pickerButtonStyle = cva({
         },
       },
     },
+    {
+      variant: "time",
+      state: "disabled",
+      css: {
+        background: "monoBackgroundPressed",
+        color: "outline",
+
+        borderWidth: 0,
+      },
+    },
   ],
 });

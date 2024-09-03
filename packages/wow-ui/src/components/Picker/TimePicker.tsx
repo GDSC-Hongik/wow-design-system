@@ -14,12 +14,14 @@ interface TimePickerProps
     Pick<PickerContextProps, "selectedTime" | "setSelectedTime">
   > {
   label?: string;
+  disabled?: boolean;
 }
 
 const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   (
     {
       label,
+      disabled,
       selectedTime: propSelectedTime,
       setSelectedTime: propSetSelectedTime,
     },
@@ -52,7 +54,11 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     const strTime = formatTimeToString(selectedTime);
 
     return (
-      <Flex direction="column" gap="0.75rem">
+      <Flex
+        direction="column"
+        gap="0.75rem"
+        pointerEvents={disabled ? "none" : "auto"}
+      >
         {label && (
           <styled.span color="sub" textStyle="label2">
             {label}
@@ -62,7 +68,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
           <button
             className={pickerButtonStyle({
               variant: "time",
-              state: selected ? "selected" : "default",
+              state: disabled ? "disabled" : selected ? "selected" : "default",
             })}
             onClick={handleClickAMOrPM}
           >
@@ -73,7 +79,11 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               <button
                 className={pickerButtonStyle({
                   variant: "time",
-                  state: selected ? "selected" : "default",
+                  state: disabled
+                    ? "disabled"
+                    : selected
+                      ? "selected"
+                      : "default",
                 })}
               >
                 {strTime.hour}
@@ -95,7 +105,11 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               <button
                 className={pickerButtonStyle({
                   variant: "time",
-                  state: selected ? "selected" : "default",
+                  state: disabled
+                    ? "disabled"
+                    : selected
+                      ? "selected"
+                      : "default",
                 })}
               >
                 {strTime.minute}

@@ -118,7 +118,7 @@ export const DisabledDatePicker = () => {
         disabled={{ from: new Date("2024-09-04"), to: new Date("2024-09-05") }}
         label="종료 날짜"
       />
-      <TimePicker label="종료 시간" />
+      <TimePicker disabled label="종료 시간" />
     </PickerGroup>
   );
 };
