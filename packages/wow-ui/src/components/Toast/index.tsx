@@ -11,7 +11,7 @@ import { Close, RightArrow } from "wowds-icons";
  * @description 토스트 컴포넌트입니다.
  *
  * @param {string} id - 토스트 컴포넌트의 id.
- * @param {"default"|"close"|"arrow"} type - 토스트 컴포넌트의 타입.
+ * @param {"default"|"close"|"arrow"} [type] - 토스트 컴포넌트의 타입.
  * @param {string} text - 토스트 컴포넌트의 메인 텍스트.
  * @param {ReactNode} icon - 토스트 컴포넌트의 좌측에 들어갈 아이콘.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
@@ -21,7 +21,7 @@ import { Close, RightArrow } from "wowds-icons";
 
 export interface ToastProps extends FlexProps {
   id: string;
-  type: "default" | "close" | "arrow";
+  type?: "default" | "close" | "arrow";
   text: string;
   icon?: ReactNode;
   subText?: string;
@@ -30,7 +30,7 @@ export interface ToastProps extends FlexProps {
 }
 
 const Toast = forwardRef(
-  ({ text, subText, type, icon, ...rest }: ToastProps) => {
+  ({ text, subText, type = "default", icon, ...rest }: ToastProps) => {
     const TypeIconComponent = () => {
       if (type === "close") return <Close stroke="outline" width={14} />;
       else if (type === "arrow") return <RightArrow stroke="outline" />;
