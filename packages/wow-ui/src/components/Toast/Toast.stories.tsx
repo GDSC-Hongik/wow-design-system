@@ -27,6 +27,10 @@ const meta: Meta<typeof Toast> = {
       description: "Toast 컴포넌트의 id를 나타냅니다.",
       control: false,
     },
+    onRemove: {
+      description: "Toast 컴포넌트가 사라지도록 하는 트리거 함수를 나타냅니다.",
+      control: false,
+    },
     icon: {
       description: "Toast 좌측에 들어갈 아이콘을 나타냅니다.",
       control: false,
