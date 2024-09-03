@@ -84,6 +84,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
             {hours.map((hour) => (
               <DropDownOption
                 key={hour}
+                style={{ padding: "0.25rem 0.5rem", textAlign: "center" }}
                 text={hour.padStart(2, "0")}
                 value={hour}
               />
@@ -105,6 +106,7 @@ const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
             {minutes.map((minute) => (
               <DropDownOption
                 key={minute}
+                style={{ padding: "0.25rem 0.5rem", textAlign: "center" }}
                 text={minute.padStart(2, "0")}
                 value={minute}
               />
