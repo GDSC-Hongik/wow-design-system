@@ -47,7 +47,11 @@ const Toast = forwardRef(
         <Flex align="center" gap="0.25rem">
           {icon}
           <Flex direction="column" justifyContent="center">
-            <styled.span color="textWhite" textStyle="body1">
+            <styled.span
+              color="textWhite"
+              textStyle="body1"
+              wordBreak="break-all"
+            >
               {text}
             </styled.span>
             <styled.span color="outline" textStyle="body2">

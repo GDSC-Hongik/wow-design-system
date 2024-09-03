@@ -87,3 +87,10 @@ export const IconArrow: Story = {
     icon: <Warn />,
   },
 };
+
+export const TwoLines: Story = {
+  args: {
+    text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
+    type: "default",
+  },
+};
