@@ -27,7 +27,7 @@ export interface DropDownOptionProps {
 }
 
 const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
-  function Option({ value, onClick, text, ...rest }, ref) {
+  function Option({ value, onClick, text, className, ...rest }, ref) {
     const { focusedValue, selectedValue, handleSelect, dropdownId } =
       useDropDownContext();
     const isSelected = selectedValue === value;
@@ -60,7 +60,7 @@ const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
           optionStyle({
             type: isSelected ? "selected" : isFocused ? "focused" : "default",
           }),
-          rest.className
+          className
         )}
         onClick={() => {
           handleOptionClick(value, onClick);
