@@ -29,6 +29,10 @@ const pickerClassNames: Partial<ClassNames> | undefined = {
     width: "100%",
   }),
   weekday: pickerButtonStyle({ variant: "date", state: "default" }),
+  disabled: pickerButtonStyle({
+    variant: "date",
+    state: "disabled",
+  }),
   day: pickerButtonStyle({ variant: "date", state: "default" }),
   day_button: css({
     width: "100%",
