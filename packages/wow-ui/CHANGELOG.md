@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.16
+
+### Patch Changes
+
+- c7471ac: Picker 컴포넌트와 DropDownOption 컴포넌트를 수정합니다.
+
 ## 0.1.15
 
 ### Patch Changes
