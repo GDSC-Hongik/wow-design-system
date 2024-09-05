@@ -30,15 +30,15 @@
       "require": "./dist/TextButton.cjs",
       "import": "./dist/TextButton.js"
     },
-    "./Table": {
-      "types": "./dist/components/Table/index.d.ts",
-      "require": "./dist/Table.cjs",
-      "import": "./dist/Table.js"
+    "./PaginationTable": {
+      "types": "./dist/components/Table/PaginationTable.d.ts",
+      "require": "./dist/PaginationTable.cjs",
+      "import": "./dist/PaginationTable.js"
     },
-    "./TableBody": {
-      "types": "./dist/components/Table/TableBody.d.ts",
-      "require": "./dist/TableBody.cjs",
-      "import": "./dist/TableBody.js"
+    "./TableBodyContainer": {
+      "types": "./dist/components/Table/TableBodyContainer.d.ts",
+      "require": "./dist/TableBodyContainer.cjs",
+      "import": "./dist/TableBodyContainer.js"
     },
     "./TableCell": {
       "types": "./dist/components/Table/TableCell.d.ts",
@@ -54,11 +54,6 @@
       "types": "./dist/components/Table/TableHeader.d.ts",
       "require": "./dist/TableHeader.cjs",
       "import": "./dist/TableHeader.js"
-    },
-    "./TableHeaderContainer": {
-      "types": "./dist/components/Table/TableHeaderContainer.d.ts",
-      "require": "./dist/TableHeaderContainer.cjs",
-      "import": "./dist/TableHeaderContainer.js"
     },
     "./TableRow": {
       "types": "./dist/components/Table/TableRow.d.ts",
