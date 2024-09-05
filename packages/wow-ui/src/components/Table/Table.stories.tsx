@@ -230,7 +230,6 @@ export const CheckableTable: Story = {
     return (
       <Table
         data={data}
-        style={{ width: "350px", height: "150px" }}
         options={{
           showCheckbox: true,
           uniqueKey: "id",
