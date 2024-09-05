@@ -131,7 +131,7 @@ export const Primary: Story = {
       <Table
         data={data}
         fullWidth={true}
-        tableResource={[
+        tableHeaderResource={[
           { key: "name", text: "이름" },
           { key: "studyId", text: "학번" },
         ]}
@@ -211,7 +211,7 @@ export const CheckableTable: Story = {
             showCheckbox: true,
             uniqueKey: "id",
           }}
-          tableResource={[
+          tableHeaderResource={[
             { key: "name", text: "이름" },
             { key: "studyId", text: "학번" },
             { key: "discordname", text: "디스코드 닉네임" },

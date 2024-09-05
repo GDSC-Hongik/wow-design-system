@@ -1,5 +1,7 @@
 import { forwardRef } from "react";
 
-const Pagination = forwardRef(() => {});
+const Pagination = forwardRef(() => {
+  return <></>;
+});
 
 export default Pagination;

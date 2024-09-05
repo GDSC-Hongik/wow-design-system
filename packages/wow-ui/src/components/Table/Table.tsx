@@ -12,14 +12,53 @@ import TableHeader from "@/components/Table/TableHeader";
 import TableRow from "@/components/Table/TableRow";
 import useTableCheckState from "@/hooks/useTableCheckState";
 
+interface TableOptionProps<T> {
+  /**
+   * @description table에 checkbox를 보여줄 수 있습니다.
+   * @type {boolean}
+   */
+  showCheckbox?: boolean;
+  /**
+   * @description table의 요소를 구별할 수 있는 유니크한 키 값을 전달합니다.
+   * @type {keyof T}
+   */
+  uniqueKey?: keyof T;
+}
+
+interface TableHeaderResrouceProps<T> {
+  /**
+   * @description table의 header를 기준으로 데이터를 정렬할 수 있는 data의 유니크한 키 값을 전달합니다.
+   * @type {keyof T}
+   */
+  key: keyof T;
+  /**
+   * @description table의 header에 나타낼 text값을 전달합니다.
+   * @type {string}
+   */
+  text: string;
+}
+
+/**
+ * @description 데이터 및 비동기 결과물을 나타낼 수 있는 테이블 컴포넌트입니다.
+ * @template T 렌더링할 데이터의 타입을 나타냅니다.
+ *
+ * @param {T[]} data 테이블 컴포넌트에 나타낼 데이터의 배열입니다.
+ * @param {{ key: keyof T; text: string }[]} tableHeaderResource 테이블 헤더에 나타낼 배열과 데이터의 키 값을 담은 배열입니다.
+ * @param {string} [tableCaption] 테이블에 대한 설명을 나타내는 캡션입니다.
+ * @param {TableOptionProps<T>} [options] 테이블에 대한 상세한 옵션값을 설정합니다.
+ * @param {T[]} [selectedRows] default 값을 설정하거나, 외부에서 table의 체크 상태 관리할 수 있는 변수입니다.
+ * @param {(selectedRows: T[]) => void} [onChange] 외부 활성 상태가 변경될 때 호출되는 함수입니다.
+ * @param {() => void} [className] table 컴포넌트에게 전달할 className을 정의합니다.
+ * @param {() => void} [fullWidth=false] table 컴포넌트의 가로 길이를 결정할 수 있습니다.
+ * @param {() => void} [style] table 컴포넌트에 커스텀하게 전달할 style입니다.
+ * @param {Ref<HTMLTableElement>} [ref] ref 렌더링된 요소 또는 컴포넌트에 연결할 ref입니다.
+ */
+
 interface TableProps<T extends object> {
   data: T[];
-  tableResource: { key: keyof T; text: string }[];
+  tableHeaderResource: TableHeaderResrouceProps<T>[];
   tableCaption?: string;
-  options?: {
-    showCheckbox?: boolean;
-    uniqueKey?: keyof T;
-  };
+  options?: TableOptionProps<T>;
   selectedRows?: T[];
   onChange?: (selectedRows: T[]) => void;
   className?: string;
@@ -31,7 +70,7 @@ const Table = forwardRef<HTMLTableElement, TableProps<any>>(
   function PaginationTable<T extends object>(
     {
       data,
-      tableResource,
+      tableHeaderResource,
       tableCaption = "",
       options,
       className,
@@ -80,7 +119,7 @@ const Table = forwardRef<HTMLTableElement, TableProps<any>>(
               />
             </TableHeader>
           )}
-          {tableResource.map(({ text }) => (
+          {tableHeaderResource.map(({ text }) => (
             <TableHeader key={text}>{text}</TableHeader>
           ))}
         </styled.thead>
@@ -99,7 +138,7 @@ const Table = forwardRef<HTMLTableElement, TableProps<any>>(
                     />
                   </TableCell>
                 )}
-                {tableResource.map(({ key }) => (
+                {tableHeaderResource.map(({ key }) => (
                   <TableCell checked={isSelected} key={String(key)}>
                     {rowData[key] as ReactNode}
                   </TableCell>
