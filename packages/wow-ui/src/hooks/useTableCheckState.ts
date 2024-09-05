@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useTableCheckState = <T>(
   data: T[],
@@ -6,12 +6,18 @@ const useTableCheckState = <T>(
   selectedRowsProp?: T[],
   onChange?: (selectedRows: T[]) => void
 ) => {
-  const [selectedRows, setSelectedRows] = useState<T[]>(selectedRowsProp || []);
+  const [selectedRows, setSelectedRows] = useState<T[]>([]);
 
   const getRowId = useCallback(
     (rowData: T) => (uniqueKey ? (rowData[uniqueKey] as string) : "id"),
     [uniqueKey]
   );
+
+  useEffect(() => {
+    if (selectedRowsProp) {
+      setSelectedRows(selectedRowsProp);
+    }
+  }, [selectedRowsProp]);
 
   const handleRowCheckboxChange = useCallback(
     (rowData: T) => {
@@ -23,7 +29,6 @@ const useTableCheckState = <T>(
         const newSelectedRows = isSelected
           ? prevSelectedRows.filter((row) => getRowId(row) !== rowId)
           : [...prevSelectedRows, rowData];
-
         if (onChange) {
           onChange(newSelectedRows);
         }

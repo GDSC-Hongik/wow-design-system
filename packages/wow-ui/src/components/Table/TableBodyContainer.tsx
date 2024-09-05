@@ -11,7 +11,7 @@ const TableBodyContainer = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     const { children } = props;
 
     return (
-      <styled.tbody ref={ref} {...props} textAlign="start">
+      <styled.tbody ref={ref} role="rowgroup" {...props} textAlign="start">
         {children}
       </styled.tbody>
     );

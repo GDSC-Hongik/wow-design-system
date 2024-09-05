@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { css } from "@styled-system/css";
 import { useState } from "react";
 
 import Button from "@/components/Button";
-import PaginationTable from "@/components/Table/PaginationTable";
+import Table from "@/components/Table/Table";
 
 const meta = {
   title: "UI/Table",
@@ -127,8 +128,9 @@ export const Primary: Story = {
       { id: 3, name: "김민지", studyId: "C234567", birth: "2004" },
     ];
     return (
-      <PaginationTable
+      <Table
         data={data}
+        fullWidth={true}
         tableResource={[
           { key: "name", text: "이름" },
           { key: "studyId", text: "학번" },
@@ -140,37 +142,84 @@ export const Primary: Story = {
 
 export const CheckableTable: Story = {
   render: () => {
-    const [selectedRows, setSelectedRows] = useState<object[]>([]);
+    const selectedProps = [
+      {
+        id: 3,
+        name: "김민지",
+        studyId: "C234567",
+        discordname: "minijjang",
+        birth: "2004",
+      },
+      {
+        id: 2,
+        name: "강해린",
+        discordname: "haerin111",
+        studyId: "C011111",
+        birth: "2006",
+      },
+    ];
+    const [selectedRows, setSelectedRows] = useState<object[]>(selectedProps);
 
     console.log(selectedRows);
     const handleSelectionChange = (rows: object[]) => {
       setSelectedRows(rows);
     };
+
     const data = [
       {
         id: 1,
         name: "김유진",
         studyId: "C035087",
         birth: "2000",
-        button: <Button size="sm">하이루</Button>,
+        discordname: "eugene028",
+        button: (
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <Button size="sm">하이루</Button>
+            <Button size="sm">하이루</Button>
+          </div>
+        ),
       },
-      { id: 2, name: "강해린", studyId: "C011111", birth: "2006" },
-      { id: 3, name: "김민지", studyId: "C234567", birth: "2004" },
+      {
+        id: 2,
+        name: "강해린",
+        discordname: "haerin111",
+        studyId: "C011111",
+        birth: "2006",
+      },
+      {
+        id: 3,
+        name: "김민지",
+        studyId: "C234567",
+        discordname: "minijjang",
+        birth: "2004",
+      },
     ];
     return (
-      <PaginationTable
-        data={data}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "button", text: "버튼" },
-        ]}
-        onChange={handleSelectionChange}
-      />
+      <>
+        <button
+          onClick={() => {
+            setSelectedRows([]);
+          }}
+        >
+          하나빼기
+        </button>
+        <Table
+          data={data}
+          fullWidth={true}
+          selectedRows={selectedRows}
+          options={{
+            showCheckbox: true,
+            uniqueKey: "id",
+          }}
+          tableResource={[
+            { key: "name", text: "이름" },
+            { key: "studyId", text: "학번" },
+            { key: "discordname", text: "디스코드 닉네임" },
+            { key: "button", text: "버튼" },
+          ]}
+          onChange={handleSelectionChange}
+        />
+      </>
     );
   },
 };

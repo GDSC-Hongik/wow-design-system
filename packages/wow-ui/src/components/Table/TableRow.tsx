@@ -14,6 +14,7 @@ const TableRow = (props: TableRowProps) => {
       color="textBlack"
       height="44px"
       minWidth="100%"
+      role="row"
       textStyle="body2"
       {...props}
     >

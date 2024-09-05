@@ -10,7 +10,7 @@ interface TableCellProps extends PropsWithChildren {
 const TableCell = (props: TableCellProps) => {
   const { children, checked } = props;
   return (
-    <styled.td className={TableCellStyle({ checked })} {...props}>
+    <styled.td className={TableCellStyle({ checked })} role="cell" {...props}>
       {children}
     </styled.td>
   );
@@ -18,8 +18,12 @@ const TableCell = (props: TableCellProps) => {
 
 const TableCellStyle = cva({
   base: {
-    maxWidth: "100%",
+    maxWidth: "300px",
     paddingX: "sm",
+    minWidth: "74px",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   variants: {
     checked: {

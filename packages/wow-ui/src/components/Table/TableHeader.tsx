@@ -1,4 +1,4 @@
-import { styled } from "@styled-system/jsx";
+import { css } from "@styled-system/css";
 import type { CSSProperties, PropsWithChildren } from "react";
 
 interface TableHeaderProps extends PropsWithChildren {
@@ -7,21 +7,26 @@ interface TableHeaderProps extends PropsWithChildren {
 const TableHeader = (props: TableHeaderProps) => {
   const { children } = props;
   return (
-    <styled.th
-      alignItems="center"
-      backgroundColor="backgroundAlternative"
-      color="sub"
-      height="44px"
-      letterSpacing="wider"
-      minWidth="74px"
-      paddingX="sm"
-      textAlign="start"
-      textStyle="label2"
-      {...props}
-    >
+    <th className={TableHeaderStyle} {...props}>
       {children}
-    </styled.th>
+    </th>
   );
 };
+
+const TableHeaderStyle = css({
+  alignItems: "center",
+  backgroundColor: "backgroundAlternative",
+  color: "sub",
+  height: "44px",
+  letterSpacing: "wider",
+  maxWidth: "300px",
+  minWidth: "74px",
+  overflow: "hidden",
+  paddingX: "sm",
+  textAlign: "start",
+  textOverflow: "ellipsis",
+  textStyle: "label2",
+  whiteSpace: "nowrap",
+});
 
 export default TableHeader;
