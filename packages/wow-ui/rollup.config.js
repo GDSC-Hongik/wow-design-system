@@ -22,7 +22,7 @@ export default {
   input: {
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
-    PaginationTable: "./src/components/Table/PaginationTable",
+    Table: "./src/components/Table/Table",
     TableBodyContainer: "./src/components/Table/TableBodyContainer",
     TableCell: "./src/components/Table/TableCell",
     TableContainer: "./src/components/Table/TableContainer",
@@ -35,6 +35,7 @@ export default {
     SearchBar: "./src/components/SearchBar",
     RadioButton: "./src/components/RadioGroup/RadioButton",
     RadioGroup: "./src/components/RadioGroup/RadioGroup",
+    Pagination: "./src/components/Pagination",
     MultiGroup: "./src/components/MultiGroup",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",

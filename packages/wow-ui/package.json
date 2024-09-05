@@ -30,10 +30,10 @@
       "require": "./dist/TextButton.cjs",
       "import": "./dist/TextButton.js"
     },
-    "./PaginationTable": {
-      "types": "./dist/components/Table/PaginationTable.d.ts",
-      "require": "./dist/PaginationTable.cjs",
-      "import": "./dist/PaginationTable.js"
+    "./Table": {
+      "types": "./dist/components/Table/Table.d.ts",
+      "require": "./dist/Table.cjs",
+      "import": "./dist/Table.js"
     },
     "./TableBodyContainer": {
       "types": "./dist/components/Table/TableBodyContainer.d.ts",
@@ -94,6 +94,11 @@
       "types": "./dist/components/RadioGroup/RadioGroup.d.ts",
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
+    },
+    "./Pagination": {
+      "types": "./dist/components/Pagination/index.d.ts",
+      "require": "./dist/Pagination.cjs",
+      "import": "./dist/Pagination.js"
     },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",
