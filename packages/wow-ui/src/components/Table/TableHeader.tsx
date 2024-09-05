@@ -1,32 +1,27 @@
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren } from "react";
-import { forwardRef } from "react";
-
-import Checkbox from "@/components/Checkbox";
 
 interface TableHeaderProps extends PropsWithChildren {
   style?: CSSProperties;
 }
-const TableHeader = forwardRef<HTMLTableHeaderCellElement, TableHeaderProps>(
-  (props, ref) => {
-    const { children } = props;
-    return (
-      <styled.th
-        alignItems="center"
-        backgroundColor="backgroundAlternative"
-        color="sub"
-        height="44px"
-        letterSpacing="wider"
-        paddingX="sm"
-        ref={ref}
-        textAlign="start"
-        textStyle="label2"
-        {...props}
-      >
-        {children}
-      </styled.th>
-    );
-  }
-);
+const TableHeader = (props: TableHeaderProps) => {
+  const { children } = props;
+  return (
+    <styled.th
+      alignItems="center"
+      backgroundColor="backgroundAlternative"
+      color="sub"
+      height="44px"
+      letterSpacing="wider"
+      minWidth="74px"
+      paddingX="sm"
+      textAlign="start"
+      textStyle="label2"
+      {...props}
+    >
+      {children}
+    </styled.th>
+  );
+};
 
 export default TableHeader;

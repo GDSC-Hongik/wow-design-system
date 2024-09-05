@@ -2,7 +2,7 @@
 import { css } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import { clsx } from "clsx";
-import type { Ref } from "react";
+import type { ReactNode, Ref } from "react";
 import { forwardRef } from "react";
 
 import Checkbox from "@/components/Checkbox";
@@ -14,7 +14,7 @@ import useTableCheckState from "@/hooks/useTableCheckState";
 
 interface PaginationTableProps<T extends object> {
   data: T[];
-  tableResource: { valueKey: keyof T; text: string }[];
+  tableResource: { key: keyof T; text: string }[];
   options?: {
     showCheckbox?: boolean;
     uniqueKey?: keyof T;
@@ -56,7 +56,7 @@ const PaginationTable = forwardRef<HTMLTableElement, PaginationTableProps<any>>(
       >
         <styled.thead textAlign="start">
           {showCheckbox && (
-            <TableHeader style={{ width: "15px" }}>
+            <TableHeader style={TableCheckBoxStyle}>
               <Checkbox
                 checked={isHeaderCheckboxChecked}
                 onChange={handleHeaderCheckboxChange}
@@ -64,14 +64,19 @@ const PaginationTable = forwardRef<HTMLTableElement, PaginationTableProps<any>>(
             </TableHeader>
           )}
           {tableResource.map(({ text }) => (
-            <TableHeader key={`key-${text}`}>{text}</TableHeader>
+            <TableHeader key={text}>{text}</TableHeader>
           ))}
         </styled.thead>
         <TableBodyContainer>
-          {data.map((rowData, index) => (
-            <TableRow key={index}>
+          {data.map((rowData) => (
+            <TableRow key={getRowId(rowData)}>
               {showCheckbox && (
-                <TableCell style={{ width: "15px" }}>
+                <TableCell
+                  style={TableCheckBoxStyle}
+                  checked={selectedRows.some(
+                    (row) => getRowId(row) === getRowId(rowData)
+                  )}
+                >
                   <Checkbox
                     checked={selectedRows.some(
                       (row) => getRowId(row) === getRowId(rowData)
@@ -80,9 +85,14 @@ const PaginationTable = forwardRef<HTMLTableElement, PaginationTableProps<any>>(
                   />
                 </TableCell>
               )}
-              {tableResource.map(({ valueKey }) => (
-                <TableCell key={String(valueKey)}>
-                  {rowData[valueKey] as unknown as React.ReactNode}
+              {tableResource.map(({ key }) => (
+                <TableCell
+                  key={String(key)}
+                  checked={selectedRows.some(
+                    (row) => getRowId(row) === getRowId(rowData)
+                  )}
+                >
+                  {rowData[key] as ReactNode}
                 </TableCell>
               ))}
             </TableRow>
@@ -98,5 +108,8 @@ export default PaginationTable;
 
 const TableStyle = css({
   borderCollapse: "collapse",
-  width: "100%",
 });
+
+const TableCheckBoxStyle = {
+  minWidth: "15px",
+};

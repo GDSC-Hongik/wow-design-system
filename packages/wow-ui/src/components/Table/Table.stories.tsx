@@ -130,8 +130,8 @@ export const Primary: Story = {
       <PaginationTable
         data={data}
         tableResource={[
-          { valueKey: "name", text: "이름" },
-          { valueKey: "studyId", text: "학번" },
+          { key: "name", text: "이름" },
+          { key: "studyId", text: "학번" },
         ]}
       />
     );
@@ -165,9 +165,9 @@ export const CheckableTable: Story = {
           uniqueKey: "id",
         }}
         tableResource={[
-          { valueKey: "name", text: "이름" },
-          { valueKey: "studyId", text: "학번" },
-          { valueKey: "button", text: "버튼" },
+          { key: "name", text: "이름" },
+          { key: "studyId", text: "학번" },
+          { key: "button", text: "버튼" },
         ]}
         onChange={handleSelectionChange}
       />
