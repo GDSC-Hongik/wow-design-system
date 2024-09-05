@@ -25,6 +25,7 @@ const excludedComponents = [
   "DropDownWrapper",
   "CollectionContext",
   "DropDownOptionList",
+  "pickerComponents",
 ];
 
 const getFilteredComponentFiles = async (directoryPath: string) => {

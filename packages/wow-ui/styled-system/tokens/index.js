@@ -475,6 +475,30 @@ const tokens = {
     value: "#000000",
     variable: "var(--colors-github)",
   },
+  "colors.secondaryYellow": {
+    value: "#F9AB00",
+    variable: "var(--colors-secondary-yellow)",
+  },
+  "colors.secondaryGreen": {
+    value: "#34A853",
+    variable: "var(--colors-secondary-green)",
+  },
+  "colors.secondaryRed": {
+    value: "#EA4335",
+    variable: "var(--colors-secondary-red)",
+  },
+  "colors.errorBackground": {
+    value: "#FBD9D7",
+    variable: "var(--colors-error-background)",
+  },
+  "colors.blueDisabled": {
+    value: "#D7E9FD",
+    variable: "var(--colors-blue-disabled)",
+  },
+  "colors.textBlueDisabled": {
+    value: "#AFD2FC",
+    variable: "var(--colors-text-blue-disabled)",
+  },
   "spacing.-xxs": {
     value: "calc(var(--spacing-xxs) * -1)",
     variable: "var(--spacing-xxs)",

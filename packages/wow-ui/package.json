@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.1.9",
+  "version": "0.1.16",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -29,6 +29,11 @@
       "types": "./dist/components/TextButton/index.d.ts",
       "require": "./dist/TextButton.cjs",
       "import": "./dist/TextButton.js"
+    },
+    "./Tag": {
+      "types": "./dist/components/Tag/index.d.ts",
+      "require": "./dist/Tag.cjs",
+      "import": "./dist/Tag.js"
     },
     "./Table": {
       "types": "./dist/components/Table/Table.d.ts",
@@ -94,6 +99,31 @@
       "types": "./dist/components/RadioGroup/RadioGroup.d.ts",
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
+    },
+    "./DateDropDown": {
+      "types": "./dist/components/Picker/DateDropDown.d.ts",
+      "require": "./dist/DateDropDown.cjs",
+      "import": "./dist/DateDropDown.js"
+    },
+    "./PickerGroup": {
+      "types": "./dist/components/Picker/PickerGroup.d.ts",
+      "require": "./dist/PickerGroup.cjs",
+      "import": "./dist/PickerGroup.js"
+    },
+    "./RangeDatePicker": {
+      "types": "./dist/components/Picker/RangeDatePicker.d.ts",
+      "require": "./dist/RangeDatePicker.cjs",
+      "import": "./dist/RangeDatePicker.js"
+    },
+    "./SingleDatePicker": {
+      "types": "./dist/components/Picker/SingleDatePicker.d.ts",
+      "require": "./dist/SingleDatePicker.cjs",
+      "import": "./dist/SingleDatePicker.js"
+    },
+    "./TimePicker": {
+      "types": "./dist/components/Picker/TimePicker.d.ts",
+      "require": "./dist/TimePicker.cjs",
+      "import": "./dist/TimePicker.js"
     },
     "./Pagination": {
       "types": "./dist/components/Pagination/index.d.ts",
@@ -183,7 +213,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "lottie-react": "^2.4.0",
+    "react-day-picker": "^9.0.8",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {

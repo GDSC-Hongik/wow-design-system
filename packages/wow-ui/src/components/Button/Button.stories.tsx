@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import Link from "next/link";
+import { Help } from "wowds-icons";
 
 import Button from "@/components/Button";
 
@@ -24,7 +26,7 @@ const meta = {
         type: "text",
       },
     },
-    as: {
+    asProp: {
       description: "버튼을 구성할 HTML 태그의 종류를 나타냅니다.",
       table: {
         type: { summary: "ElementType" },
@@ -63,46 +65,6 @@ const meta = {
         options: ["solid", "outline"],
       },
     },
-    onKeyDown: {
-      description:
-        "버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 누르고 있는 동안 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onKeyUp: {
-      description:
-        "버튼에 포커스 된 상태에서 엔터 키 또는 스페이스 바를 뗐을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onMouseLeave: {
-      description:
-        "버튼의 영역에서 마우스가 벗어났을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onPointerDown: {
-      description:
-        "버튼에 포커스 된 상태에서 마우스 또는 터치로 누르고 있는 동안 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
-    onPointerUp: {
-      description:
-        "버튼에 포커스 된 상태에서 마우스 또는 터치를 뗐을 때 동작할 이벤트를 나타냅니다.",
-      table: {
-        type: { summary: "() => void" },
-      },
-      control: false,
-    },
     style: {
       description: "버튼의 커스텀 스타일을 나타냅니다.",
       table: {
@@ -137,21 +99,21 @@ export const Primary: Story = {
   },
 };
 
-export const LargeSolid: Story = {
+export const LargeSolidButton: Story = {
   args: {
     children: "버튼",
     variant: "solid",
   },
 };
 
-export const LargeOutline: Story = {
+export const LargeOutlineButton: Story = {
   args: {
     children: "버튼",
     variant: "outline",
   },
 };
 
-export const SmallSolid: Story = {
+export const SmallSolidButton: Story = {
   args: {
     children: "버튼",
     size: "sm",
@@ -159,10 +121,59 @@ export const SmallSolid: Story = {
   },
 };
 
-export const SmallOutline: Story = {
+export const SmallOutlineButton: Story = {
   args: {
     children: "버튼",
     size: "sm",
     variant: "outline",
+  },
+};
+
+export const SmallSubButton: Story = {
+  args: {
+    children: "버튼",
+    size: "sm",
+    variant: "sub",
+  },
+};
+
+export const LargeButtonWithIcon: Story = {
+  args: {
+    children: "버튼",
+    variant: "solid",
+    icon: <Help />,
+  },
+};
+
+export const SmallButtonWithIcon: Story = {
+  args: {
+    children: "버튼",
+    size: "sm",
+    variant: "solid",
+    icon: <Help />,
+  },
+};
+
+export const LargeButtonWithSubText: Story = {
+  args: {
+    children: "버튼",
+    variant: "solid",
+    subText: "최종 수정 일시 : 2024년 5월 23일 23:11",
+    icon: <Help />,
+  },
+};
+
+export const LinkButton: Story = {
+  args: {
+    children: "버튼",
+    asProp: Link,
+    href: "/",
+  },
+};
+
+export const DisabledButton: Story = {
+  args: {
+    children: "버튼",
+    disabled: true,
   },
 };

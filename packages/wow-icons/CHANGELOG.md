@@ -1,5 +1,23 @@
 # wowds-icons
 
+## 0.1.4
+
+### Patch Changes
+
+- f65c5d8: LeftArrow 아이콘을 추가합니다.
+
+## 0.1.3
+
+### Patch Changes
+
+- fea47e1: edit, trash, reload 아이콘을 추가합니다.
+
+## 0.1.2
+
+### Patch Changes
+
+- ac27c6b: Plus, Link 아이콘을 추가합니다.
+
 ## 0.1.1
 
 ### Patch Changes

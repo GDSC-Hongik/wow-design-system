@@ -15,17 +15,15 @@ interface DropDownTriggerProps {
   placeholder?: DropDownProps["placeholder"];
   label?: DropDownProps["label"];
   trigger?: DropDownProps["trigger"];
-  dropdownId: string;
 }
 
 const DropDownTrigger = ({
   placeholder,
   label,
   trigger,
-  dropdownId,
 }: DropDownTriggerProps) => {
   const itemMap = useCollection();
-  const { open, selectedValue, setOpen, setFocusedValue } =
+  const { open, selectedValue, setOpen, setFocusedValue, dropdownId } =
     useDropDownContext();
 
   const selectedText = itemMap.get(selectedValue);
