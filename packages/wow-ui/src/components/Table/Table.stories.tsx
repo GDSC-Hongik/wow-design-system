@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import PaginationTable from "@/components/Table/PaginationTable";
 import Table from "@/components/Table/Table";
 import TableBodyContainer from "@/components/Table/TableBodyContainer";
 import TableCell from "@/components/Table/TableCell";
@@ -125,30 +126,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   render: () => {
+    const data = [
+      { id: 1, name: "김유진", studyId: "C035087", birth: "2000" },
+      { id: 2, name: "강해린", studyId: "C011111", birth: "2006" },
+      { id: 3, name: "김민지", studyId: "C234567", birth: "2004" },
+    ];
     return (
-      <TableContainer>
-        <Table>
-          <TableHeaderContainer>
-            <TableRow>
-              <TableHeader>학번</TableHeader>
-              <TableHeader>이름</TableHeader>
-              <TableHeader>전화번호</TableHeader>
-            </TableRow>
-          </TableHeaderContainer>
-          <TableBodyContainer>
-            <TableRow>
-              <TableCell>C000000</TableCell>
-              <TableCell>가나다</TableCell>
-              <TableCell>0100000000</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>C000000</TableCell>
-              <TableCell>가나다</TableCell>
-              <TableCell>0100000000</TableCell>
-            </TableRow>
-          </TableBodyContainer>
-        </Table>
-      </TableContainer>
+      <PaginationTable
+        data={data}
+        tableResource={[
+          { valueKey: "name", valueText: "이름" },
+          { valueKey: "studyId", valueText: "학번" },
+        ]}
+      />
     );
   },
 };

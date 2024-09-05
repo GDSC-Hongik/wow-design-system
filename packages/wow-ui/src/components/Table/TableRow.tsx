@@ -18,8 +18,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     const { children, value } = props;
     const id = useId();
     const isHeader = useContext(TableHeaderContext);
-    const { variant, onChange, handleCheckboxChange } =
-      useTableVariantContext();
+    // const { handleCheckboxChange } = useTableVariantContext();
 
     const TableCheckBoxCell = (isHeader: boolean) => {
       if (isHeader) {
@@ -30,12 +29,12 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
               backgroundColor: color.backgroundAlternative,
             }}
           >
-            <Checkbox
+            {/* <Checkbox
               value="all"
               onChange={() => {
                 handleCheckboxChange();
               }}
-            />
+            /> */}
           </TableHeader>
         );
       } else {
@@ -48,9 +47,9 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           >
             <Checkbox
               value={value ? value : id}
-              onChange={() => {
-                if (handleCheckboxChange) handleCheckboxChange(1);
-              }}
+              // onChange={() => {
+              //   if (handleCheckboxChange) handleCheckboxChange(1);
+              // }}
             />
           </TableCell>
         );
@@ -65,7 +64,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
         textStyle="body2"
         {...props}
       >
-        {variant === "checkable" && TableCheckBoxCell(isHeader)}
+        {/* {variant === "checkable" && TableCheckBoxCell(isHeader)} */}
         {children}
       </styled.tr>
     );
