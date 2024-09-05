@@ -6,10 +6,10 @@ import type { Ref } from "react";
 import { forwardRef } from "react";
 
 import Checkbox from "@/components/Checkbox";
-import TableBodyContainer from "@/components/Table/components/TableBodyContainer";
-import TableCell from "@/components/Table/components/TableCell";
-import TableHeader from "@/components/Table/components/TableHeader";
-import TableRow from "@/components/Table/components/TableRow";
+import TableBodyContainer from "@/components/Table/TableBodyContainer";
+import TableCell from "@/components/Table/TableCell";
+import TableHeader from "@/components/Table/TableHeader";
+import TableRow from "@/components/Table/TableRow";
 import useTableCheckState from "@/hooks/useTableCheckState";
 
 interface PaginationTableProps<T extends object> {
