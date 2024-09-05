@@ -2,6 +2,8 @@ import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren } from "react";
 import { forwardRef } from "react";
 
+import Checkbox from "@/components/Checkbox";
+
 interface TableHeaderProps extends PropsWithChildren {
   style?: CSSProperties;
 }
