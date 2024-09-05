@@ -20,6 +20,7 @@ const TableCellStyle = cva({
   base: {
     maxWidth: "300px",
     paddingX: "sm",
+    paddingY: "xxs",
     minWidth: "74px",
     whiteSpace: "nowrap",
     overflow: "hidden",
