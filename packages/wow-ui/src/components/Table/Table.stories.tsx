@@ -110,6 +110,74 @@ export const Primary: Story = {
   },
 };
 
+export const ScrollTable: Story = {
+  render: () => {
+    const data = [
+      {
+        id: 1,
+        name: "김유진",
+        studyId: "C035087",
+        birth: "2000",
+        discordname: "eugene028",
+        button: (
+          <styled.div alignItems="center" display="flex" gap="8px">
+            <Button size="sm" variant="outline">
+              삭제
+            </Button>
+            <Button size="sm">등록</Button>
+          </styled.div>
+        ),
+      },
+      {
+        id: 2,
+        name: "강해린",
+        discordname: "haerin111",
+        studyId: "C011111",
+        birth: "2006",
+        button: (
+          <styled.div alignItems="center" display="flex" gap="8px">
+            <Button size="sm" variant="outline">
+              삭제
+            </Button>
+            <Button size="sm">등록</Button>
+          </styled.div>
+        ),
+      },
+      {
+        id: 3,
+        name: "김민지",
+        studyId: "C234567",
+        discordname: "minijjang",
+        birth: "2004",
+        button: (
+          <styled.div alignItems="center" display="flex" gap="8px">
+            <Button size="sm" variant="outline">
+              삭제
+            </Button>
+            <Button size="sm">등록</Button>
+          </styled.div>
+        ),
+      },
+    ];
+    return (
+      <Table
+        data={data}
+        style={{ maxWidth: "400px", maxHeight: "180px" }}
+        options={{
+          showCheckbox: true,
+          uniqueKey: "id",
+        }}
+        tableHeaderResource={[
+          { key: "name", text: "이름" },
+          { key: "studyId", text: "학번" },
+          { key: "discordname", text: "디스코드 닉네임" },
+          { key: "button", text: "버튼" },
+        ]}
+      />
+    );
+  },
+};
+
 export const CheckableTable: Story = {
   render: () => {
     const data = [
@@ -162,7 +230,7 @@ export const CheckableTable: Story = {
     return (
       <Table
         data={data}
-        fullWidth={true}
+        style={{ width: "350px", height: "150px" }}
         options={{
           showCheckbox: true,
           uniqueKey: "id",

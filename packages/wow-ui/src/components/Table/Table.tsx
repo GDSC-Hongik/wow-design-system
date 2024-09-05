@@ -1,5 +1,5 @@
 "use client";
-import { cva } from "@styled-system/css";
+import { css, cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import { clsx } from "clsx";
 import type { CSSProperties, ReactNode, Ref } from "react";
@@ -77,6 +77,7 @@ const Table = forwardRef<HTMLTableElement, TableProps<any>>(
       selectedRows: selectedRowsProp,
       onChange,
       fullWidth = false,
+      style,
       ...rest
     }: TableProps<T>,
     ref: Ref<HTMLTableElement>
@@ -93,61 +94,63 @@ const Table = forwardRef<HTMLTableElement, TableProps<any>>(
       selectedRows.length === data.length && data.length > 0;
 
     return (
-      <styled.table
-        aria-label="table"
-        aria-labelledby="table"
-        className={clsx(TableStyle({ fullWidth }), className)}
-        ref={ref}
-        role="table"
-        {...rest}
-      >
-        {tableCaption && (
-          <styled.caption
-            display="table-caption"
-            fontStyle="body1"
-            marginBottom="md"
-          >
-            {tableCaption}
-          </styled.caption>
-        )}
-        <styled.thead textAlign="start">
-          {showCheckbox && (
-            <TableHeader style={TableCheckBoxStyle}>
-              <Checkbox
-                checked={isHeaderCheckboxChecked}
-                onChange={handleHeaderCheckboxChange}
-              />
-            </TableHeader>
+      <div className={TableContainerStyle} style={style}>
+        <styled.table
+          aria-label="table"
+          aria-labelledby="table"
+          className={clsx(TableStyle({ fullWidth }), className)}
+          ref={ref}
+          role="table"
+          {...rest}
+        >
+          {tableCaption && (
+            <styled.caption
+              display="table-caption"
+              fontStyle="body1"
+              marginBottom="md"
+            >
+              {tableCaption}
+            </styled.caption>
           )}
-          {tableHeaderResource.map(({ text }) => (
-            <TableHeader key={text}>{text}</TableHeader>
-          ))}
-        </styled.thead>
-        <TableBodyContainer>
-          {data.map((rowData) => {
-            const isSelected = selectedRows.some(
-              (row) => getRowId(row) === getRowId(rowData)
-            );
-            return (
-              <TableRow key={getRowId(rowData)}>
-                {showCheckbox && (
-                  <TableCell checked={isSelected} style={TableCheckBoxStyle}>
-                    <Checkbox
-                      checked={isSelected}
-                      onChange={() => handleRowCheckboxChange(rowData)}
-                    />
-                  </TableCell>
-                )}
-                {tableHeaderResource.map(({ key }) => (
-                  <TableCell checked={isSelected} key={String(key)}>
-                    {rowData[key] as ReactNode}
-                  </TableCell>
-                ))}
-              </TableRow>
-            );
-          })}
-        </TableBodyContainer>
-      </styled.table>
+          <styled.thead position="sticky" textAlign="start" top="0" zIndex="1">
+            {showCheckbox && (
+              <TableHeader style={TableCheckBoxStyle}>
+                <Checkbox
+                  checked={isHeaderCheckboxChecked}
+                  onChange={handleHeaderCheckboxChange}
+                />
+              </TableHeader>
+            )}
+            {tableHeaderResource.map(({ text }) => (
+              <TableHeader key={text}>{text}</TableHeader>
+            ))}
+          </styled.thead>
+          <TableBodyContainer>
+            {data.map((rowData) => {
+              const isSelected = selectedRows.some(
+                (row) => getRowId(row) === getRowId(rowData)
+              );
+              return (
+                <TableRow key={getRowId(rowData)}>
+                  {showCheckbox && (
+                    <TableCell checked={isSelected} style={TableCheckBoxStyle}>
+                      <Checkbox
+                        checked={isSelected}
+                        onChange={() => handleRowCheckboxChange(rowData)}
+                      />
+                    </TableCell>
+                  )}
+                  {tableHeaderResource.map(({ key }) => (
+                    <TableCell checked={isSelected} key={String(key)}>
+                      {rowData[key] as ReactNode}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })}
+          </TableBodyContainer>
+        </styled.table>
+      </div>
     );
   }
 );
@@ -159,6 +162,7 @@ const TableStyle = cva({
   base: {
     borderCollapse: "collapse",
     backgroundColor: "white",
+    height: "100%",
   },
   variants: {
     fullWidth: {
@@ -179,3 +183,22 @@ const TableCheckBoxStyle = {
   justifyContent: "center",
   alignItems: "center",
 };
+
+const TableContainerStyle = css({
+  overflow: "auto",
+  position: "relative",
+  _scrollbar: {
+    width: "3px",
+  },
+  _scrollbarThumb: {
+    width: "3px",
+    height: "3px",
+    borderRadius: "sm",
+    backgroundColor: "outline",
+  },
+  _scrollbarTrack: {
+    marginTop: "2px",
+    marginBottom: "2px",
+    backgroundColor: "transparent",
+  },
+});
