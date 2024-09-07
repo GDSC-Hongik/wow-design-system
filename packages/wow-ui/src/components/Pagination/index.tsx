@@ -24,20 +24,12 @@ export interface PaginationProps {
   currentPage?: number;
   onChange?: (page: number) => void;
   style?: CSSProperties;
-  backgroundColor?: ColorPalette;
   className?: string;
 }
 
 const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
   (
-    {
-      totalPages,
-      currentPage: currentPageProps,
-      onChange,
-      backgroundColor,
-      style,
-      className,
-    },
+    { totalPages, currentPage: currentPageProps, onChange, style, className },
     ref
   ) => {
     const {
@@ -130,6 +122,7 @@ const PaginationContainer = css({
   display: "flex",
   flexDirection: "row",
   gap: "4px",
+  maxHeight: "24px",
 });
 
 const PaginationButtonGroup = css({
@@ -140,7 +133,7 @@ const PaginationButtonGroup = css({
 });
 
 const PaginationButtonStyle = css({
-  height: "100%",
+  minHeight: "24px",
   minWidth: "24px",
   borderRadius: "sm",
   backgroundColor: "backgroundAlternative",
