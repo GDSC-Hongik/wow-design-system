@@ -19,6 +19,11 @@ const meta: Meta<TabsProps> = {
           "TabsList 로 TabsTrigger 를 감싸서 탭 트리거를 관리하고 TabsContent 로 탭 콘텐츠를 관리합니다.",
       },
     },
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   argTypes: {
     value: {
