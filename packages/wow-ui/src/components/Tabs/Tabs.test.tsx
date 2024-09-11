@@ -3,10 +3,10 @@ import { render, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
 import type { TabsProps } from "@/components/Tabs";
-import { Tabs } from "@/components/Tabs";
-import { TabsContent } from "@/components/Tabs/TabsContent";
-import { TabsList } from "@/components/Tabs/TabsList";
-import { TabsTrigger } from "@/components/Tabs/TabsTrigger";
+import Tabs from "@/components/Tabs";
+import TabsContent from "@/components/Tabs/TabsContent";
+import TabsList from "@/components/Tabs/TabsList";
+import TabsTrigger from "@/components/Tabs/TabsTrigger";
 
 describe("Tabs component", () => {
   const renderTabs = (props: Partial<TabsProps> = {}): RenderResult => {

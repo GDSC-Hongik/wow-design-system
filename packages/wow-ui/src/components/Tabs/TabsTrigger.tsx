@@ -9,7 +9,7 @@ import { useMergeRefs } from "@/hooks/useMergeRefs";
 import type { DefaultProps } from "@/types/DefaultProps";
 
 import { useCollectionContext } from "./contexts/CollectionContext";
-import { useTabContext } from "./contexts/TabContext";
+import { useTabsContext } from "./contexts/TabsContext";
 
 /**
  * @description TabsTrigger 컴포넌트는 각 Tab 컴포넌트입니다.
@@ -26,9 +26,9 @@ interface TabsTriggerProps
   value: string;
 }
 
-export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
+const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   ({ value, children, className, ...rest }: TabsTriggerProps, ref) => {
-    const { value: selectedValue, setSelectedValue, label } = useTabContext();
+    const { value: selectedValue, setSelectedValue, label } = useTabsContext();
     const selected = selectedValue === value;
 
     const handleClickTabTrigger = () => {
@@ -69,8 +69,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     );
   }
 );
-
-TabsTrigger.displayName = "TabsTrigger";
+export default TabsTrigger;
 
 const tabTriggerStyle = cva({
   base: {

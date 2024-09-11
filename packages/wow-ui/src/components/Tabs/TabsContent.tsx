@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 
 import type { DefaultProps } from "@/types/DefaultProps";
 
-import { useTabContext } from "./contexts/TabContext";
+import { useTabsContext } from "./contexts/TabsContext";
 
 /**
  * @description TabsContent 컴포넌트는 각 Tab에 해당하는 콘텐츠입니다.
@@ -19,9 +19,9 @@ interface TabsContentProps extends PropsWithChildren, DefaultProps {
   value: string;
 }
 
-export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
+const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   ({ value: tabValue, children }: TabsContentProps, ref) => {
-    const { value, label } = useTabContext();
+    const { value, label } = useTabsContext();
     const selected = tabValue === value;
     if (!selected) return null;
 
@@ -39,4 +39,4 @@ export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   }
 );
 
-TabsContent.displayName = "TabsContent";
+export default TabsContent;

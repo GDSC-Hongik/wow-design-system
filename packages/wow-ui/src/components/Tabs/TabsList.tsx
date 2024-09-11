@@ -5,13 +5,13 @@ import { Flex } from "@styled-system/jsx";
 import { type KeyboardEvent, type PropsWithChildren, useCallback } from "react";
 
 import { useCollectionContext } from "./contexts/CollectionContext";
-import { useTabContext } from "./contexts/TabContext";
+import { useTabsContext } from "./contexts/TabsContext";
 
 /**
  * @description TabsList 컴포넌트는 TabTrigger 컴포넌트를 관리합니다.
  */
-export const TabsList = ({ children }: PropsWithChildren) => {
-  const { label, setSelectedValue, value: selectedValue } = useTabContext();
+const TabsList = ({ children }: PropsWithChildren) => {
+  const { label, setSelectedValue, value: selectedValue } = useTabsContext();
 
   const { values } = useCollectionContext();
 
@@ -52,6 +52,8 @@ export const TabsList = ({ children }: PropsWithChildren) => {
     </Flex>
   );
 };
+
+export default TabsList;
 
 const tabsListStyle = css({
   lg: {

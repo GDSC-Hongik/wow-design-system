@@ -6,7 +6,7 @@ import type { PropsWithChildren } from "react";
 import { useEffect, useState } from "react";
 
 import { CollectionProvider } from "@/components/Tabs/contexts/CollectionContext";
-import { TabContext } from "@/components/Tabs/contexts/TabContext";
+import { TabsContext } from "@/components/Tabs/contexts/TabsContext";
 import type { DefaultProps } from "@/types/DefaultProps";
 
 /**
@@ -24,7 +24,7 @@ export interface TabsProps extends PropsWithChildren, DefaultProps {
   label?: string;
   onChange?: (value: string) => void;
 }
-export const Tabs = ({
+const Tabs = ({
   defaultValue,
   value,
   label = "default-tab",
@@ -52,7 +52,7 @@ export const Tabs = ({
 
   return (
     <div className={clsx(tabsContainerStyle, className)} style={style}>
-      <TabContext.Provider
+      <TabsContext.Provider
         value={{
           value: selectedValue,
           setSelectedValue: handleSelect,
@@ -60,10 +60,12 @@ export const Tabs = ({
         }}
       >
         <CollectionProvider>{children}</CollectionProvider>
-      </TabContext.Provider>
+      </TabsContext.Provider>
     </div>
   );
 };
+
+export default Tabs;
 
 const tabsContainerStyle = css({
   width: "100%",

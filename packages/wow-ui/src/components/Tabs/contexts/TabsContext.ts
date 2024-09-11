@@ -4,15 +4,15 @@ import { createContext } from "react";
 
 import useSafeContext from "@/hooks/useSafeContext";
 
-interface TabContextProps {
+interface TabsContextProps {
   value: string;
   setSelectedValue: (value: string) => void;
   label?: string;
 }
 
-export const TabContext = createContext<TabContextProps | null>(null);
+export const TabsContext = createContext<TabsContextProps | null>(null);
 
-export const useTabContext = () => {
-  const context = useSafeContext(TabContext);
+export const useTabsContext = () => {
+  const context = useSafeContext(TabsContext);
   return context;
 };
