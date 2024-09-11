@@ -1,11 +1,15 @@
 "use client";
 
+import { css } from "@styled-system/css";
 import { Flex } from "@styled-system/jsx";
 import { type KeyboardEvent, type PropsWithChildren, useCallback } from "react";
 
 import { useCollectionContext } from "./contexts/CollectionContext";
 import { useTabContext } from "./contexts/TabContext";
 
+/**
+ * @description TabsList 컴포넌트는 TabTrigger 컴포넌트를 관리합니다.
+ */
 export const TabsList = ({ children }: PropsWithChildren) => {
   const { label, setSelectedValue, value: selectedValue } = useTabContext();
 
@@ -40,6 +44,7 @@ export const TabsList = ({ children }: PropsWithChildren) => {
     <Flex
       aria-label={`${label}-tab-list`}
       aria-orientation="horizontal"
+      className={tabsListStyle}
       role="tablist"
       onKeyDown={handleKeyDown}
     >
@@ -47,3 +52,10 @@ export const TabsList = ({ children }: PropsWithChildren) => {
     </Flex>
   );
 };
+
+const tabsListStyle = css({
+  lg: {
+    overflowX: "scroll",
+    scrollBehavior: "smooth",
+  },
+});
