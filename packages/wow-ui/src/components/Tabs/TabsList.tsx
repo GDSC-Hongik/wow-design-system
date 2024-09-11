@@ -1,0 +1,49 @@
+"use client";
+
+import { Flex } from "@styled-system/jsx";
+import { type KeyboardEvent, type PropsWithChildren, useCallback } from "react";
+
+import { useCollectionContext } from "./contexts/CollectionContext";
+import { useTabContext } from "./contexts/TabContext";
+
+export const TabsList = ({ children }: PropsWithChildren) => {
+  const { label, setSelectedValue, value: selectedValue } = useTabContext();
+
+  const { values } = useCollectionContext();
+
+  const updateFocusedValue = useCallback(
+    (direction: number) => {
+      const currentIndex = values.indexOf(selectedValue ?? "");
+      const nextIndex =
+        (currentIndex + direction + values.length) % values.length;
+      setSelectedValue(values[nextIndex] ?? "");
+    },
+    [setSelectedValue, selectedValue, values]
+  );
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const { key } = event;
+
+      if (key === "ArrowRight") {
+        updateFocusedValue(1);
+        event.preventDefault();
+      } else if (key === "ArrowLeft") {
+        updateFocusedValue(-1);
+        event.preventDefault();
+      }
+    },
+    [updateFocusedValue]
+  );
+
+  return (
+    <Flex
+      aria-label={`${label}-tab-list`}
+      aria-orientation="horizontal"
+      role="tablist"
+      onKeyDown={handleKeyDown}
+    >
+      {children}
+    </Flex>
+  );
+};
