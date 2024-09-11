@@ -35,6 +35,26 @@
       "require": "./dist/Tag.cjs",
       "import": "./dist/Tag.js"
     },
+    "./Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "require": "./dist/Tabs.cjs",
+      "import": "./dist/Tabs.js"
+    },
+    "./TabsContent": {
+      "types": "./dist/components/Tabs/TabsContent.d.ts",
+      "require": "./dist/TabsContent.cjs",
+      "import": "./dist/TabsContent.js"
+    },
+    "./TabsList": {
+      "types": "./dist/components/Tabs/TabsList.d.ts",
+      "require": "./dist/TabsList.cjs",
+      "import": "./dist/TabsList.js"
+    },
+    "./TabsTrigger": {
+      "types": "./dist/components/Tabs/TabsTrigger.d.ts",
+      "require": "./dist/TabsTrigger.cjs",
+      "import": "./dist/TabsTrigger.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
