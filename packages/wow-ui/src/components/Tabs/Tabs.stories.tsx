@@ -26,6 +26,14 @@ const meta: Meta<TabsProps> = {
     },
   },
   argTypes: {
+    children: {
+      description:
+        "TabsList,TabsTrigger, TabsContent 를 children 으로 받습니다.",
+      table: {
+        type: { summary: "ReactNode" },
+      },
+      control: false,
+    },
     value: {
       description: "현재 선택된 탭의 값을 나타냅니다.",
       table: {
@@ -46,6 +54,30 @@ const meta: Meta<TabsProps> = {
         type: { summary: "(value: string) => void" },
       },
       action: "changed",
+    },
+    label: {
+      description: "각 탭을 구분할 수 있는 레이블입니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: "text",
+    },
+    style: {
+      description: "탭의 커스텀 스타일을 설정합니다.",
+      table: {
+        type: { summary: "CSSProperties" },
+        defaultValue: { summary: "{}" },
+      },
+      control: false,
+    },
+    className: {
+      description: "탭에 전달하는 커스텀 클래스를 설정합니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: {
+        type: "text",
+      },
     },
   },
 } satisfies Meta<typeof Tabs>;
