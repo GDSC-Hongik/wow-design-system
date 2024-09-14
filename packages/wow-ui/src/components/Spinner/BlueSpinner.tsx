@@ -2,7 +2,7 @@ import type { LottieComponentProps } from "lottie-react";
 import Lottie from "lottie-react";
 import type { CSSProperties } from "react";
 
-import blueSpinner from "@/assets/lottie/blueSpinner.json";
+import blueSpinner from "@/assets/lotties/blueSpinner.json";
 
 /**
  * @description 블루 스피너 컴포넌트입니다.
