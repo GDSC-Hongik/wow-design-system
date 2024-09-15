@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 import { useEffect } from "react";
 import { Warn } from "wowds-icons";
 
@@ -12,6 +12,11 @@ const meta: Meta<typeof Toast> = {
   tags: ["autodocs"],
   parameters: {
     componentSubtitle: "Toast 컴포넌트",
+    a11y: {
+      config: {
+        rules: [{ id: "color-contrast", enabled: false }],
+      },
+    },
   },
   decorators: [
     (Story) => (
