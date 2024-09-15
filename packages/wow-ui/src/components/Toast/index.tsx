@@ -15,6 +15,7 @@ import { Close, RightArrow } from "wowds-icons";
  * @param {string} text - 토스트 컴포넌트의 메인 텍스트.
  * @param {ReactNode} icon - 토스트 컴포넌트의 좌측에 들어갈 아이콘.
  * @param {()=>void} onRemove - 토스트 컴포넌트가 사라지도록 하는 트리거 함수.
+ * @param {()=>void} [onClickArrowIcon] - 화살표 아이콘을 클릭했을 때 호출되는 함수.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
  * @param {CSSProperties} [style] - 커스텀 스타일을 적용하기 위한 객체.
  * @param {string} [className] - 커스텀 클래스를 적용하기 위한 문자열.
@@ -25,6 +26,7 @@ export interface ToastProps extends FlexProps {
   type?: "default" | "close" | "arrow";
   text: string;
   onRemove: () => void;
+  onClickArrowIcon?: () => void;
   icon?: ReactNode;
   subText?: string;
   style?: CSSProperties;
@@ -40,13 +42,29 @@ const Toast = forwardRef(
     text,
     subText,
     onRemove,
+    onClickArrowIcon,
     type = "default",
     icon,
     ...rest
   }: ToastProps) => {
     const TypeIconComponent = () => {
-      if (type === "close") return <Close stroke="outline" width={14} />;
-      else if (type === "arrow") return <RightArrow stroke="outline" />;
+      if (type === "close")
+        return (
+          <Close
+            stroke="outline"
+            style={{ cursor: "pointer" }}
+            width={14}
+            onClick={onRemove}
+          />
+        );
+      else if (type === "arrow")
+        return (
+          <RightArrow
+            stroke="outline"
+            style={{ cursor: "pointer" }}
+            onClick={onClickArrowIcon}
+          />
+        );
       return null;
     };
 
@@ -70,31 +88,42 @@ const Toast = forwardRef(
 
     return (
       <Flex
-        align="center"
-        className={toastContainerStyle}
-        justify="space-between"
-        style={{ opacity }}
-        transition="opacity"
-        transitionDelay="0.5"
-        transitionTimingFunction="ease-in-out"
-        {...rest}
+        alignItems="center"
+        height="100vh"
+        justifyContent="center"
+        left="0"
+        position="fixed"
+        top="0"
+        width="100vw"
+        zIndex="9999"
       >
-        <Flex align="center" gap="0.25rem">
-          {icon}
-          <Flex direction="column" justifyContent="center">
-            <styled.span
-              color="textWhite"
-              textStyle="body1"
-              wordBreak="break-all"
-            >
-              {text}
-            </styled.span>
-            <styled.span color="outline" textStyle="body2">
-              {subText}
-            </styled.span>
+        <Flex
+          align="center"
+          className={toastContainerStyle}
+          justify="space-between"
+          style={{ opacity }}
+          transition="opacity"
+          transitionDelay="0.5"
+          transitionTimingFunction="ease-in-out"
+          {...rest}
+        >
+          <Flex align="center" gap="0.25rem">
+            {icon}
+            <Flex direction="column" justifyContent="center">
+              <styled.span
+                color="textWhite"
+                textStyle="body1"
+                wordBreak="break-all"
+              >
+                {text}
+              </styled.span>
+              <styled.span color="outline" textStyle="body2">
+                {subText}
+              </styled.span>
+            </Flex>
           </Flex>
+          <TypeIconComponent />
         </Flex>
-        <TypeIconComponent />
       </Flex>
     );
   }
@@ -105,8 +134,6 @@ const toastContainerStyle = css({
   padding: "0.75rem 1rem",
 
   borderRadius: "md",
-
-  zIndex: 9999,
 
   background: "backgroundDimmer",
   backdropFilter: "blur(30px)",
