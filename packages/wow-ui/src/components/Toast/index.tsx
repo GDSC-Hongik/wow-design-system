@@ -125,7 +125,6 @@ const toastContainerStyle = css({
   width: "22.375rem",
   height: "fit-content",
   padding: "0.75rem 1rem",
-  marginTop: "1.5rem",
 
   borderRadius: "md",
 

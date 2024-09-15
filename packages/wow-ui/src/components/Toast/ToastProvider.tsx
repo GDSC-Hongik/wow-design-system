@@ -28,12 +28,13 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
       <Flex
-        gap="sm"
+        align="center"
+        direction="column"
+        gap="xs"
         height="100vh"
-        justifyContent="center"
         left={0}
         position="fixed"
-        top={0}
+        top="1.5rem"
         width="100vw"
         zIndex="9999"
       >
