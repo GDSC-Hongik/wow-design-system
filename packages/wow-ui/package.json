@@ -20,10 +20,20 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
+    "./ToastProvider": {
+      "types": "./dist/components/Toast/ToastProvider.d.ts",
+      "require": "./dist/ToastProvider.cjs",
+      "import": "./dist/ToastProvider.js"
+    },
     "./Toast": {
       "types": "./dist/components/Toast/index.d.ts",
       "require": "./dist/Toast.cjs",
       "import": "./dist/Toast.js"
+    },
+    "./useToast": {
+      "types": "./dist/components/Toast/useToast.d.ts",
+      "require": "./dist/useToast.cjs",
+      "import": "./dist/useToast.js"
     },
     "./TextField": {
       "types": "./dist/components/TextField/index.d.ts",

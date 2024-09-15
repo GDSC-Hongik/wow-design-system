@@ -26,17 +26,22 @@ const excludedComponents = [
   "CollectionContext",
   "DropDownOptionList",
   "pickerComponents",
+  "ToastContext",
 ];
+
+// 추가할 컴포넌트 목록
+const includedComponents = ["useToast"];
 
 const getFilteredComponentFiles = async (directoryPath: string) => {
   const files = await fs.readdir(directoryPath, { recursive: true });
 
   return files.filter(
     (file) =>
-      file.endsWith(".tsx") &&
-      !file.includes("test") &&
-      !file.includes("stories") &&
-      !excludedComponents.some((excluded) => file.includes(excluded))
+      (file.endsWith(".tsx") &&
+        !file.includes("test") &&
+        !file.includes("stories") &&
+        !excludedComponents.some((excluded) => file.includes(excluded))) ||
+      includedComponents.some((included) => file.includes(included))
   );
 };
 
