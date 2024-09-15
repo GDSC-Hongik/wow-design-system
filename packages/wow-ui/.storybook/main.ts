@@ -36,6 +36,28 @@ const config: StorybookConfig = {
         "@styled-system": path.resolve(__dirname, "../styled-system"),
       };
     }
+
+    if (!config.module || !config.module.rules) {
+      return config;
+    }
+
+    config.module.rules = [
+      ...config.module.rules.map((rule) => {
+        if (!rule || rule === "...") {
+          return rule;
+        }
+
+        if (rule.test && /svg/.test(String(rule.test))) {
+          return { ...rule, exclude: /\.svg$/i };
+        }
+        return rule;
+      }),
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+    ];
+
     return config;
   },
 };
