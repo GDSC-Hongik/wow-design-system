@@ -13,12 +13,12 @@ export type PolymorphicRef<T extends ElementType> =
 
 export type PolymorphicComponentPropsWithRef<
   C extends ElementType,
-  Props = {},
-> = Props & { ref?: PolymorphicRef<C> };
+  ComponentProps = {},
+> = ComponentProps & { ref?: PolymorphicRef<C> };
 
 export type PolymorphicComponentProps<
   T extends ElementType,
-  Props = {},
+  ComponentProps = {},
 > = AsProps<T> &
   ComponentPropsWithoutRef<T> &
-  PolymorphicComponentPropsWithRef<T, Props>;
+  PolymorphicComponentPropsWithRef<T, ComponentProps>;
