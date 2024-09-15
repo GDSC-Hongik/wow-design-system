@@ -134,6 +134,11 @@
       "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
+    },
+    "./Avatar": {
+      "types": "./dist/components/Avatar/index.d.ts",
+      "require": "./dist/Avatar.cjs",
+      "import": "./dist/Avatar.js"
     }
   },
   "keywords": [],

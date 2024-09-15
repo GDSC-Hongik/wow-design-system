@@ -43,6 +43,7 @@ export default {
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",
     Box: "./src/components/Box",
+    Avatar: "./src/components/Avatar",
   },
   output: [
     {
