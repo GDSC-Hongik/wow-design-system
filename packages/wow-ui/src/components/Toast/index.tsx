@@ -7,6 +7,8 @@ import type { CSSProperties, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
 import { Close, RightArrow } from "wowds-icons";
 
+import useToast from "./useToast";
+
 /**
  * @description 토스트 컴포넌트입니다.
  *
@@ -14,10 +16,8 @@ import { Close, RightArrow } from "wowds-icons";
  * @param {"default"|"close"|"arrow"} [type] - 토스트 컴포넌트의 타입.
  * @param {string} text - 토스트 컴포넌트의 메인 텍스트.
  * @param {ReactNode} icon - 토스트 컴포넌트의 좌측에 들어갈 아이콘.
- * @param {()=>void} onRemove - 토스트 컴포넌트가 사라지도록 하는 트리거 함수.
  * @param {()=>void} [onClickArrowIcon] - 화살표 아이콘을 클릭했을 때 호출되는 함수.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
- * @param {CSSProperties} [backgroundStyle] - 토스트 컴포넌트의 배경 커스텀 스타일을 적용하기 위한 객체.
  * @param {CSSProperties} [style] - 커스텀 스타일을 적용하기 위한 객체.
  * @param {string} [className] - 커스텀 클래스를 적용하기 위한 문자열.
  */
@@ -26,11 +26,9 @@ export interface ToastProps extends FlexProps {
   id: string;
   type?: "default" | "close" | "arrow";
   text: string;
-  onRemove: () => void;
   onClickArrowIcon?: () => void;
   icon?: ReactNode;
   subText?: string;
-  backgroundStyle?: CSSProperties;
   style?: CSSProperties;
   className?: string;
 }
@@ -43,13 +41,13 @@ const Toast = forwardRef(
     id,
     text,
     subText,
-    onRemove,
     onClickArrowIcon,
     type = "default",
     icon,
-    backgroundStyle,
     ...rest
   }: ToastProps) => {
+    const { removeToast } = useToast();
+
     const TypeIconComponent = () => {
       if (type === "close")
         return (
@@ -57,7 +55,7 @@ const Toast = forwardRef(
             stroke="outline"
             style={{ cursor: "pointer" }}
             width={14}
-            onClick={onRemove}
+            onClick={() => removeToast(id)}
           />
         );
       else if (type === "arrow")
@@ -76,7 +74,7 @@ const Toast = forwardRef(
     useEffect(() => {
       setOpacity(1);
       const timeoutForRemove = setTimeout(() => {
-        onRemove();
+        removeToast(id);
       }, TOAST_DURATION);
 
       const timeoutForVisible = setTimeout(() => {
@@ -87,46 +85,37 @@ const Toast = forwardRef(
         clearTimeout(timeoutForRemove);
         clearTimeout(timeoutForVisible);
       };
-    }, [id, onRemove]);
+    }, [id, removeToast]);
 
     return (
       <Flex
-        height="100vh"
-        justifyContent="center"
-        left={0}
-        position="fixed"
-        style={backgroundStyle}
-        top={0}
-        width="100vw"
-        zIndex="9999"
+        align="center"
+        className={toastContainerStyle}
+        justify="space-between"
+        style={{ opacity }}
+        transition="opacity"
+        transitionDelay="0.5"
+        transitionTimingFunction="ease-in-out"
+        {...rest}
       >
-        <Flex
-          align="center"
-          className={toastContainerStyle}
-          justify="space-between"
-          style={{ opacity }}
-          transition="opacity"
-          transitionDelay="0.5"
-          transitionTimingFunction="ease-in-out"
-          {...rest}
-        >
-          <Flex align="center" gap="0.25rem">
-            {icon}
-            <Flex direction="column" justifyContent="center">
-              <styled.span
-                color="textWhite"
-                textStyle="body1"
-                wordBreak="break-all"
-              >
-                {text}
-              </styled.span>
+        <Flex align="center" gap="0.25rem">
+          <styled.div flexShrink={0}>{icon}</styled.div>
+          <Flex direction="column" justifyContent="center" width="100%">
+            <styled.span
+              color="textWhite"
+              textStyle="body1"
+              wordBreak="break-all"
+            >
+              {text}
+            </styled.span>
+            {subText && (
               <styled.span color="outline" textStyle="body2">
                 {subText}
               </styled.span>
-            </Flex>
+            )}
           </Flex>
-          <TypeIconComponent />
         </Flex>
+        <TypeIconComponent />
       </Flex>
     );
   }
