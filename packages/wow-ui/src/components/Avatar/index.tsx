@@ -1,7 +1,3 @@
-/**
- *
- */
-
 import { cva } from "@styled-system/css";
 import type { ElementType, PropsWithChildren } from "react";
 import { forwardRef } from "react";
@@ -11,6 +7,17 @@ import type {
   PolymorphicComponentProps,
   PolymorphicRef,
 } from "@/types/polymorphic.ts";
+
+/**
+ * @description Avatar 컴포넌트는 사용자 프로필을 나타내는 컴포넌트입니다.
+ *
+ * @param {("sm" | "lg")} [size="lg"] - 아바타의 크기.
+ * @param {("blue" | "green" | "yellow" | "red")} [variant="blue"] - 아바타의 색상.
+ * @param {string} [imageUrl] - 아바타에 표시할 이미지의 URL.
+ * @param {string} [username] - 아바타 옆에 표시할 사용자 이름. 사용자 이름이 제공되면 레이블로 표시됨.
+ * @param {("left" | "right")} [orientation="right"] - 사용자 이름 레이블의 방향. size가 'sm'인 경우 지정 가능.
+ * @param {React.ElementType} [asProp="div"] - 렌더링할 HTML 요소나 React 컴포넌트. 기본값은 "div".
+ */
 
 type AvatarSizeType = "sm" | "lg";
 
