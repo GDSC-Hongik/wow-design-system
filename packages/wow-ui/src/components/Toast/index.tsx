@@ -17,6 +17,7 @@ import { Close, RightArrow } from "wowds-icons";
  * @param {()=>void} onRemove - 토스트 컴포넌트가 사라지도록 하는 트리거 함수.
  * @param {()=>void} [onClickArrowIcon] - 화살표 아이콘을 클릭했을 때 호출되는 함수.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
+ * @param {CSSProperties} [backgroundStyle] - 토스트 컴포넌트의 배경 커스텀 스타일을 적용하기 위한 객체.
  * @param {CSSProperties} [style] - 커스텀 스타일을 적용하기 위한 객체.
  * @param {string} [className] - 커스텀 클래스를 적용하기 위한 문자열.
  */
@@ -29,6 +30,7 @@ export interface ToastProps extends FlexProps {
   onClickArrowIcon?: () => void;
   icon?: ReactNode;
   subText?: string;
+  backgroundStyle?: CSSProperties;
   style?: CSSProperties;
   className?: string;
 }
@@ -45,6 +47,7 @@ const Toast = forwardRef(
     onClickArrowIcon,
     type = "default",
     icon,
+    backgroundStyle,
     ...rest
   }: ToastProps) => {
     const TypeIconComponent = () => {
@@ -88,12 +91,12 @@ const Toast = forwardRef(
 
     return (
       <Flex
-        alignItems="center"
         height="100vh"
         justifyContent="center"
-        left="0"
+        left={0}
         position="fixed"
-        top="0"
+        style={backgroundStyle}
+        top={0}
         width="100vw"
         zIndex="9999"
       >
@@ -131,7 +134,9 @@ const Toast = forwardRef(
 
 const toastContainerStyle = css({
   width: "22.375rem",
+  height: "fit-content",
   padding: "0.75rem 1rem",
+  marginTop: "1.5rem",
 
   borderRadius: "md",
 

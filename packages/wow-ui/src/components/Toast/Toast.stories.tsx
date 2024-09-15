@@ -41,6 +41,11 @@ const meta: Meta<typeof Toast> = {
       description: "Toast 좌측에 들어갈 아이콘을 나타냅니다.",
       control: false,
     },
+    backgroundStyle: {
+      description:
+        "Toast의 배경에 커스텀 스타일을 적용하기 위한 객체를 나타냅니다.",
+      control: false,
+    },
     style: {
       description: "Toast에 커스텀 스타일을 적용하기 위한 객체를 나타냅니다.",
       control: false,
