@@ -134,6 +134,26 @@
       "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
+    },
+    "./ActionSheetBody": {
+      "types": "./dist/components/ActionSheet/ActionSheetBody.d.ts",
+      "require": "./dist/ActionSheetBody.cjs",
+      "import": "./dist/ActionSheetBody.js"
+    },
+    "./ActionSheetFooter": {
+      "types": "./dist/components/ActionSheet/ActionSheetFooter.d.ts",
+      "require": "./dist/ActionSheetFooter.cjs",
+      "import": "./dist/ActionSheetFooter.js"
+    },
+    "./ActionSheetHeader": {
+      "types": "./dist/components/ActionSheet/ActionSheetHeader.d.ts",
+      "require": "./dist/ActionSheetHeader.cjs",
+      "import": "./dist/ActionSheetHeader.js"
+    },
+    "./ActionSheet": {
+      "types": "./dist/components/ActionSheet/index.d.ts",
+      "require": "./dist/ActionSheet.cjs",
+      "import": "./dist/ActionSheet.js"
     }
   },
   "keywords": [],

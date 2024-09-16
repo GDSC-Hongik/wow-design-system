@@ -43,6 +43,10 @@ export default {
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",
     Box: "./src/components/Box",
+    ActionSheetBody: "./src/components/ActionSheet/ActionSheetBody",
+    ActionSheetFooter: "./src/components/ActionSheet/ActionSheetFooter",
+    ActionSheetHeader: "./src/components/ActionSheet/ActionSheetHeader",
+    ActionSheet: "./src/components/ActionSheet",
   },
   output: [
     {
