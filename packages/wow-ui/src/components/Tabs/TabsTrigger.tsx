@@ -81,6 +81,7 @@ const tabTriggerStyle = cva({
     color: "sub",
     outline: "none",
     cursor: "pointer",
+    whiteSpace: "pre",
     xsToSm: {
       display: "flex",
       flexGrow: 1,

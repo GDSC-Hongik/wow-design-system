@@ -3,7 +3,7 @@
 import { css } from "@styled-system/css";
 import { clsx } from "clsx";
 import type { PropsWithChildren } from "react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 import { CollectionProvider } from "@/components/Tabs/contexts/CollectionContext";
 import { TabsContext } from "@/components/Tabs/contexts/TabsContext";
@@ -26,23 +26,18 @@ export interface TabsProps extends PropsWithChildren, DefaultProps {
 }
 const Tabs = ({
   defaultValue,
-  value,
+  value: valueProp,
   label = "default-tab",
   children,
   onChange,
   className,
   style,
 }: TabsProps) => {
-  const [selectedValue, setSelectedValue] = useState(
-    defaultValue ?? value ?? ""
-  );
-  useEffect(() => {
-    if (value !== undefined) {
-      setSelectedValue(value);
-    }
-  }, [value]);
+  const [selectedValue, setSelectedValue] = useState(defaultValue ?? "");
+  const isControlled = useRef<boolean>(valueProp !== undefined).current;
+
   const handleSelect = (selectedValue: string) => {
-    if (value === undefined) {
+    if (!isControlled) {
       setSelectedValue(selectedValue);
     }
     if (onChange) {
@@ -54,7 +49,7 @@ const Tabs = ({
     <div className={clsx(tabsContainerStyle, className)} style={style}>
       <TabsContext.Provider
         value={{
-          value: selectedValue,
+          value: valueProp !== undefined ? valueProp : selectedValue,
           setSelectedValue: handleSelect,
           label,
         }}

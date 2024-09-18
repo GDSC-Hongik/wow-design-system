@@ -56,8 +56,20 @@ const TabsList = ({ children }: PropsWithChildren) => {
 export default TabsList;
 
 const tabsListStyle = css({
-  lg: {
-    overflowX: "scroll",
-    scrollBehavior: "smooth",
+  overflowX: "scroll",
+  scrollBehavior: "smooth",
+  _scrollbar: {
+    width: "65px",
+    height: "2px",
+  },
+  _scrollbarThumb: {
+    width: "65px",
+    height: "2px",
+    borderRadius: "sm",
+    backgroundColor: "outline",
+  },
+  _scrollbarTrack: {
+    marginTop: "2px",
+    marginBottom: "2px",
   },
 });
