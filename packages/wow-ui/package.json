@@ -118,7 +118,7 @@
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate:build-config": "tsx ../scripts/generateBuildConfig.ts && prettier --write ./rollup.config.js ./package.json",
+    "generate:build-config": "pnpm update-config && prettier --write ./rollup.config.js ./package.json",
     "test-storybook": "test-storybook --browsers firefox chromium webkit",
     "test": "jest",
     "create:story-file": "plop --plopfile ../codegen/plopfile.js"
