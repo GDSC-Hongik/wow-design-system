@@ -92,6 +92,7 @@ function updatePackageJson(files: string[]): void {
   console.log(`package.json 업데이트 되었습니다`);
 }
 
+//TODO: tsup 으로 수정 필요
 function updateRollupConfig(files: string[]): void {
   const rollupConfigPath: string = path.join(wowUiDir, "rollup.config.js");
   let rollupConfig: string = fs.readFileSync(rollupConfigPath, "utf8");
