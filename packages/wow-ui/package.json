@@ -19,46 +19,50 @@
   "module": "./dist/components/index.js",
   "type": "module",
   "exports": {
-    "./styles.css": "./dist/styles.css",
-    "./TextField": {
-      "types": "./dist/components/TextField/index.d.ts",
-      "require": "./dist/TextField.cjs",
-      "import": "./dist/TextField.js"
-    },
-    "./TextButton": {
-      "types": "./dist/components/TextButton/index.d.ts",
-      "require": "./dist/TextButton.cjs",
-      "import": "./dist/TextButton.js"
-    },
-    "./Tag": {
-      "types": "./dist/components/Tag/index.d.ts",
-      "require": "./dist/Tag.cjs",
-      "import": "./dist/Tag.js"
-    },
-    "./Switch": {
-      "types": "./dist/components/Switch/index.d.ts",
-      "require": "./dist/Switch.cjs",
-      "import": "./dist/Switch.js"
-    },
-    "./Stepper": {
-      "types": "./dist/components/Stepper/index.d.ts",
-      "require": "./dist/Stepper.cjs",
-      "import": "./dist/Stepper.js"
-    },
     "./BlueSpinner": {
       "types": "./dist/components/Spinner/BlueSpinner.d.ts",
       "require": "./dist/BlueSpinner.cjs",
       "import": "./dist/BlueSpinner.js"
     },
-    "./RainbowSpinner": {
-      "types": "./dist/components/Spinner/RainbowSpinner.d.ts",
-      "require": "./dist/RainbowSpinner.cjs",
-      "import": "./dist/RainbowSpinner.js"
+    "./Box": {
+      "types": "./dist/components/Box/index.d.ts",
+      "require": "./dist/Box.cjs",
+      "import": "./dist/Box.js"
     },
-    "./SearchBar": {
-      "types": "./dist/components/SearchBar/index.d.ts",
-      "require": "./dist/SearchBar.cjs",
-      "import": "./dist/SearchBar.js"
+    "./Button": {
+      "types": "./dist/components/Button/index.d.ts",
+      "require": "./dist/Button.cjs",
+      "import": "./dist/Button.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "require": "./dist/Checkbox.cjs",
+      "import": "./dist/Checkbox.js"
+    },
+    "./Chip": {
+      "types": "./dist/components/Chip/index.d.ts",
+      "require": "./dist/Chip.cjs",
+      "import": "./dist/Chip.js"
+    },
+    "./Divider": {
+      "types": "./dist/components/Divider/index.d.ts",
+      "require": "./dist/Divider.cjs",
+      "import": "./dist/Divider.js"
+    },
+    "./DropDown": {
+      "types": "./dist/components/DropDown/index.d.ts",
+      "require": "./dist/DropDown.cjs",
+      "import": "./dist/DropDown.js"
+    },
+    "./DropDownOption": {
+      "types": "./dist/components/DropDown/DropDownOption.d.ts",
+      "require": "./dist/DropDownOption.cjs",
+      "import": "./dist/DropDownOption.js"
+    },
+    "./MultiGroup": {
+      "types": "./dist/components/MultiGroup/index.d.ts",
+      "require": "./dist/MultiGroup.cjs",
+      "import": "./dist/MultiGroup.js"
     },
     "./RadioButton": {
       "types": "./dist/components/RadioGroup/RadioButton.d.ts",
@@ -70,46 +74,42 @@
       "require": "./dist/RadioGroup.cjs",
       "import": "./dist/RadioGroup.js"
     },
-    "./MultiGroup": {
-      "types": "./dist/components/MultiGroup/index.d.ts",
-      "require": "./dist/MultiGroup.cjs",
-      "import": "./dist/MultiGroup.js"
+    "./RainbowSpinner": {
+      "types": "./dist/components/Spinner/RainbowSpinner.d.ts",
+      "require": "./dist/RainbowSpinner.cjs",
+      "import": "./dist/RainbowSpinner.js"
     },
-    "./DropDownOption": {
-      "types": "./dist/components/DropDown/DropDownOption.d.ts",
-      "require": "./dist/DropDownOption.cjs",
-      "import": "./dist/DropDownOption.js"
+    "./SearchBar": {
+      "types": "./dist/components/SearchBar/index.d.ts",
+      "require": "./dist/SearchBar.cjs",
+      "import": "./dist/SearchBar.js"
     },
-    "./DropDown": {
-      "types": "./dist/components/DropDown/index.d.ts",
-      "require": "./dist/DropDown.cjs",
-      "import": "./dist/DropDown.js"
+    "./Stepper": {
+      "types": "./dist/components/Stepper/index.d.ts",
+      "require": "./dist/Stepper.cjs",
+      "import": "./dist/Stepper.js"
     },
-    "./Divider": {
-      "types": "./dist/components/Divider/index.d.ts",
-      "require": "./dist/Divider.cjs",
-      "import": "./dist/Divider.js"
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "require": "./dist/Switch.cjs",
+      "import": "./dist/Switch.js"
     },
-    "./Chip": {
-      "types": "./dist/components/Chip/index.d.ts",
-      "require": "./dist/Chip.cjs",
-      "import": "./dist/Chip.js"
+    "./Tag": {
+      "types": "./dist/components/Tag/index.d.ts",
+      "require": "./dist/Tag.cjs",
+      "import": "./dist/Tag.js"
     },
-    "./Checkbox": {
-      "types": "./dist/components/Checkbox/index.d.ts",
-      "require": "./dist/Checkbox.cjs",
-      "import": "./dist/Checkbox.js"
+    "./TextButton": {
+      "types": "./dist/components/TextButton/index.d.ts",
+      "require": "./dist/TextButton.cjs",
+      "import": "./dist/TextButton.js"
     },
-    "./Button": {
-      "types": "./dist/components/Button/index.d.ts",
-      "require": "./dist/Button.cjs",
-      "import": "./dist/Button.js"
+    "./TextField": {
+      "types": "./dist/components/TextField/index.d.ts",
+      "require": "./dist/TextField.cjs",
+      "import": "./dist/TextField.js"
     },
-    "./Box": {
-      "types": "./dist/components/Box/index.d.ts",
-      "require": "./dist/Box.cjs",
-      "import": "./dist/Box.js"
-    }
+    "./styles.css": "./dist/styles.css"
   },
   "keywords": [],
   "license": "ISC",
@@ -149,7 +149,8 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "cli": "workspace:^"
   },
   "dependencies": {
     "clsx": "^2.1.1",
