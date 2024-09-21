@@ -18,7 +18,7 @@ export const DropDownOptionList = ({
   children,
   hasCustomTrigger,
 }: DropDownWrapperProps) => {
-  const { open, setFocusedValue, focusedValue, handleSelect } =
+  const { open, setFocusedValue, focusedValue, handleSelect, dropdownId } =
     useDropDownContext();
   const itemMap = useCollection();
   const listRef = useRef<HTMLUListElement>(null);
@@ -64,6 +64,10 @@ export const DropDownOptionList = ({
 
   return (
     <styled.ul
+      {...(focusedValue && {
+        "aria-activedescendant": `${dropdownId}-option-${focusedValue}`,
+      })}
+      aria-hidden={!open}
       display="flex"
       flexDirection="column"
       ref={listRef}
