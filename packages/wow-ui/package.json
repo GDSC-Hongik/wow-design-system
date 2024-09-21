@@ -100,6 +100,11 @@
       "require": "./dist/MultiGroup.cjs",
       "import": "./dist/MultiGroup.js"
     },
+    "./Header": {
+      "types": "./dist/components/Header/index.d.ts",
+      "require": "./dist/Header.cjs",
+      "import": "./dist/Header.js"
+    },
     "./DropDownOption": {
       "types": "./dist/components/DropDown/DropDownOption.d.ts",
       "require": "./dist/DropDownOption.cjs",
