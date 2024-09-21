@@ -14,7 +14,7 @@ import { useDropDownContext } from "./context/DropDownContext";
 interface DropDownWrapperProps extends PropsWithChildren {
   hasCustomTrigger?: boolean;
 }
-export const DropDownOptionList = ({
+const DropDownOptionList = ({
   children,
   hasCustomTrigger,
 }: DropDownWrapperProps) => {
@@ -84,6 +84,8 @@ export const DropDownOptionList = ({
     </styled.ul>
   );
 };
+
+export default DropDownOptionList;
 
 const dropdownContentStyle = cva({
   base: {
