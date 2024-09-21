@@ -64,15 +64,11 @@ const DropDownOptionList = ({
 
   return (
     <styled.ul
-      {...(focusedValue && {
-        "aria-activedescendant": `${dropdownId}-option-${focusedValue}`,
-      })}
       aria-hidden={!open}
-      display="flex"
-      flexDirection="column"
+      aria-labelledby={`${dropdownId}-trigger`}
+      id={`${dropdownId}-option-list`}
       ref={listRef}
       role="listbox"
-      style={{ visibility: open ? "visible" : "hidden" }}
       tabIndex={0}
       visibility={open ? "visible" : "hidden"}
       className={dropdownContentStyle({
@@ -89,6 +85,8 @@ export default DropDownOptionList;
 
 const dropdownContentStyle = cva({
   base: {
+    display: "flex",
+    flexDirection: "column",
     position: "absolute",
     outline: "none",
     top: "calc(100% + 0.5rem)",

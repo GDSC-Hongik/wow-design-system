@@ -27,7 +27,6 @@ const DropDownWrapper = ({
 
   return (
     <Flex
-      aria-labelledby={`${dropdownId}-trigger`}
       cursor="pointer"
       direction="column"
       gap="xs"
