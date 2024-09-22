@@ -27,21 +27,23 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
-      <Flex
-        align="center"
-        direction="column"
-        gap="xs"
-        height="100vh"
-        left={0}
-        position="fixed"
-        top="1.5rem"
-        width="100vw"
-        zIndex="overlay"
-      >
-        {toasts?.map((toast: ToastProps) => (
-          <Toast key={toast.id} {...toast} />
-        ))}
-      </Flex>
+      {toasts.length > 0 && (
+        <Flex
+          align="center"
+          direction="column"
+          gap="xs"
+          height="100vh"
+          left={0}
+          position="fixed"
+          top="1.5rem"
+          width="100vw"
+          zIndex="overlay"
+        >
+          {toasts?.map((toast: ToastProps) => (
+            <Toast key={toast.id} {...toast} />
+          ))}
+        </Flex>
+      )}
       {children}
     </ToastContext.Provider>
   );
