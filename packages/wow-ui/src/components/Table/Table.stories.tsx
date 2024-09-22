@@ -353,14 +353,22 @@ const TableWithPaginationComponent = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <Table
-        data={currentData}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "birth", text: "생년월일" },
-        ]}
-      />
+      <Table>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {currentData.map(({ name, studyId, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
       <Pagination
         currentPage={selectedPage}
         totalPages={totalPages}

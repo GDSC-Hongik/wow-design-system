@@ -2,22 +2,29 @@ import { useEffect, useState } from "react";
 
 const ITEM_PER_PAGE = 5;
 
-const usePage = (
+const usePagination = (
   totalPages: number,
   onChange?: (page: number) => void,
-  currentPageProps?: number
+  defaultPage?: number,
+  currentPageProp?: number
 ) => {
   const [startPage, setStartPage] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number>(currentPageProps || 1);
+  const [currentPage, setCurrentPage] = useState<number>(defaultPage || 1);
 
   useEffect(() => {
-    if (currentPage) {
-      setCurrentPage(currentPage);
-      const newStartPage =
-        Math.floor((currentPage - 1) / ITEM_PER_PAGE) * ITEM_PER_PAGE + 1;
-      setStartPage(newStartPage);
+    if (currentPageProp) {
+      if (currentPageProp > totalPages) setCurrentPage(totalPages);
+      else if (currentPageProp <= 1) setCurrentPage(1);
+      else setCurrentPage(currentPageProp);
     }
-  }, [currentPage]);
+  }, [currentPageProp, totalPages]);
+
+  useEffect(() => {
+    const newStartPage =
+      Math.floor((currentPage - 1) / ITEM_PER_PAGE) * ITEM_PER_PAGE + 1;
+    setStartPage(newStartPage);
+    if (onChange) onChange(currentPage);
+  }, [currentPage, onChange]);
 
   const getPageRange = () => {
     const endPage = Math.min(startPage + ITEM_PER_PAGE - 1, totalPages);
@@ -26,21 +33,23 @@ const usePage = (
 
   const { start, end } = getPageRange();
 
+  const updatePageState = (newStartPage: number, newCurrentPage: number) => {
+    setStartPage(newStartPage);
+    setCurrentPage(newCurrentPage);
+    if (onChange) onChange(newCurrentPage);
+  };
+
   const handleClickNextGroup = () => {
     if (end < totalPages) {
       const nextStartPage = Math.min(startPage + ITEM_PER_PAGE, totalPages);
-      setStartPage(nextStartPage);
-      setCurrentPage(nextStartPage);
-      if (onChange) onChange(nextStartPage);
+      updatePageState(nextStartPage, nextStartPage);
     }
   };
 
   const handleClickPrevGroup = () => {
     if (start > 1) {
       const prevStartPage = Math.max(startPage - ITEM_PER_PAGE, 1);
-      setStartPage(prevStartPage);
-      setCurrentPage(prevStartPage + ITEM_PER_PAGE - 1);
-      if (onChange) onChange(prevStartPage + ITEM_PER_PAGE - 1);
+      updatePageState(prevStartPage, prevStartPage + ITEM_PER_PAGE - 1);
     }
   };
 
@@ -55,8 +64,7 @@ const usePage = (
         handleClickNextGroup();
       } else {
         const nextPage = currentPage + 1;
-        setCurrentPage(nextPage);
-        if (onChange) onChange(nextPage);
+        handleClickPage(nextPage);
       }
     }
   };
@@ -67,8 +75,7 @@ const usePage = (
         handleClickPrevGroup();
       } else {
         const prevPage = currentPage - 1;
-        setCurrentPage(prevPage);
-        if (onChange) onChange(prevPage);
+        handleClickPage(prevPage);
       }
     }
   };
@@ -84,4 +91,4 @@ const usePage = (
   };
 };
 
-export default usePage;
+export default usePagination;
