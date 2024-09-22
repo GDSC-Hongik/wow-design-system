@@ -2,6 +2,8 @@ import type { Meta } from "@storybook/react";
 import { useEffect } from "react";
 import { Warn } from "wowds-icons";
 
+import Button from "@/components/Button";
+
 import Toast from ".";
 import ToastProvider from "./ToastProvider";
 import useToast from "./useToast";
@@ -78,6 +80,16 @@ export const Default = () => {
   }, []);
 };
 
+export const WithTrigger = () => {
+  const { toast } = useToast();
+
+  return (
+    <Button onClick={() => toast({ text: "Text", subText: "subtext" })}>
+      토스트 열기
+    </Button>
+  );
+};
+
 export const Close = () => {
   const { toast } = useToast();
   useEffect(() => {
@@ -137,8 +149,8 @@ export const Slow = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
-      text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
-      icon: <Warn />,
+      text: "Text",
+      subText: "subtext",
       toastDuration: 5000,
     });
   }, []);
