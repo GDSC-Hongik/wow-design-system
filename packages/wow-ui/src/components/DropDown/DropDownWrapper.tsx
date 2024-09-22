@@ -11,7 +11,7 @@ interface DropDownWrapperProps extends PropsWithChildren {
   className?: DropDownProps["className"];
   hasCustomTrigger?: boolean;
 }
-export const DropDownWrapper = ({
+const DropDownWrapper = ({
   children,
   hasCustomTrigger,
   ...rest
@@ -27,7 +27,6 @@ export const DropDownWrapper = ({
 
   return (
     <Flex
-      aria-labelledby={`${dropdownId}-trigger`}
       cursor="pointer"
       direction="column"
       gap="xs"
@@ -43,3 +42,5 @@ export const DropDownWrapper = ({
     </Flex>
   );
 };
+
+export default DropDownWrapper;
