@@ -29,12 +29,10 @@ export interface ToastProps extends FlexProps {
   onClickArrowIcon?: () => void;
   icon?: ReactNode;
   subText?: string;
+  toastDuration?: number;
   style?: CSSProperties;
   className?: string;
 }
-
-const TOAST_DURATION = 2000;
-const ANIMATION_DURATION = 200;
 
 const Toast = forwardRef(
   ({
@@ -44,8 +42,11 @@ const Toast = forwardRef(
     onClickArrowIcon,
     type = "default",
     icon,
+    toastDuration,
     ...rest
   }: ToastProps) => {
+    const TOAST_DURATION = toastDuration || 2000;
+    const ANIMATION_DURATION = 200;
     const { removeToast } = useToast();
 
     const TypeIconComponent = () => {
