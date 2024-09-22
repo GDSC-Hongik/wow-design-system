@@ -57,9 +57,13 @@ const DropDownTrigger = ({
     ...(focusedValue && {
       "aria-activedescendant": `${dropdownId}-option-${focusedValue}`,
     }),
-    ...(label && {
-      "aria-labeledby": `${dropdownId}-label`,
-    }),
+    ...(label
+      ? {
+          "aria-labelledby": `${dropdownId}-label`,
+        }
+      : {
+          "aria-label": `dropdown-open`,
+        }),
   };
 
   if (trigger) {
@@ -85,7 +89,6 @@ const DropDownTrigger = ({
         alignItems="center"
         cursor="pointer"
         display="flex"
-        id={`${dropdownId}-trigger`}
         justifyContent="space-between"
         outline="none"
         type="button"

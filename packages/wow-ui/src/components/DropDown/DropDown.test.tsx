@@ -54,12 +54,8 @@ describe("DropDown component", () => {
       placeholder: "Please select",
     });
 
-    const dropdownButton = screen.getByRole("button", {
-      name: "Option 2 down-arrow icon",
-    });
-    expect(dropdownButton).toBeInTheDocument();
-    expect(dropdownButton).toHaveAttribute("id", `${dropdownId}-trigger`);
-    expect(dropdownButton).toHaveTextContent("Option 2");
+    const dropdownTrigger = screen.getByRole("combobox");
+    expect(dropdownTrigger).toHaveTextContent("Option 2");
   });
 
   it("should render the trigger button", async () => {
@@ -159,8 +155,8 @@ describe("external control and events", () => {
 
     await userEvent.keyboard("{ArrowDown}");
     await waitFor(() => {
-      const dropdown = screen.getByRole("listbox");
-      expect(dropdown).toHaveAttribute(
+      const dropdownTrigger = screen.getByRole("combobox");
+      expect(dropdownTrigger).toHaveAttribute(
         "aria-activedescendant",
         `${dropdownId}-option-option1`
       );
@@ -168,8 +164,8 @@ describe("external control and events", () => {
 
     await userEvent.keyboard("{ArrowDown}");
     await waitFor(() => {
-      const dropdown = screen.getByRole("listbox");
-      expect(dropdown).toHaveAttribute(
+      const dropdownTrigger = screen.getByRole("combobox");
+      expect(dropdownTrigger).toHaveAttribute(
         "aria-activedescendant",
         `${dropdownId}-option-option2`
       );
@@ -177,8 +173,8 @@ describe("external control and events", () => {
 
     await userEvent.keyboard("{ArrowDown}");
     await waitFor(() => {
-      const dropdown = screen.getByRole("listbox");
-      expect(dropdown).toHaveAttribute(
+      const dropdownTrigger = screen.getByRole("combobox");
+      expect(dropdownTrigger).toHaveAttribute(
         "aria-activedescendant",
         `${dropdownId}-option-option3`
       );
@@ -186,8 +182,8 @@ describe("external control and events", () => {
 
     await userEvent.keyboard("{ArrowUp}");
     await waitFor(() => {
-      const dropdown = screen.getByRole("listbox");
-      expect(dropdown).toHaveAttribute(
+      const dropdownTrigger = screen.getByRole("combobox");
+      expect(dropdownTrigger).toHaveAttribute(
         "aria-activedescendant",
         `${dropdownId}-option-option2`
       );
