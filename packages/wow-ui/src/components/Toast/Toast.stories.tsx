@@ -51,6 +51,10 @@ const meta: Meta<typeof Toast> = {
       description: "Toast 좌측에 들어갈 아이콘을 나타냅니다.",
       control: false,
     },
+    toastDuration: {
+      description: "Toast가 보여지는 시간을 나타냅니다.",
+      control: { type: "number" },
+    },
     style: {
       description: "Toast에 커스텀 스타일을 적용하기 위한 객체를 나타냅니다.",
       control: false,
@@ -125,6 +129,17 @@ export const TwoLines = () => {
     toast({
       text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
       icon: <Warn />,
+    });
+  }, []);
+};
+
+export const Slow = () => {
+  const { toast } = useToast();
+  useEffect(() => {
+    toast({
+      text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
+      icon: <Warn />,
+      toastDuration: 5000,
     });
   }, []);
 };
