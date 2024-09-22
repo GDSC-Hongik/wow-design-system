@@ -24,7 +24,6 @@ export default {
     TextButton: "./src/components/TextButton",
     Tag: "./src/components/Tag",
     Table: "./src/components/Table/Table",
-    TableContainer: "./src/components/Table/TableContainer",
     Tbody: "./src/components/Table/Tbody",
     Td: "./src/components/Table/Td",
     Th: "./src/components/Table/Th",
