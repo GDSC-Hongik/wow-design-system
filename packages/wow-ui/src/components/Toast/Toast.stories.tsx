@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect } from "react";
 import { Warn } from "wowds-icons";
 
@@ -44,7 +44,12 @@ const meta: Meta<typeof Toast> = {
     },
     type: {
       description: "Toast의 타입을 나타냅니다.",
-      control: { type: "radio" },
+      table: {
+        type: { summary: "default | close | arrow" },
+        defaultValue: { summary: "default" },
+      },
+      control: "radio",
+      options: ["default", "close", "arrow"],
     },
     id: {
       description: "Toast 컴포넌트의 id를 나타냅니다.",
@@ -76,14 +81,15 @@ const meta: Meta<typeof Toast> = {
 
 export default meta;
 
-export const Default = () => {
-  const { toast } = useToast();
-  useEffect(() => {
-    toast({
-      text: "Text",
-      subText: "subtext",
-    });
-  }, []);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    id: "1",
+    text: "Text",
+    subText: "subtext",
+    toastDuration: 60 * 60 * 1000,
+  },
 };
 
 export const WithTrigger = () => {
