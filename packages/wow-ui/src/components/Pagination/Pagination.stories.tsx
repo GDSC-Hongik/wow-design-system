@@ -50,7 +50,7 @@ const meta = {
         type: { summary: "(page: number) => void" },
       },
     },
-    pageButtonColor: {
+    pageButtonBackgroundColor: {
       description: "페이지네이션 컴포넌트 버튼 색을 변경합니다.",
       table: {
         type: { summary: "ColorToken" },
@@ -98,7 +98,7 @@ export const DefaultPage: Story = {
 export const ChangeBackgroundColorPage: Story = {
   args: {
     totalPages: 15,
-    pageButtonColor: "red50",
+    pageButtonBackgroundColor: "red50",
   },
 };
 

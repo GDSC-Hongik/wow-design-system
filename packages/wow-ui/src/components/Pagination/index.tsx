@@ -15,7 +15,7 @@ import usePagination from "@/hooks/usePagination";
  * @param {number} totalPages 페이지의 총 개수입니다.
  * @param {number} currentPage 외부에서 주입할 수 있는 현재 페이지입니다.
  * @param {number} defaultPage 기본 페이지입니다.
- * @param {ColorToken} pageButtonColor 페이지네이션 컴포넌트 버튼 색을 변경합니다.
+ * @param {ColorToken} pageButtonBackgroundColor 페이지네이션 컴포넌트 버튼 색을 변경합니다.
  * @param {(page: number) => void} [onChange] 외부에서 페이지 값의 변화를 감지할 수 있는 함수입니다.
  * @param {() => void} [style] 페이지네이션 컴포넌트에 커스텀하게 전달할 style입니다.
  * @param {string} [className] 페이지네이션 컴포넌트에 전달하는 커스텀 클래스를 설정합니다.
@@ -26,7 +26,7 @@ export interface PaginationProps {
   totalPages: number;
   defaultPage?: number;
   currentPage?: number;
-  pageButtonColor?: ColorToken;
+  pageButtonBackgroundColor?: ColorToken;
   onChange?: (page: number) => void;
   style?: CSSProperties;
   className?: string;
@@ -40,7 +40,7 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
       onChange,
       style,
       className,
-      pageButtonColor,
+      pageButtonBackgroundColor,
       currentPage: currentPageProp,
     },
     ref
@@ -83,7 +83,9 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
               className={paginationButtonStyle}
               disabled={start === 1}
               style={{
-                backgroundColor: customBackgroundColor(pageButtonColor),
+                backgroundColor: customBackgroundColor(
+                  pageButtonBackgroundColor
+                ),
               }}
               onClick={handleClickPrevGroup}
             >
@@ -98,7 +100,9 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
               aria-label="Previous page"
               className={paginationButtonStyle}
               style={{
-                backgroundColor: customBackgroundColor(pageButtonColor),
+                backgroundColor: customBackgroundColor(
+                  pageButtonBackgroundColor
+                ),
               }}
               onClick={handleClickPrevPage}
             >
@@ -121,7 +125,9 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
                     selected: currentPage === page,
                   })}
                   style={{
-                    backgroundColor: customBackgroundColor(pageButtonColor),
+                    backgroundColor: customBackgroundColor(
+                      pageButtonBackgroundColor
+                    ),
                   }}
                   onClick={() => handleClickPage(page)}
                 >
@@ -135,7 +141,9 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
               aria-label="Next page"
               className={paginationButtonStyle}
               style={{
-                backgroundColor: customBackgroundColor(pageButtonColor),
+                backgroundColor: customBackgroundColor(
+                  pageButtonBackgroundColor
+                ),
               }}
               onClick={handleClickNextPage}
             >
@@ -146,7 +154,9 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
               className={paginationButtonStyle}
               disabled={end === totalPages}
               style={{
-                backgroundColor: customBackgroundColor(pageButtonColor),
+                backgroundColor: customBackgroundColor(
+                  pageButtonBackgroundColor
+                ),
               }}
               onClick={handleClickNextGroup}
             >
