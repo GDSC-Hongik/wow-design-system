@@ -18,7 +18,9 @@ import useToast from "./useToast";
  * @param {string} text - 토스트 컴포넌트의 메인 텍스트.
  * @param {ReactNode} icon - 토스트 컴포넌트의 좌측에 들어갈 아이콘.
  * @param {()=>void} [onClickArrowIcon] - 화살표 아이콘을 클릭했을 때 호출되는 함수.
+ * @param {()=>void} [onRemove] - 토스트 컴포넌트가 닫히고 나서 호출되는 함수.
  * @param {string} [subText] - 토스트 컴포넌트의 보조 텍스트.
+ * @param {string} [toastDuration] - 토스트 컴포넌트의 보여지는 시간.
  * @param {CSSProperties} [style] - 커스텀 스타일을 적용하기 위한 객체.
  * @param {string} [className] - 커스텀 클래스를 적용하기 위한 문자열.
  */
@@ -28,6 +30,7 @@ export interface ToastProps extends FlexProps {
   type?: "default" | "close" | "arrow";
   text: string;
   onClickArrowIcon?: () => void;
+  onRemove?: () => void;
   icon?: ReactNode;
   subText?: string;
   toastDuration?: number;
@@ -41,6 +44,7 @@ const Toast = forwardRef(
     text,
     subText,
     onClickArrowIcon,
+    onRemove,
     type = "default",
     icon,
     toastDuration,
@@ -64,6 +68,7 @@ const Toast = forwardRef(
       setOpacity(1);
       const timeoutForRemove = setTimeout(() => {
         removeToast(id);
+        onRemove?.();
       }, TOAST_DURATION);
 
       const timeoutForVisible = setTimeout(() => {
