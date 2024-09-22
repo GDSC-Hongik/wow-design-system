@@ -60,6 +60,10 @@ const meta: Meta<typeof Toast> = {
         "Toast 컴포넌트의 화살표 아이콘을 클릭했을 때 호출되는 함수를 나타냅니다.",
       control: false,
     },
+    onRemove: {
+      description: "Toast 컴포넌트가 닫힌 이후 호출되는 함수를 나타냅니다.",
+      control: false,
+    },
     icon: {
       description: "Toast 좌측에 들어갈 아이콘을 나타냅니다.",
       control: false,
