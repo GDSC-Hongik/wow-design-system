@@ -4,14 +4,14 @@ import React, { forwardRef } from "react";
 
 interface TableBodyProps extends PropsWithChildren {
   style?: CSSProperties;
+  className?: string;
 }
 
 const Tbody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   (props, ref) => {
-    const { children } = props;
-
+    const { children, ...rest } = props;
     return (
-      <styled.tbody ref={ref} role="rowgroup" {...props} textAlign="start">
+      <styled.tbody ref={ref} role="rowgroup" {...rest} textAlign="start">
         {children}
       </styled.tbody>
     );

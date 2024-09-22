@@ -1,35 +1,54 @@
 import { styled } from "@styled-system/jsx";
-import type { PropsWithChildren } from "react";
+import type { CSSProperties, PropsWithChildren, Ref } from "react";
+import { forwardRef } from "react";
 
 import Checkbox from "@/components/Checkbox";
-import { TableContext } from "@/components/Table/Table";
+import { useTableContext } from "@/components/Table/TableContext";
 import Th from "@/components/Table/Th";
-import useSafeContext from "@/hooks/useSafeContext";
 
-interface TheadProps extends PropsWithChildren {}
+interface TheadProps extends PropsWithChildren {
+  style?: CSSProperties;
+  className?: string;
+}
 
-const Thead = (props: TheadProps) => {
-  const { selectedRows, showCheckbox, handleHeaderCheckboxChange, rowValue } =
-    useSafeContext(TableContext);
+const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
+  function TheadFunction(
+    { children, ...rest }: TheadProps,
+    ref: Ref<HTMLTableSectionElement>
+  ) {
+    const {
+      selectedRows,
+      showCheckbox,
+      handleHeaderCheckboxChange,
+      rowValues,
+    } = useTableContext();
 
-  const isHeaderCheckboxChecked =
-    selectedRows.length === rowValue.length && rowValue.length > 0;
-  return (
-    <styled.thead position="sticky" textAlign="start" top="0" zIndex="1">
-      <tr>
-        {showCheckbox && (
-          <Th style={TableCheckBoxStyle}>
-            <Checkbox
-              checked={isHeaderCheckboxChecked}
-              onChange={handleHeaderCheckboxChange}
-            />
-          </Th>
-        )}
-        {props.children}
-      </tr>
-    </styled.thead>
-  );
-};
+    const isHeaderCheckboxChecked =
+      selectedRows.length === rowValues.length && rowValues.length > 0;
+    return (
+      <styled.thead
+        position="sticky"
+        ref={ref}
+        textAlign="start"
+        top="0"
+        zIndex="1"
+        {...rest}
+      >
+        <tr>
+          {showCheckbox && (
+            <Th style={TableCheckBoxStyle}>
+              <Checkbox
+                checked={isHeaderCheckboxChecked}
+                onChange={handleHeaderCheckboxChange}
+              />
+            </Th>
+          )}
+          {children}
+        </tr>
+      </styled.thead>
+    );
+  }
+);
 
 export default Thead;
 

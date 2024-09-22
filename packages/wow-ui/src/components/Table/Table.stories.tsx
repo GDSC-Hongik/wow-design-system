@@ -304,7 +304,7 @@ const ControlledTable = () => {
         선택한 테이블 요소 모두 초기화
       </Button>
       <Table
-        selectedRowsProps={selectedRows}
+        selectedRowsProp={selectedRows}
         showCheckbox={true}
         onChange={handleSelectionChange}
       >

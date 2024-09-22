@@ -6,7 +6,6 @@ const useTableCheckState = (
   onChange?: (selectedRows: number[]) => void
 ) => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
-  console.log(selectedRows);
 
   useEffect(() => {
     if (selectedRowsProp) {
@@ -33,8 +32,6 @@ const useTableCheckState = (
 
   const handleHeaderCheckboxChange = useCallback(() => {
     setSelectedRows((prevSelectedRows) => {
-      console.log(prevSelectedRows.length);
-      console.log(data.length);
       const newSelectedRows =
         prevSelectedRows.length === data.length ? [] : [...data];
       if (onChange) {

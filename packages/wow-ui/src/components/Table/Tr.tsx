@@ -1,52 +1,54 @@
 import { styled } from "@styled-system/jsx";
-import {
-  createContext,
-  type CSSProperties,
-  type PropsWithChildren,
-} from "react";
+import type { CSSProperties, PropsWithChildren, Ref } from "react";
+import { forwardRef } from "react";
 
 import Checkbox from "@/components/Checkbox";
-import { TableContext } from "@/components/Table/Table";
+import {
+  TableCheckedContext,
+  useTableContext,
+} from "@/components/Table/TableContext";
 import Td from "@/components/Table/Td";
-import useSafeContext from "@/hooks/useSafeContext";
 
 interface TableRowProps extends PropsWithChildren {
   style?: CSSProperties;
   value?: number;
-  id?: string;
+  className?: string;
 }
 
-export const TableCheckedContext = createContext<number | undefined>(0);
-
-const TableRow = (props: TableRowProps) => {
-  const { children, value } = props;
-  const { selectedRows, handleRowCheckboxChange, showCheckbox } =
-    useSafeContext(TableContext);
-  const isSelected = selectedRows.some((row: number) => row === value);
-  return (
-    <TableCheckedContext.Provider value={value}>
-      <styled.tr
-        color="textBlack"
-        data-value={props.id}
-        height="44px"
-        minWidth="100%"
-        role="row"
-        textStyle="body2"
-        {...props}
-      >
-        {showCheckbox && (
-          <Td style={TableCheckBoxStyle}>
-            <Checkbox
-              checked={isSelected}
-              onChange={() => handleRowCheckboxChange(props.value)}
-            />
-          </Td>
-        )}
-        {children}
-      </styled.tr>
-    </TableCheckedContext.Provider>
-  );
-};
+const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
+  function TableRowFunction(
+    props: TableRowProps,
+    ref: Ref<HTMLTableRowElement>
+  ) {
+    const { children, value, ...rest } = props;
+    const { selectedRows, handleRowCheckboxChange, showCheckbox } =
+      useTableContext();
+    const isSelected = selectedRows.some((row: number) => row === value);
+    return (
+      <TableCheckedContext.Provider value={value}>
+        <styled.tr
+          color="textBlack"
+          height="44px"
+          minWidth="100%"
+          ref={ref}
+          role="row"
+          textStyle="body2"
+          {...rest}
+        >
+          {showCheckbox && (
+            <Td style={TableCheckBoxStyle}>
+              <Checkbox
+                checked={isSelected}
+                onChange={() => handleRowCheckboxChange(value)}
+              />
+            </Td>
+          )}
+          {children}
+        </styled.tr>
+      </TableCheckedContext.Provider>
+    );
+  }
+);
 
 export default TableRow;
 
