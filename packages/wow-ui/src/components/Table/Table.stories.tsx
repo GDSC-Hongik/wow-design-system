@@ -99,13 +99,22 @@ export const Primary: Story = {
       { id: 3, name: "김민지", studyId: "C234567", birth: "2004" },
     ];
     return (
-      <Table
-        data={data}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-        ]}
-      />
+      <Table>
+        <Table.Thead>
+          <Table.Th>하이루</Table.Th>
+          <Table.Th>뭐가살쪄</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
@@ -160,20 +169,24 @@ export const ScrollTable: Story = {
       },
     ];
     return (
-      <Table
-        data={data}
-        style={{ maxWidth: "400px", maxHeight: "180px" }}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-          { key: "button", text: "버튼" },
-        ]}
-      />
+      <Table style={{ maxWidth: "400px", maxHeight: "180px" }}>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+          <Table.Th>버튼</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, button, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+                <Table.Td>{button}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
@@ -228,41 +241,31 @@ export const CheckableTable: Story = {
       },
     ];
     return (
-      <Table
-        data={data}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-          { key: "button", text: "버튼" },
-        ]}
-      />
+      <Table showCheckbox={true}>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+          <Table.Th>버튼</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, button, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+                <Table.Td>{button}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
 
 const ControlledTable = () => {
-  const selectedProps = [
-    {
-      id: 3,
-      name: "김민지",
-      studyId: "C234567",
-      discordname: "minijjang",
-      birth: "2004",
-    },
-    {
-      id: 2,
-      name: "강해린",
-      discordname: "haerin111",
-      studyId: "C011111",
-      birth: "2006",
-    },
-  ];
-  const [selectedRows, setSelectedRows] = useState<object[]>(selectedProps);
+  const selectedProps = [2, 3];
+  const [selectedRows, setSelectedRows] = useState<number[]>(selectedProps);
   const data = [
     {
       id: 1,
@@ -286,7 +289,7 @@ const ControlledTable = () => {
       birth: "2004",
     },
   ];
-  const handleSelectionChange = (rows: object[]) => {
+  const handleSelectionChange = (rows: number[]) => {
     setSelectedRows(rows);
   };
   return (
@@ -301,20 +304,25 @@ const ControlledTable = () => {
         선택한 테이블 요소 모두 초기화
       </Button>
       <Table
-        data={data}
-        fullWidth={true}
-        selectedRows={selectedRows}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-        ]}
+        selectedRowsProps={selectedRows}
+        showCheckbox={true}
         onChange={handleSelectionChange}
-      />
+      >
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     </>
   );
 };

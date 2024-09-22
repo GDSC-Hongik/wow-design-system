@@ -1,17 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-const useTableCheckState = <T>(
-  data: T[],
-  uniqueKey?: keyof T,
-  selectedRowsProp?: T[],
-  onChange?: (selectedRows: T[]) => void
+const useTableCheckState = (
+  data: number[],
+  selectedRowsProp?: number[],
+  onChange?: (selectedRows: number[]) => void
 ) => {
-  const [selectedRows, setSelectedRows] = useState<T[]>([]);
-
-  const getRowId = useCallback(
-    (rowData: T) => (uniqueKey ? (rowData[uniqueKey] as string) : "id"),
-    [uniqueKey]
-  );
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  console.log(selectedRows);
 
   useEffect(() => {
     if (selectedRowsProp) {
@@ -20,14 +15,12 @@ const useTableCheckState = <T>(
   }, [selectedRowsProp]);
 
   const handleRowCheckboxChange = useCallback(
-    (rowData: T) => {
+    (rowData: number) => {
       setSelectedRows((prevSelectedRows) => {
-        const rowId = getRowId(rowData);
-        const isSelected = prevSelectedRows.some(
-          (row) => getRowId(row) === rowId
-        );
+        const rowId = rowData;
+        const isSelected = prevSelectedRows.some((row) => row === rowId);
         const newSelectedRows = isSelected
-          ? prevSelectedRows.filter((row) => getRowId(row) !== rowId)
+          ? prevSelectedRows.filter((row) => row !== rowId)
           : [...prevSelectedRows, rowData];
         if (onChange) {
           onChange(newSelectedRows);
@@ -35,11 +28,13 @@ const useTableCheckState = <T>(
         return newSelectedRows;
       });
     },
-    [getRowId, onChange]
+    [onChange]
   );
 
   const handleHeaderCheckboxChange = useCallback(() => {
     setSelectedRows((prevSelectedRows) => {
+      console.log(prevSelectedRows.length);
+      console.log(data.length);
       const newSelectedRows =
         prevSelectedRows.length === data.length ? [] : [...data];
       if (onChange) {
@@ -53,7 +48,6 @@ const useTableCheckState = <T>(
     handleRowCheckboxChange,
     handleHeaderCheckboxChange,
     selectedRows,
-    getRowId,
   };
 };
 

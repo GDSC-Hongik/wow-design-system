@@ -1,16 +1,27 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
-import type { CSSProperties, PropsWithChildren } from "react";
+import { type CSSProperties, type PropsWithChildren, useContext } from "react";
+
+import { TableContext } from "@/components/Table/Table";
+import { TableCheckedContext } from "@/components/Table/Tr";
+import useSafeContext from "@/hooks/useSafeContext";
 
 interface TableCellProps extends PropsWithChildren {
   style?: CSSProperties;
-  checked?: boolean;
 }
 
-const TableCell = (props: TableCellProps) => {
-  const { children, checked } = props;
+const Td = (props: TableCellProps) => {
+  const { children } = props;
+  const { selectedRows } = useSafeContext(TableContext);
+  const value = useContext(TableCheckedContext);
+  const isSelected = selectedRows.some((row: number) => row === value);
+
   return (
-    <styled.td className={TableCellStyle({ checked })} role="cell" {...props}>
+    <styled.td
+      className={TableCellStyle({ checked: isSelected })}
+      role="cell"
+      {...props}
+    >
       {children}
     </styled.td>
   );
@@ -41,4 +52,4 @@ const TableCellStyle = cva({
   },
 });
 
-export default TableCell;
+export default Td;
