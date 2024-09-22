@@ -16,7 +16,6 @@
     "package.json"
   ],
   "type": "module",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/component/index.d.ts",
