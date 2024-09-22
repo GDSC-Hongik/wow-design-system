@@ -36,7 +36,7 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
         position="fixed"
         top="1.5rem"
         width="100vw"
-        zIndex="9999"
+        zIndex="overlay"
       >
         {toasts?.map((toast: ToastProps) => (
           <Toast key={toast.id} {...toast} />
