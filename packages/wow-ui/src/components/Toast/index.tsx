@@ -5,6 +5,7 @@ import type { FlexProps } from "@styled-system/jsx";
 import { Flex, styled } from "@styled-system/jsx";
 import type { CSSProperties, ReactNode } from "react";
 import { forwardRef, useEffect, useState } from "react";
+import type { IconProps } from "wowds-icons";
 import { Close, RightArrow } from "wowds-icons";
 
 import useToast from "./useToast";
@@ -49,24 +50,11 @@ const Toast = forwardRef(
     const ANIMATION_DURATION = 200;
     const { removeToast } = useToast();
 
-    const TypeIconComponent = () => {
+    const IconComponentByType = (props: IconProps) => {
       if (type === "close")
-        return (
-          <Close
-            stroke="outline"
-            style={{ cursor: "pointer" }}
-            width={14}
-            onClick={() => removeToast(id)}
-          />
-        );
+        return <Close width={14} onClick={() => removeToast(id)} {...props} />;
       else if (type === "arrow")
-        return (
-          <RightArrow
-            stroke="outline"
-            style={{ cursor: "pointer" }}
-            onClick={onClickArrowIcon}
-          />
-        );
+        return <RightArrow onClick={onClickArrowIcon} {...props} />;
       return null;
     };
 
@@ -116,7 +104,7 @@ const Toast = forwardRef(
             )}
           </Flex>
         </Flex>
-        <TypeIconComponent />
+        <IconComponentByType stroke="outline" style={{ cursor: "pointer" }} />
       </Flex>
     );
   }
