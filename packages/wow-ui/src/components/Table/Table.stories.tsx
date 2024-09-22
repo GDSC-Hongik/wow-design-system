@@ -17,19 +17,6 @@ const meta = {
     },
   },
   argTypes: {
-    data: {
-      description: "테이블 컴포넌트에 나타낼 데이터의 배열입니다.",
-      table: {
-        type: { summary: "T[]" },
-      },
-    },
-    tableHeaderResource: {
-      description:
-        "테이블 헤더에 나타낼 배열과 데이터의 키 값을 담은 배열입니다.",
-      table: {
-        type: { summary: "{ key: keyof T; text: string }[]" },
-      },
-    },
     tableCaption: {
       description: "테이블에 대한 설명을 나타내는 캡션입니다.",
       table: {
@@ -39,26 +26,26 @@ const meta = {
         type: "text",
       },
     },
-    options: {
-      description: "테이블에 대한 상세한 옵션값을 설정합니다.",
+    showCheckbox: {
+      description: "테이블에 체크박스를 나타냅니다.",
       table: {
-        type: { summary: "TableOptionProps<T>" },
+        type: { summary: "boolean" },
       },
       control: {
-        type: "object",
+        type: "boolean",
       },
     },
-    selectedRows: {
+    selectedRowsProp: {
       description:
         "default 값을 설정하거나, 외부에서 table의 체크 상태 관리할 수 있는 변수입니다.",
       table: {
-        type: { summary: "T[]" },
+        type: { summary: "number[]" },
       },
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
-        type: { summary: "(selectedRows: T[]) => void" },
+        type: { summary: "(selectedRows: number[]) => void" },
       },
     },
     className: {
@@ -101,8 +88,8 @@ export const Primary: Story = {
     return (
       <Table>
         <Table.Thead>
-          <Table.Th>하이루</Table.Th>
-          <Table.Th>뭐가살쪄</Table.Th>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
         </Table.Thead>
         <Table.Tbody>
           {data.map(({ name, studyId, id }) => {
@@ -169,7 +156,7 @@ export const ScrollTable: Story = {
       },
     ];
     return (
-      <Table style={{ maxWidth: "400px", maxHeight: "180px" }}>
+      <Table fullWidth={true} style={{ maxWidth: "300px", maxHeight: "150px" }}>
         <Table.Thead>
           <Table.Th>이름</Table.Th>
           <Table.Th>학번</Table.Th>

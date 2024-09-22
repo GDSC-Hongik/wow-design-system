@@ -40,20 +40,10 @@
       "require": "./dist/Table.cjs",
       "import": "./dist/Table.js"
     },
-    "./TableBodyContainer": {
-      "types": "./dist/components/Table/TableBodyContainer.d.ts",
-      "require": "./dist/TableBodyContainer.cjs",
-      "import": "./dist/TableBodyContainer.js"
-    },
     "./TableContainer": {
       "types": "./dist/components/Table/TableContainer.d.ts",
       "require": "./dist/TableContainer.cjs",
       "import": "./dist/TableContainer.js"
-    },
-    "./TableHeader": {
-      "types": "./dist/components/Table/TableHeader.d.ts",
-      "require": "./dist/TableHeader.cjs",
-      "import": "./dist/TableHeader.js"
     },
     "./Tbody": {
       "types": "./dist/components/Table/Tbody.d.ts",

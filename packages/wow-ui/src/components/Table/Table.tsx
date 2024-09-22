@@ -129,10 +129,11 @@ const TableContainerStyle = css({
   position: "relative",
   _scrollbar: {
     width: "3px",
+    height: "3px",
   },
   _scrollbarThumb: {
-    width: "3px",
-    height: "3px",
+    width: "5px",
+    height: "5px",
     borderRadius: "sm",
     backgroundColor: "outline",
   },
