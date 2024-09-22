@@ -19,6 +19,12 @@ const meta: Meta<typeof Toast> = {
         rules: [{ id: "color-contrast", enabled: false }],
       },
     },
+    docs: {
+      description: {
+        component:
+          "토스트가 필요한 레이아웃에서 children을 ToastProvider로 감싸 사용합니다.",
+      },
+    },
   },
   decorators: [
     (Story) => (
