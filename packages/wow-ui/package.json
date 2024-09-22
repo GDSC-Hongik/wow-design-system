@@ -40,30 +40,30 @@
       "require": "./dist/Table.cjs",
       "import": "./dist/Table.js"
     },
-    "./TableBodyContainer": {
-      "types": "./dist/components/Table/TableBodyContainer.d.ts",
-      "require": "./dist/TableBodyContainer.cjs",
-      "import": "./dist/TableBodyContainer.js"
+    "./Tbody": {
+      "types": "./dist/components/Table/Tbody.d.ts",
+      "require": "./dist/Tbody.cjs",
+      "import": "./dist/Tbody.js"
     },
-    "./TableCell": {
-      "types": "./dist/components/Table/TableCell.d.ts",
-      "require": "./dist/TableCell.cjs",
-      "import": "./dist/TableCell.js"
+    "./Td": {
+      "types": "./dist/components/Table/Td.d.ts",
+      "require": "./dist/Td.cjs",
+      "import": "./dist/Td.js"
     },
-    "./TableContainer": {
-      "types": "./dist/components/Table/TableContainer.d.ts",
-      "require": "./dist/TableContainer.cjs",
-      "import": "./dist/TableContainer.js"
+    "./Th": {
+      "types": "./dist/components/Table/Th.d.ts",
+      "require": "./dist/Th.cjs",
+      "import": "./dist/Th.js"
     },
-    "./TableHeader": {
-      "types": "./dist/components/Table/TableHeader.d.ts",
-      "require": "./dist/TableHeader.cjs",
-      "import": "./dist/TableHeader.js"
+    "./Thead": {
+      "types": "./dist/components/Table/Thead.d.ts",
+      "require": "./dist/Thead.cjs",
+      "import": "./dist/Thead.js"
     },
-    "./TableRow": {
-      "types": "./dist/components/Table/TableRow.d.ts",
-      "require": "./dist/TableRow.cjs",
-      "import": "./dist/TableRow.js"
+    "./Tr": {
+      "types": "./dist/components/Table/Tr.d.ts",
+      "require": "./dist/Tr.cjs",
+      "import": "./dist/Tr.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",

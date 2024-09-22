@@ -18,19 +18,6 @@ const meta = {
     },
   },
   argTypes: {
-    data: {
-      description: "테이블 컴포넌트에 나타낼 데이터의 배열입니다.",
-      table: {
-        type: { summary: "T[]" },
-      },
-    },
-    tableHeaderResource: {
-      description:
-        "테이블 헤더에 나타낼 배열과 데이터의 키 값을 담은 배열입니다.",
-      table: {
-        type: { summary: "{ key: keyof T; text: string }[]" },
-      },
-    },
     tableCaption: {
       description: "테이블에 대한 설명을 나타내는 캡션입니다.",
       table: {
@@ -40,26 +27,26 @@ const meta = {
         type: "text",
       },
     },
-    options: {
-      description: "테이블에 대한 상세한 옵션값을 설정합니다.",
+    showCheckbox: {
+      description: "테이블에 체크박스를 나타냅니다.",
       table: {
-        type: { summary: "TableOptionProps<T>" },
+        type: { summary: "boolean" },
       },
       control: {
-        type: "object",
+        type: "boolean",
       },
     },
-    selectedRows: {
+    selectedRowsProp: {
       description:
         "default 값을 설정하거나, 외부에서 table의 체크 상태 관리할 수 있는 변수입니다.",
       table: {
-        type: { summary: "T[]" },
+        type: { summary: "number[]" },
       },
     },
     onChange: {
       description: "외부 활성 상태가 변경될 때 호출되는 함수입니다.",
       table: {
-        type: { summary: "(selectedRows: T[]) => void" },
+        type: { summary: "(selectedRows: number[]) => void" },
       },
     },
     className: {
@@ -100,13 +87,22 @@ export const Primary: Story = {
       { id: 3, name: "김민지", studyId: "C234567", birth: "2004" },
     ];
     return (
-      <Table
-        data={data}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-        ]}
-      />
+      <Table>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
@@ -161,20 +157,24 @@ export const ScrollTable: Story = {
       },
     ];
     return (
-      <Table
-        data={data}
-        style={{ maxWidth: "400px", maxHeight: "180px" }}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-          { key: "button", text: "버튼" },
-        ]}
-      />
+      <Table fullWidth={true} style={{ maxWidth: "300px", maxHeight: "150px" }}>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+          <Table.Th>버튼</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, button, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+                <Table.Td>{button}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
@@ -229,41 +229,31 @@ export const CheckableTable: Story = {
       },
     ];
     return (
-      <Table
-        data={data}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-          { key: "button", text: "버튼" },
-        ]}
-      />
+      <Table showCheckbox={true}>
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+          <Table.Th>버튼</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, button, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+                <Table.Td>{button}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     );
   },
 };
 
 const ControlledTable = () => {
-  const selectedProps = [
-    {
-      id: 3,
-      name: "김민지",
-      studyId: "C234567",
-      discordname: "minijjang",
-      birth: "2004",
-    },
-    {
-      id: 2,
-      name: "강해린",
-      discordname: "haerin111",
-      studyId: "C011111",
-      birth: "2006",
-    },
-  ];
-  const [selectedRows, setSelectedRows] = useState<object[]>(selectedProps);
+  const selectedProps = [2, 3];
+  const [selectedRows, setSelectedRows] = useState<number[]>(selectedProps);
   const data = [
     {
       id: 1,
@@ -287,7 +277,7 @@ const ControlledTable = () => {
       birth: "2004",
     },
   ];
-  const handleSelectionChange = (rows: object[]) => {
+  const handleSelectionChange = (rows: number[]) => {
     setSelectedRows(rows);
   };
   return (
@@ -302,20 +292,25 @@ const ControlledTable = () => {
         선택한 테이블 요소 모두 초기화
       </Button>
       <Table
-        data={data}
-        fullWidth={true}
-        selectedRows={selectedRows}
-        options={{
-          showCheckbox: true,
-          uniqueKey: "id",
-        }}
-        tableHeaderResource={[
-          { key: "name", text: "이름" },
-          { key: "studyId", text: "학번" },
-          { key: "discordname", text: "디스코드 닉네임" },
-        ]}
+        selectedRowsProp={selectedRows}
+        showCheckbox={true}
         onChange={handleSelectionChange}
-      />
+      >
+        <Table.Thead>
+          <Table.Th>이름</Table.Th>
+          <Table.Th>학번</Table.Th>
+        </Table.Thead>
+        <Table.Tbody>
+          {data.map(({ name, studyId, id }) => {
+            return (
+              <Table.Tr key={id} value={id}>
+                <Table.Td>{name}</Table.Td>
+                <Table.Td>{studyId}</Table.Td>
+              </Table.Tr>
+            );
+          })}
+        </Table.Tbody>
+      </Table>
     </>
   );
 };

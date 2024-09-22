@@ -1,17 +1,21 @@
 import { css } from "@styled-system/css";
-import type { CSSProperties, PropsWithChildren } from "react";
+import type { CSSProperties, PropsWithChildren, Ref } from "react";
+import { forwardRef } from "react";
 
 interface TableHeaderProps extends PropsWithChildren {
   style?: CSSProperties;
+  className?: string;
 }
-const TableHeader = (props: TableHeaderProps) => {
-  const { children } = props;
-  return (
-    <th className={TableHeaderStyle} {...props}>
-      {children}
-    </th>
-  );
-};
+const Th = forwardRef<HTMLTableCellElement, TableHeaderProps>(
+  (props: TableHeaderProps, ref: Ref<HTMLTableCellElement>) => {
+    const { children, ...rest } = props;
+    return (
+      <th className={TableHeaderStyle} ref={ref} {...rest}>
+        {children}
+      </th>
+    );
+  }
+);
 
 const TableHeaderStyle = css({
   alignItems: "center",
@@ -29,4 +33,4 @@ const TableHeaderStyle = css({
   whiteSpace: "nowrap",
 });
 
-export default TableHeader;
+export default Th;
