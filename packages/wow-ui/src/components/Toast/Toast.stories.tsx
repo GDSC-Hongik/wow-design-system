@@ -42,14 +42,14 @@ const meta: Meta<typeof Toast> = {
       description: "Toast에 들어갈 보조 텍스트를 나타냅니다.",
       control: { type: "text" },
     },
-    type: {
-      description: "Toast의 타입을 나타냅니다.",
+    rightIcon: {
+      description: "Toast의 우측에 들어갈 아이콘을 나타냅니다.",
       table: {
-        type: { summary: "default | close | arrow" },
-        defaultValue: { summary: "default" },
+        type: { summary: "none | close | arrow" },
+        defaultValue: { summary: "none" },
       },
       control: "radio",
-      options: ["default", "close", "arrow"],
+      options: ["none", "close", "arrow"],
     },
     id: {
       description: "Toast 컴포넌트의 id를 나타냅니다.",
@@ -112,7 +112,7 @@ export const Close = () => {
     toast({
       text: "Text",
       subText: "subtext",
-      type: "close",
+      rightIcon: "close",
     });
   }, []);
 };
@@ -123,7 +123,7 @@ export const Arrow = () => {
     toast({
       text: "Text",
       subText: "subtext",
-      type: "arrow",
+      rightIcon: "arrow",
     });
   }, []);
 };
@@ -145,7 +145,7 @@ export const IconArrow = () => {
     toast({
       text: "Text",
       subText: "subtext",
-      type: "arrow",
+      rightIcon: "arrow",
       icon: <Warn />,
     });
   }, []);
