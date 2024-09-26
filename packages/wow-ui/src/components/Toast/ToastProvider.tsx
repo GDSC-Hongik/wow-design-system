@@ -9,7 +9,12 @@ import type { ToastProps } from ".";
 import Toast from ".";
 import { ToastContext } from "./ToastContext";
 
-const ToastProvider = ({ children }: { children: ReactNode }) => {
+interface ToastProviderProps {
+  children: ReactNode;
+  idPattern?: RegExp;
+}
+
+const ToastProvider = ({ children, idPattern }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   const addToast = (
@@ -19,13 +24,17 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
       ...props,
       id: props.id || uuidv4(),
     };
-    console.log(newToast.id);
+
     setToasts((prev) => [...prev, newToast]);
   };
 
   const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
+
+  const filteredToasts = idPattern
+    ? toasts.filter((toast) => idPattern.test(toast.id))
+    : toasts;
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
@@ -41,7 +50,7 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
           width="100vw"
           zIndex="overlay"
         >
-          {toasts?.map((toast: ToastProps) => (
+          {filteredToasts?.map((toast: ToastProps) => (
             <Toast key={toast.id} {...toast} />
           ))}
         </Flex>
