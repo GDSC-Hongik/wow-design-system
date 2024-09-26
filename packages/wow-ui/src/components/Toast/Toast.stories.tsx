@@ -64,9 +64,9 @@ const meta: Meta<typeof Toast> = {
       description: "Toast 컴포넌트가 닫힌 이후 호출되는 함수를 나타냅니다.",
       control: false,
     },
-    icon: {
-      description: "Toast 좌측에 들어갈 아이콘을 나타냅니다.",
-      control: false,
+    showLeftIcon: {
+      description: "Toast 좌측에 들어갈 아이콘의 노출 여부를 나타냅니다.",
+      control: "boolean",
     },
     toastDuration: {
       description: "Toast가 보여지는 시간(ms)을 나타냅니다.",
@@ -134,7 +134,7 @@ export const WithLeftIcon = () => {
     toast({
       text: "Text",
       subText: "subtext",
-      icon: <Warn />,
+      showLeftIcon: true,
     });
   }, []);
 };
@@ -145,8 +145,8 @@ export const WithLeftAndArrowIcons = () => {
     toast({
       text: "Text",
       subText: "subtext",
+      showLeftIcon: true,
       rightIcon: "arrow",
-      icon: <Warn />,
     });
   }, []);
 };
@@ -155,8 +155,8 @@ export const TwoLines = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
+      showLeftIcon: true,
       text: "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
-      icon: <Warn />,
     });
   }, []);
 };

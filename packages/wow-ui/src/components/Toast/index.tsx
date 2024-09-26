@@ -3,10 +3,10 @@
 import { css } from "@styled-system/css";
 import type { FlexProps } from "@styled-system/jsx";
 import { Flex, styled } from "@styled-system/jsx";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import { forwardRef, useEffect, useState } from "react";
 import type { IconProps } from "wowds-icons";
-import { Close, RightArrow } from "wowds-icons";
+import { Close, RightArrow, Warn } from "wowds-icons";
 
 import useToast from "./useToast";
 
@@ -27,11 +27,11 @@ import useToast from "./useToast";
 
 export interface ToastProps extends FlexProps {
   id: string;
+  showLeftIcon?: boolean;
   rightIcon?: "none" | "close" | "arrow";
   text: string;
   onClickArrowIcon?: () => void;
   onRemove?: () => void;
-  icon?: ReactNode;
   subText?: string;
   toastDuration?: number;
   style?: CSSProperties;
@@ -46,7 +46,7 @@ const Toast = forwardRef(
     onClickArrowIcon,
     onRemove,
     rightIcon = "none",
-    icon,
+    showLeftIcon = false,
     toastDuration,
     ...rest
   }: ToastProps) => {
@@ -93,7 +93,7 @@ const Toast = forwardRef(
         {...rest}
       >
         <Flex align="center" gap="0.25rem">
-          <styled.div flexShrink={0}>{icon}</styled.div>
+          {showLeftIcon && <Warn style={{ flexShrink: 0 }} />}
           <Flex direction="column" justifyContent="center" width="100%">
             <styled.span
               color="textWhite"
