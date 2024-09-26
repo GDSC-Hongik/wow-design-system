@@ -69,7 +69,7 @@ const meta: Meta<typeof Toast> = {
       control: false,
     },
     toastDuration: {
-      description: "Toast가 보여지는 시간을 나타냅니다.",
+      description: "Toast가 보여지는 시간(ms)을 나타냅니다.",
       control: { type: "number" },
     },
     style: {
@@ -106,7 +106,7 @@ export const WithTrigger = () => {
   );
 };
 
-export const Close = () => {
+export const WithCloseIcon = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
@@ -117,7 +117,7 @@ export const Close = () => {
   }, []);
 };
 
-export const Arrow = () => {
+export const WithArrowIcon = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
@@ -128,7 +128,7 @@ export const Arrow = () => {
   }, []);
 };
 
-export const Icon = () => {
+export const WithLeftIcon = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
@@ -139,7 +139,7 @@ export const Icon = () => {
   }, []);
 };
 
-export const IconArrow = () => {
+export const WithLeftAndArrowIcons = () => {
   const { toast } = useToast();
   useEffect(() => {
     toast({
