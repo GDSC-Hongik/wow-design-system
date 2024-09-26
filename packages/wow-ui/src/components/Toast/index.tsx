@@ -27,7 +27,7 @@ import useToast from "./useToast";
 
 export interface ToastProps extends FlexProps {
   id: string;
-  type?: "default" | "close" | "arrow";
+  rightIcon?: "none" | "close" | "arrow";
   text: string;
   onClickArrowIcon?: () => void;
   onRemove?: () => void;
@@ -45,7 +45,7 @@ const Toast = forwardRef(
     subText,
     onClickArrowIcon,
     onRemove,
-    type = "default",
+    rightIcon = "none",
     icon,
     toastDuration,
     ...rest
@@ -54,10 +54,10 @@ const Toast = forwardRef(
     const ANIMATION_DURATION = 200;
     const { removeToast } = useToast();
 
-    const IconComponentByType = (props: IconProps) => {
-      if (type === "close")
+    const RightIcon = (props: IconProps) => {
+      if (rightIcon === "close")
         return <Close width={14} onClick={() => removeToast(id)} {...props} />;
-      else if (type === "arrow")
+      else if (rightIcon === "arrow")
         return <RightArrow onClick={onClickArrowIcon} {...props} />;
       return null;
     };
@@ -109,7 +109,7 @@ const Toast = forwardRef(
             )}
           </Flex>
         </Flex>
-        <IconComponentByType stroke="outline" style={{ cursor: "pointer" }} />
+        <RightIcon stroke="outline" style={{ cursor: "pointer" }} />
       </Flex>
     );
   }
