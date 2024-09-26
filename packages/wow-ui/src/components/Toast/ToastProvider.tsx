@@ -3,6 +3,7 @@
 import { Flex } from "@styled-system/jsx";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import type { ToastProps } from ".";
 import Toast from ".";
@@ -16,8 +17,9 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
   ) => {
     const newToast = {
       ...props,
-      id: props.id || Date.now().toString(),
+      id: props.id || uuidv4(),
     };
+    console.log(newToast.id);
     setToasts((prev) => [...prev, newToast]);
   };
 
