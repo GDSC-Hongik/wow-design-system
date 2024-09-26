@@ -138,9 +138,9 @@ const generateExportFile = async (components: string[]) => {
     )
     .join("\n");
 
-  const finalExportFileContent = `export * from "../types/Icon.ts";\n${exportFileContent}`;
+  const resolvedExportFileContent = `export * from "../types/Icon.ts";\n${exportFileContent}`;
 
-  await fs.writeFile(EXPORT_FILE_PATH, finalExportFileContent);
+  await fs.writeFile(EXPORT_FILE_PATH, resolvedExportFileContent);
 };
 
 (async () => {
