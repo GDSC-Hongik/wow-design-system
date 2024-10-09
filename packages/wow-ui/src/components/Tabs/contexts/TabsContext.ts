@@ -8,6 +8,7 @@ interface TabsContextProps {
   value: string;
   setSelectedValue: (value: string) => void;
   label?: string;
+  isControlled: boolean;
 }
 
 export const TabsContext = createContext<TabsContextProps | null>(null);

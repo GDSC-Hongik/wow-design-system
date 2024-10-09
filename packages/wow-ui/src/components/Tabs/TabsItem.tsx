@@ -15,8 +15,8 @@ import { useTabsContext } from "./contexts/TabsContext";
  * @description TabsItem 컴포넌트는 각 Tab 컴포넌트입니다.
  * @param {string} value - TabsContent의 value와 일치하는 값입니다.
  * @param {ReactNode} children - TabsContent 자식 요소.
- * @param {string} [className] - TabsTrigger에 전달할 커스텀 클래스.
- * @param {CSSProperties} [style] - TabsTrigger에 전달할 커스텀 스타일.
+ * @param {string} [className] - TabsItem에 전달할 커스텀 클래스.
+ * @param {CSSProperties} [style] - TabsItem에 전달할 커스텀 스타일.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
  * @param {ReactNode} children - TabsItem의 자식 요소.
@@ -42,10 +42,7 @@ const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps>(
     const buttonRef = useMergeRefs(ref, internalButtonRef);
 
     useEffect(() => {
-      const currentItem = values?.find((item) => item === value);
-      if (!currentItem) {
-        values?.push(value);
-      }
+      values.add(value);
       if (selected && internalButtonRef.current) {
         internalButtonRef.current.focus();
       }

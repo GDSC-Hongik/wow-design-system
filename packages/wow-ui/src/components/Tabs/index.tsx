@@ -40,6 +40,7 @@ const Tabs = ({
   const handleSelect = (selectedValue: string) => {
     if (!isControlled) {
       setSelectedValue(selectedValue);
+      return;
     }
     if (onChange) {
       onChange(selectedValue);
@@ -53,6 +54,7 @@ const Tabs = ({
           value: valueProp !== undefined ? valueProp : selectedValue,
           setSelectedValue: handleSelect,
           label,
+          isControlled,
         }}
       >
         <CollectionProvider>{children}</CollectionProvider>

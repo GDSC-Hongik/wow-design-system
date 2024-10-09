@@ -6,7 +6,7 @@ import { createContext } from "react";
 import useSafeContext from "@/hooks/useSafeContext";
 
 interface CollectionContextProps {
-  values: string[];
+  values: Set<string>;
 }
 
 const CollectionContext = createContext<CollectionContextProps | null>(null);
@@ -18,7 +18,7 @@ export const useCollectionContext = () => {
 
 export const CollectionProvider = ({ children }: PropsWithChildren) => {
   return (
-    <CollectionContext.Provider value={{ values: [] }}>
+    <CollectionContext.Provider value={{ values: new Set<string>() }}>
       {children}
     </CollectionContext.Provider>
   );

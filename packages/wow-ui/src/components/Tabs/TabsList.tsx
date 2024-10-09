@@ -2,7 +2,12 @@
 
 import { css } from "@styled-system/css";
 import { Flex } from "@styled-system/jsx";
-import { type KeyboardEvent, type PropsWithChildren, useCallback } from "react";
+import {
+  type KeyboardEvent,
+  type PropsWithChildren,
+  useCallback,
+  useEffect,
+} from "react";
 
 import { useCollectionContext } from "./contexts/CollectionContext";
 import { useTabsContext } from "./contexts/TabsContext";
@@ -11,16 +16,29 @@ import { useTabsContext } from "./contexts/TabsContext";
  * @description TabsList 컴포넌트는 TabsItem 컴포넌트들을 관리합니다.
  */
 const TabsList = ({ children }: PropsWithChildren) => {
-  const { label, setSelectedValue, value: selectedValue } = useTabsContext();
+  const {
+    label,
+    setSelectedValue,
+    value: selectedValue,
+    isControlled,
+  } = useTabsContext();
 
   const { values } = useCollectionContext();
 
+  useEffect(() => {
+    if (!isControlled && !selectedValue && values.size > 0) {
+      setSelectedValue(values.values().next().value);
+    }
+    console.log("처음에만 실행");
+  }, []);
+
   const updateFocusedValue = useCallback(
     (direction: number) => {
-      const currentIndex = values.indexOf(selectedValue ?? "");
+      const valuesArray = Array.from(values);
+      const currentIndex = valuesArray.indexOf(selectedValue ?? "");
       const nextIndex =
-        (currentIndex + direction + values.length) % values.length;
-      setSelectedValue(values[nextIndex] ?? "");
+        (currentIndex + direction + valuesArray.length) % valuesArray.length;
+      setSelectedValue(valuesArray[nextIndex] ?? "");
     },
     [setSelectedValue, selectedValue, values]
   );
