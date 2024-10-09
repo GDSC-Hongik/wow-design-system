@@ -29,7 +29,6 @@ const TabsList = ({ children }: PropsWithChildren) => {
     if (!isControlled && !selectedValue && values.size > 0) {
       setSelectedValue(values.values().next().value);
     }
-    console.log("처음에만 실행");
   }, []);
 
   const updateFocusedValue = useCallback(
