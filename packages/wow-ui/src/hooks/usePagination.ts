@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const ITEM_PER_PAGE = 5;
 
@@ -33,32 +33,38 @@ const usePagination = (
 
   const { start, end } = getPageRange();
 
-  const updatePageState = (newStartPage: number, newCurrentPage: number) => {
-    setStartPage(newStartPage);
-    setCurrentPage(newCurrentPage);
-    if (onChange) onChange(newCurrentPage);
-  };
+  const updatePageState = useCallback(
+    (newStartPage: number, newCurrentPage: number) => {
+      setStartPage(newStartPage);
+      setCurrentPage(newCurrentPage);
+      if (onChange) onChange(newCurrentPage);
+    },
+    [onChange]
+  );
 
-  const handleClickNextGroup = () => {
+  const handleClickNextGroup = useCallback(() => {
     if (end < totalPages) {
       const nextStartPage = Math.min(startPage + ITEM_PER_PAGE, totalPages);
       updatePageState(nextStartPage, nextStartPage);
     }
-  };
+  }, [end, totalPages, startPage, updatePageState]);
 
-  const handleClickPrevGroup = () => {
+  const handleClickPrevGroup = useCallback(() => {
     if (start > 1) {
       const prevStartPage = Math.max(startPage - ITEM_PER_PAGE, 1);
       updatePageState(prevStartPage, prevStartPage + ITEM_PER_PAGE - 1);
     }
-  };
+  }, [start, startPage, updatePageState]);
 
-  const handleClickPage = (page: number) => {
-    setCurrentPage(page);
-    if (onChange) onChange(page);
-  };
+  const handleClickPage = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+      if (onChange) onChange(page);
+    },
+    [onChange]
+  );
 
-  const handleClickNextPage = () => {
+  const handleClickNextPage = useCallback(() => {
     if (currentPage < totalPages) {
       if (currentPage === end) {
         handleClickNextGroup();
@@ -67,9 +73,9 @@ const usePagination = (
         handleClickPage(nextPage);
       }
     }
-  };
+  }, [currentPage, totalPages, end, handleClickNextGroup, handleClickPage]);
 
-  const handleClickPrevPage = () => {
+  const handleClickPrevPage = useCallback(() => {
     if (currentPage > 1) {
       if (currentPage === start) {
         handleClickPrevGroup();
@@ -78,7 +84,7 @@ const usePagination = (
         handleClickPage(prevPage);
       }
     }
-  };
+  }, [currentPage, start, handleClickPrevGroup, handleClickPage]);
 
   return {
     currentPage,

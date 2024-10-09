@@ -71,12 +71,12 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
     return (
       <nav
         aria-label="pagination"
-        className={clsx(PaginationContainer, className)}
+        className={clsx(paginationContainer, className)}
         ref={ref}
         role="navigation"
         style={style}
       >
-        <ul className={css({ listStyleType: "none", display: "flex" })}>
+        <ul className={paginationUlStyle}>
           <li className={paginationButtonGroupStyle}>
             <button
               aria-label="Previous page group"
@@ -175,7 +175,7 @@ const Pagination = forwardRef<HTMLAnchorElement, PaginationProps>(
 
 export default Pagination;
 
-const PaginationContainer = css({
+const paginationContainer = css({
   display: "flex",
   flexDirection: "row",
   gap: "4px",
@@ -255,4 +255,9 @@ const paginationItemStyle = cva({
       },
     },
   },
+});
+
+const paginationUlStyle = css({
+  listStyleType: "none",
+  display: "flex",
 });
