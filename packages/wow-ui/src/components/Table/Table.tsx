@@ -39,7 +39,7 @@ export interface TableProps {
 }
 
 const TableComponent = forwardRef<HTMLTableElement, TableProps>(
-  function TableFunction(
+  (
     {
       tableCaption = "",
       children,
@@ -52,7 +52,7 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
       ...rest
     }: TableProps,
     ref: Ref<HTMLTableElement>
-  ) {
+  ) => {
     const { rowValues } = useCountRow(children);
     const {
       handleRowCheckboxChange,
@@ -61,7 +61,7 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
     } = useTableCheckState(rowValues, selectedRowsProp, onChange);
 
     const contextValue: ReturnType<typeof useTableCheckState> &
-      Omit<TableProps, "children"> & { rowValues: number[] } = {
+      Omit<TableProps, "children"> & { rowValues?: number[] } = {
       rowValues,
       selectedRows,
       showCheckbox,
@@ -74,7 +74,6 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
         <div className={TableContainerStyle} style={style}>
           <styled.table
             aria-label="table"
-            aria-labelledby="table"
             className={clsx(TableStyle({ fullWidth }), className)}
             ref={ref}
             role="table"

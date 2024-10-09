@@ -16,14 +16,10 @@ interface TableRowProps extends PropsWithChildren {
 }
 
 const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
-  function TableRowFunction(
-    props: TableRowProps,
-    ref: Ref<HTMLTableRowElement>
-  ) {
+  (props: TableRowProps, ref: Ref<HTMLTableRowElement>) => {
     const { children, value, ...rest } = props;
     const { selectedRows, handleRowCheckboxChange, showCheckbox } =
       useTableContext();
-    const isSelected = selectedRows.some((row: number) => row === value);
     return (
       <TableCheckedContext.Provider value={value}>
         <styled.tr
@@ -36,12 +32,11 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           {...rest}
         >
           {showCheckbox && (
-            <Td style={TableCheckBoxStyle}>
-              <Checkbox
-                checked={isSelected}
-                onChange={() => handleRowCheckboxChange(value)}
-              />
-            </Td>
+            <TableCheckbox
+              handleRowCheckboxChange={handleRowCheckboxChange}
+              selectedRows={selectedRows}
+              value={value}
+            />
           )}
           {children}
         </styled.tr>
@@ -58,4 +53,26 @@ const TableCheckBoxStyle = {
   minHeight: "44px",
   justifyContent: "center",
   alignItems: "center",
+};
+
+const TableCheckbox = ({
+  selectedRows,
+  value,
+  handleRowCheckboxChange,
+}: {
+  selectedRows: number[];
+  value: number | undefined;
+  handleRowCheckboxChange: (rowData: number) => void;
+}) => {
+  const isSelected = selectedRows.some((row: number) => row === value);
+  return (
+    <Td style={TableCheckBoxStyle}>
+      <Checkbox
+        checked={isSelected}
+        onChange={() => {
+          if (value !== undefined) handleRowCheckboxChange(value);
+        }}
+      />
+    </Td>
+  );
 };

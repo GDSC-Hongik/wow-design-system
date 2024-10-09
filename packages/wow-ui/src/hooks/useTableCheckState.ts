@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const useTableCheckState = (
-  data: number[],
+  rowValues: number[],
   selectedRowsProp?: number[],
   onChange?: (selectedRows: number[]) => void
 ) => {
@@ -13,33 +13,31 @@ const useTableCheckState = (
     }
   }, [selectedRowsProp]);
 
-  const handleRowCheckboxChange = useCallback(
-    (rowData: number) => {
-      setSelectedRows((prevSelectedRows) => {
-        const rowId = rowData;
-        const isSelected = prevSelectedRows.some((row) => row === rowId);
-        const newSelectedRows = isSelected
-          ? prevSelectedRows.filter((row) => row !== rowId)
-          : [...prevSelectedRows, rowData];
-        if (onChange) {
-          onChange(newSelectedRows);
-        }
-        return newSelectedRows;
-      });
+  const updateSelectedRow = useCallback(
+    (newSelectedRows: number[]) => {
+      if (onChange) {
+        onChange(newSelectedRows);
+        return;
+      }
+      setSelectedRows(newSelectedRows);
     },
     [onChange]
   );
 
+  const handleRowCheckboxChange = (rowData: number) => {
+    const rowId = rowData;
+    const isSelected = selectedRows.some((row) => row === rowId);
+    const newSelectedRows = isSelected
+      ? selectedRows.filter((row) => row !== rowId)
+      : [...selectedRows, rowData];
+    updateSelectedRow(newSelectedRows);
+  };
+
   const handleHeaderCheckboxChange = useCallback(() => {
-    setSelectedRows((prevSelectedRows) => {
-      const newSelectedRows =
-        prevSelectedRows.length === data.length ? [] : [...data];
-      if (onChange) {
-        onChange(newSelectedRows);
-      }
-      return newSelectedRows;
-    });
-  }, [data, onChange]);
+    const newSelectedRows =
+      selectedRows?.length === rowValues?.length ? [] : [...rowValues];
+    updateSelectedRow(newSelectedRows);
+  }, [selectedRows, rowValues, updateSelectedRow]);
 
   return {
     handleRowCheckboxChange,
