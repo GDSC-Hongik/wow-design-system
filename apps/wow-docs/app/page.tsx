@@ -10,8 +10,8 @@ import SearchBar from "wowds-ui/SearchBar";
 import Switch from "wowds-ui/Switch";
 import Tabs from "wowds-ui/Tabs";
 import TabsContent from "wowds-ui/TabsContent";
+import TabsItem from "wowds-ui/TabsItem";
 import TabsList from "wowds-ui/TabsList";
-import TabsTrigger from "wowds-ui/TabsTrigger";
 
 const Home = () => {
   return (
@@ -42,11 +42,11 @@ const Home = () => {
         <Switch label="switch4" value="switch4" />
       </MultiGroup>
       <SearchBar />
-      <Tabs defaultValue="1">
+      <Tabs>
         <TabsList>
-          <TabsTrigger value="1">첫번째첫번째첫번째첫번째</TabsTrigger>
-          <TabsTrigger value="2">두 번째</TabsTrigger>
-          <TabsTrigger value="3">세 번쨰</TabsTrigger>
+          <TabsItem value="1">첫번째첫번째첫번째첫번째</TabsItem>
+          <TabsItem value="2">두 번째</TabsItem>
+          <TabsItem value="3">세 번쨰</TabsItem>
         </TabsList>
         <TabsContent value="1">
           <span>첫번째 탭</span>
