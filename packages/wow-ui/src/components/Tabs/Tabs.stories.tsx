@@ -16,7 +16,7 @@ const meta: Meta<TabsProps> = {
     docs: {
       description: {
         component:
-          "TabsList 로 TabsTrigger 를 감싸서 탭 트리거를 관리하고 TabsContent 로 탭 콘텐츠를 관리합니다.",
+          "TabsList 로 TabsItem을 감싸서 탭 트리거를 관리하고 TabsContent 로 탭 콘텐츠를 관리합니다.",
       },
     },
     a11y: {
@@ -27,8 +27,7 @@ const meta: Meta<TabsProps> = {
   },
   argTypes: {
     children: {
-      description:
-        "TabsList,TabsTrigger, TabsContent 를 children 으로 받습니다.",
+      description: "TabsList,TabsItem,TabsContent 를 children 으로 받습니다.",
       table: {
         type: { summary: "ReactNode" },
       },
