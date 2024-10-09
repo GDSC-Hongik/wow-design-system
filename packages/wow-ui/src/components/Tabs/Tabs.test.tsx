@@ -9,7 +9,7 @@ import TabsItem from "@/components/Tabs/TabsItem";
 import TabsList from "@/components/Tabs/TabsList";
 
 describe("Tabs component", () => {
-  const renderTabs = (props: Partial<TabsProps> = {}): RenderResult => {
+  const uncontrolledTabs = (props: Partial<TabsProps> = {}): RenderResult => {
     return render(
       <Tabs defaultValue="tab1" {...props}>
         <TabsList>
@@ -22,13 +22,25 @@ describe("Tabs component", () => {
     );
   };
 
+  const controlledTabs = (props: Partial<TabsProps> = {}): RenderResult => {
+    return render(
+      <Tabs {...props}>
+        <TabsList>
+          <TabsItem value="tab1">Tab 1</TabsItem>
+          <TabsItem value="tab2">Tab 2</TabsItem>
+        </TabsList>
+        <TabsContent value="tab1">Tab 1 Content</TabsContent>
+        <TabsContent value="tab2">Tab 2 Content</TabsContent>
+      </Tabs>
+    );
+  };
   test("renders correctly with default value", async () => {
-    const { getByText } = renderTabs();
+    const { getByText } = uncontrolledTabs();
     expect(getByText("Tab 1 Content")).toBeVisible();
   });
 
   test("switches content when clicking on tab triggers", async () => {
-    const { getByText } = renderTabs();
+    const { getByText } = uncontrolledTabs();
     await userEvent.click(getByText("Tab 2"));
     await waitFor(() => {
       expect(getByText("Tab 2 Content")).toBeVisible();
@@ -37,13 +49,16 @@ describe("Tabs component", () => {
 
   test("calls onChange when the tab is changed", async () => {
     const handleChange = jest.fn();
-    const { getByText } = renderTabs({ onChange: handleChange });
+    const { getByText } = controlledTabs({
+      value: "tab1",
+      onChange: handleChange,
+    });
     await userEvent.click(getByText("Tab 2"));
     expect(handleChange).toHaveBeenCalledWith("tab2");
   });
 
   test("can navigate between tabs using keyboard (ArrowRight)", async () => {
-    const { getByText } = renderTabs();
+    const { getByText } = uncontrolledTabs();
     const tab1 = getByText("Tab 1");
     const tab2 = getByText("Tab 2");
 
@@ -57,7 +72,7 @@ describe("Tabs component", () => {
   });
 
   test("can navigate between tabs using keyboard (ArrowLeft)", async () => {
-    const { getByText } = renderTabs();
+    const { getByText } = uncontrolledTabs();
     const tab1 = getByText("Tab 1");
     const tab2 = getByText("Tab 2");
 
