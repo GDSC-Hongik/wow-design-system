@@ -35,6 +35,36 @@
       "require": "./dist/Tag.cjs",
       "import": "./dist/Tag.js"
     },
+    "./Table": {
+      "types": "./dist/components/Table/Table.d.ts",
+      "require": "./dist/Table.cjs",
+      "import": "./dist/Table.js"
+    },
+    "./Tbody": {
+      "types": "./dist/components/Table/Tbody.d.ts",
+      "require": "./dist/Tbody.cjs",
+      "import": "./dist/Tbody.js"
+    },
+    "./Td": {
+      "types": "./dist/components/Table/Td.d.ts",
+      "require": "./dist/Td.cjs",
+      "import": "./dist/Td.js"
+    },
+    "./Th": {
+      "types": "./dist/components/Table/Th.d.ts",
+      "require": "./dist/Th.cjs",
+      "import": "./dist/Th.js"
+    },
+    "./Thead": {
+      "types": "./dist/components/Table/Thead.d.ts",
+      "require": "./dist/Thead.cjs",
+      "import": "./dist/Thead.js"
+    },
+    "./Tr": {
+      "types": "./dist/components/Table/Tr.d.ts",
+      "require": "./dist/Tr.cjs",
+      "import": "./dist/Tr.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "require": "./dist/Switch.cjs",
@@ -94,6 +124,11 @@
       "types": "./dist/components/Picker/TimePicker.d.ts",
       "require": "./dist/TimePicker.cjs",
       "import": "./dist/TimePicker.js"
+    },
+    "./Pagination": {
+      "types": "./dist/components/Pagination/index.d.ts",
+      "require": "./dist/Pagination.cjs",
+      "import": "./dist/Pagination.js"
     },
     "./MultiGroup": {
       "types": "./dist/components/MultiGroup/index.d.ts",
@@ -168,6 +203,7 @@
     "@types/react-dom": "^18.2.19",
     "axe-playwright": "^2.0.1",
     "chromatic": "^11.3.0",
+    "clsx": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.8.0",
     "playwright": "1.45.0",
