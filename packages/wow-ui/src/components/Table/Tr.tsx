@@ -60,6 +60,7 @@ export default TableRow;
 
 const TableCheckBoxStyle = {
   minWidth: "15px",
+  height: "100%",
   display: "flex",
   minHeight: "44px",
   justifyContent: "center",
