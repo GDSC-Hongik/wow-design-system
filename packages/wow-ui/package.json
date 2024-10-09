@@ -45,15 +45,15 @@
       "require": "./dist/TabsContent.cjs",
       "import": "./dist/TabsContent.js"
     },
+    "./TabsItem": {
+      "types": "./dist/components/Tabs/TabsItem.d.ts",
+      "require": "./dist/TabsItem.cjs",
+      "import": "./dist/TabsItem.js"
+    },
     "./TabsList": {
       "types": "./dist/components/Tabs/TabsList.d.ts",
       "require": "./dist/TabsList.cjs",
       "import": "./dist/TabsList.js"
-    },
-    "./TabsTrigger": {
-      "types": "./dist/components/Tabs/TabsTrigger.d.ts",
-      "require": "./dist/TabsTrigger.cjs",
-      "import": "./dist/TabsTrigger.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
