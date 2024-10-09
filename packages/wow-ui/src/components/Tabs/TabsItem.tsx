@@ -12,22 +12,24 @@ import { useCollectionContext } from "./contexts/CollectionContext";
 import { useTabsContext } from "./contexts/TabsContext";
 
 /**
- * @description TabsTrigger 컴포넌트는 각 Tab 컴포넌트입니다.
+ * @description TabsItem 컴포넌트는 각 Tab 컴포넌트입니다.
  * @param {string} value - TabsContent의 value와 일치하는 값입니다.
+ * @param {ReactNode} children - TabsContent 자식 요소.
  * @param {string} [className] - TabsTrigger에 전달할 커스텀 클래스.
  * @param {CSSProperties} [style] - TabsTrigger에 전달할 커스텀 스타일.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
+ * @param {ReactNode} children - TabsItem의 자식 요소.
  */
-interface TabsTriggerProps
+interface TabsItemProps
   extends PropsWithChildren,
     DefaultProps,
     ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
 
-const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ value, children, className, ...rest }: TabsTriggerProps, ref) => {
+const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps>(
+  ({ value, children, className, ...rest }: TabsItemProps, ref) => {
     const { value: selectedValue, setSelectedValue, label } = useTabsContext();
     const selected = selectedValue === value;
 
@@ -58,7 +60,7 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         role="tab"
         tabIndex={selected ? 0 : -1}
         className={clsx(
-          tabTriggerStyle({ type: selected ? "selected" : "default" }),
+          tabItemStyle({ type: selected ? "selected" : "default" }),
           className
         )}
         onClick={handleClickTabTrigger}
@@ -69,9 +71,9 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     );
   }
 );
-export default TabsTrigger;
+export default TabsItem;
 
-const tabTriggerStyle = cva({
+const tabItemStyle = cva({
   base: {
     textStyle: "label1",
     paddingY: "sm",

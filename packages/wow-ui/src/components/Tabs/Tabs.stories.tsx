@@ -4,8 +4,8 @@ import { useState } from "react";
 import type { TabsProps } from "@/components/Tabs";
 import Tabs from "@/components/Tabs";
 import TabsContent from "@/components/Tabs/TabsContent";
+import TabsItem from "@/components/Tabs/TabsItem";
 import TabsList from "@/components/Tabs/TabsList";
-import TabsTrigger from "@/components/Tabs/TabsTrigger";
 
 const meta: Meta<TabsProps> = {
   title: "UI/Tabs",
@@ -91,8 +91,8 @@ export const Primary: Story = {
     children: (
       <>
         <TabsList>
-          <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-          <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+          <TabsItem value="tab1">Tab 1</TabsItem>
+          <TabsItem value="tab2">Tab 2</TabsItem>
         </TabsList>
         <TabsContent value="tab1">Tab 1 Content</TabsContent>
         <TabsContent value="tab2">Tab 2 Content</TabsContent>
@@ -114,9 +114,9 @@ export const WithDefaultValue: Story = {
     children: (
       <>
         <TabsList>
-          <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-          <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-          <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+          <TabsItem value="tab1">Tab 1</TabsItem>
+          <TabsItem value="tab2">Tab 2</TabsItem>
+          <TabsItem value="tab3">Tab 3</TabsItem>
         </TabsList>
         <TabsContent value="tab1">Tab 1 Content</TabsContent>
         <TabsContent value="tab2">Tab 2 Content</TabsContent>
@@ -145,9 +145,9 @@ const ControlledTabsComponent = () => {
   return (
     <Tabs value={selectedTab} onChange={handleChange}>
       <TabsList>
-        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+        <TabsItem value="tab1">Tab 1</TabsItem>
+        <TabsItem value="tab2">Tab 2</TabsItem>
+        <TabsItem value="tab3">Tab 3</TabsItem>
       </TabsList>
       <TabsContent value="tab1">Tab 1 Content</TabsContent>
       <TabsContent value="tab2">Tab 2 Content</TabsContent>
@@ -173,9 +173,9 @@ export const ManyTabs: Story = {
       <>
         <TabsList>
           {Array.from({ length: 10 }, (_, index) => (
-            <TabsTrigger key={index} value={`tab${index + 1}`}>
+            <TabsItem key={index} value={`tab${index + 1}`}>
               Tab {index + 1}
-            </TabsTrigger>
+            </TabsItem>
           ))}
         </TabsList>
         {Array.from({ length: 10 }, (_, index) => (

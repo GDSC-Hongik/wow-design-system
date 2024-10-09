@@ -14,6 +14,7 @@ import { useTabsContext } from "./contexts/TabsContext";
  * @param {CSSProperties} [style] - TabsContent에 전달할 커스텀 스타일.
  * @param {ComponentPropsWithoutRef<T>} rest 렌더링된 요소 또는 컴포넌트에 전달할 추가 props.
  * @param {ComponentPropsWithRef<T>["ref"]} ref 렌더링된 요소 또는 컴포넌트에 연결할 ref.
+ * @param {ReactNode} children - TabsContent의 자식 요소.
  */
 interface TabsContentProps extends PropsWithChildren, DefaultProps {
   value: string;

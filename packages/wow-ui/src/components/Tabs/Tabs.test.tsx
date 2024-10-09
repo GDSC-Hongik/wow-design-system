@@ -5,16 +5,16 @@ import { userEvent } from "@testing-library/user-event";
 import type { TabsProps } from "@/components/Tabs";
 import Tabs from "@/components/Tabs";
 import TabsContent from "@/components/Tabs/TabsContent";
+import TabsItem from "@/components/Tabs/TabsItem";
 import TabsList from "@/components/Tabs/TabsList";
-import TabsTrigger from "@/components/Tabs/TabsTrigger";
 
 describe("Tabs component", () => {
   const renderTabs = (props: Partial<TabsProps> = {}): RenderResult => {
     return render(
       <Tabs defaultValue="tab1" {...props}>
         <TabsList>
-          <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-          <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+          <TabsItem value="tab1">Tab 1</TabsItem>
+          <TabsItem value="tab2">Tab 2</TabsItem>
         </TabsList>
         <TabsContent value="tab1">Tab 1 Content</TabsContent>
         <TabsContent value="tab2">Tab 2 Content</TabsContent>

@@ -8,7 +8,7 @@ import { useCollectionContext } from "./contexts/CollectionContext";
 import { useTabsContext } from "./contexts/TabsContext";
 
 /**
- * @description TabsList 컴포넌트는 TabTrigger 컴포넌트를 관리합니다.
+ * @description TabsList 컴포넌트는 TabsItem 컴포넌트들을 관리합니다.
  */
 const TabsList = ({ children }: PropsWithChildren) => {
   const { label, setSelectedValue, value: selectedValue } = useTabsContext();
@@ -25,19 +25,25 @@ const TabsList = ({ children }: PropsWithChildren) => {
     [setSelectedValue, selectedValue, values]
   );
 
+  const handleArrowNavigation = useCallback(
+    (direction: number, event: KeyboardEvent<HTMLDivElement>) => {
+      updateFocusedValue(direction);
+      event.preventDefault();
+    },
+    [updateFocusedValue]
+  );
+
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
       const { key } = event;
 
       if (key === "ArrowRight") {
-        updateFocusedValue(1);
-        event.preventDefault();
+        handleArrowNavigation(1, event);
       } else if (key === "ArrowLeft") {
-        updateFocusedValue(-1);
-        event.preventDefault();
+        handleArrowNavigation(-1, event);
       }
     },
-    [updateFocusedValue]
+    [handleArrowNavigation]
   );
 
   return (

@@ -17,6 +17,7 @@ import type { DefaultProps } from "@/types/DefaultProps";
  * @param {(value: string) => void} [onChange] - 탭이 변경될 때 호출되는 함수입니다.
  * @param {CSSProperties} [style] - 탭 컴포넌트의 커스텀 스타일.
  * @param {string} [className] - 탭 컴포넌트에 전달할 커스텀 클래스.
+ * @param {ReactNode} children - 탭의 자식 요소.
  */
 export interface TabsProps extends PropsWithChildren, DefaultProps {
   defaultValue?: string;
