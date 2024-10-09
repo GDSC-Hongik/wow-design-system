@@ -1,3 +1,4 @@
+import type { Dispatch } from "react";
 import { createContext } from "react";
 
 import type { TableProps } from "@/components/Table/Table";
@@ -6,7 +7,10 @@ import type useTableCheckState from "@/hooks/useTableCheckState";
 
 export const TableContext = createContext<
   | (ReturnType<typeof useTableCheckState> &
-      Omit<TableProps, "children"> & { rowValues?: number[] })
+      Omit<TableProps, "children"> & {
+        rowValues?: number[];
+        setRowValues?: Dispatch<React.SetStateAction<number[]>>;
+      })
   | null
 >(null);
 

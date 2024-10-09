@@ -2,8 +2,8 @@
 import { css, cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import { clsx } from "clsx";
-import type { CSSProperties, ReactNode, Ref } from "react";
-import { forwardRef } from "react";
+import type { CSSProperties, Dispatch, ReactNode, Ref } from "react";
+import { forwardRef, useState } from "react";
 
 import { TableContext } from "@/components/Table/TableContext";
 import Tbody from "@/components/Table/Tbody";
@@ -11,7 +11,6 @@ import Td from "@/components/Table/Td";
 import Th from "@/components/Table/Th";
 import Thead from "@/components/Table/Thead";
 import Tr from "@/components/Table/Tr";
-import useCountRow from "@/hooks/useCountRow";
 import useTableCheckState from "@/hooks/useTableCheckState";
 import type { TableComponentType } from "@/types/table";
 
@@ -53,7 +52,8 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
     }: TableProps,
     ref: Ref<HTMLTableElement>
   ) => {
-    const { rowValues } = useCountRow(children);
+    const [rowValues, setRowValues] = useState<number[]>([]);
+    console.log("원래값", rowValues);
     const {
       handleRowCheckboxChange,
       handleHeaderCheckboxChange,
@@ -61,9 +61,13 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
     } = useTableCheckState(rowValues, selectedRowsProp, onChange);
 
     const contextValue: ReturnType<typeof useTableCheckState> &
-      Omit<TableProps, "children"> & { rowValues?: number[] } = {
+      Omit<TableProps, "children"> & {
+        rowValues?: number[];
+        setRowValues?: Dispatch<React.SetStateAction<number[]>>;
+      } = {
       rowValues,
       selectedRows,
+      setRowValues,
       showCheckbox,
       handleRowCheckboxChange,
       handleHeaderCheckboxChange,

@@ -1,6 +1,6 @@
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren, Ref } from "react";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useLayoutEffect } from "react";
 
 import Checkbox from "@/components/Checkbox";
 import {
@@ -18,8 +18,19 @@ interface TableRowProps extends PropsWithChildren {
 const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   (props: TableRowProps, ref: Ref<HTMLTableRowElement>) => {
     const { children, value, ...rest } = props;
-    const { selectedRows, handleRowCheckboxChange, showCheckbox } =
-      useTableContext();
+    const {
+      selectedRows,
+      handleRowCheckboxChange,
+      showCheckbox,
+      setRowValues,
+    } = useTableContext();
+
+    useLayoutEffect(() => {
+      if (value !== undefined && setRowValues) {
+        setRowValues((prevRowValues) => [...prevRowValues, value]);
+      }
+    }, [value, setRowValues]);
+
     return (
       <TableCheckedContext.Provider value={value}>
         <styled.tr
