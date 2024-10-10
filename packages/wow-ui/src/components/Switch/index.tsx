@@ -106,7 +106,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             ref={ref}
             type="checkbox"
             value={value}
-            onClick={() => handleClick(value)}
+            onChange={() => handleClick(value)}
             {...inputProps}
           />
           <SwitchIcon checked={checked} disabled={disabled} pressed={pressed} />

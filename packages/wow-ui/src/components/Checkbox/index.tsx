@@ -116,7 +116,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             })}
             {...inputProps}
             value={value}
-            onClick={() => handleClick(value)}
+            onChange={() => handleClick(value)}
           />
           {checked && (
             <styled.span
