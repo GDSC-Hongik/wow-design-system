@@ -32,6 +32,13 @@ const meta = {
         },
       },
     },
+    ImageComponent: {
+      control: false,
+      description: "아바타에 표시할 이미지 컴포넌트입니다.",
+      table: {
+        type: { summary: "ElementType" },
+      },
+    },
     imageUrl: {
       control: { type: "text" },
       description: "아바타에 표시할 이미지의 URL입니다.",

@@ -14,6 +14,7 @@ import type {
  *
  * @param {("sm" | "lg")} [size="lg"] - 아바타의 크기.
  * @param {("blue" | "green" | "yellow" | "red")} [variant="blue"] - 아바타의 색상.
+ * @param {ElementType} [ImageComponent] - 아바타에 표시할 이미지 컴포넌트.
  * @param {string} [imageUrl] - 아바타에 표시할 이미지의 URL.
  * @param {string} [username] - 아바타 옆에 표시할 사용자 이름. 사용자 이름이 제공되면 레이블로 표시됨.
  * @param {("left" | "right")} [orientation="right"] - 사용자 이름 레이블의 방향. size가 'sm'인 경우 지정 가능.
@@ -25,6 +26,7 @@ type AvatarSizeType = "sm" | "lg";
 export interface _AvatarProps {
   size?: AvatarSizeType;
   variant?: "blue" | "green" | "yellow" | "red";
+  ImageComponent?: ElementType;
   imageUrl?: string;
   username?: string;
   orientation?: "left" | "right";
@@ -46,6 +48,7 @@ const Avatar: AvatarComponent & { displayName?: string } = forwardRef(
       asProp,
       size = "lg",
       variant = "blue",
+      ImageComponent,
       imageUrl,
       username,
       orientation = "right",
@@ -65,7 +68,9 @@ const Avatar: AvatarComponent & { displayName?: string } = forwardRef(
         })}
         {...rest}
       >
-        {imageUrl ? (
+        {ImageComponent ? (
+          <ImageComponent className={avatarSizeStyle({ size })} />
+        ) : imageUrl ? (
           <img
             alt="avatar"
             className={avatarSizeStyle({ size })}
