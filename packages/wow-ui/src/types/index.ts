@@ -3,9 +3,9 @@ export type {
   ButtonElementType,
   MenuButtonProps,
   ToggleButtonProps,
-} from "./Button";
+} from "./button.ts";
 export type {
   PolymorphicComponentProps,
   PolymorphicComponentPropsWithRef,
   PolymorphicRef,
-} from "./Polymorphic";
+} from "./polymorphic.ts";
