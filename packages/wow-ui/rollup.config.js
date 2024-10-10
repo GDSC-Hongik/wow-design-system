@@ -36,6 +36,7 @@ export default {
     SingleDatePicker: "./src/components/Picker/SingleDatePicker",
     TimePicker: "./src/components/Picker/TimePicker",
     MultiGroup: "./src/components/MultiGroup",
+    Header: "./src/components/Header",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",
     Divider: "./src/components/Divider",

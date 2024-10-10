@@ -2,7 +2,7 @@ import type { LottieComponentProps } from "lottie-react";
 import Lottie from "lottie-react";
 import type { CSSProperties } from "react";
 
-import rainbowSpinner from "@/assets/lottie/rainbowSpinner.json";
+import rainbowSpinner from "@/assets/lotties/rainbowSpinner.json";
 
 /**
  * @description 레인보우 스피너 컴포넌트입니다. Lottie 애니메이션을 사용하여 스피너를 표시합니다.
