@@ -1,5 +1,13 @@
 # wowds-ui
 
+## 0.1.17
+
+### Patch Changes
+
+- 3682ddd: Avatar 컴포넌트를 추가합니다.
+- Updated dependencies [3682ddd]
+  - wowds-icons@0.1.5
+
 ## 0.1.16
 
 ### Patch Changes
