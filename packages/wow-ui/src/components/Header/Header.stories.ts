@@ -18,8 +18,8 @@ const meta = {
     variant: {
       control: {
         type: "select",
-        options: ["username", "login", "none"],
       },
+      options: ["username", "login", "none"],
       table: {
         type: { summary: "username | login | none" },
       },
