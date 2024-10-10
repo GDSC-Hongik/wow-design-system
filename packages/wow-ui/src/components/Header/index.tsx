@@ -89,17 +89,13 @@ const leftElementContainerStyle = css({
 
 const titleStyle = css({
   fontFamily: "Product Sans",
-  fontWeight: 700,
-  fontSize: "20px",
-  lineHeight: "130%",
+  textStyle: "header1",
 });
 
 const subTitleStyle = css({
   fontFamily: "Product Sans",
-  fontWeight: 400,
-  fontSize: "14px",
-  lineHeight: "130%",
   color: "primary",
+  textStyle: "header2",
 });
 
 const usernameTextStyle = css({
