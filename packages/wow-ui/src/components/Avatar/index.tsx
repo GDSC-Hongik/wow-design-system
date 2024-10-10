@@ -1,10 +1,11 @@
 import { cva } from "@styled-system/css";
-import type { ElementType, PropsWithChildren } from "react";
+import type { ElementType, PropsWithChildren, ReactNode } from "react";
 import { forwardRef } from "react";
 import { BlueAvatar, GreenAvatar, RedAvatar, YellowAvatar } from "wowds-icons";
 
 import type {
   PolymorphicComponentProps,
+  PolymorphicComponentPropsWithRef,
   PolymorphicRef,
 } from "@/types/polymorphic.ts";
 
@@ -35,7 +36,11 @@ type AvatarProps<T extends ElementType> = PolymorphicComponentProps<
 > &
   PropsWithChildren;
 
-const Avatar = forwardRef(
+type AvatarComponent = <T extends ElementType = "div">(
+  props: PolymorphicComponentPropsWithRef<T, AvatarProps<T>>
+) => ReactNode;
+
+const Avatar: AvatarComponent & { displayName?: string } = forwardRef(
   <T extends ElementType = "div">(
     {
       asProp,
