@@ -48,7 +48,7 @@ const Avatar: AvatarComponent & { displayName?: string } = forwardRef(
       variant = "blue",
       imageUrl,
       username,
-      orientation,
+      orientation = "right",
       ...rest
     }: AvatarProps<T>,
     ref?: PolymorphicRef<T>
