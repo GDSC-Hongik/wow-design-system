@@ -1,3 +1,4 @@
+export * from "../types/Icon.ts";
 export { default as BlueAvatar } from "./BlueAvatar.tsx";
 export { default as Calendar } from "./Calendar.tsx";
 export { default as Check } from "./Check.tsx";
