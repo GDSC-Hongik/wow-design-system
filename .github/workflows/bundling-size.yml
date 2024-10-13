@@ -29,4 +29,6 @@ jobs:
         uses: preactjs/compressed-size-action@2.7.0
         with:
           repo-token: "${{ secrets.TOKEN }}"
-          pattern: "./packages/wow-ui/dist/*"
+          pattern: "./packages/wow-ui/dist/**/*"
+          compression: "none"
+
