@@ -1,0 +1,26 @@
+name: bundling-size
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Check Sizes
+        uses: preactjs/compressed-size-action@2.7.0
+        with:
+          repo-token: "${{ secrets.TOKEN }}"
+          build-script: "ui:build"
+          pattern: "./packages/wow-ui/dist/*"
