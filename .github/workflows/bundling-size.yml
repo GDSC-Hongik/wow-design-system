@@ -29,5 +29,5 @@ jobs:
         uses: preactjs/compressed-size-action@2.7.0
         with:
           repo-token: "${{ secrets.TOKEN }}"
-          build-script: "ui:build"
+          build-script: "icons:build && tokens:build && ui:build"
           pattern: "./packages/wow-ui/dist/*"
