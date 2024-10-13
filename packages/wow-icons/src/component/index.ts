@@ -5,6 +5,7 @@ export { default as Check } from "./Check.tsx";
 export { default as Close } from "./Close.tsx";
 export { default as DownArrow } from "./DownArrow.tsx";
 export { default as Edit } from "./Edit.tsx";
+export { default as GdscLogo } from "./GdscLogo.tsx";
 export { default as GreenAvatar } from "./GreenAvatar.tsx";
 export { default as Help } from "./Help.tsx";
 export { default as LeftArrow } from "./LeftArrow.tsx";
