@@ -2,6 +2,7 @@ name: bundling-size
 
 on:
   pull_request:
+    types: [opened, ready_for_review]
     branches:
       - main
 
@@ -17,6 +18,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      - name: Install Pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
 
       - name: Check Sizes
         uses: preactjs/compressed-size-action@2.7.0
