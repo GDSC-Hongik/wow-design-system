@@ -5,4 +5,7 @@ export const zIndex = defineTokens.zIndex({
   dropdown: {
     value: wowZIndex.dropdown,
   },
+  overlay: {
+    value: wowZIndex.overlay,
+  },
 });

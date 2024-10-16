@@ -1,5 +1,13 @@
 # wowds-icons
 
+## 0.1.5
+
+### Patch Changes
+
+- 3682ddd: Avatar 컴포넌트를 추가합니다.
+- 185475a: Icon 공통 타입을 내보내기합니다.
+- b7f51d2: Header 컴포넌트를 추가합니다.
+
 ## 0.1.4
 
 ### Patch Changes
