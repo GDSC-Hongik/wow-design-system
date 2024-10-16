@@ -79,6 +79,7 @@
       "types": "./dist/components/Table/Tr.d.ts",
       "require": "./dist/Tr.cjs",
       "import": "./dist/Tr.js"
+    },
     "./Tabs": {
       "types": "./dist/components/Tabs/index.d.ts",
       "require": "./dist/Tabs.cjs",
