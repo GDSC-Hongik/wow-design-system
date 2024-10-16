@@ -14,11 +14,11 @@ import { useDropDownContext } from "./context/DropDownContext";
 interface DropDownWrapperProps extends PropsWithChildren {
   hasCustomTrigger?: boolean;
 }
-export const DropDownOptionList = ({
+const DropDownOptionList = ({
   children,
   hasCustomTrigger,
 }: DropDownWrapperProps) => {
-  const { open, setFocusedValue, focusedValue, handleSelect } =
+  const { open, setFocusedValue, focusedValue, handleSelect, dropdownId } =
     useDropDownContext();
   const itemMap = useCollection();
   const listRef = useRef<HTMLUListElement>(null);
@@ -64,11 +64,11 @@ export const DropDownOptionList = ({
 
   return (
     <styled.ul
-      display="flex"
-      flexDirection="column"
+      aria-hidden={!open}
+      aria-labelledby={`${dropdownId}-trigger`}
+      id={`${dropdownId}-option-list`}
       ref={listRef}
       role="listbox"
-      style={{ visibility: open ? "visible" : "hidden" }}
       tabIndex={0}
       visibility={open ? "visible" : "hidden"}
       className={dropdownContentStyle({
@@ -81,8 +81,12 @@ export const DropDownOptionList = ({
   );
 };
 
+export default DropDownOptionList;
+
 const dropdownContentStyle = cva({
   base: {
+    display: "flex",
+    flexDirection: "column",
     position: "absolute",
     outline: "none",
     top: "calc(100% + 0.5rem)",
