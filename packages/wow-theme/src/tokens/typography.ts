@@ -38,4 +38,10 @@ export const textStyles = defineTextStyles({
   label3: {
     value: typography.label3,
   },
+  header1: {
+    value: typography.header1,
+  },
+  header2: {
+    value: typography.header2,
+  },
 });

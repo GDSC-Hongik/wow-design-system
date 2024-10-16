@@ -1,5 +1,12 @@
 # wowds-theme
 
+## 0.1.4
+
+### Patch Changes
+
+- 185475a: zIndex 토큰을 추가합니다.
+- b7f51d2: Header 컴포넌트를 추가합니다.
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "wowds-ui",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "",
   "author": "gdsc-hongik",
   "repository": {
@@ -20,6 +20,21 @@
   "type": "module",
   "exports": {
     "./styles.css": "./dist/styles.css",
+    "./ToastProvider": {
+      "types": "./dist/components/Toast/ToastProvider.d.ts",
+      "require": "./dist/ToastProvider.cjs",
+      "import": "./dist/ToastProvider.js"
+    },
+    "./Toast": {
+      "types": "./dist/components/Toast/index.d.ts",
+      "require": "./dist/Toast.cjs",
+      "import": "./dist/Toast.js"
+    },
+    "./useToast": {
+      "types": "./dist/components/Toast/useToast.d.ts",
+      "require": "./dist/useToast.cjs",
+      "import": "./dist/useToast.js"
+    },
     "./TextField": {
       "types": "./dist/components/TextField/index.d.ts",
       "require": "./dist/TextField.cjs",
@@ -64,6 +79,25 @@
       "types": "./dist/components/Table/Tr.d.ts",
       "require": "./dist/Tr.cjs",
       "import": "./dist/Tr.js"
+    "./Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "require": "./dist/Tabs.cjs",
+      "import": "./dist/Tabs.js"
+    },
+    "./TabsContent": {
+      "types": "./dist/components/Tabs/TabsContent.d.ts",
+      "require": "./dist/TabsContent.cjs",
+      "import": "./dist/TabsContent.js"
+    },
+    "./TabsItem": {
+      "types": "./dist/components/Tabs/TabsItem.d.ts",
+      "require": "./dist/TabsItem.cjs",
+      "import": "./dist/TabsItem.js"
+    },
+    "./TabsList": {
+      "types": "./dist/components/Tabs/TabsList.d.ts",
+      "require": "./dist/TabsList.cjs",
+      "import": "./dist/TabsList.js"
     },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
@@ -135,6 +169,11 @@
       "require": "./dist/MultiGroup.cjs",
       "import": "./dist/MultiGroup.js"
     },
+    "./Header": {
+      "types": "./dist/components/Header/index.d.ts",
+      "require": "./dist/Header.cjs",
+      "import": "./dist/Header.js"
+    },
     "./DropDownOption": {
       "types": "./dist/components/DropDown/DropDownOption.d.ts",
       "require": "./dist/DropDownOption.cjs",
@@ -169,6 +208,11 @@
       "types": "./dist/components/Box/index.d.ts",
       "require": "./dist/Box.cjs",
       "import": "./dist/Box.js"
+    },
+    "./Avatar": {
+      "types": "./dist/components/Avatar/index.d.ts",
+      "require": "./dist/Avatar.cjs",
+      "import": "./dist/Avatar.js"
     }
   },
   "keywords": [],
@@ -210,12 +254,14 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@types/uuid": "^10.0.0"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.0",
     "react-day-picker": "^9.0.8",
+    "uuid": "^10.0.0",
     "wowds-icons": "workspace:^"
   },
   "peerDependencies": {

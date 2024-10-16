@@ -679,7 +679,9 @@ export interface UtilityValues {
     | "body3"
     | "label1"
     | "label2"
-    | "label3";
+    | "label3"
+    | "header1"
+    | "header2";
 }
 
 type WithColorOpacityModifier<T> = T extends string ? `${T}/${string}` : T;
