@@ -21,7 +21,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
     } = useTableContext();
 
     const isHeaderCheckboxChecked =
-      selectedRows.length === rowValues?.length && rowValues.length > 0;
+      selectedRows.length === rowValues?.size && rowValues.size > 0;
     return (
       <styled.thead
         position="sticky"

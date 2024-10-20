@@ -8,8 +8,8 @@ import type useTableCheckState from "@/hooks/useTableCheckState";
 export const TableContext = createContext<
   | (ReturnType<typeof useTableCheckState> &
       Omit<TableProps, "children"> & {
-        rowValues?: number[];
-        setRowValues?: Dispatch<React.SetStateAction<number[]>>;
+        rowValues?: Set<number>;
+        setRowValues?: Dispatch<React.SetStateAction<Set<number>>>;
       })
   | null
 >(null);

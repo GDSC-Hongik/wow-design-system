@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const useTableCheckState = (
-  rowValues: number[],
+  rowValues: Set<number>,
   selectedRowsProp?: number[],
   onChange?: (selectedRows: number[]) => void
 ) => {
@@ -35,7 +35,7 @@ const useTableCheckState = (
 
   const handleHeaderCheckboxChange = useCallback(() => {
     const newSelectedRows =
-      selectedRows?.length === rowValues?.length ? [] : [...rowValues];
+      selectedRows?.length === rowValues?.size ? [] : [...rowValues];
     updateSelectedRow(newSelectedRows);
   }, [selectedRows, rowValues, updateSelectedRow]);
 

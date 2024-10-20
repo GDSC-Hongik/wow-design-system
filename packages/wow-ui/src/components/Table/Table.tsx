@@ -52,8 +52,7 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
     }: TableProps,
     ref: Ref<HTMLTableElement>
   ) => {
-    const [rowValues, setRowValues] = useState<number[]>([]);
-    console.log("원래값", rowValues);
+    const [rowValues, setRowValues] = useState<Set<number>>(new Set());
     const {
       handleRowCheckboxChange,
       handleHeaderCheckboxChange,
@@ -62,8 +61,8 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
 
     const contextValue: ReturnType<typeof useTableCheckState> &
       Omit<TableProps, "children"> & {
-        rowValues?: number[];
-        setRowValues?: Dispatch<React.SetStateAction<number[]>>;
+        rowValues?: Set<number>;
+        setRowValues?: Dispatch<React.SetStateAction<Set<number>>>;
       } = {
       rowValues,
       selectedRows,

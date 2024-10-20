@@ -1,6 +1,6 @@
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren, Ref } from "react";
-import { forwardRef, useEffect, useLayoutEffect } from "react";
+import { forwardRef, useLayoutEffect } from "react";
 
 import Checkbox from "@/components/Checkbox";
 import {
@@ -27,7 +27,11 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
 
     useLayoutEffect(() => {
       if (value !== undefined && setRowValues) {
-        setRowValues((prevRowValues) => [...prevRowValues, value]);
+        setRowValues((prevRowValues) => {
+          const updatedRowValues = new Set(prevRowValues);
+          updatedRowValues.add(value);
+          return updatedRowValues;
+        });
       }
     }, [value, setRowValues]);
 
