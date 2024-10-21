@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.18
+
+### Patch Changes
+
+- 772a6d8: pagination 컴포넌트를 배포해요.
+
 ## 0.1.17
 
 ### Patch Changes
