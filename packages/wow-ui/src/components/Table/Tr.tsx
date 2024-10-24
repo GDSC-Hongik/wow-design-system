@@ -76,11 +76,11 @@ const TableCheckbox = ({
   value,
   handleRowCheckboxChange,
 }: {
-  selectedRows: number[];
+  selectedRows: Set<number>;
   value: number | undefined;
   handleRowCheckboxChange: (rowData: number) => void;
 }) => {
-  const isSelected = selectedRows.some((row: number) => row === value);
+  const isSelected = selectedRows.has(value || 0);
   return (
     <Td style={TableCheckBoxStyle}>
       <Checkbox

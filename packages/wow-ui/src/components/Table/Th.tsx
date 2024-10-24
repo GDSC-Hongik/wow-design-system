@@ -10,7 +10,7 @@ const Th = forwardRef<HTMLTableCellElement, TableHeaderProps>(
   (props: TableHeaderProps, ref: Ref<HTMLTableCellElement>) => {
     const { children, ...rest } = props;
     return (
-      <th className={TableHeaderStyle} ref={ref} {...rest}>
+      <th className={TableHeaderStyle} ref={ref} scope="col" {...rest}>
         {children}
       </th>
     );

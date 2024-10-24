@@ -5,18 +5,18 @@ const useTableCheckState = (
   selectedRowsProp?: number[],
   onChange?: (selectedRows: number[]) => void
 ) => {
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     if (selectedRowsProp) {
-      setSelectedRows(selectedRowsProp);
+      setSelectedRows(new Set(selectedRowsProp));
     }
   }, [selectedRowsProp]);
 
   const updateSelectedRow = useCallback(
-    (newSelectedRows: number[]) => {
+    (newSelectedRows: Set<number>) => {
       if (onChange) {
-        onChange(newSelectedRows);
+        onChange(Array.from(newSelectedRows));
         return;
       }
       setSelectedRows(newSelectedRows);
@@ -26,16 +26,21 @@ const useTableCheckState = (
 
   const handleRowCheckboxChange = (rowData: number) => {
     const rowId = rowData;
-    const isSelected = selectedRows.some((row) => row === rowId);
-    const newSelectedRows = isSelected
-      ? selectedRows.filter((row) => row !== rowId)
-      : [...selectedRows, rowData];
+    const newSelectedRows = new Set(selectedRows); // 새로운 Set 생성
+
+    if (newSelectedRows.has(rowId)) {
+      newSelectedRows.delete(rowId); // 이미 선택된 경우 제거
+    } else {
+      newSelectedRows.add(rowId); // 선택되지 않은 경우 추가
+    }
     updateSelectedRow(newSelectedRows);
   };
 
   const handleHeaderCheckboxChange = useCallback(() => {
     const newSelectedRows =
-      selectedRows?.length === rowValues?.size ? [] : [...rowValues];
+      selectedRows?.size === rowValues?.size
+        ? new Set<number>()
+        : new Set(rowValues);
     updateSelectedRow(newSelectedRows);
   }, [selectedRows, rowValues, updateSelectedRow]);
 

@@ -19,7 +19,7 @@ const Td = forwardRef(
     const { children, ...rest } = props;
     const { selectedRows } = useTableContext();
     const rowValue = useSafeContext(TableCheckedContext);
-    const isSelected = selectedRows.some((row: number) => row === rowValue);
+    const isSelected = selectedRows.has(rowValue);
 
     return (
       <styled.td
