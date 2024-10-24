@@ -12,10 +12,7 @@ interface TheadProps extends PropsWithChildren {
 }
 
 const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
-  function TheadFunction(
-    { children, ...rest }: TheadProps,
-    ref: Ref<HTMLTableSectionElement>
-  ) {
+  ({ children, ...rest }: TheadProps, ref: Ref<HTMLTableSectionElement>) => {
     const {
       selectedRows,
       showCheckbox,
@@ -24,7 +21,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
     } = useTableContext();
 
     const isHeaderCheckboxChecked =
-      selectedRows.length === rowValues.length && rowValues.length > 0;
+      selectedRows.size === rowValues?.size && rowValues.size > 0;
     return (
       <styled.thead
         position="sticky"
@@ -36,7 +33,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
       >
         <tr>
           {showCheckbox && (
-            <Th style={TableCheckBoxStyle}>
+            <Th style={tableCheckBoxStyle}>
               <Checkbox
                 checked={isHeaderCheckboxChecked}
                 onChange={handleHeaderCheckboxChange}
@@ -52,7 +49,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
 
 export default Thead;
 
-const TableCheckBoxStyle = {
+const tableCheckBoxStyle = {
   minWidth: "15px",
   display: "flex",
   minHeight: "44px",

@@ -1,12 +1,13 @@
 import { cva } from "@styled-system/css";
 import { styled } from "@styled-system/jsx";
 import type { CSSProperties, PropsWithChildren, Ref } from "react";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import {
   TableCheckedContext,
   useTableContext,
 } from "@/components/Table/TableContext";
+import useSafeContext from "@/hooks/useSafeContext";
 
 interface TableCellProps extends PropsWithChildren {
   style?: CSSProperties;
@@ -17,12 +18,12 @@ const Td = forwardRef(
   (props: TableCellProps, ref: Ref<HTMLTableCellElement>) => {
     const { children, ...rest } = props;
     const { selectedRows } = useTableContext();
-    const value = useContext(TableCheckedContext);
-    const isSelected = selectedRows.some((row: number) => row === value);
+    const rowValue = useSafeContext(TableCheckedContext);
+    const isSelected = selectedRows.has(rowValue);
 
     return (
       <styled.td
-        className={TableCellStyle({ checked: isSelected })}
+        className={tableCellStyle({ checked: isSelected })}
         ref={ref}
         role="cell"
         {...rest}
@@ -33,7 +34,7 @@ const Td = forwardRef(
   }
 );
 
-const TableCellStyle = cva({
+const tableCellStyle = cva({
   base: {
     maxWidth: "300px",
     paddingX: "sm",
