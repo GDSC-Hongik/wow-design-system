@@ -62,7 +62,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
 
 export default TableRow;
 
-const TableCheckBoxStyle = {
+const tableCheckBoxStyle = {
   minWidth: "15px",
   height: "100%",
   display: "flex",
@@ -82,7 +82,7 @@ const TableCheckbox = ({
 }) => {
   const isSelected = selectedRows.has(value || 0);
   return (
-    <Td style={TableCheckBoxStyle}>
+    <Td style={tableCheckBoxStyle}>
       <Checkbox
         checked={isSelected}
         onChange={() => {

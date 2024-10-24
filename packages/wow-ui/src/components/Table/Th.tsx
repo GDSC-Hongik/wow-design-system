@@ -10,14 +10,14 @@ const Th = forwardRef<HTMLTableCellElement, TableHeaderProps>(
   (props: TableHeaderProps, ref: Ref<HTMLTableCellElement>) => {
     const { children, ...rest } = props;
     return (
-      <th className={TableHeaderStyle} ref={ref} scope="col" {...rest}>
+      <th className={tableHeaderStyle} ref={ref} scope="col" {...rest}>
         {children}
       </th>
     );
   }
 );
 
-const TableHeaderStyle = css({
+const tableHeaderStyle = css({
   alignItems: "center",
   backgroundColor: "backgroundAlternative",
   color: "sub",

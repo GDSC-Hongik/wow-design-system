@@ -74,10 +74,10 @@ const TableComponent = forwardRef<HTMLTableElement, TableProps>(
 
     return (
       <TableContext.Provider value={contextValue}>
-        <div className={TableContainerStyle} style={style}>
+        <div className={tableContainerStyle} style={style}>
           <styled.table
             aria-label="table"
-            className={clsx(TableStyle({ fullWidth }), className)}
+            className={clsx(tableStyle({ fullWidth }), className)}
             ref={ref}
             role="table"
             {...rest}
@@ -108,7 +108,7 @@ Table.Td = Td;
 
 export default Table;
 
-const TableStyle = cva({
+const tableStyle = cva({
   base: {
     borderCollapse: "collapse",
     backgroundColor: "white",
@@ -126,7 +126,7 @@ const TableStyle = cva({
   },
 });
 
-const TableContainerStyle = css({
+const tableContainerStyle = css({
   overflow: "auto",
   position: "relative",
   _scrollbar: {

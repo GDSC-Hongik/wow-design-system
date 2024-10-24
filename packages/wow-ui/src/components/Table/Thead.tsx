@@ -33,7 +33,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
       >
         <tr>
           {showCheckbox && (
-            <Th style={TableCheckBoxStyle}>
+            <Th style={tableCheckBoxStyle}>
               <Checkbox
                 checked={isHeaderCheckboxChecked}
                 onChange={handleHeaderCheckboxChange}
@@ -49,7 +49,7 @@ const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
 
 export default Thead;
 
-const TableCheckBoxStyle = {
+const tableCheckBoxStyle = {
   minWidth: "15px",
   display: "flex",
   minHeight: "44px",
