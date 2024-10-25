@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.19
+
+### Patch Changes
+
+- 0583f9d: table 컴포넌트를 배포해요.
+
 ## 0.1.18
 
 ### Patch Changes
