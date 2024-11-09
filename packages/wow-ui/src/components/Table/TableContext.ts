@@ -23,7 +23,6 @@ export const useTableContext = () => {
       handleRowCheckboxChange: () => {},
       handleHeaderCheckboxChange: () => {},
       setRowValues: () => {},
-      rowValue: 0,
     };
   else {
     return context;
