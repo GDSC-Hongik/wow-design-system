@@ -79,3 +79,15 @@ export const label3 = {
   lineHeight: "100%",
   fontWeight: 600,
 };
+
+export const header1 = {
+  fontSize: "1.25rem",
+  lineHeight: "130%",
+  fontWeight: 600,
+};
+
+export const header2 = {
+  fontSize: "0.875rem",
+  lineHeight: "130%",
+  fontWeight: 400,
+};
