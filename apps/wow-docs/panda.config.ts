@@ -5,9 +5,22 @@ import {
   removeUnusedCssVars,
   removeUnusedKeyframes,
 } from "wowds-theme";
+import { typography } from "wowds-tokens";
 
 export default defineConfig({
   presets: [pandaPreset],
+  staticCss: {
+    css: [
+      {
+        properties: {
+          ...(pandaPreset?.staticCss?.css?.[0]?.properties?.color && {
+            color: pandaPreset.staticCss.css[0].properties.color,
+          }),
+          textStyle: Object.keys(typography),
+        },
+      },
+    ],
+  },
   preflight: true,
   minify: true,
   watch: true,
