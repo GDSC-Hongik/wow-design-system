@@ -9,12 +9,12 @@ import type {
 import { useId } from "react";
 
 import { DropDownContext } from "@/components/DropDown/context/DropDownContext";
-import { DropDownOptionList } from "@/components/DropDown/DropDownOptionList";
+import DropDownOptionList from "@/components/DropDown/DropDownOptionList";
 import DropDownTrigger from "@/components/DropDown/DropDownTrigger";
+import DropDownWrapper from "@/components/DropDown/DropDownWrapper";
 import useDropDownState from "@/hooks/useDropDownState";
 
 import { CollectionProvider } from "./context/CollectionContext";
-import { DropDownWrapper } from "./DropDownWrapper";
 export interface DropDownWithTriggerProps extends PropsWithChildren {
   /**
    * @description 드롭다운을 열기 위한 외부 트리거 요소입니다.

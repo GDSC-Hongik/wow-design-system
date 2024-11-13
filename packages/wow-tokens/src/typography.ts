@@ -81,13 +81,13 @@ export const label3 = {
 };
 
 export const header1 = {
-  fontSize: "1.25rem",
+  fontSize: "1.3rem",
   lineHeight: "130%",
-  fontWeight: 600,
+  fontWeight: 700,
 };
 
 export const header2 = {
-  fontSize: "0.875rem",
+  fontSize: "0.9rem",
   lineHeight: "130%",
   fontWeight: 400,
 };

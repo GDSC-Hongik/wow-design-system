@@ -52,6 +52,7 @@ const DropDownOption = forwardRef<HTMLLIElement, DropDownOptionProps>(
 
     return (
       <styled.li
+        aria-selected={isSelected}
         id={`${dropdownId}-option-${value}`}
         ref={ref}
         role="option"

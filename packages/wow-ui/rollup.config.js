@@ -20,9 +20,22 @@ process.env.BABEL_ENV = "production";
 
 export default {
   input: {
+    ToastProvider: "./src/components/Toast/ToastProvider",
+    Toast: "./src/components/Toast",
+    useToast: "./src/components/Toast/useToast",
     TextField: "./src/components/TextField",
     TextButton: "./src/components/TextButton",
     Tag: "./src/components/Tag",
+    TabsContent: "./src/components/Tabs/TabsContent",
+    TabsItem: "./src/components/Tabs/TabsItem",
+    TabsList: "./src/components/Tabs/TabsList",
+    Tabs: "./src/components/Tabs",
+    Table: "./src/components/Table/Table",
+    Tbody: "./src/components/Table/Tbody",
+    Td: "./src/components/Table/Td",
+    Th: "./src/components/Table/Th",
+    Thead: "./src/components/Table/Thead",
+    Tr: "./src/components/Table/Tr",
     Switch: "./src/components/Switch",
     Stepper: "./src/components/Stepper",
     BlueSpinner: "./src/components/Spinner/BlueSpinner",
@@ -35,7 +48,9 @@ export default {
     RangeDatePicker: "./src/components/Picker/RangeDatePicker",
     SingleDatePicker: "./src/components/Picker/SingleDatePicker",
     TimePicker: "./src/components/Picker/TimePicker",
+    Pagination: "./src/components/Pagination",
     MultiGroup: "./src/components/MultiGroup",
+    Header: "./src/components/Header",
     DropDownOption: "./src/components/DropDown/DropDownOption",
     DropDown: "./src/components/DropDown",
     Divider: "./src/components/Divider",
@@ -43,6 +58,7 @@ export default {
     Checkbox: "./src/components/Checkbox",
     Button: "./src/components/Button",
     Box: "./src/components/Box",
+    Avatar: "./src/components/Avatar",
   },
   output: [
     {
