@@ -12,7 +12,7 @@ export interface SidebarProps {
 const Sidebar = ({ style }: SidebarProps) => {
   return (
     <aside
-      aria-label="client navigation bar"
+      aria-label="navigation bar"
       className={sidebarContainerStyle}
       style={style}
     >
