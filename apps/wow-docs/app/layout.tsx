@@ -17,9 +17,11 @@ const RootLayout = ({
   children: React.ReactNode;
 }): JSX.Element => {
   return (
-    <html lang="kr">
-      <Sidebar />
-      <body className={inter.className}>{children}</body>
+    <html lang="ko">
+      <body className={inter.className}>
+        <Sidebar />
+        {children}
+      </body>
     </html>
   );
 };
