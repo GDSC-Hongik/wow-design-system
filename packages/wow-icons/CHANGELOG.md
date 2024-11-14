@@ -1,11 +1,3 @@
-# wowds-icons
-
-## 0.1.6
-
-### Patch Changes
-
-- 899eccb: Home, Folder 컴포넌트를 추가합니다.
-
 ## 0.1.5
 
 ### Patch Changes
