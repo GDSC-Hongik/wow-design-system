@@ -12,7 +12,7 @@ import OverviewBackgroundImage from "../../public/overview-background.png";
 const OverviewPage = () => {
   return (
     <>
-      <Text as="h1" className={titleTextStyle} color="white" typo="title">
+      <Text as="h1" color="white" typo="displayWebPage">
         WOW Design System
       </Text>
       <Space height={20} />
@@ -36,13 +36,12 @@ const OverviewPage = () => {
         Component
         <RightArrow />
       </Link>
-
       <Image
         alt="overview-background"
         className={backgroundImageStyle}
         height={505}
         src={OverviewBackgroundImage}
-        width={921}
+        width={821}
       />
     </>
   );
@@ -50,19 +49,12 @@ const OverviewPage = () => {
 
 export default OverviewPage;
 
-const titleTextStyle = css({
-  fontFamily: "Product Sans",
-  fontSize: "49.45px",
-  fontWeight: 700,
-  lineHeight: "130%",
-});
-
 const linkTextStyle = css({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   paddingBottom: "12px",
   borderBottom: "1px solid white",
-  fontFamily: "Product Sans",
   color: "white",
   textStyle: "h1",
   fontWeight: 700,
@@ -70,5 +62,6 @@ const linkTextStyle = css({
 });
 
 const backgroundImageStyle = css({
-  marginLeft: "90px",
+  position: "absolute",
+  right: "101px",
 });

@@ -86,7 +86,6 @@ export type Token =
   | "borderWidths.button"
   | "borderWidths.arrow"
   | "zIndex.dropdown"
-  | "zIndex.overlay"
   | "shadows.blue"
   | "shadows.mono"
   | "breakpoints.xs"
@@ -324,7 +323,7 @@ export type RadiusToken = "sm" | "md" | "full";
 
 export type BorderWidthToken = "button" | "arrow";
 
-export type ZIndexToken = "dropdown" | "overlay";
+export type ZIndexToken = "dropdown";
 
 export type ShadowToken = "blue" | "mono";
 

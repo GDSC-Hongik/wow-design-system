@@ -6,7 +6,7 @@ import type { CSSProperties, ElementType, PropsWithChildren } from "react";
 import type { typography as typoType } from "wowds-tokens";
 
 type ColorKey = ColorToken;
-type TypoKey = keyof typeof typoType | "title";
+type TypoKey = keyof typeof typoType;
 
 /**
  * @description Text 컴포넌트
@@ -38,7 +38,7 @@ const Text = <T extends ElementType = "p">({
     <Component
       className={clsx(
         css({
-          ...(typo !== "title" && { textStyle: typo }),
+          textStyle: typo,
           color: color,
         }),
         className

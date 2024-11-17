@@ -32,7 +32,16 @@ export const textStyles = defineTextStyles({
   label1: {
     value: typography.label1,
   },
+  label1U: {
+    value: typography.label1,
+  },
   label2: {
+    value: typography.label2,
+  },
+  label2U: {
+    value: typography.label2,
+  },
+  label2U2: {
     value: typography.label2,
   },
   label3: {
@@ -43,5 +52,17 @@ export const textStyles = defineTextStyles({
   },
   header2: {
     value: typography.header2,
+  },
+  displayWebPage: {
+    value: typography.displayWebPage,
+  },
+  display2WebPage: {
+    value: typography.display2WebPage,
+  },
+  headingWebPage: {
+    value: typography.headingWebPage,
+  },
+  heading2WebPage: {
+    value: typography.heading2WebPage,
   },
 });
