@@ -27,7 +27,7 @@ const OverviewPage = () => {
         활용되는 가이드라인으로 구성함으로써 편의성과 확장성을 가지고 있어요.
       </Text>
       <Space height={60} />
-      <Link className={linkTextStyle} href={routePath.overview}>
+      <Link className={linkTextStyle} href={routePath.foundation}>
         Foundation
         <RightArrow />
       </Link>
