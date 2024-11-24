@@ -9,7 +9,8 @@
     "paths": {
       "@/*": ["app/*"],
       "@styled-system/*": ["./styled-system/*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@constants/*": ["./constants/*"]
     },
     "module": "ESNext",
     "moduleResolution": "Bundler",

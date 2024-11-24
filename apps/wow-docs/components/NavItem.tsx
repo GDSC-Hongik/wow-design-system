@@ -61,7 +61,7 @@ const NavItem = ({ href, icon: Icon, alt, label, children }: NavItemProps) => {
             <li key={child.href} role="none">
               <Link
                 aria-label={child.label}
-                href={child.href}
+                href={`${href}${child.href}`}
                 role="menuitem"
                 className={navItemStyle({
                   type:
