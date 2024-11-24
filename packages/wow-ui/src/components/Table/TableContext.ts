@@ -24,9 +24,7 @@ export const useTableContext = () => {
       handleHeaderCheckboxChange: () => {},
       setRowValues: () => {},
     };
-  else {
-    return context;
-  }
+  return context;
 };
 
 export const TableCheckedContext = createContext<number | undefined>(0);
