@@ -20,6 +20,7 @@ export const pandaPreset = definePreset({
       {
         properties: {
           color: colorTokenList,
+          textStyle: Object.keys(textStyles),
         },
       },
     ],

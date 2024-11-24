@@ -1,2 +1,98 @@
 @layer reset, base, tokens, recipes, utilities;
 @import url("wowds-ui/styles.css");
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 200;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-Thin.woff2") format("woff2"),
+    url("./fonts/SUIT-Thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-ExtraLight.woff2") format("woff2"),
+    url("./fonts/SUIT-ExtraLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-Regular.woff2") format("woff2"),
+    url("./fonts/SUIT-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-Medium.woff2") format("woff2"),
+    url("./fonts/SUIT-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-SemiBold.woff2") format("woff2"),
+    url("./fonts/SUIT-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-Bold.woff2") format("woff2"),
+    url("./fonts/SUIT-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 800;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-ExtraBold.woff2") format("woff2"),
+    url("./fonts/SUIT-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SUIT";
+  font-weight: 900;
+  font-display: swap;
+  src:
+    url("./fonts/SUIT-Heavy.woff2") format("woff2"),
+    url("./fonts/SUIT-Heavy.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Product-Sans";
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("./fonts/ProductSans-Regular.woff2") format("woff2"),
+    url("./fonts/ProductSans-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Product-Sans";
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("./fonts/ProductSans-Bold.woff2") format("woff2"),
+    url("./fonts/ProductSans-Bold.woff") format("woff");
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}

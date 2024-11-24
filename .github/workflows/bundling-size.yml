@@ -25,6 +25,9 @@ jobs:
           version: 8
           run_install: false
 
+      - name: Install Dependency
+        run: pnpm install --no-frozen-lockfile
+
       - name: Check Sizes
         uses: preactjs/compressed-size-action@2.7.0
         with:
