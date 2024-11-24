@@ -94,7 +94,7 @@ export const Primary: Story = {
         <Table.Tbody>
           {data.map(({ name, studyId, id }) => {
             return (
-              <Table.Tr key={id} value={id}>
+              <Table.Tr key={id}>
                 <Table.Td>{name}</Table.Td>
                 <Table.Td>{studyId}</Table.Td>
               </Table.Tr>

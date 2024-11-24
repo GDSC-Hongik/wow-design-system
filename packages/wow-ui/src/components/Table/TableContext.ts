@@ -1,8 +1,7 @@
 import type { Dispatch } from "react";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 import type { TableProps } from "@/components/Table/Table";
-import useSafeContext from "@/hooks/useSafeContext";
 import type useTableCheckState from "@/hooks/useTableCheckState";
 
 export const TableContext = createContext<
@@ -15,7 +14,16 @@ export const TableContext = createContext<
 >(null);
 
 export const useTableContext = () => {
-  const context = useSafeContext(TableContext);
+  const context = useContext(TableContext);
+  if (!context)
+    return {
+      selectedRows: new Set<number>(),
+      showCheckbox: false,
+      rowValues: new Set<number>(),
+      handleRowCheckboxChange: () => {},
+      handleHeaderCheckboxChange: () => {},
+      setRowValues: () => {},
+    };
   return context;
 };
 
