@@ -14,7 +14,7 @@ export default defineConfig({
   outExtension: "js",
   polyfill: true,
   jsxFramework: "react",
-  include: ["./app/**/*.{ts,tsx,js,jsx}"],
+  include: ["./app/**/*.{ts,tsx,js,jsx}", "./components/**/*.{ts,tsx,js,jsx}"],
   exclude: [],
   outdir: "styled-system",
   hooks: {

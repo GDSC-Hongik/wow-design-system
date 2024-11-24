@@ -1,11 +1,10 @@
 import Space from "@components/Space";
 import Text from "@components/Text";
+import { routePath } from "@constants/routePath";
 import { css } from "@styled-system/css";
 import Image from "next/image";
 import Link from "next/link";
 import { RightArrow } from "wowds-icons";
-
-import { routePath } from "@/constants/routePath";
 
 import OverviewBackgroundImage from "../../public/overview-background.png";
 
