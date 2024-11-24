@@ -25,14 +25,14 @@ const NavItem = ({ href, icon: Icon, alt, label, children }: NavItemProps) => {
   const [expanded, setExpanded] = useState(false);
   const segment = useSelectedLayoutSegments() || [];
 
+  const currentPath = `/${segment.join("/")}`;
+  const isActive = currentPath === href;
+
   const handleClickNavItem = () => {
     if (children?.length) {
       setExpanded((prev) => !prev);
     }
   };
-
-  const currentPath = `/${segment.join("/")}`;
-  const isActive = currentPath === href;
 
   return (
     <styled.div listStyle="none" role="presentation">
@@ -49,7 +49,10 @@ const NavItem = ({ href, icon: Icon, alt, label, children }: NavItemProps) => {
           {label}
         </Text>
         {children?.length && (
-          <DownArrow2 className={toggleIconStyle} fill="sub" />
+          <DownArrow2
+            fill="sub"
+            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0)" }}
+          />
         )}
       </Link>
       {expanded && children && (
@@ -85,7 +88,7 @@ const navItemStyle = cva({
   base: {
     display: "flex",
     alignItems: "center",
-    gap: "12px",
+    gap: "sm",
     padding: "11px 18px 11px 20px",
     borderRadius: "4px",
     cursor: "pointer",
@@ -98,21 +101,6 @@ const navItemStyle = cva({
       },
       inactive: {
         backgroundColor: "white",
-      },
-    },
-  },
-});
-const toggleIconStyle = cva({
-  base: {
-    width: "20px",
-    height: "20px",
-    marginLeft: "auto",
-  },
-  variants: {
-    type: {
-      active: {},
-      inactive: {
-        transform: "rotate(180deg)",
       },
     },
   },

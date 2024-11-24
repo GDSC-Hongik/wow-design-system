@@ -3,7 +3,6 @@
 import NavItem from "@components/NavItem";
 import Space from "@components/Space";
 import { css } from "@styled-system/css";
-import { styled } from "@styled-system/jsx";
 import { navMenu } from "constants/navMenu";
 import type { CSSProperties } from "react";
 import { GdscLogo } from "wowds-icons";
@@ -17,10 +16,10 @@ export interface SidebarProps {
 
 const Sidebar = ({ style }: SidebarProps) => {
   return (
-    <styled.aside
+    <aside
       aria-label="navigation bar"
       className={sidebarContainerStyle}
-      width={250}
+      style={style}
     >
       <Space height={54} />
       <GdscLogo />
@@ -44,14 +43,14 @@ const Sidebar = ({ style }: SidebarProps) => {
           ))}
         </section>
       </nav>
-    </styled.aside>
+    </aside>
   );
 };
 
 export default Sidebar;
 
 const sidebarContainerStyle = css({
-  width: "250px !important",
+  width: "250px",
   minWidth: "250px",
   height: "100%",
   paddingLeft: "20px",
