@@ -1,5 +1,5 @@
+import Text from "@components/Text";
 import { Flex } from "@styled-system/jsx";
-import Text from "components/Text";
 
 interface TitleProps {
   variant: "header" | "component";

@@ -1,6 +1,6 @@
+import Space from "@components/Space";
+import Text from "@components/Text";
 import { css } from "@styled-system/css";
-import Space from "components/Space";
-import Text from "components/Text";
 import Image from "next/image";
 import Link from "next/link";
 import { RightArrow } from "wowds-icons";
