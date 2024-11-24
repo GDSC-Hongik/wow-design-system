@@ -1,5 +1,6 @@
 import "@/globals.css";
 
+import Sidebar from "@components/Sidebar";
 import { styled } from "@styled-system/jsx";
 import type { Metadata } from "next";
 
@@ -16,6 +17,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body>
+        <Sidebar />
         <styled.main
           height="100vh"
           left="250px"
