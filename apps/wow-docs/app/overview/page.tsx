@@ -64,4 +64,5 @@ const linkTextStyle = css({
 const backgroundImageStyle = css({
   position: "absolute",
   right: "101px",
+  bottom: 0,
 });

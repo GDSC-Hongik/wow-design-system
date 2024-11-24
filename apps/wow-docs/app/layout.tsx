@@ -20,10 +20,9 @@ const RootLayout = ({
         <Sidebar />
         <styled.main
           height="100vh"
-          left="250px"
           padding="70px 102px 0 101px"
           position="relative"
-          width="calc(100vw - 250px)"
+          width="100vw"
         >
           {children}
         </styled.main>

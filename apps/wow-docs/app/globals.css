@@ -90,3 +90,9 @@
     url("./fonts/ProductSans-Bold.woff2") format("woff2"),
     url("./fonts/ProductSans-Bold.woff") format("woff");
 }
+
+body {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
