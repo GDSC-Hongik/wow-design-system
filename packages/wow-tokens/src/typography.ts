@@ -151,7 +151,7 @@ export const headingWebPage = {
   fontFamily: "Product-Sans",
   fontSize: "1.5rem",
   lineHeight: "160%",
-  fontWeight: 400,
+  fontWeight: 700,
 };
 
 export const heading2WebPage = {
