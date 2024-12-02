@@ -22,8 +22,10 @@ const Sidebar = ({ style }: SidebarProps) => {
       style={style}
     >
       <Space height={54} />
-      <GdscLogo />
-      <div className={titleTextStyle}>Wow Design System</div>
+      <div className={headerStyle}>
+        <GdscLogo />
+        <div className={titleTextStyle}>Wow Design System</div>
+      </div>
       <Space height={49} />
       <nav
         aria-label="nav menu"
@@ -53,10 +55,12 @@ const sidebarContainerStyle = css({
   width: "250px",
   minWidth: "250px",
   height: "100%",
-  paddingLeft: "20px",
   flexShrink: 0,
 });
 
+const headerStyle = css({
+  paddingLeft: "20px",
+});
 const titleTextStyle = css({
   color: "textBlack",
   fontFamily: "Product-Sans",
@@ -70,6 +74,5 @@ const navContainerStyle = css({
   padding: "8px 0px",
   display: "flex",
   flexDirection: "column",
-  minHeight: "calc(100vh - 98px)",
   justifyContent: "space-between",
 });
