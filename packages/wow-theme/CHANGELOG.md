@@ -1,5 +1,11 @@
 # wowds-theme
 
+## 0.1.5
+
+### Patch Changes
+
+- a51161c: header1, header2 토큰을 추가합니다.
+
 ## 0.1.4
 
 ### Patch Changes
