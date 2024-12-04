@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.1.21
+
+### Patch Changes
+
+- bcc0eee: Table 컴포넌트의 context 문제를 해결해요
+
 ## 0.1.20
 
 ### Patch Changes
