@@ -70,7 +70,7 @@ const NavItem = ({ href, icon: Icon, alt, label, children }: NavItemProps) => {
                       : "inactive",
                 })}
               >
-                <Text as="div" style={{ padding: "11px 36px" }} typo="body1">
+                <Text as="div" style={{ paddingLeft: "22px" }} typo="body1">
                   {child.label}
                 </Text>
               </Link>
