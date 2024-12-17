@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";
 import Title from "@components/Text/Title";
@@ -44,7 +45,7 @@ const GraphicPage = () => {
         언제든지 테마에 어울리는 그래픽을 제작하여 응용할 수 있어요.
       </Text>
       <Space height={40} />
-      <div className={containerStyle}>
+      <Card>
         <Image
           alt={graphicExampleItems[0]?.imageAlt as string}
           className={imageStyle}
@@ -52,7 +53,7 @@ const GraphicPage = () => {
           src={graphicExampleItems[0]?.imageSrc as string}
           width={908}
         />
-      </div>
+      </Card>
       <Space height={40} />
       <Divider />
       <Space height={40} />
