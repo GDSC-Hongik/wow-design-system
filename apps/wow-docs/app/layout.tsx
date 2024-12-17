@@ -51,9 +51,10 @@ const RootLayout = ({
         <Sidebar />
         <styled.main
           height="100vh"
+          left="180px"
           padding="70px 102px 0 101px"
           position="relative"
-          width="100vw"
+          width="calc(100vw - 250px)"
         >
           {children}
         </styled.main>

@@ -2,8 +2,10 @@
 
 import NavItem from "@components/NavItem";
 import Space from "@components/Space";
+import { routePath } from "@constants/routePath";
 import { css } from "@styled-system/css";
 import { navMenu } from "constants/navMenu";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { GdscLogo } from "wowds-icons";
 
@@ -23,7 +25,9 @@ const Sidebar = ({ style }: SidebarProps) => {
     >
       <Space height={54} />
       <div className={headerStyle}>
-        <GdscLogo />
+        <Link href={routePath.overview}>
+          <GdscLogo />
+        </Link>
         <div className={titleTextStyle}>Wow Design System</div>
       </div>
       <Space height={49} />
@@ -56,6 +60,10 @@ const sidebarContainerStyle = css({
   minWidth: "250px",
   height: "100%",
   flexShrink: 0,
+  position: "fixed",
+  borderRight: "1px solid",
+  borderColor: "outline",
+  overflowX: "scroll",
 });
 
 const headerStyle = css({
