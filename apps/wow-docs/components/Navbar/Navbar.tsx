@@ -1,29 +1,35 @@
 "use client";
 
-import NavItem from "@components/NavItem";
+import NavItem from "@components/Navbar/NavItem";
 import Space from "@components/Space";
+import { routePath } from "@constants/routePath";
 import { css } from "@styled-system/css";
 import { navMenu } from "constants/navMenu";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { GdscLogo } from "wowds-icons";
 
 /**
- * @description Sidebar 컴포넌트는 탭을 통해 페이지 내비게이션을 제공하는 컴포넌트입니다.
+ * @description Navbar 컴포넌트는 탭을 통해 페이지 네비게이션을 제공하는 컴포넌트입니다.
  */
-export interface SidebarProps {
+export interface NavbarProps {
   style?: CSSProperties;
 }
 
-const Sidebar = ({ style }: SidebarProps) => {
+const Navbar = ({ style }: NavbarProps) => {
   return (
     <aside
       aria-label="navigation bar"
-      className={sidebarContainerStyle}
+      className={navbarContainerStyle}
       style={style}
     >
       <Space height={54} />
-      <GdscLogo />
-      <div className={titleTextStyle}>Wow Design System</div>
+      <div className={headerStyle}>
+        <Link href={routePath.overview}>
+          <GdscLogo />
+        </Link>
+        <div className={titleTextStyle}>Wow Design System</div>
+      </div>
       <Space height={49} />
       <nav
         aria-label="nav menu"
@@ -47,16 +53,25 @@ const Sidebar = ({ style }: SidebarProps) => {
   );
 };
 
-export default Sidebar;
+export default Navbar;
 
-const sidebarContainerStyle = css({
+const navbarContainerStyle = css({
   width: "250px",
   minWidth: "250px",
   height: "100%",
-  paddingLeft: "20px",
   flexShrink: 0,
+  position: "fixed",
+  borderRight: "1px solid",
+  borderColor: "outline",
+  overflowX: "scroll",
 });
 
+const headerStyle = css({
+  paddingLeft: "20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "8px",
+});
 const titleTextStyle = css({
   color: "textBlack",
   fontFamily: "Product-Sans",
@@ -70,6 +85,5 @@ const navContainerStyle = css({
   padding: "8px 0px",
   display: "flex",
   flexDirection: "column",
-  minHeight: "calc(100vh - 98px)",
   justifyContent: "space-between",
 });

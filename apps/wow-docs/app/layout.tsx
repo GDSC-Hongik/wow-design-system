@@ -1,12 +1,43 @@
 import "@/globals.css";
 
-import Sidebar from "@components/Sidebar";
+import Navbar from "@components/Navbar/Navbar";
 import { styled } from "@styled-system/jsx";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "와우 디자인 시스템",
+  title: { default: "와우 디자인 시스템", template: "%s | 와우 디자인 시스템" },
   description: "GDSC Hongik 디자인 시스템",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_CONSOLE_KEY,
+    other: {
+      "naver-site-verification":
+        process.env.NEXT_PUBLIC_NAVER_CONSOLE_KEY ?? "",
+    },
+  },
+  openGraph: {
+    title: "와우 디자인 시스템",
+    description: "GDSC Hongik 디자인 시스템",
+    images: ["/images/og-image.png"],
+    siteName: "와우 디자인 시스템",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "와우 디자인 시스템",
+    description: "GDSC Hongik 디자인 시스템",
+    images: ["/images/og-image.png"],
+  },
+  icons: {
+    icon: "/images/logo.svg",
+    apple: "/images/logo.svg",
+    other: [
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        url: "/images/logo.svg",
+      },
+    ],
+  },
 };
 
 const RootLayout = ({
@@ -17,9 +48,10 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body>
-        <Sidebar />
+        <Navbar />
         <styled.main
           height="100vh"
+          marginLeft="250px"
           padding="70px 102px 0 101px"
           position="relative"
           width="100vw"
