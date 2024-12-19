@@ -1,6 +1,6 @@
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
-import { componentItems } from "@constants/data";
+import { componentItems } from "@constants/pageData";
 import { css } from "@styled-system/css";
 import { Grid } from "@styled-system/jsx";
 import type { Metadata } from "next";
@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Component",
-  description: "와우 디자인 시스템의 컴포넌트 입니다.",
+  description: "와우 디자인 시스템의 component 입니다.",
 };
 
 const ComponentPage = () => {

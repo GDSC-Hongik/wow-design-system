@@ -1,6 +1,6 @@
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
-import { foundationItems } from "@constants/data";
+import { foundationItems } from "@constants/pageData";
 import { css } from "@styled-system/css";
 import { Flex, Grid } from "@styled-system/jsx";
 import type { Metadata } from "next";

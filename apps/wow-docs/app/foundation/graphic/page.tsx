@@ -1,5 +1,3 @@
-"use client";
-
 import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";
@@ -7,7 +5,13 @@ import Title from "@components/Text/Title";
 import { css } from "@styled-system/css";
 import { Flex } from "@styled-system/jsx";
 import Image from "next/image";
+import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
+
+export const metadata: Metadata = {
+  title: "Graphic",
+  description: "와우 디자인 시스템의 Graphic 입니다.",
+};
 
 const graphicExampleItems = [
   {
