@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "컴포넌트",
+  title: "Component",
   description: "와우 디자인 시스템의 컴포넌트 입니다.",
 };
 

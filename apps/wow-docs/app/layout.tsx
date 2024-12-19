@@ -1,6 +1,6 @@
 import "@/globals.css";
 
-import Sidebar from "@components/Sidebar";
+import Navbar from "@components/Navbar/Navbar";
 import { styled } from "@styled-system/jsx";
 import type { Metadata } from "next";
 
@@ -48,13 +48,13 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body>
-        <Sidebar />
+        <Navbar />
         <styled.main
           height="100vh"
-          left="180px"
+          marginLeft="250px"
           padding="70px 102px 0 101px"
           position="relative"
-          width="calc(100vw - 250px)"
+          width="100vw"
         >
           {children}
         </styled.main>

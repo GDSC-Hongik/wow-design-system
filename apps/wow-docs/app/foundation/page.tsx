@@ -8,8 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "파운데이션",
-  description: "와우 디자인 시스템의 파운데이션입니다.",
+  title: "Foundation",
+  description: "와우 디자인 시스템의 foundation 입니다.",
 };
 
 const FoundationPage = () => {
