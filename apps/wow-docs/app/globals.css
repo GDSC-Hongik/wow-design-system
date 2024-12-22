@@ -96,3 +96,12 @@ body {
   flex-direction: row;
   min-height: 100vh;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 10px;
+}
