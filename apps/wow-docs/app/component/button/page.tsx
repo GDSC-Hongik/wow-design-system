@@ -8,7 +8,7 @@ import TabsContent from "wowds-ui/TabsContent";
 import TabsItem from "wowds-ui/TabsItem";
 import TabsList from "wowds-ui/TabsList";
 
-import GuidlineTab from "@/component/button/_component/GuidlineTab";
+import GuidelineTab from "@/component/button/_component/GuidelineTab";
 
 export const metadata: Metadata = {
   title: "Button",
@@ -37,7 +37,7 @@ const ButtonPage = () => {
         </TabsList>
         <TabsContent value="component"></TabsContent>
         <TabsContent value="guideline">
-          <GuidlineTab />
+          <GuidelineTab />
         </TabsContent>
         <TabsContent value="code"></TabsContent>
       </Tabs>
