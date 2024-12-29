@@ -4,12 +4,25 @@ import type { CSSProperties, PropsWithChildren } from "react";
 interface CardProps extends PropsWithChildren {
   isBackground?: boolean;
   style?: CSSProperties;
+  contentStyle?: CSSProperties;
 }
 
-const Card = ({ children, isBackground = false, style }: CardProps) => {
+const Card = ({ children, isBackground = false, ...props }: CardProps) => {
   return (
-    <div className={containerStyle} {...(style && { style })}>
-      {isBackground ? <div className={contentStyle}>{children}</div> : children}
+    <div
+      className={containerStyle}
+      {...(props.style && { style: props.style })}
+    >
+      {isBackground ? (
+        <div
+          className={contentStyle}
+          {...(props.contentStyle && { style: props.contentStyle })}
+        >
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </div>
   );
 };
@@ -33,4 +46,7 @@ const contentStyle = css({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+
+  paddingY: 20,
+  paddingX: 114,
 });
