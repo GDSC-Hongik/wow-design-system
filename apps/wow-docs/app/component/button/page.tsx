@@ -1,12 +1,9 @@
 import Card from "@components/Card";
+import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
 import type { Metadata } from "next/types";
 import Button from "wowds-ui/Button";
-import Tabs from "wowds-ui/Tabs";
-import TabsContent from "wowds-ui/TabsContent";
-import TabsItem from "wowds-ui/TabsItem";
-import TabsList from "wowds-ui/TabsList";
 
 import ComponentTab from "@/component/button/_component/ComponentTab";
 import GuidelineTab from "@/component/button/_component/GuidelineTab";
@@ -30,20 +27,10 @@ const ButtonPage = () => {
         <Button variant="outline">Button1</Button>
       </Card>
       <Space height={92} />
-      <Tabs defaultValue="component">
-        <TabsList>
-          <TabsItem value="component">Component</TabsItem>
-          <TabsItem value="guideline">Guideline</TabsItem>
-          <TabsItem value="code">Code</TabsItem>
-        </TabsList>
-        <TabsContent value="component">
-          <ComponentTab />
-        </TabsContent>
-        <TabsContent value="guideline">
-          <GuidelineTab />
-        </TabsContent>
-        <TabsContent value="code"></TabsContent>
-      </Tabs>
+      <ComponentDetailTabs
+        componentTab={<ComponentTab />}
+        guidelineTab={<GuidelineTab />}
+      />
     </>
   );
 };
