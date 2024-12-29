@@ -1,8 +1,26 @@
 import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";
-import { Flex } from "@styled-system/jsx";
+import { Flex, Grid } from "@styled-system/jsx";
 import Button from "wowds-ui/Button";
+
+type ButtonProps = {
+  variant?: "outline" | "solid" | "sub";
+  disabled?: boolean;
+  "data-hover"?: boolean;
+  "data-active"?: boolean;
+};
+
+const largeButtons: ButtonProps[] = [
+  {},
+  { variant: "outline" },
+  { disabled: true },
+  { variant: "outline", disabled: true },
+  { "data-hover": true },
+  { variant: "outline", "data-hover": true },
+  { "data-active": true },
+  { variant: "outline", "data-active": true },
+];
 
 const smallButtons = [
   {},
@@ -24,7 +42,21 @@ const ComponentTab = () => {
         L size
       </Text>
       <Space height={20} />
-      <Card isBackground></Card>
+      <Card isBackground>
+        <Grid gridTemplateColumns="repeat(2, 1fr)" justifyItems="center">
+          <Text color="sub" typo="body1">
+            Solid
+          </Text>
+          <Text color="sub" typo="body1">
+            Outline
+          </Text>
+          {largeButtons.map((props) => (
+            <Button style={{ width: 328 }} {...props}>
+              Button1
+            </Button>
+          ))}
+        </Grid>
+      </Card>
       <Space height={40} />
 
       <Text as="h3" typo="headingWebPage">
@@ -75,13 +107,6 @@ const ComponentTab = () => {
           </Flex>
         </Flex>
       </Card>
-      <Space height={40} />
-
-      <Text as="h3" typo="headingWebPage">
-        Text
-      </Text>
-      <Space height={20} />
-      <Card isBackground></Card>
       <Space height={40} />
     </>
   );
