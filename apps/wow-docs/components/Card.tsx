@@ -12,4 +12,7 @@ const containerStyle = css({
   backgroundColor: "backgroundAlternative",
   borderRadius: "sm",
   padding: "32px 40px",
+
+  display: "flex",
+  justifyContent: "center",
 });
