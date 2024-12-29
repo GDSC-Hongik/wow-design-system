@@ -1,23 +1,14 @@
-import Card from "@components/Card";
+import type { Item } from "@components/ImageCards";
+import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
 import Title from "@components/Text/Title";
-import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
 export const metadata: Metadata = {
   title: "Grid",
   description: "와우 디자인 시스템의 Grid 입니다.",
-};
-
-type Item = {
-  main: string;
-  sub: string;
-  imageAlt: string;
-  imageSrc: string;
-  imageWidth: number;
-  imageHeight: number;
 };
 
 const gridItems: Item[] = [
@@ -95,46 +86,14 @@ const GridPage = () => {
         Layout Grid
       </Text>
       <Space height={40} />
-      {gridItems.map(
-        ({ main, sub, imageAlt, imageSrc, imageWidth, imageHeight, fill }) => (
-          <>
-            <Title main={main} sub={sub} variant="component" />
-            <Space height={20} />
-            <Card>
-              <Image
-                alt={imageAlt}
-                height={imageHeight}
-                src={imageSrc}
-                width={imageWidth}
-              />
-            </Card>
-            <Space height={40} />
-          </>
-        )
-      )}
+      <ImageCards items={gridItems} />
       <Divider />
       <Space height={40} />
       <Text as="h2" typo="display2WebPage">
         Breakpoint
       </Text>
       <Space height={40} />
-      {breakpointItems.map(
-        ({ main, sub, imageAlt, imageSrc, imageWidth, imageHeight, fill }) => (
-          <>
-            <Title main={main} sub={sub} variant="component" />
-            <Space height={20} />
-            <Card>
-              <Image
-                alt={imageAlt}
-                height={imageHeight}
-                src={imageSrc}
-                width={imageWidth}
-              />
-            </Card>
-            <Space height={40} />
-          </>
-        )
-      )}
+      <ImageCards items={breakpointItems} />
     </>
   );
 };
