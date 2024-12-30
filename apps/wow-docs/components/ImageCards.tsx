@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export type Item = {
   main: string;
-  sub: string;
+  sub?: string;
   imageAlt: string;
   imageSrc: string;
   imageWidth: number;
