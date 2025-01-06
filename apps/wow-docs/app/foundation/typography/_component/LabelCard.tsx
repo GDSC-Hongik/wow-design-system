@@ -12,19 +12,24 @@ const LabelCard = () => {
             Label1_U : SUIT v1_Semibold, 16px, 100%, -1%
           </Text>
           <Text typo="label2">Label2 : SUIT v1_Semibold, 14px, 100%, -1%</Text>
-          <Text typo="label2U">
-            Label2_U : SUIT v1_Semibold, 14px, 100%, -1%
-          </Text>
-          <Text typo="label2U2">
-            Label2_U2 : SUIT v1_Medium, 14px, 160%, -1%
-          </Text>
+          <Flex flexDirection="column" gap="sm">
+            <Text typo="label2U">
+              Label2_U : SUIT v1_Semibold, 14px, 100%, -1%
+            </Text>
+            <Text typo="label2U">링크 버튼 등에 활용해요.</Text>
+          </Flex>
+          <Flex flexDirection="column" gap="sm">
+            <Text typo="label2U2">
+              Label2_U2 : SUIT v1_Medium, 14px, 160%, -1%
+            </Text>
+            <Text typo="label2U2">링크 버튼 등에 활용해요.</Text>
+          </Flex>
         </Flex>
         <Flex flexDirection="column" gap="md">
-          {/* TODO: Label2_Mono가 필요해요. */}
-          <Text typo="label2U2">
+          <Text typo="label2Mono">
             Label2_U2 : SUIT v1_Medium, 14px, 160%, -1%
           </Text>
-          <Text color="sub" typo="label2U2">
+          <Text color="sub" typo="label2Mono">
             포인트 텍스트로 자유롭게 활용하되, 영문으로만 사용해요. <br />
             문장 단위로 사용하지 않아요.
           </Text>
