@@ -22,7 +22,7 @@ const largeButtons: ButtonProps[] = [
   { variant: "outline", "data-active": true },
 ];
 
-const smallButtons = [
+const smallButtons: ButtonProps[] = [
   {},
   { disabled: true },
   { "data-hover": true },
@@ -43,7 +43,12 @@ const ComponentTab = () => {
       </Text>
       <Space height={20} />
       <Card isBackground>
-        <Grid gridTemplateColumns="repeat(2, 1fr)" justifyItems="center">
+        <Grid
+          gridTemplateColumns="repeat(2, 1fr)"
+          justifyItems="center"
+          maxWidth={328 * 2}
+          width="100%"
+        >
           <Text color="sub" typo="body1">
             Solid
           </Text>
@@ -51,9 +56,7 @@ const ComponentTab = () => {
             Outline
           </Text>
           {largeButtons.map((props) => (
-            <Button style={{ width: 328 }} {...props}>
-              Button1
-            </Button>
+            <Button {...props}>Button1</Button>
           ))}
         </Grid>
       </Card>
