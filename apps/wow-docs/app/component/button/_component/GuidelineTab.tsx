@@ -4,7 +4,7 @@ import Space from "@components/Space";
 import Text from "@components/Text";
 import Divider from "wowds-ui/Divider";
 
-const widthItems: Item[] = [
+const widthButtonItems: Item[] = [
   {
     main: "PC",
     sub: "최대 너비, 고정 너비는 그리드 기준 4칸",
@@ -23,7 +23,7 @@ const widthItems: Item[] = [
   },
 ];
 
-const combinationItems: Item[] = [
+const combinationButtonItems: Item[] = [
   {
     main: "L size",
     sub: "좌우 및 상하로 2개의 버튼 조합 가능",
@@ -42,7 +42,7 @@ const combinationItems: Item[] = [
   },
 ];
 
-const withIconItems: Item[] = [
+const withIconButtonItems: Item[] = [
   {
     main: "L size",
     sub: "20*20 size 아이콘과 병치",
@@ -61,7 +61,7 @@ const withIconItems: Item[] = [
   },
 ];
 
-const withSubjectItems: Item[] = [
+const withSubjectButtonItems: Item[] = [
   {
     main: "L size",
     sub: "Subtext는 메인 텍스트 하단에 배치, Subtext는 Label3으로 지정",
@@ -84,28 +84,28 @@ const GuidelineTab = () => {
         Width
       </Text>
       <Space height={40} />
-      <ImageCards items={widthItems} />
+      <ImageCards items={widthButtonItems} />
       <Divider />
       <Space height={40} />
       <Text as="h3" typo="headingWebPage">
         Combination
       </Text>
       <Space height={40} />
-      <ImageCards items={combinationItems} />
+      <ImageCards items={combinationButtonItems} />
       <Divider />
       <Space height={40} />
       <Text as="h3" typo="headingWebPage">
         With Icon
       </Text>
       <Space height={40} />
-      <ImageCards items={withIconItems} />
+      <ImageCards items={withIconButtonItems} />
       <Divider />
       <Space height={40} />
       <Text as="h3" typo="headingWebPage">
         With Subject
       </Text>
       <Space height={40} />
-      <ImageCards items={withSubjectItems} />
+      <ImageCards items={withSubjectButtonItems} />
     </>
   );
 };
