@@ -34,7 +34,7 @@ const ComponentTab = () => {
     <>
       <Space height={48} />
       <Text as="h2" typo="display2WebPage">
-        Guideline
+        Component
       </Text>
       <Space height={40} />
 
