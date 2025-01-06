@@ -5,11 +5,12 @@ import Image from "next/image";
 
 export type Item = {
   main: string;
-  sub: string;
+  sub?: React.ReactNode;
   imageAlt: string;
   imageSrc: string;
   imageWidth: number;
   imageHeight: number;
+  imageAlign?: "left" | "center";
 };
 
 interface ImageCardProps {
@@ -18,11 +19,23 @@ interface ImageCardProps {
 
 const ImageCards = ({ items }: ImageCardProps) => {
   return items.map(
-    ({ main, sub, imageAlt, imageSrc, imageWidth, imageHeight }) => (
+    ({
+      main,
+      sub,
+      imageAlt,
+      imageSrc,
+      imageWidth,
+      imageHeight,
+      imageAlign,
+    }) => (
       <>
         <Title main={main} sub={sub} variant="component" />
         <Space height={20} />
-        <Card>
+        <Card
+          style={{
+            justifyContent: imageAlign === "left" ? "flex-start" : "center",
+          }}
+        >
           <Image
             alt={imageAlt}
             height={imageHeight}
