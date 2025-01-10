@@ -3,7 +3,7 @@ import type { Item } from "@components/ImageCards";
 export const semanticDescriptions: Item[] = [
   {
     main: "Background",
-    imageSrc: "/color/color_background.png",
+    imageSrc: "/color/color_background.svg",
     imageWidth: 416,
     imageHeight: 132,
     imageAlign: "left",
@@ -14,7 +14,7 @@ export const semanticDescriptions: Item[] = [
 export const componentDescriptions: Item[] = [
   {
     main: "Default",
-    imageSrc: "/color/color_default.png",
+    imageSrc: "/color/color_default.svg",
     imageWidth: 842,
     imageHeight: 132,
     imageAlign: "left",
@@ -22,7 +22,7 @@ export const componentDescriptions: Item[] = [
   },
   {
     main: "Disabled",
-    imageSrc: "/color/color_disabled.png",
+    imageSrc: "/color/color_disabled.svg",
     imageWidth: 558,
     imageHeight: 132,
     imageAlign: "left",
@@ -30,7 +30,7 @@ export const componentDescriptions: Item[] = [
   },
   {
     main: "Hover",
-    imageSrc: "/color/color_hover.png",
+    imageSrc: "/color/color_hover.svg",
     imageWidth: 426,
     imageHeight: 132,
     imageAlign: "left",
@@ -38,7 +38,7 @@ export const componentDescriptions: Item[] = [
   },
   {
     main: "Pressed",
-    imageSrc: "/color/color_pressed.png",
+    imageSrc: "/color/color_pressed.svg",
     imageWidth: 426,
     imageHeight: 132,
     imageAlign: "left",
@@ -46,7 +46,7 @@ export const componentDescriptions: Item[] = [
   },
   {
     main: "Status",
-    imageSrc: "/color/color_status.png",
+    imageSrc: "/color/color_status.svg",
     imageWidth: 274,
     imageHeight: 132,
     imageAlign: "left",
@@ -54,7 +54,7 @@ export const componentDescriptions: Item[] = [
   },
   {
     main: "Shadow",
-    imageSrc: "/color/color_shadow.png",
+    imageSrc: "/color/color_shadow.svg",
     imageWidth: 426,
     imageHeight: 132,
     imageAlign: "left",
@@ -69,7 +69,7 @@ export const componentDescriptions: Item[] = [
         수 있어요.
       </>
     ),
-    imageSrc: "/color/color_gradient.png",
+    imageSrc: "/color/color_gradient.svg",
     imageWidth: 558,
     imageHeight: 315,
     imageAlign: "left",
@@ -83,7 +83,7 @@ export const componentDescriptions: Item[] = [
         정리된 토큰 외 컬러 사용시 변형 및 확장이 가능해요.
       </>
     ),
-    imageSrc: "/color/color_etc.png",
+    imageSrc: "/color/color_etc.svg",
     imageWidth: 274,
     imageHeight: 132,
     imageAlign: "left",
@@ -100,7 +100,7 @@ export const globalDescription: Item = {
       참조하여 사용해요.
     </>
   ),
-  imageSrc: "/color/color_global.png",
+  imageSrc: "/color/color_global.svg",
   imageWidth: 909,
   imageHeight: 415,
   imageAlt: "모든 컬러의 셰이드. 그래픽 및 UI 요소의 컬러를 나타내는 이미지",
