@@ -682,6 +682,7 @@ export interface UtilityValues {
     | "label2"
     | "label2U"
     | "label2U2"
+    | "label2Mono"
     | "label3"
     | "header1"
     | "header2"
