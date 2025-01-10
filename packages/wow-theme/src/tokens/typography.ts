@@ -33,16 +33,19 @@ export const textStyles = defineTextStyles({
     value: typography.label1,
   },
   label1U: {
-    value: typography.label1,
+    value: typography.label1U,
   },
   label2: {
     value: typography.label2,
   },
   label2U: {
-    value: typography.label2,
+    value: typography.label2U,
   },
   label2U2: {
-    value: typography.label2,
+    value: typography.label2U2,
+  },
+  label2Mono: {
+    value: typography.label2Mono,
   },
   label3: {
     value: typography.label3,
