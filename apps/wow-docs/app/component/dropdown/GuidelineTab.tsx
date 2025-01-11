@@ -1,5 +1,5 @@
 import Card from "@components/Card";
-import type { Item } from "@components/ImageCard";
+import type { Item } from "@components/ImageCards";
 import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
