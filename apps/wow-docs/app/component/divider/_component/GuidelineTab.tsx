@@ -1,6 +1,8 @@
 import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
+import { mobileItems, PCItems } from "@constants/store/dividerData";
+import Divider from "wowds-ui/Divider";
 
 const GuidelineTab = () => {
   return (
@@ -10,6 +12,18 @@ const GuidelineTab = () => {
         Guideline
       </Text>
       <Space height={40} />
+      <Text as="h3" typo="headingWebPage">
+        PC
+      </Text>
+      <Space height={40} />
+      <ImageCards items={PCItems} />
+      <Divider />
+      <Space height={40} />
+      <Text as="h3" typo="headingWebPage">
+        Mobile
+      </Text>
+      <Space height={40} />
+      <ImageCards items={mobileItems} />
       <Space height={40} />
     </>
   );
