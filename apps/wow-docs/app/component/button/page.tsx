@@ -5,8 +5,8 @@ import Title from "@components/Text/Title";
 import type { Metadata } from "next/types";
 import Button from "wowds-ui/Button";
 
-import ComponentTab from "@/component/button/_component/ComponentTab";
-import GuidelineTab from "@/component/button/_component/GuidelineTab";
+import ComponentTab from "./_component/ComponentTab";
+import GuidelineTab from "./_component/GuidelineTab";
 
 export const metadata: Metadata = {
   title: "Button",
