@@ -5,6 +5,7 @@ import { Flex, Grid } from "@styled-system/jsx";
 import Button from "wowds-ui/Button";
 
 type ButtonProps = {
+  key: number;
   variant?: "outline" | "solid" | "sub";
   disabled?: boolean;
   "data-hover"?: boolean;
@@ -12,21 +13,21 @@ type ButtonProps = {
 };
 
 const largeButtons: ButtonProps[] = [
-  {},
-  { variant: "outline" },
-  { disabled: true },
-  { variant: "outline", disabled: true },
-  { "data-hover": true },
-  { variant: "outline", "data-hover": true },
-  { "data-active": true },
-  { variant: "outline", "data-active": true },
+  { key: 1 },
+  { key: 2, variant: "outline" },
+  { key: 3, disabled: true },
+  { key: 4, variant: "outline", disabled: true },
+  { key: 5, "data-hover": true },
+  { key: 6, variant: "outline", "data-hover": true },
+  { key: 7, "data-active": true },
+  { key: 8, variant: "outline", "data-active": true },
 ];
 
-const smallButtons = [
-  {},
-  { disabled: true },
-  { "data-hover": true },
-  { "data-active": true },
+const smallButtons: ButtonProps[] = [
+  { key: 1 },
+  { key: 2, disabled: true },
+  { key: 3, "data-hover": true },
+  { key: 4, "data-active": true },
 ];
 
 const ComponentTab = () => {
@@ -34,7 +35,7 @@ const ComponentTab = () => {
     <>
       <Space height={48} />
       <Text as="h2" typo="display2WebPage">
-        Guideline
+        Component
       </Text>
       <Space height={40} />
 
@@ -43,7 +44,12 @@ const ComponentTab = () => {
       </Text>
       <Space height={20} />
       <Card isBackground>
-        <Grid gridTemplateColumns="repeat(2, 1fr)" justifyItems="center">
+        <Grid
+          gridTemplateColumns="repeat(2, 1fr)"
+          justifyItems="center"
+          maxWidth={328 * 2}
+          width="100%"
+        >
           <Text color="sub" typo="body1">
             Solid
           </Text>
@@ -51,9 +57,7 @@ const ComponentTab = () => {
             Outline
           </Text>
           {largeButtons.map((props) => (
-            <Button style={{ width: 328 }} {...props}>
-              Button1
-            </Button>
+            <Button {...props}>Button1</Button>
           ))}
         </Grid>
       </Card>

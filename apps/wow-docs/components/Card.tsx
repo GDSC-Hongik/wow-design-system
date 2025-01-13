@@ -1,16 +1,22 @@
-import { css } from "@styled-system/css";
+import { css, cx } from "@styled-system/css";
 import type { CSSProperties, PropsWithChildren } from "react";
 
 interface CardProps extends PropsWithChildren {
   isBackground?: boolean;
   style?: CSSProperties;
   contentStyle?: CSSProperties;
+  className?: string;
 }
 
-const Card = ({ children, isBackground = false, ...props }: CardProps) => {
+const Card = ({
+  children,
+  isBackground = false,
+  className,
+  ...props
+}: CardProps) => {
   return (
     <div
-      className={containerStyle}
+      className={cx(containerStyle, className)}
       {...(props.style && { style: props.style })}
     >
       {isBackground ? (
