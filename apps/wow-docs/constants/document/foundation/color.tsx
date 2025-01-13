@@ -6,7 +6,7 @@ export const semanticDescriptions: Item[] = [
     imageSrc: "/color/color_background.svg",
     imageWidth: 416,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Background Color을 나타내는 이미지",
   },
 ];
@@ -17,7 +17,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_default.svg",
     imageWidth: 842,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Default Color를 나타내는 이미지",
   },
   {
@@ -25,7 +25,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_disabled.svg",
     imageWidth: 558,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Disabled Color를 나타내는 이미지",
   },
   {
@@ -33,7 +33,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_hover.svg",
     imageWidth: 426,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Hover Color를 나타내는 이미지",
   },
   {
@@ -41,7 +41,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_pressed.svg",
     imageWidth: 426,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Pressed Color를 나타내는 이미지",
   },
   {
@@ -49,7 +49,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_status.svg",
     imageWidth: 274,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Status Color를 나타내는 이미지",
   },
   {
@@ -57,7 +57,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_shadow.svg",
     imageWidth: 426,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Shadow Color를 나타내는 이미지",
   },
   {
@@ -72,7 +72,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_gradient.svg",
     imageWidth: 558,
     imageHeight: 315,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Gradient Color를 나타내는 이미지",
   },
   {
@@ -86,7 +86,7 @@ export const componentDescriptions: Item[] = [
     imageSrc: "/color/color_etc.svg",
     imageWidth: 274,
     imageHeight: 132,
-    imageAlign: "left",
+    cardStyle: { justifyContent: "flex-start" },
     imageAlt: "전체 컬러 팔레트 중 Etc Color를 나타내는 이미지",
   },
 ];
