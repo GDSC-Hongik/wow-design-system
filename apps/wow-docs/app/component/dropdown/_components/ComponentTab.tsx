@@ -7,7 +7,6 @@ import Image from "next/image";
 export const ComponentTab = () => {
   return (
     <>
-      {" "}
       <Space height={48} />
       <Text typo="display2WebPage">Component</Text>
       <Space height={40} />
