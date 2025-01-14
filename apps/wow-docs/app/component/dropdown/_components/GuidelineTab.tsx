@@ -5,6 +5,7 @@ import Space from "@components/Space";
 import Text from "@components/Text";
 import Title from "@components/Text/Title";
 import { css } from "@styled-system/css";
+import { Flex } from "@styled-system/jsx";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import Chip from "wowds-ui/Chip";
@@ -16,7 +17,7 @@ const widthDropdownItems: Item[] = [
   {
     main: "PC",
     sub: "최대 너비, 고정 너비는 그리드 기준 4칸",
-    imageAlt: "width-1",
+    imageAlt: "dropdown-guide-pc",
     imageSrc: "/component/dropdown/dropdown-guide-3.svg",
     imageWidth: 907,
     imageHeight: 160,
@@ -24,16 +25,16 @@ const widthDropdownItems: Item[] = [
   {
     main: "Mobile",
     sub: "전체 그리드 혹은 박스 컴포넌트에 Fill로 너비 맞추기",
-    imageAlt: "width-2",
-    imageSrc: "/component/dropdown/dropdown-guide-4.svg",
+    imageAlt: "dropdown-guide-mobile",
+    imageSrc: "/component/dropdown/dropdown-guide-7.svg",
     imageWidth: 390,
     imageHeight: 276,
   },
   {
     main: "List",
     sub: "상단 입력란의 너비와 맞추는 것이 기본",
-    imageAlt: "width-2",
-    imageSrc: "/component/dropdown/dropdown-guide-5.svg",
+    imageAlt: "dropdown-guide-list",
+    imageSrc: "/component/dropdown/dropdown-guide-4.svg",
     imageWidth: 907,
     imageHeight: 282,
   },
@@ -58,19 +59,20 @@ export const GuidelineTab = () => {
           </>
         }
       />
+      <Space height={20} />
       <Card className={containerStyle}>
         <Image
           alt="dropdown-guide-list-combination-1"
-          height={907}
+          height={364}
           src="/component/dropdown/dropdown-guide-1.svg"
-          width={364}
+          width={907}
         />
         <Space height={20} />
         <Image
           alt="dropdown-guide-list-combination-2"
-          height={907}
+          height={364}
           src="/component/dropdown/dropdown-guide-2.svg"
-          width={364}
+          width={907}
         />
       </Card>
       <Space height={40} />
@@ -81,17 +83,16 @@ export const GuidelineTab = () => {
       </Text>
       <Space height={40} />
       <ImageCards items={widthDropdownItems} />
-      <Space height={40} />
       <Text color="sub" typo="body1">
         그 외에는 함께 사용되는 요소의 너비에 맞추기
       </Text>
       <Space height={20} />
       <Card className={containerStyle}>
         <Image
-          alt="dropdown-guide-list-combination-2"
-          height={907}
-          src="/component/dropdown/dropdown-guide-6.svg"
-          width={230}
+          alt="dropdown-guide-list-2"
+          height={230}
+          src="/component/dropdown/dropdown-guide-5.svg"
+          width={907}
         />
       </Card>
       <Space height={40} />
@@ -101,20 +102,26 @@ export const GuidelineTab = () => {
         Usuage
       </Text>
       <Space height={40} />
-      <Title main="L Size" sub="Label 텍스트 호ㅑㄹ용" variant="component" />
+      <Title main="L Size" sub="Label 텍스트 활용" variant="component" />
+      <Space height={20} />
       <Card className={containerStyle}>
-        <Chip label="Label 0" />
-        <DropDown
-          label="Label"
-          placeholder="목록을 눌러 선택하세요"
-          style={dropdownStyle}
-        >
-          <DropDownOption text="Text" value="Text" />
-        </DropDown>
-        <Chip label="Label X" />
-        <DropDown placeholder="목록을 눌러 선택하세요" style={dropdownStyle}>
-          <DropDownOption text="Text" value="Text" />
-        </DropDown>
+        <Flex alignItems="center" gap="37px">
+          <Chip label="Label 0" />
+          <DropDown
+            label="Label"
+            placeholder="목록을 눌러 선택하세요"
+            style={dropdownStyle}
+          >
+            <DropDownOption text="Text" value="Text" />
+          </DropDown>
+        </Flex>
+        <Space height={40} />
+        <Flex gap="37px">
+          <Chip label="Label X" />
+          <DropDown placeholder="목록을 눌러 선택하세요" style={dropdownStyle}>
+            <DropDownOption text="Text" value="Text" />
+          </DropDown>
+        </Flex>
       </Card>
       <Space height={40} />
       <Text color="sub" typo="body1">
@@ -123,10 +130,10 @@ export const GuidelineTab = () => {
       <Space height={20} />
       <Card className={containerStyle}>
         <Image
-          alt="dropdown-guide-list-combination-2"
-          height={907}
-          src="/component/dropdown/dropdown-guide-7.svg"
-          width={161}
+          alt="dropdown-guide-usuage-textfield"
+          height={161}
+          src="/component/dropdown/dropdown-guide-6.svg"
+          width={907}
         />
       </Card>
     </>
@@ -136,6 +143,8 @@ export const GuidelineTab = () => {
 const containerStyle = css({
   display: "flex",
   justifyContent: "center",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 const dropdownStyle: CSSProperties = {

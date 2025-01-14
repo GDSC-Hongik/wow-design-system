@@ -1,4 +1,5 @@
 import Card from "@components/Card";
+import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
 import { componentItems } from "@constants/pageData";
@@ -8,7 +9,8 @@ import type { CSSProperties } from "react";
 import DropDown from "wowds-ui/DropDown";
 import DropDownOption from "wowds-ui/DropDownOption";
 
-import { PageTabs } from "@/component/dropdown/Tabs";
+import { ComponentTab } from "@/component/dropdown/_components/ComponentTab";
+import { GuidelineTab } from "@/component/dropdown/_components/GuidelineTab";
 
 export const metadata: Metadata = {
   title: "DropDown",
@@ -41,7 +43,10 @@ const DropDownComponentPage = () => {
         </DropDown>
       </Card>
       <Space height={92} />
-      <PageTabs />
+      <ComponentDetailTabs
+        componentTab={<ComponentTab />}
+        guidelineTab={<GuidelineTab />}
+      />
       <Space height={92} />
     </>
   );

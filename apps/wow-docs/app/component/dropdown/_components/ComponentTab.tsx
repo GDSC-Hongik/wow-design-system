@@ -17,7 +17,7 @@ export const ComponentTab = () => {
         <Image
           alt="dropdown-component"
           height={400}
-          src="/component/dropdown/component-dropdown.png"
+          src="/component/dropdown/dropdown-component-list.svg"
           width={330}
         />
       </Card>
@@ -28,7 +28,7 @@ export const ComponentTab = () => {
         <Image
           alt="dropdown-option"
           height={360}
-          src="/component/dropdown/component-dropdownoption.png"
+          src="/component/dropdown/dropdown-component-select.svg"
           width={300}
         />
       </Card>
