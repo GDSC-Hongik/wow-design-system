@@ -36,7 +36,7 @@ const Header = ({
         <section className={leftElementContainerStyle}>
           <GdscLogo aria-label="gdsc-logo" role="img" />
           <Flex className={logoTextContainerStyle}>
-            <h1 className={titleStyle}>GDSC</h1>
+            <h1 className={titleStyle}>GDGoC</h1>
             <h2 className={subTitleStyle}>Hongik Univ.</h2>
           </Flex>
         </section>
