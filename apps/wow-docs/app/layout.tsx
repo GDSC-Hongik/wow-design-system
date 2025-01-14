@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "와우 디자인 시스템",
     description: "GDSC Hongik 디자인 시스템",
-    images: ["/images/og-image.png"],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/images/og-image.png`],
+    url: `${process.env.NEXT_PUBLIC_APP_URL}`,
     siteName: "와우 디자인 시스템",
     type: "website",
   },
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "와우 디자인 시스템",
     description: "GDSC Hongik 디자인 시스템",
-    images: ["/images/og-image.png"],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/images/og-image.png`],
   },
   icons: {
     icon: "/images/logo.svg",
@@ -38,6 +39,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const RootLayout = ({
@@ -46,7 +51,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }): JSX.Element => {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <Navbar />
         <styled.main
