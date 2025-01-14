@@ -1,12 +1,11 @@
-import { css } from "@styled-system/css";
-import { clsx } from "clsx";
+import { css, cx } from "@styled-system/css";
 import type { CSSProperties, PropsWithChildren } from "react";
 
 interface CardProps extends PropsWithChildren {
   isBackground?: boolean;
-  className?: string;
   style?: CSSProperties;
   contentStyle?: CSSProperties;
+  className?: string;
 }
 
 const Card = ({
@@ -17,7 +16,7 @@ const Card = ({
 }: CardProps) => {
   return (
     <div
-      className={clsx(containerStyle, className)}
+      className={cx(containerStyle, className)}
       {...(props.style && { style: props.style })}
     >
       {isBackground ? (
