@@ -56,8 +56,10 @@ const ComponentTab = () => {
           <Text color="sub" typo="body1">
             Outline
           </Text>
-          {largeButtons.map((props) => (
-            <Button {...props}>Button1</Button>
+          {largeButtons.map(({ key, ...props }) => (
+            <Button key={key} {...props}>
+              Button1
+            </Button>
           ))}
         </Grid>
       </Card>
@@ -79,8 +81,8 @@ const ComponentTab = () => {
             Outline
           </Text>
           <Flex gap="1rem">
-            {smallButtons.map((props) => (
-              <Button size="sm" variant="outline" {...props}>
+            {smallButtons.map(({ key, ...props }) => (
+              <Button key={key} size="sm" variant="outline" {...props}>
                 Button2
               </Button>
             ))}
@@ -91,8 +93,8 @@ const ComponentTab = () => {
             Solid
           </Text>
           <Flex gap="1rem">
-            {smallButtons.map((props) => (
-              <Button size="sm" variant="solid" {...props}>
+            {smallButtons.map(({ key, ...props }) => (
+              <Button key={key} size="sm" variant="solid" {...props}>
                 Button2
               </Button>
             ))}
@@ -103,8 +105,8 @@ const ComponentTab = () => {
             Sub
           </Text>
           <Flex gap="1rem">
-            {smallButtons.map((props) => (
-              <Button size="sm" variant="sub" {...props}>
+            {smallButtons.map(({ key, ...props }) => (
+              <Button key={key} size="sm" variant="sub" {...props}>
                 Button2
               </Button>
             ))}
