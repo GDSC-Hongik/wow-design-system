@@ -45,7 +45,7 @@ const PrimaryCard = () => {
             </Text>
             <Text
               color="primary"
-              style={{ fontSize: "12px", fontWeight: "700" }}
+              style={{ fontSize: "16.8px", fontWeight: "700" }}
             >
               SUIT_v1_Bold
             </Text>
@@ -59,7 +59,7 @@ const PrimaryCard = () => {
             </Text>
             <Text
               color="primary"
-              style={{ fontSize: "12px", fontWeight: "600" }}
+              style={{ fontSize: "16.8px", fontWeight: "600" }}
             >
               SUIT_v1_Semibold
             </Text>
@@ -73,7 +73,7 @@ const PrimaryCard = () => {
             </Text>
             <Text
               color="primary"
-              style={{ fontSize: "12px", fontWeight: "500" }}
+              style={{ fontSize: "16.8px", fontWeight: "500" }}
             >
               SUIT_v1_Medium
             </Text>

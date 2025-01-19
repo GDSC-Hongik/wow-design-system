@@ -14,7 +14,7 @@ const SecondaryCard = () => {
         </Text>
         <Text
           color="primary"
-          style={{ fontFamily: "Roboto-Mono", fontSize: "16px" }}
+          style={{ fontFamily: "Roboto-Mono", fontSize: "16.8px" }}
         >
           Roboto Mono_Regular
         </Text>
