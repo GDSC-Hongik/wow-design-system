@@ -13,16 +13,16 @@ import LabelCard from "@/foundation/typography/_component/LabelCard";
 import PrimaryCard from "@/foundation/typography/_component/PrimaryCard";
 import SecondaryCard from "@/foundation/typography/_component/SecondaryCard";
 
+const typographyPageData = foundationItems.find(
+  (item) => item.title === "Typography"
+);
+
 export const metadata: Metadata = {
-  title: "Typography",
-  description: "와우 디자인 시스템의 Typography 입니다.",
+  title: typographyPageData?.title ?? "",
+  description: typographyPageData?.description ?? "",
 };
 
 const TypographyPage = () => {
-  const typographyPageData = foundationItems.find(
-    (item) => item.title === "Typography"
-  );
-
   return (
     <>
       <Title

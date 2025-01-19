@@ -13,13 +13,14 @@ import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
+const colorPageData = foundationItems.find((item) => item.title === "Color");
+
 export const metadata: Metadata = {
-  title: "Color",
-  description: "와우 디자인 시스템의 Color 입니다.",
+  title: colorPageData?.title ?? "",
+  description: colorPageData?.description ?? "",
 };
 
 const ColorPage = () => {
-  const colorPageData = foundationItems.find((item) => item.title === "Color");
   return (
     <>
       <Title
