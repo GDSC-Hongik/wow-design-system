@@ -8,6 +8,7 @@ import {
   globalDescription,
   semanticDescriptions,
 } from "@constants/document/foundation/color";
+import { foundationItems } from "@constants/pageData";
 import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
@@ -18,11 +19,12 @@ export const metadata: Metadata = {
 };
 
 const ColorPage = () => {
+  const colorPageData = foundationItems.find((item) => item.title === "Color");
   return (
     <>
       <Title
-        main="Color"
-        sub="컬러는 사용자가 브랜드 아이덴티티와 기능을 인지하는 것을 돕는 시각적 요소입니다."
+        main={colorPageData?.title ?? ""}
+        sub={colorPageData?.description ?? ""}
         variant="header"
       />
       <Space height={68} />

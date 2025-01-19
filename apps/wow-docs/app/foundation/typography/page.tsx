@@ -1,6 +1,7 @@
 import Space from "@components/Space";
 import Text from "@components/Text";
 import Title from "@components/Text/Title";
+import { foundationItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
@@ -18,11 +19,15 @@ export const metadata: Metadata = {
 };
 
 const TypographyPage = () => {
+  const typographyPageData = foundationItems.find(
+    (item) => item.title === "Typography"
+  );
+
   return (
     <>
       <Title
-        main="Typography"
-        sub="타이포그래피는 가독성과 명료성에 영향을 주며, 화면 내 요소들 간 위계를 만듭니다."
+        main={typographyPageData?.title ?? ""}
+        sub={typographyPageData?.description ?? ""}
         variant="header"
       />
       <Space height={68} />

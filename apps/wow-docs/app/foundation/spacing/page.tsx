@@ -7,6 +7,7 @@ import {
   radiusDescription,
   strokeDescription,
 } from "@constants/document/foundation/spacing";
+import { foundationItems } from "@constants/pageData";
 import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
@@ -17,11 +18,15 @@ export const metadata: Metadata = {
 };
 
 const SpacingPage = () => {
+  const spacingPageData = foundationItems.find(
+    (item) => item.title === "Spacing"
+  );
+
   return (
     <>
       <Title
-        main="Spacing"
-        sub="스페이싱은 일관된 간격으로 요소를 배치해 일관된 UI를 만드는 것을 목표로 합니다."
+        main={spacingPageData?.title ?? ""}
+        sub={spacingPageData?.description ?? ""}
         variant="header"
       />
       <Space height={68} />
