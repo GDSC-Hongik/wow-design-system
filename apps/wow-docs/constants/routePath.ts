@@ -1,4 +1,4 @@
-export const PRDOUCTION_URL = "https://wow-design-system-wow-docs.vercel.app";
+export const PRODUCTION_URL = "https://wow-design-system-wow-docs.vercel.app";
 
 export const basePaths = {
   component: "/component",

@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 
 export type Item = {
   main: string;
-  sub?: string | ReactNode;
+  sub?: ReactNode;
   imageAlt: string;
   imageSrc: string;
   imageWidth: number;

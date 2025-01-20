@@ -1,4 +1,4 @@
-import { PRDOUCTION_URL } from "@constants/routePath";
+import { PRODUCTION_URL } from "@constants/routePath";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${PRDOUCTION_URL}/sitemap.xml`,
-    host: `${PRDOUCTION_URL}`,
+    sitemap: `${PRODUCTION_URL}/sitemap.xml`,
+    host: `${PRODUCTION_URL}`,
   };
 }
