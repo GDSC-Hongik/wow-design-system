@@ -2,8 +2,7 @@ import Card from "@components/Card";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
 import Image from "next/image";
-
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export type Item = {
   main: string;
