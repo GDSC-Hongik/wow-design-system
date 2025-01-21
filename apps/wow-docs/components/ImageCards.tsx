@@ -2,11 +2,12 @@ import Card from "@components/Card";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
 import Image from "next/image";
-import type { CSSProperties, ReactNode } from "react";
+
+import type { ReactNode } from "react";
 
 export type Item = {
   main: string;
-  sub?: string | ReactNode;
+  sub?: ReactNode;
   imageAlt: string;
   imageSrc: string;
   imageWidth: number;

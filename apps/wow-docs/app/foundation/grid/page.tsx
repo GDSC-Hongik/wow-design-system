@@ -2,6 +2,7 @@ import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
 import Title from "@components/Text/Title";
+import { breakpointItems, gridItems } from "@constants/store";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 

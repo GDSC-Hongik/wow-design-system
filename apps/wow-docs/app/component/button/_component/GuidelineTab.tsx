@@ -1,14 +1,13 @@
 import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
-import Divider from "wowds-ui/Divider";
-
 import {
   combinationButtonItems,
   widthButtonItems,
   withIconButtonItems,
   withSubjectButtonItems,
-} from "../../../../constants/store";
+} from "@constants/store";
+import Divider from "wowds-ui/Divider";
 
 const GuidelineTab = () => {
   return (
