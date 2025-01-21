@@ -6,6 +6,8 @@ import { breakpointItems, gridItems } from "@constants/store";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
+import { breakpointItems, gridItems } from "../../../constants/store";
+
 export const metadata: Metadata = {
   title: "Grid",
   description: "와우 디자인 시스템의 Grid 입니다.",

@@ -112,6 +112,14 @@ export const label2U2 = {
   textDecoration: "underline",
 };
 
+export const label2Mono = {
+  fontFamily: "Roboto-Mono",
+  fontSize: "0.875rem",
+  lineHeight: "100%",
+  fontWeight: 400,
+  letterSpacing: "-0.01rem",
+};
+
 export const label3 = {
   fontFamily: "SUIT",
   fontSize: "0.75rem",

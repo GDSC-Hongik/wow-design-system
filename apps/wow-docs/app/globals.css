@@ -91,6 +91,15 @@
     url("./fonts/ProductSans-Bold.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Roboto-Mono";
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("./fonts/RobotoMono-Regular.woff2") format("woff2"),
+    url("./fonts/RobotoMono-Regular.woff") format("woff");
+}
+
 body {
   display: flex;
   flex-direction: row;
