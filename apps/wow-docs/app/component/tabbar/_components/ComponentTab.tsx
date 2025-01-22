@@ -1,4 +1,3 @@
-"use client";
 import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";

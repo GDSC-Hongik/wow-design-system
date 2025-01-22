@@ -46,7 +46,7 @@ export const navMenu = [
       { label: "Stepper", href: `/${componentPaths.stepper}` },
       { label: "Switch", href: `/${componentPaths.switch}` },
       { label: "Table", href: `/${componentPaths.table}` },
-      { label: "Tabs", href: `/${componentPaths.tabs}` },
+      { label: "Tab Bar", href: `/${componentPaths.tabBar}` },
       { label: "Tag", href: `/${componentPaths.tag}` },
       { label: "TextButton", href: `/${componentPaths.textButton}` },
       { label: "TextField", href: `/${componentPaths.textField}` },

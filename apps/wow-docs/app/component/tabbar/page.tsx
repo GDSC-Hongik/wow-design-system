@@ -14,16 +14,16 @@ export const metadata: Metadata = {
   description: "와우 디자인 시스템의 search bar component 입니다.",
 };
 
-const SearchBarComponentPage = () => {
-  const dropdownPageData = componentItems.find(
+const TabBarComponentPage = () => {
+  const tabBarPageData = componentItems.find(
     (item) => item.title === "Tab Bar"
   );
 
   return (
     <>
       <Title
-        main={dropdownPageData?.title ?? ""}
-        sub={dropdownPageData?.description ?? ""}
+        main={tabBarPageData?.title ?? ""}
+        sub={tabBarPageData?.description ?? ""}
         variant="header"
       />
       <Space height={40} />
@@ -40,4 +40,4 @@ const SearchBarComponentPage = () => {
   );
 };
 
-export default SearchBarComponentPage;
+export default TabBarComponentPage;
