@@ -4,7 +4,7 @@ import TabsItem from "wowds-ui/TabsItem";
 import TabsList from "wowds-ui/TabsList";
 
 interface TabComponentProps {
-  tabCount?: number; // 탭의 개수를 props로 받음
+  tabCount?: number;
 }
 export const TabComponent = ({ tabCount = 5 }: TabComponentProps) => {
   const tabs = Array.from(
