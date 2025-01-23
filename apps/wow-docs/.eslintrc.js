@@ -122,11 +122,9 @@ module.exports = {
     "dist/",
     "styled-system/",
     "panda.config.ts",
-    "rollup.config.js",
     "postcss.config.cjs",
     "jest.config.ts",
-    "jest.setup.ts",
-    "coverage/",
+    "svgo.configm.mjs",
   ],
 
   env: {
