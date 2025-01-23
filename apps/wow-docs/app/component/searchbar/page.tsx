@@ -15,13 +15,15 @@ export const metadata: Metadata = {
 };
 
 const SearchBarComponentPage = () => {
-  const searchBar = componentItems.find((item) => item.title === "Search Bar");
+  const searchBarPageData = componentItems.find(
+    (item) => item.title === "Search Bar"
+  );
 
   return (
     <>
       <Title
-        main={searchBar?.title ?? ""}
-        sub={searchBar?.description ?? ""}
+        main={searchBarPageData?.title ?? ""}
+        sub={searchBarPageData?.description ?? ""}
         variant="header"
       />
       <Space height={40} />

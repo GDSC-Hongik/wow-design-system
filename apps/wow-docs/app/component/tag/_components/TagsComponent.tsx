@@ -18,7 +18,7 @@ const TagsComponent = ({ tagTexts, variant }: OutlineTagsProps) => {
             : variant === "solid1"
               ? ["blue", "yellow", "green"]
               : ["blue", "red", "grey"];
-        const color = colorArray[index] as ComponentProps<typeof Tag>["color"]; // 순서대로 color 적용
+        const color = colorArray[index] as ComponentProps<typeof Tag>["color"];
         return (
           <Tag color={color} key={index} variant={variant}>
             {text}
