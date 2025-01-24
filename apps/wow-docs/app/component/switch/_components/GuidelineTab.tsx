@@ -20,7 +20,7 @@ const GuidelineTab = () => {
       <Space height={20} />
       <Card style={{ padding: "49px auto" }}>
         <Image
-          alt="기본 아바타 그래픽을 제공하고 사용자 지정 이미지를 사용할 수 있습니다"
+          alt="8px 간격으로 세로 배치함을 보여주는 이미지"
           height={140}
           src="/component/switch/switch-guide-1.svg"
           width={980}

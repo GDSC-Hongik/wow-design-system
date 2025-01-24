@@ -21,7 +21,7 @@ const GuidelineTab = () => {
       <Space height={20} />
       <Card style={{ padding: "49px auto" }}>
         <Image
-          alt="기본 아바타 그래픽을 제공하고 사용자 지정 이미지를 사용할 수 있습니다"
+          alt="그리드의 양끝에 정렬하여, 스크린 사이즈와 상관 없이 988px로 고정함을 보여주는 이미지"
           height={125.6}
           src="/component/header/header-guide-1.svg"
           width={880}
@@ -38,7 +38,7 @@ const GuidelineTab = () => {
       <Space height={20} />
       <Card style={{ padding: "32px auto" }}>
         <Image
-          alt="S size를 아바타만 사용하거나 이름과 병행한 이미지"
+          alt="모바일 환경에서 좌우 Margin 16px에 맞게 정렬함을 보여주는 이미지"
           height={133}
           src="/component/header/header-guide-2.svg"
           width={390}

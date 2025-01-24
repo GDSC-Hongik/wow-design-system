@@ -6,8 +6,8 @@ import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 import Avatar from "wowds-ui/Avatar";
 
-import ComponentTab from "@/component/avatar/_component/ComponentTab";
-import GuidelineTab from "@/component/avatar/_component/GuidelineTab";
+import ComponentTab from "@/component/avatar/_components/ComponentTab";
+import GuidelineTab from "@/component/avatar/_components/GuidelineTab";
 
 export const metadata: Metadata = {
   title: "Avatar",
