@@ -10,9 +10,10 @@ import ComponentTab from "@/component/avatar/_component/ComponentTab";
 import GuidelineTab from "@/component/avatar/_component/GuidelineTab";
 
 export const metadata: Metadata = {
-  title: "DropDown",
-  description: "와우 디자인 시스템의 dropdown component 입니다.",
+  title: "Avatar",
+  description: "와우 디자인 시스템의 avatar component 입니다.",
 };
+
 const AvatarPage = () => {
   const avatarPageData = componentItems.find((item) => item.title === "Avatar");
   return (
