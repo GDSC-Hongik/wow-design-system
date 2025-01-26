@@ -2,9 +2,10 @@ import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";
 import { Flex } from "@styled-system/jsx";
-import Image from "next/image";
 import type { CheckboxProps } from "wowds-ui/Checkbox";
 import Checkbox from "wowds-ui/Checkbox";
+
+import Checkboxes from "@/component/checkbox/_components/Checkboxes";
 
 type CheckboxItem = CheckboxProps & {
   key: number;
@@ -40,12 +41,9 @@ const ComponentTab = () => {
       <Text typo="headingWebPage">Box</Text>
       <Space height={20} />
       <Card>
-        <Image
-          alt="사용되는 텍스트의 길이 및 용도에 따라 컴포넌트 버전을 선택"
-          height={60}
-          src="/component/checkbox/checkbox-component-box.svg"
-          width={220}
-        />
+        <Flex gap="12px">
+          <Checkboxes />
+        </Flex>
       </Card>
       <Space height={40} />
       <Text typo="headingWebPage">Box + Text</Text>
