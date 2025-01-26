@@ -9,9 +9,19 @@ const ComponentTab = () => {
   return (
     <>
       <Space height={48} />
+      <Text typo="headingWebPage">PC</Text>
+      <Space height={20} />
+      <Card style={{ padding: "32px auto" }}>
+        <Flex className={pcHeaderContainerStyle} direction="column" gap={20}>
+          <Header username="김홍익" variant="username" />
+          <Header variant="login" />
+          <Header variant="none" />
+        </Flex>
+      </Card>
+      <Space height={40} />
       <Text typo="display2WebPage">Component</Text>
       <Space height={40} />
-      <Text typo="headingWebPage">Mobile Ver.</Text>
+      <Text typo="headingWebPage">Mobile</Text>
       <Space height={20} />
       <Card style={{ padding: "46px auto" }}>
         <Flex
@@ -19,16 +29,6 @@ const ComponentTab = () => {
           direction="column"
           gap={20}
         >
-          <Header username="김홍익" variant="username" />
-          <Header variant="login" />
-          <Header variant="none" />
-        </Flex>
-      </Card>
-      <Space height={40} />
-      <Text typo="headingWebPage">PC Ver.</Text>
-      <Space height={20} />
-      <Card style={{ padding: "32px auto" }}>
-        <Flex className={pcHeaderContainerStyle} direction="column" gap={20}>
           <Header username="김홍익" variant="username" />
           <Header variant="login" />
           <Header variant="none" />
@@ -45,6 +45,13 @@ const mobileHeaderContainerStyle = css({
   "& > header": {
     backgroundColor: "background",
     height: "66px",
+    paddingX: "16px",
+
+    "& > div > section > div": {
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "space-between",
+    },
   },
 });
 
