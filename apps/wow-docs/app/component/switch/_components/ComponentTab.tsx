@@ -1,8 +1,11 @@
 import Card from "@components/Card";
 import Space from "@components/Space";
 import Text from "@components/Text";
+import { Grid } from "@styled-system/jsx";
 import Image from "next/image";
 import Switch from "wowds-ui/Switch";
+
+import SwitchBtns from "@/component/switch/_components/SwitchBtns";
 
 const ComponentTab = () => {
   return (
@@ -19,6 +22,9 @@ const ComponentTab = () => {
           src="/component/switch/switch-component-btn.svg"
           width={166}
         />
+        <Grid columnGap="20px" columns={2}>
+          <SwitchBtns />
+        </Grid>
       </Card>
       <Space height={40} />
       <Text typo="headingWebPage">Btn + Text</Text>
