@@ -4,9 +4,12 @@ import Navbar from "@components/Navbar/Navbar";
 import { styled } from "@styled-system/jsx";
 import type { Metadata } from "next";
 
+import { PRODUCTION_URL } from "../constants/routePath";
+
 export const metadata: Metadata = {
   title: { default: "와우 디자인 시스템", template: "%s | 와우 디자인 시스템" },
   description: "GDSC Hongik 디자인 시스템",
+  keywords: ["GDSC", "Hongik", "디자인 시스템", "와우 디자인 시스템"],
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_CONSOLE_KEY,
     other: {
@@ -14,10 +17,13 @@ export const metadata: Metadata = {
         process.env.NEXT_PUBLIC_NAVER_CONSOLE_KEY ?? "",
     },
   },
+  metadataBase: new URL(PRODUCTION_URL),
   openGraph: {
     title: "와우 디자인 시스템",
     description: "GDSC Hongik 디자인 시스템",
-    images: ["/images/og-image.png"],
+    url: `${PRODUCTION_URL}`,
+    images: { url: "/images/og-image.png" },
+    locale: "ko_KR",
     siteName: "와우 디자인 시스템",
     type: "website",
   },
@@ -25,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "와우 디자인 시스템",
     description: "GDSC Hongik 디자인 시스템",
-    images: ["/images/og-image.png"],
+    images: { url: "/images/og-image.png" },
   },
   icons: {
     icon: "/images/logo.svg",
@@ -38,6 +44,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const RootLayout = ({
@@ -46,7 +56,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }): JSX.Element => {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <Navbar />
         <styled.main

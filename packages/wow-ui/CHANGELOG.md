@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- c7b451e: GDGoC 로 헤더를 변경합니다.
+
 ## 0.1.21
 
 ### Patch Changes
