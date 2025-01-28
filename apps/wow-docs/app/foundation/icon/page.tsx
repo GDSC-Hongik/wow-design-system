@@ -24,6 +24,7 @@ const IconPage = () => {
       </Text>
       <Space height={48} />
       <ImageCards items={iconDescriptions} />
+      <Space height={200} />
     </>
   );
 };
