@@ -1,7 +1,7 @@
 import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
-import { mobileItems, PCItems } from "@constants/store/dividerData";
+import { mobileItems, pcItems } from "@constants/store/dividerData";
 import Divider from "wowds-ui/Divider";
 
 const GuidelineTab = () => {
@@ -16,7 +16,7 @@ const GuidelineTab = () => {
         PC
       </Text>
       <Space height={40} />
-      <ImageCards items={PCItems} />
+      <ImageCards items={pcItems} />
       <Divider />
       <Space height={40} />
       <Text as="h3" typo="headingWebPage">

@@ -1,6 +1,6 @@
 import type { Item } from "@components/ImageCards";
 
-export const PCItems: Item[] = [
+export const pcItems: Item[] = [
   {
     main: "Fixed ver.",
     sub: "column 너비에 맞게 사용",
