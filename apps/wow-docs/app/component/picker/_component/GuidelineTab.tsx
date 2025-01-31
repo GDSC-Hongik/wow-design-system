@@ -1,10 +1,7 @@
 import ImageCards from "@components/ImageCards";
 import Space from "@components/Space";
 import Text from "@components/Text";
-import {
-  combinationButtonItems,
-  widthButtonItems,
-} from "@constants/store/pickerData";
+import { datePickerItems, timePickerItems } from "@constants/store/pickerData";
 import Divider from "wowds-ui/Divider";
 
 const GuidelineTab = () => {
@@ -15,18 +12,14 @@ const GuidelineTab = () => {
         Guideline
       </Text>
       <Space height={40} />
-      <Text as="h3" typo="headingWebPage">
-        Time
-      </Text>
-      <Space height={40} />
-      <ImageCards items={widthButtonItems} />
+      <ImageCards items={timePickerItems} />
       <Divider />
       <Space height={40} />
       <Text as="h3" typo="headingWebPage">
         Date
       </Text>
       <Space height={40} />
-      <ImageCards items={combinationButtonItems} />
+      <ImageCards items={datePickerItems} />
       <Space height={40} />
     </>
   );
