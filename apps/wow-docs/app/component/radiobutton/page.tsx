@@ -2,6 +2,7 @@ import Card from "@components/Card";
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 import RadioButton from "wowds-ui/RadioButton";
 import RadioGroup from "wowds-ui/RadioGroup";
@@ -15,11 +16,12 @@ export const metadata: Metadata = {
 };
 
 const RadioButtonPage = () => {
+  const title = componentItems.find((item) => item.title === "Radio Button");
   return (
     <>
       <Title
-        main="Radio button"
-        sub="사용자가 선택할 수 있는 항목 중 하나만 선택할 수 있는 컴포넌트입니다."
+        main={title?.title || ""}
+        sub={title?.description || ""}
         variant="header"
       />
       <Space height={40} />

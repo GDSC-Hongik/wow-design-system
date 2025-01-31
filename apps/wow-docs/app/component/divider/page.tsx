@@ -1,6 +1,7 @@
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 
 import ComponentTab from "./_component/ComponentTab";
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
 };
 
 const DividerPage = () => {
+  const title = componentItems.find((item) => item.title === "Divider");
   return (
     <>
       <Title
-        main="Divider"
-        sub="UI 요소 간의 구간을 나누는 컴포넌트입니다."
+        main={title?.title || ""}
+        sub={title?.description || ""}
         variant="header"
       />
       <Space height={40} />
