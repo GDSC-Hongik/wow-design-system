@@ -9,4 +9,5 @@ if [ -n "$wow_docs_public_changes" ]; then
   cd apps/wow-docs && pnpm svg-optimize
 fi
 
-pnpm codegen:build
+pnpm --workspace codegen:build
+
