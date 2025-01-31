@@ -2,29 +2,33 @@ import Card from "@components/Card";
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
-import Button from "wowds-ui/Button";
+import RadioButton from "wowds-ui/RadioButton";
+import RadioGroup from "wowds-ui/RadioGroup";
 
 import ComponentTab from "./_component/ComponentTab";
 import GuidelineTab from "./_component/GuidelineTab";
 
 export const metadata: Metadata = {
-  title: "Button",
-  description: "와우 디자인 시스템의 Button 입니다.",
+  title: "Radio button",
+  description: "와우 디자인 시스템의 Radio button 입니다.",
 };
 
-const ButtonPage = () => {
+const RadioButtonPage = () => {
+  const title = componentItems.find((item) => item.title === "Radio Button");
   return (
     <>
       <Title
-        main="Button"
-        sub="사용자가 설정한 동작을 수행하기 위해 누르는 컴포넌트입니다."
+        main={title?.title || ""}
+        sub={title?.description || ""}
         variant="header"
       />
       <Space height={40} />
-      <Card style={{ padding: "156px 154px", gap: 24 }}>
-        <Button>Button1</Button>
-        <Button variant="outline">Button1</Button>
+      <Card style={{ padding: "73px 429px" }}>
+        <RadioGroup defaultValue="Text">
+          <RadioButton label="Text" value="Text" />
+        </RadioGroup>
       </Card>
       <Space height={92} />
       <ComponentDetailTabs
@@ -35,4 +39,4 @@ const ButtonPage = () => {
   );
 };
 
-export default ButtonPage;
+export default RadioButtonPage;
