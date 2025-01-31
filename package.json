@@ -3,10 +3,11 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "codegen:build": "pnpm wow-ui:codegen && pnpm wow-docs:codegen && pnpm styled-system:format && pnpm build",
+    "codegen:build": "pnpm wow-ui:codegen && pnpm styled-system:format && pnpm build",
     "tokens:build": "turbo run build --filter=wowds-tokens",
     "ui:build": "turbo run build --filter=wowds-ui",
     "icons:build": "turbo run build --filter=wowds-icons",
+    "docs:build": "turbo run build --filter=wow-docs",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "test": "turbo test",
@@ -20,7 +21,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "pnpm codegen:build"
+      "pre-push": ".husky/pre-push"
     }
   },
   "lint-staged": {
