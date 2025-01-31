@@ -37,7 +37,11 @@ const ComponentTab = () => {
         <RadioGroup defaultValue="selected">
           <Flex gap={12} padding={20}>
             {btnRadioButtons.map(({ key, ...props }) => (
-              <RadioButton key={key} {...props} />
+              <RadioButton
+                key={key}
+                {...props}
+                style={{ pointerEvents: "none" }}
+              />
             ))}
           </Flex>
         </RadioGroup>
