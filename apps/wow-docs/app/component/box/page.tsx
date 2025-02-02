@@ -25,6 +25,7 @@ const BoxPage = () => {
       <Space height={40} />
       <Card style={{ padding: "120px 132px", gap: 24 }}>
         <Box subText="Subtext" text="Text" variant="text"></Box>
+        <Box disabled={true} subText="Subtext" text="Text"></Box>
       </Card>
       <Space height={92} />
       <ComponentDetailTabs
