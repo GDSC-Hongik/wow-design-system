@@ -75,6 +75,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
       defaultChecked = false,
       disabled = false,
       style,
+      ...props
     }: ChipProps<T>,
     ref: any
   ) => {
@@ -121,6 +122,7 @@ const Chip: ChipComponent & { displayName?: string } = forwardRef(
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        {...props}
       >
         <ChipLabel disabled={disabled} ischecked={ischecked} label={label} />
       </Component>
