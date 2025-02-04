@@ -1,6 +1,7 @@
 "use client";
 import Card from "@components/Card";
 import { Flex } from "@styled-system/jsx";
+import { color } from "wowds-tokens";
 import Button from "wowds-ui/Button";
 import Table from "wowds-ui/Table";
 
@@ -29,14 +30,14 @@ const TableCard = () => {
               <Flex gap="xxs">
                 <Button
                   size="sm"
-                  style={{ borderColor: "#2A8642", color: "#2A8642" }}
+                  style={{ borderColor: color.success, color: color.success }}
                   variant="outline"
                 >
                   납입
                 </Button>
                 <Button
                   size="sm"
-                  style={{ borderColor: "#BB362A", color: "#BB362A" }}
+                  style={{ borderColor: color.error, color: color.error }}
                   variant="outline"
                 >
                   미납

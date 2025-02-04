@@ -1,6 +1,7 @@
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 
 import ComponentTab from "@/component/table/_component/ComponentTab";
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
 };
 
 const TablePage = () => {
+  const tablePageData = componentItems.find((item) => item.title === "Table");
   return (
-    <>
+    <section aria-label="Table 컴포넌트 소개 페이지입니다.">
       <Title
-        main="Table"
-        sub="데이터를 표 형식으로 표현하고 싶을 때 사용하는 컴포넌트입니다."
+        main={tablePageData?.title ?? ""}
+        sub={tablePageData?.description ?? ""}
         variant="header"
       />
       <Space height={40} />
@@ -27,7 +29,7 @@ const TablePage = () => {
         componentTab={<ComponentTab />}
         guidelineTab={<GuidelineTab />}
       />
-    </>
+    </section>
   );
 };
 
