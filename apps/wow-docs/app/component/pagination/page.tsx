@@ -1,6 +1,7 @@
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { componentItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 
 import ComponentTab from "@/component/pagination/_component/ComponentTab";
@@ -13,11 +14,15 @@ export const metadata: Metadata = {
 };
 
 const PaginationPage = () => {
+  const paginationPageData = componentItems.find(
+    (item) => item.title === "Pagination"
+  );
+
   return (
-    <>
+    <section>
       <Title
-        main="Pagination"
-        sub="많은 콘텐츠를 여러 화면에 나누고 번호를 매겨 여러 페이지로 이동 가능하게 하는 컴포넌트입니다."
+        main={paginationPageData?.title ?? ""}
+        sub={paginationPageData?.description ?? ""}
         variant="header"
       />
       <Space height={40} />
@@ -27,7 +32,7 @@ const PaginationPage = () => {
         componentTab={<ComponentTab />}
         guidelineTab={<GuidelineTab />}
       />
-    </>
+    </section>
   );
 };
 
