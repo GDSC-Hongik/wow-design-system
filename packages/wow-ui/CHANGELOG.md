@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 6ade301: Chip 컴포넌트의 className 속성을 props와 분리해요.
+
 ## 0.2.0
 
 ### Minor Changes
