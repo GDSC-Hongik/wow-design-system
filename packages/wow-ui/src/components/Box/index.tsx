@@ -183,7 +183,7 @@ const containerStyle = cva({
         cursor: "default",
       },
       disabled: {
-        cursor: "default",
+        cursor: "not-allowed",
       },
     },
   },
