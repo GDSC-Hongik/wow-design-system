@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.2
+
+### Patch Changes
+
+- efeb6ab: Box 컴포넌트에 disabled 필드를 추가해요
+
 ## 0.2.1
 
 ### Patch Changes
