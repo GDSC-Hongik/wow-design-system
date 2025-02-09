@@ -2,6 +2,7 @@ import Card from "@components/Card";
 import ComponentDetailTabs from "@components/ComponentDetailTabs";
 import Space from "@components/Space";
 import Title from "@components/Text/Title";
+import { foundationItems } from "@constants/pageData";
 import type { Metadata } from "next/types";
 import Stepper from "wowds-ui/Stepper";
 
@@ -13,12 +14,16 @@ export const metadata: Metadata = {
   description: "와우 디자인 시스템의 Stepper 입니다.",
 };
 
+const stepperPageData = foundationItems.find(
+  (item) => item.title === "Stepper"
+);
+
 const StepperPage = () => {
   return (
     <>
       <Title
-        main="Stepper"
-        sub="사용자에게 작업이 어느 정도 진행되었는지 보여줄 때 사용하는 컴포넌트입니다."
+        main={stepperPageData?.title ?? ""}
+        sub={stepperPageData?.description ?? ""}
         variant="header"
       />
       <Space height={40} />

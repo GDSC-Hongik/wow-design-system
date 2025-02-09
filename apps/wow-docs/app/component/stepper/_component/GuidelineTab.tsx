@@ -19,12 +19,12 @@ const GuidelineTab = () => {
         단계에 따라 너비는 자율로 변경 가능, 영역에 중앙 정렬하기
       </Text>
       <Space height={20} />
-      <Card style={{ padding: "87px" }}>
+      <Card>
         <Image
           alt="단계에 따라 너비는 자율로 변경 가능, 영역에 중앙 정렬하기"
-          height={24}
+          height={135}
           src="/component/stepper/width_stepper.svg"
-          width={278}
+          width={907}
         />
       </Card>
       <Space height={20} />
@@ -32,12 +32,12 @@ const GuidelineTab = () => {
         너무 적은 단계를 길게 늘리지 말 것!
       </Text>
       <Space height={20} />
-      <Card style={{ padding: "87px" }}>
+      <Card>
         <Image
           alt="사용하지 말아야 하는 stepper 의 형태"
-          height={24}
+          height={136}
           src="/component/stepper/donotuse_width_stepper.svg"
-          width={660}
+          width={907}
         />
       </Card>
       <Space height={80} />
