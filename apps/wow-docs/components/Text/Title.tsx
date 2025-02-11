@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 interface TitleProps extends FlexProps {
   variant: "header" | "component";
   main: string;
-  sub: ReactNode;
+  sub?: ReactNode;
 }
 
 const Title = ({ variant, main, sub, ...rest }: TitleProps) => {

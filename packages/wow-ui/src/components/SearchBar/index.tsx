@@ -8,6 +8,7 @@ import { Search as SearchIcon } from "wowds-icons";
 
 import type { BaseVariantType } from "@/hooks/useFormControl";
 import { useFormControl } from "@/hooks/useFormControl";
+import { useMergeRefs } from "@/hooks/useMergeRefs";
 
 type CustomVariantType = BaseVariantType | "disabled";
 
@@ -62,7 +63,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     const inputId = inputProps?.id || id;
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const inputElementRef = ref || inputRef;
+    const inputElementRef = useMergeRefs(inputRef, ref);
 
     const {
       value,
