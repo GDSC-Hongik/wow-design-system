@@ -166,6 +166,7 @@ const containerStyle = cva({
       },
       disabled: {
         borderColor: "lightDisabled",
+        backgroundColor: "backgroundAlternative",
       },
     },
 
