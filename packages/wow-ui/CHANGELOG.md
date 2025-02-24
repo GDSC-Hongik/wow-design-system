@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.3
+
+### Patch Changes
+
+- 679eb8e: box component update
+
 ## 0.2.2
 
 ### Patch Changes
