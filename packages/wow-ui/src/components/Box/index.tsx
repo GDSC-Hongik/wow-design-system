@@ -97,14 +97,14 @@ const Box = <T extends BoxVariantType = "text">({
         {leftElement}
         <Flex direction="column" gap="xxs" width="100%">
           <styled.div
-            color={textColor ? textColor : "textBlack"}
+            color={textColor ? textColor : disabled ? "sub" : "textBlack"}
             width="100%"
             {...(typeof text === "string" && { textStyle: "h3" })}
           >
             {text}
           </styled.div>
           <styled.div
-            color={subTextColor ? subTextColor : "sub"}
+            color={subTextColor ? subTextColor : disabled ? "mono.600" : "sub"}
             textStyle="body1"
             width="100%"
           >
@@ -166,6 +166,7 @@ const containerStyle = cva({
       },
       disabled: {
         borderColor: "lightDisabled",
+        backgroundColor: "backgroundAlternative",
       },
     },
 
