@@ -1,5 +1,12 @@
 # wowds-ui
 
+## 0.2.4
+
+### Patch Changes
+
+- e85792f: disabled box 배경색 변경
+- e85792f: Box 컴포넌트 disabled text 컬러 변경
+
 ## 0.2.3
 
 ### Patch Changes
