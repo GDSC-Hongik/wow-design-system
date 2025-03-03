@@ -214,6 +214,26 @@
       "types": "./dist/components/Avatar/index.d.ts",
       "require": "./dist/Avatar.cjs",
       "import": "./dist/Avatar.js"
+    },
+    "./ActionSheetBody": {
+      "types": "./dist/components/ActionSheet/ActionSheetBody.d.ts",
+      "require": "./dist/ActionSheetBody.cjs",
+      "import": "./dist/ActionSheetBody.js"
+    },
+    "./ActionSheetFooter": {
+      "types": "./dist/components/ActionSheet/ActionSheetFooter.d.ts",
+      "require": "./dist/ActionSheetFooter.cjs",
+      "import": "./dist/ActionSheetFooter.js"
+    },
+    "./ActionSheetHeader": {
+      "types": "./dist/components/ActionSheet/ActionSheetHeader.d.ts",
+      "require": "./dist/ActionSheetHeader.cjs",
+      "import": "./dist/ActionSheetHeader.js"
+    },
+    "./ActionSheet": {
+      "types": "./dist/components/ActionSheet/index.d.ts",
+      "require": "./dist/ActionSheet.cjs",
+      "import": "./dist/ActionSheet.js"
     }
   },
   "keywords": [],
@@ -240,13 +260,14 @@
     "@storybook/nextjs": "^8.1.9",
     "@storybook/react": "^8.1.9",
     "@storybook/test": "^8.1.9",
-    "@storybook/test-runner": "^0.18.2",
+    "@storybook/test-runner": "^0.22.0",
     "@storybook/testing-library": "^0.2.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "axe-playwright": "^2.0.1",
+    "@types/uuid": "^10.0.0",
+    "axe-playwright": "^2.1.0",
     "chromatic": "^11.3.0",
     "clsx": "^2.1.1",
     "eslint": "^8.57.0",
@@ -255,8 +276,7 @@
     "plop": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^8.1.9",
-    "typescript": "^5.3.3",
-    "@types/uuid": "^10.0.0"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "clsx": "^2.1.1",
