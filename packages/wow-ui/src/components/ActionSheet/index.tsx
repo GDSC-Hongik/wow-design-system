@@ -20,7 +20,6 @@ import ActionSheetOverlay from "./ActionSheetOverlay";
  * @param {CSSProperties} [style] 액션시트의 커스텀 스타일.
  * @param {string} [className] 액션시트에 전달하는 커스텀 클래스.
  */
-
 export interface ActionSheetProps {
   children:
     | [
@@ -45,19 +44,20 @@ const ActionSheet = ({
   className,
   ...rest
 }: ActionSheetProps) => {
+  const READY_FOR_TRANSITION = 100;
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [state, setState] = useState<"open" | "close">("close");
 
   const handleClose = () => {
     setState("close");
-    setTimeout(onClose, 100);
+    setTimeout(onClose, READY_FOR_TRANSITION);
   };
 
   useClickOutside(dialogRef, handleClose);
 
   useEffect(() => {
     if (!isOpen) return;
-    const timer = setTimeout(() => setState("open"), 100);
+    const timer = setTimeout(() => setState("open"), READY_FOR_TRANSITION);
     return () => clearTimeout(timer);
   }, [isOpen]);
 
