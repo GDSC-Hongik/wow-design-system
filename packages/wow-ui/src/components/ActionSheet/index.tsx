@@ -103,7 +103,7 @@ const dialogStyle = cva({
     transitionDelay: "0.8",
     transitionTimingFunction: "ease-in-out",
 
-    zIndex: 9999,
+    zIndex: "actionSheet",
 
     "@media (max-width: 768px)": {
       width: "100%",
