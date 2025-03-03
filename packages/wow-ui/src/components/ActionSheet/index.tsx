@@ -99,6 +99,10 @@ const dialogStyle = cva({
     transitionTimingFunction: "ease-in-out",
 
     zIndex: 9999,
+
+    "@media (max-width: 768px)": {
+      width: "100%",
+    },
   },
   variants: {
     state: {
