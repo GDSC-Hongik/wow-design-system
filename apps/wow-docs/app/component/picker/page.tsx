@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 };
 
 const PickerPage = () => {
-  const title = componentItems.find((item) => item.title === "Picker");
+  const pageData = componentItems.find((item) => item.title === "Picker");
   return (
     <>
       <Title
-        main={title?.title || ""}
-        sub={title?.description || ""}
+        main={pageData?.title || ""}
+        sub={pageData?.description || ""}
         variant="header"
       />
       <Space height={40} />
-      <Card style={{ padding: "73px 429px" }}>
+      <Card style={{ padding: "73px 0" }}>
         <DatePicker />
       </Card>
       <Space height={92} />
