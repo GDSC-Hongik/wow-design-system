@@ -1,6 +1,6 @@
 "use client";
 
-import { cva } from "@styled-system/css";
+import { cva, cx } from "@styled-system/css";
 import type { CSSProperties, ReactElement } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -42,6 +42,7 @@ const ActionSheet = ({
   isOpen,
   onClose,
   children,
+  className,
   ...rest
 }: ActionSheetProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -63,7 +64,11 @@ const ActionSheet = ({
   return (
     isOpen && (
       <ActionSheetContext.Provider value={{ onClose: handleClose }}>
-        <dialog className={dialogStyle({ state })} ref={dialogRef} {...rest}>
+        <dialog
+          className={cx(dialogStyle({ state }), className)}
+          ref={dialogRef}
+          {...rest}
+        >
           {children}
         </dialog>
         <ActionSheetOverlay />
