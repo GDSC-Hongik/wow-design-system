@@ -1,5 +1,11 @@
 # wowds-ui
 
+## 0.2.5
+
+### Patch Changes
+
+- bbaeb98: DropDown 의 aria hidden 속성을 제거합니다.
+
 ## 0.2.4
 
 ### Patch Changes
