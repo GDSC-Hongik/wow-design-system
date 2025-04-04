@@ -2,9 +2,9 @@
 
 import NavItem from "@components/Navbar/NavItem";
 import Space from "@components/Space";
+import { navMenu } from "@constants/navMenu";
 import { routePath } from "@constants/routePath";
 import { css } from "@styled-system/css";
-import { navMenu } from "constants/navMenu";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { GdscLogo } from "wowds-icons";

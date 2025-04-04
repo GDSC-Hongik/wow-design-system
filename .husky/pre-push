@@ -1,4 +1,13 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
 pnpm codegen:build
+
+changed_files=$(git diff --name-only origin/main)
+
+wow_docs_public_changes=$(echo "$changed_files" | grep '^apps/wow-docs/public/' || true)
+
+if [ -n "$wow_docs_public_changes" ]; then
+  cd apps/wow-docs && pnpm svg-optimize
+fi
+
