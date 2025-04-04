@@ -67,7 +67,9 @@ const meta: Meta<TabsProps> = {
         type: { summary: "CSSProperties" },
         defaultValue: { summary: "{}" },
       },
-      control: false,
+      control: {
+        type: "object",
+      },
     },
     className: {
       description: "탭에 전달하는 커스텀 클래스를 설정합니다.",

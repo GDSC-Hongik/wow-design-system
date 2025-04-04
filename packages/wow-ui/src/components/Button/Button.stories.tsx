@@ -49,9 +49,9 @@ const meta = {
         type: { summary: "lg | sm" },
         defaultValue: { summary: "lg" },
       },
+      options: ["lg", "sm"],
       control: {
         type: "radio",
-        options: ["lg", "sm"],
       },
     },
     variant: {
@@ -60,24 +60,26 @@ const meta = {
         type: { summary: "solid | outline" },
         defaultValue: { summary: "solid" },
       },
+      options: ["solid", "outline"],
       control: {
         type: "radio",
-        options: ["solid", "outline"],
       },
     },
     style: {
-      description: "버튼의 커스텀 스타일을 나타냅니다.",
+      description: "버튼의 커스텀 스타일을 설정합니다.",
       table: {
         type: { summary: "CSSProperties" },
       },
-      control: false,
+      control: { type: "object" },
     },
     className: {
-      description: "버튼에 전달하는 커스텀 클래스를 나타냅니다.",
+      description: "버튼에 전달하는 커스텀 클래스를 설정합니다.",
       table: {
         type: { summary: "string" },
       },
-      control: false,
+      control: {
+        type: "text",
+      },
     },
     ref: {
       description: "렌더링된 요소 또는 컴포넌트에 연결할 ref를 나타냅니다.",
