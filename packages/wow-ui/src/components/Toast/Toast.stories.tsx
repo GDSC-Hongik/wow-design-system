@@ -52,7 +52,7 @@ const meta: Meta<typeof Toast> = {
     },
     id: {
       description: "Toast 컴포넌트의 id를 나타냅니다.",
-      control: false,
+      control: { type: "text" },
     },
     onClickArrowIcon: {
       description:

@@ -25,13 +25,12 @@ const meta = {
   },
   argTypes: {
     children: {
-      description: "DropDownOption 들을 children 컴포넌트로 받습니다.",
+      description: "DropDownOption 들을 children 으로 받습니다.",
       table: {
         type: { summary: "ReactNode" },
+        required: true,
       },
-      control: {
-        type: "text",
-      },
+      control: false,
     },
     trigger: {
       description: "드롭다운을 열기 위한 외부 트리거 요소입니다.",

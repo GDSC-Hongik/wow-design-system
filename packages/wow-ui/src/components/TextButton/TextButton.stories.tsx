@@ -10,6 +10,16 @@ const meta = {
     componentSubtitle: "텍스트 버튼 컴포넌트",
   },
   argTypes: {
+    text: {
+      description: "텍스트 버튼의 텍스트를 나타냅니다.",
+      table: {
+        type: { summary: "string" },
+        required: true,
+      },
+      control: {
+        type: "text",
+      },
+    },
     label: {
       description: "텍스트 버튼의 라벨을 나타냅니다.",
       table: {

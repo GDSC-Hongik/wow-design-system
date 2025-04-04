@@ -60,6 +60,7 @@ const meta = {
       description: "칩에 들어가게 될 텍스트입니다.",
       table: {
         type: { summary: "string" },
+        required: true,
       },
       control: {
         type: "text",

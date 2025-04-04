@@ -17,6 +17,14 @@ const meta = {
     },
   },
   argTypes: {
+    children: {
+      description: "버튼의 자식 요소를 나타냅니다.",
+      table: {
+        type: { summary: "ReactNode" },
+        required: true,
+      },
+      control: false,
+    },
     label: {
       description: "버튼의 라벨을 나타냅니다.",
       table: {
@@ -64,6 +72,22 @@ const meta = {
       control: {
         type: "radio",
       },
+    },
+    subText: {
+      description: "버튼의 서브 텍스트를 나타냅니다.",
+      table: {
+        type: { summary: "string" },
+      },
+      control: {
+        type: "text",
+      },
+    },
+    icon: {
+      description: "버튼에 표시할 아이콘을 나타냅니다.",
+      table: {
+        type: { summary: "ReactNode" },
+      },
+      control: false,
     },
     style: {
       description: "버튼의 커스텀 스타일을 설정합니다.",

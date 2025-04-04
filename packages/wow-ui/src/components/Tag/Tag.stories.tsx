@@ -19,6 +19,7 @@ const meta = {
       description: "태그의 자식 요소.",
       table: {
         type: { summary: "ReactNode" },
+        required: true,
       },
       control: {
         type: "text",

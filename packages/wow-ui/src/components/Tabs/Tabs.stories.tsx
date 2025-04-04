@@ -30,6 +30,7 @@ const meta: Meta<TabsProps> = {
       description: "TabsList,TabsItem,TabsContent 를 children 으로 받습니다.",
       table: {
         type: { summary: "ReactNode" },
+        required: true,
       },
       control: false,
     },

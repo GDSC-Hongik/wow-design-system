@@ -33,7 +33,7 @@ const meta = {
       },
     },
     children: {
-      description: "라디오 그룹의 자식 요소를 나타냅니다.",
+      description: "RadioButton들을 children 으로 받습니다.",
       table: {
         type: { summary: "RadioButton" },
         defaultValue: {

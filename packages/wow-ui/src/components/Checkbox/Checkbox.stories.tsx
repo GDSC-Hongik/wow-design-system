@@ -114,7 +114,9 @@ const meta = {
         type: { summary: "InputHTMLAttributes<HTMLInputElement>" },
         defaultValue: { summary: "{}" },
       },
-      control: false,
+      control: {
+        type: "object",
+      },
     },
     style: {
       description: "체크박스의 커스텀 스타일을 설정합니다.",
