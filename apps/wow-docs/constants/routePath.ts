@@ -1,4 +1,6 @@
-export const PRODUCTION_URL = "https://wow-design-system-wow-docs.vercel.app";
+export const PRODUCTION_URL =
+  process.env.NEXT_PUBLIC_APP_URL ||
+  "https://wow-design-system-wow-docs.vercel.app";
 
 export const basePaths = {
   component: "/component",
