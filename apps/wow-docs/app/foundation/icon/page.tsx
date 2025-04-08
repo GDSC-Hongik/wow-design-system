@@ -8,8 +8,11 @@ import type { Metadata } from "next/types";
 
 import { metadata as defaultMetaData } from "@/layout";
 
-const { title = "", description = "" } =
-  foundationItems.find((item) => item.title === "Icon") ?? {};
+const {
+  title = "",
+  description = "",
+  href = "",
+} = foundationItems.find((item) => item.title === "Icon") ?? {};
 
 export const metadata: Metadata = {
   title: title,
@@ -18,6 +21,7 @@ export const metadata: Metadata = {
     ...defaultMetaData.openGraph,
     title: title,
     description: description,
+    url: href,
   },
   twitter: {
     ...defaultMetaData.twitter,

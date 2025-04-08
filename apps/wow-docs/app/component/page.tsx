@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import { metadata as defaultMetaData } from "@/layout";
 
-const { title, description } = componentPageData;
+const { title, description, href } = componentPageData;
 
 export const metadata: Metadata = {
   title: title,
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     ...defaultMetaData.openGraph,
     title: title,
     description: description,
+    url: href,
   },
   twitter: {
     ...defaultMetaData.twitter,

@@ -14,8 +14,11 @@ import Divider from "wowds-ui/Divider";
 
 import { metadata as defaultMetaData } from "@/layout";
 
-const { title = "", description = "" } =
-  foundationItems.find((item) => item.title === "Spacing") ?? {};
+const {
+  title = "",
+  description = "",
+  href = "",
+} = foundationItems.find((item) => item.title === "Spacing") ?? {};
 
 export const metadata: Metadata = {
   title: title,
@@ -24,6 +27,7 @@ export const metadata: Metadata = {
     ...defaultMetaData.openGraph,
     title: title,
     description: description,
+    url: href,
   },
   twitter: {
     ...defaultMetaData.twitter,
