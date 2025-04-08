@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     title: title,
     description: description,
   },
+  alternates: { canonical: href },
 };
 
 const ChipPage = () => {

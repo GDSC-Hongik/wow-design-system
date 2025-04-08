@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import { metadata as defaultMetaData } from "@/layout";
 
-const { title, description } = foundationPageData;
+const { title, description, href } = foundationPageData;
 
 export const metadata: Metadata = {
   title: title,
@@ -18,11 +18,15 @@ export const metadata: Metadata = {
     ...defaultMetaData.openGraph,
     title: title,
     description: description,
+    url: href,
   },
   twitter: {
     ...defaultMetaData.twitter,
     title: title,
     description: description,
+  },
+  alternates: {
+    canonical: href,
   },
 };
 
