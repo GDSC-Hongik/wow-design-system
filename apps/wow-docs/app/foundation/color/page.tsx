@@ -13,21 +13,30 @@ import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
-const colorPageData = foundationItems.find((item) => item.title === "Color");
+import { metadata as defaultMetaData } from "@/layout";
+
+const { title = "", description = "" } =
+  foundationItems.find((item) => item.title === "Color") ?? {};
 
 export const metadata: Metadata = {
-  title: colorPageData?.title ?? "",
-  description: colorPageData?.description ?? "",
+  title: title,
+  description: description,
+  openGraph: {
+    ...defaultMetaData.openGraph,
+    title: title,
+    description: description,
+  },
+  twitter: {
+    ...defaultMetaData.twitter,
+    title: title,
+    description: description,
+  },
 };
 
 const ColorPage = () => {
   return (
     <>
-      <Title
-        main={colorPageData?.title ?? ""}
-        sub={colorPageData?.description ?? ""}
-        variant="header"
-      />
+      <Title main={title} sub={description} variant="header" />
       <Space height={68} />
       <Text as="h2" typo="display2WebPage">
         Semantic

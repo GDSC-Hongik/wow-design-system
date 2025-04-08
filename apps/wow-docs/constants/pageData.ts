@@ -1,5 +1,10 @@
 import { routePath } from "@constants/routePath";
 
+export const foundationPageData = {
+  title: "Foundation",
+  description:
+    "파운데이션은 가장 기초적인 디자인 요소로, 일관된 디자인을 위해 다음의 규칙에 맞게 사용합니다",
+};
 export const foundationItems = [
   {
     title: "Color",

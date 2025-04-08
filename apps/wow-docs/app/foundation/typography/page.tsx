@@ -12,24 +12,30 @@ import HeadingCard from "@/foundation/typography/_component/HeadingCard";
 import LabelCard from "@/foundation/typography/_component/LabelCard";
 import PrimaryCard from "@/foundation/typography/_component/PrimaryCard";
 import SecondaryCard from "@/foundation/typography/_component/SecondaryCard";
+import { metadata as defaultMetaData } from "@/layout";
 
-const typographyPageData = foundationItems.find(
-  (item) => item.title === "Typography"
-);
+const { title = "", description = "" } =
+  foundationItems.find((item) => item.title === "Typography") ?? {};
 
 export const metadata: Metadata = {
-  title: typographyPageData?.title ?? "",
-  description: typographyPageData?.description ?? "",
+  title: title,
+  description: description,
+  openGraph: {
+    ...defaultMetaData.openGraph,
+    title: title,
+    description: description,
+  },
+  twitter: {
+    ...defaultMetaData.twitter,
+    title: title,
+    description: description,
+  },
 };
 
 const TypographyPage = () => {
   return (
     <>
-      <Title
-        main={typographyPageData?.title ?? ""}
-        sub={typographyPageData?.description ?? ""}
-        variant="header"
-      />
+      <Title main={title} sub={description} variant="header" />
       <Space height={68} />
       <Text as="h2" typo="display2WebPage">
         Font

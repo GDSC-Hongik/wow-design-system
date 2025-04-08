@@ -12,23 +12,30 @@ import Image from "next/image";
 import type { Metadata } from "next/types";
 import Divider from "wowds-ui/Divider";
 
-const spacingPageData = foundationItems.find(
-  (item) => item.title === "Spacing"
-);
+import { metadata as defaultMetaData } from "@/layout";
+
+const { title = "", description = "" } =
+  foundationItems.find((item) => item.title === "Spacing") ?? {};
 
 export const metadata: Metadata = {
-  title: spacingPageData?.title ?? "",
-  description: spacingPageData?.description ?? "",
+  title: title,
+  description: description,
+  openGraph: {
+    ...defaultMetaData.openGraph,
+    title: title,
+    description: description,
+  },
+  twitter: {
+    ...defaultMetaData.twitter,
+    title: title,
+    description: description,
+  },
 };
 
 const SpacingPage = () => {
   return (
     <>
-      <Title
-        main={spacingPageData?.title ?? ""}
-        sub={spacingPageData?.description ?? ""}
-        variant="header"
-      />
+      <Title main={title} sub={description} variant="header" />
       <Space height={68} />
       <Text as="h2" typo="display2WebPage">
         Radius
