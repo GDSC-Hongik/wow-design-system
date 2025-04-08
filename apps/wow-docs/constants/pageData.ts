@@ -153,11 +153,11 @@ export const componentItems = [
     href: routePath.component.switch,
   },
   {
-    title: "Tabs",
+    title: "Tab Bar",
     description: "버튼을 눌러 섹션을 전환할 수 있는 컴포넌트입니다.",
-    imageAlt: "tabs",
+    imageAlt: "tabBar",
     imageSrc: "/component/tabbar.png",
-    href: routePath.component.tabs,
+    href: routePath.component.tabBar,
   },
   {
     title: "Table",

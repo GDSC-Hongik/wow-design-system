@@ -6,7 +6,7 @@ import {
   widthButtonItems,
   withIconButtonItems,
   withSubjectButtonItems,
-} from "@constants/store";
+} from "@constants/store/buttonData";
 import Divider from "wowds-ui/Divider";
 
 const GuidelineTab = () => {

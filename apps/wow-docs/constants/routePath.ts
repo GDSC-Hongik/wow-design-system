@@ -1,4 +1,6 @@
-export const PRODUCTION_URL = "https://wow-design-system-wow-docs.vercel.app";
+export const PRODUCTION_URL =
+  process.env.NEXT_PUBLIC_APP_URL ||
+  "https://wow-design-system-wow-docs.vercel.app";
 
 export const basePaths = {
   component: "/component",
@@ -32,7 +34,7 @@ export const componentPaths = {
   stepper: "stepper",
   switch: "switch",
   table: "table",
-  tabs: "tabs",
+  tabBar: "tabbar",
   tag: "tag",
   textButton: "textbutton",
   textField: "textfield",
@@ -68,7 +70,7 @@ type RoutePath = {
     stepper: string;
     switch: string;
     table: string;
-    tabs: string;
+    tabBar: string;
     tag: string;
     textButton: string;
     textField: string;
