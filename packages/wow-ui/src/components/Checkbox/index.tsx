@@ -121,6 +121,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           {checked && (
             <styled.span
               left="50%"
+              pointerEvents="none"
               position="absolute"
               top="50%"
               transform="translate(-50%, -50%)"

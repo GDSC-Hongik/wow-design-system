@@ -138,6 +138,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     value: "switch",
+    onChange: undefined,
   },
 };
 
@@ -145,6 +146,7 @@ export const DefaultChecked: Story = {
   args: {
     defaultChecked: true,
     value: "switch",
+    onChange: undefined,
   },
 };
 
@@ -159,6 +161,7 @@ export const WithText: Story = {
   args: {
     label: "Label",
     value: "switch",
+    onChange: undefined,
   },
 };
 
