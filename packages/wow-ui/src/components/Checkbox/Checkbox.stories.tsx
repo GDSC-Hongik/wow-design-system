@@ -155,6 +155,7 @@ export const Default: Story = {
   args: {
     defaultChecked: false,
     value: "checkbox",
+    onChange: undefined,
   },
 };
 
@@ -162,6 +163,7 @@ export const Checked: Story = {
   args: {
     defaultChecked: true,
     value: "checkbox",
+    onChange: undefined,
   },
 };
 
