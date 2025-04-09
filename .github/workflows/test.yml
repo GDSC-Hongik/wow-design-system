@@ -46,5 +46,5 @@ jobs:
         working-directory: packages/wow-ui
 
       - name: Run playwright tests
-        run: cd packages/wow-ui && pnpm playwright test
+        run: cd packages/wow-ui && pnpm playwright test --browser=all
         working-directory: packages/wow-ui
