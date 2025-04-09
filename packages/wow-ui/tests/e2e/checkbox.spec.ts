@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("checkbox toggles correctly in storybook", async ({ page }) => {
-  await page.goto("http://localhost:6006/?path=/story/ui-checkbox--default");
+  await page.goto("/?path=/story/ui-checkbox--default");
 
   const frame = page.frameLocator("#storybook-preview-iframe");
 
