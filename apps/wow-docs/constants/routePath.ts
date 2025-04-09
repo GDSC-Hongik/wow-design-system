@@ -1,6 +1,7 @@
+import { environment } from "@constants/environment";
+
 export const PRODUCTION_URL =
-  process.env.NEXT_PUBLIC_APP_URL ||
-  "https://wow-design-system-wow-docs.vercel.app";
+  environment.APP_URL || "https://wow-design-system-wow-docs.vercel.app";
 
 export const basePaths = {
   component: "/component",
